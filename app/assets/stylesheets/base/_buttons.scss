@@ -1,0 +1,61 @@
+button, a.button, input[type="submit"] {
+  appearance: none;
+  background-color: $action-color;
+  border: 0;
+  border-radius: $base-border-radius;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $heading-font-family;
+  font-size: 1.3rem;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 600;
+  line-height: 1;
+  padding: $small-spacing $base-spacing;
+  text-decoration: none;
+  transition: background-color $base-duration $base-timing;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  // text-shadow: 1px 1px 1px #666;
+
+  &:hover,
+  &:focus {
+    background-color: darken($action-color, 10%);
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $light-gray;
+
+    &:hover {
+      background-color: $medium-gray;
+    }
+  }
+
+  &.small {
+    font-size: 1rem;
+  }
+
+}
+
+div.sliderButtons {
+  display: block;
+  text-align: center;
+
+  span.dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255,255,255,.4);
+    display: inline-block;
+    margin: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &.active {
+      background-color: rgba(255,255,255,.8);
+
+    }
+  }
+}

@@ -1,0 +1,78 @@
+@import "variables";
+@import "library";
+@import "forms";
+@import "typography";
+@import "buttons";
+
+* {
+  @include border-box;
+}
+
+html {
+  height: 100%;
+  font-family: sans-serif;
+}
+
+body {
+  font-size: 0px;
+  min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+  margin-bottom: 1rem;
+  padding-top: .5rem;
+}
+
+p {
+  margin: 0px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+
+  @include MQ(M) {
+    font-size: 3rem;
+  }
+  @include MQ(L) {
+    font-size: 4.5rem;
+    line-height: 1.6;
+  }
+}
+
+h2 {
+  font-size: 1.8rem;
+  @include MQ(S) {
+    font-size: 2.4rem;
+  }
+}
+
+h3 {  font-size: 3rem;  }
+
+h4 {  font-size: 1.5rem;  }
+
+h5 {  font-size: 1rem;  }
+
+h6 {  font-size: .8rem;  }
+
+ul {
+  list-style: none;
+}
+
+.hidden {
+  display: none !important;
+}

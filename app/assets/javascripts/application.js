@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('.todoPomodoros').click(function(e) {
+    $($(this).find('.pomodoroCircle').not('.active')[0]).addClass('active')
+  })
+})

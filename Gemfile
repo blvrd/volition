@@ -10,6 +10,7 @@ gem "appsignal"
 gem "sidekiq"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
+gem 'turbolinks'
 gem "puma"
 gem "rails", "~> 5.0.0"
 gem "recipient_interceptor"

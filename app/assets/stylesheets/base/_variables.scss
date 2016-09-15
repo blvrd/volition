@@ -1,0 +1,46 @@
+// Typography
+$base-font-family: 'Karla', sans-serif;
+$heading-font-family: 'Karla', sans-serif;
+
+// Font Sizes
+$base-font-size: 16px;
+$small-font-size: 12px;
+
+// Line height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 0;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+$base-z-index: 0;
+
+// Colors
+$blue: #477dca;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #ddd;
+$red: lighten(#d9414e, 5%);
+$green: #45bf55;
+
+// Font Colors
+$base-font-color: $dark-gray;
+$action-color: $green;
+$error-color: $red;
+
+// Border
+$base-border-color: $light-gray;
+$base-border: 1px solid $base-border-color;
+
+// Background Colors
+$base-background-color: #fff;
+$secondary-background-color: tint($base-border-color, 75%);
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, .06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -.3);
+
+// Animations
+$base-duration: 150ms;
+$base-timing: ease;
