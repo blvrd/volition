@@ -1,4 +1,4 @@
-.todaySection {
+.todaySection, .tomorrowSection, .reflectSection {
   @include display-flex;
   @include flex-direction(column);
   @include align-items(center);
@@ -16,21 +16,6 @@
   }
 }
 
-.tomorrowSection {
-  @include display-flex;
-  @include flex-direction(column);
-  @include align-items(center);
-
-  h1 {
-    font-size: 40px;
-    color: $dark-gray;
-  }
-
-  .todoList {
-    width: 500px;
-  }
-}
-
 .todoEstimate {
   .estimateInput {
     width: 30px;
@@ -42,6 +27,16 @@
 .todoList {
   margin-top: 20px;
   width: 600px;
+
+  &.tomorrow {
+    width: 500px;
+    padding: 0;
+
+    .todo {
+      list-style-type: decimal;
+      list-style-position: outside;
+    }
+  }
 }
 
 .todo {
@@ -122,6 +117,38 @@
 
 .finishDayButton {
   margin-top: 20px;
-  font-size: 14px !important;
 }
 
+.dayRating {
+  @include display-flex;
+  @include justify-content(space-between);
+  width: 500px;
+
+  .ratingCircle {
+    @include display-flex;
+    @include justify-content(center);
+    @include align-items(center);
+    font-size: 14px;
+    border: 1px solid $medium-gray;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $action-color;
+      border: 1px solid $action-color;
+      color: #fff;
+    }
+  }
+}
+
+.reflectionForm {
+  margin: 40px 0;
+}
+
+.tomorrowExplanation {
+  width: 500px;
+  color: $dark-gray;
+  font-size: 14px;
+}
