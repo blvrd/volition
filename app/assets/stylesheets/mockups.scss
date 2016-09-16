@@ -1,4 +1,8 @@
-.todaySection, .tomorrowSection, .reflectSection {
+.todaySection,
+.tomorrowSection,
+.reflectSection,
+.niceJobSection,
+.dashboardSection {
   @include display-flex;
   @include flex-direction(column);
   @include align-items(center);
@@ -19,8 +23,8 @@
 .todoEstimate {
   .estimateInput {
     width: 30px;
-    border: 1px dotted $dark-gray;
-    height: 30px
+    height: 30px;
+    border: 1px solid $dark-gray;
   }
 }
 
@@ -31,11 +35,7 @@
   &.tomorrow {
     width: 500px;
     padding: 0;
-
-    .todo {
-      list-style-type: decimal;
-      list-style-position: outside;
-    }
+    margin-bottom: 20px;
   }
 }
 
@@ -51,6 +51,7 @@
   label {
     position: relative;
     border: 1px solid $medium-gray;
+    border-radius: $base-border-radius;
     width: 20px;
     height: 20px;
   }
@@ -96,7 +97,7 @@
   .pomodoroCircle {
     width: 20px;
     height: 20px;
-    border: 1px solid $medium-gray;
+    border: 2px solid $medium-gray;
     border-radius: 50%;
 
     &.active {
@@ -112,6 +113,7 @@
 
   .todoLabel {
     font-size: 12px;
+    color: $medium-gray;
   }
 }
 
@@ -123,22 +125,34 @@
   @include display-flex;
   @include justify-content(space-between);
   width: 500px;
+}
 
-  .ratingCircle {
-    @include display-flex;
-    @include justify-content(center);
-    @include align-items(center);
-    font-size: 14px;
-    border: 1px solid $medium-gray;
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
+.ratingCircle {
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  font-size: 14px;
+  border: 2px solid $medium-gray;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  position: relative;
 
-    &:hover {
-      background-color: $action-color;
-      border: 1px solid $action-color;
-      color: #fff;
+  &:hover, &.active {
+    background-color: $action-color;
+    border: 1px solid $action-color;
+    color: #fff;
+  }
+
+  &.dashboard {
+    cursor: default;
+
+    &:before {
+      content: "Rating";
+      color: $dark-gray;
+      position: absolute;
+      top: -10px;
     }
   }
 }
@@ -149,6 +163,56 @@
 
 .tomorrowExplanation {
   width: 500px;
-  color: $dark-gray;
+  margin-top: 20px;
+  color: $medium-gray;
   font-size: 14px;
 }
+
+.calendarIcon {
+  width: 80px;
+  height: 75px;
+}
+
+.calendarIconTopBar {
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  background: $red;
+}
+
+.calendarIconDay {
+  font-size: 32px;
+  text-align: center;
+  border: 1px solid $medium-gray;
+  border-radius: $base-border-radius;
+  border-top: none;
+}
+
+.saveTomorrowButton {
+  margin-bottom: 30px;
+}
+
+.niceJobGif {
+  width: 300px;
+  margin: 20px 0 20px 0;
+}
+
+.daySummary {
+  @include display-flex;
+  @include align-items(center);
+  @include justify-content(space-around);
+  width: 550px;
+  height: 175px;
+  border: 2px solid $medium-gray;
+  border-radius: $base-border-radius;
+  margin-bottom: 40px;
+}
+
+.todayLink {
+  margin-bottom: 40px;
+}
+
+.smallTodoList {
+  font-size: 12px;
+}
+

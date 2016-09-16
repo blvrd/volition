@@ -1,8 +1,11 @@
 <section class="tomorrowSection">
   <h1>Tomorrow</h1>
-  <h2><%= Date.tomorrow.strftime('%B %e, %Y') %></h2>
+  <div class="calendarIcon">
+    <div class="calendarIconTopBar"><span class="month"><%= Date.tomorrow.strftime('%B') %></span></div>
+    <div class="calendarIconDay"><span class="day"><%= Date.tomorrow.strftime('%e') %></span></div>
+  </div>
 
-  <p class="tomorrowExplanation">Let's plan tasks for tomorrow. In the "estimate" column, enter your guess for how many 25 minute blocks it will take to finish the task. If you think it will be more than five, break it down into smaller tasks.</p>
+  <p class="tomorrowExplanation">Let's plan tasks for tomorrow. In the "estimate" column, enter your guess for how many 25 minute blocks it will take to finish each task. If you think it will take more than five, break it down into smaller tasks.</p>
 
   <ul class="todoList tomorrow">
     <li class="todoLabels">
@@ -41,4 +44,6 @@
       </div>
     </li>
   </ul>
+
+  <a href="/mockups/nice_job" class="saveTomorrowButton button">Save</a>
 </section>
