@@ -2,47 +2,72 @@
   <h1>Dashboard</h1>
   <a class="todayLink" href="/mockups/today">go to today's tasks &rarr;</a>
   <ul class="daySummaryList">
+    <a href="/mockups/today" class="noTextStyle">
+      <li class="daySummary today">
+        <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+          <div class="calendarIcon small">
+            <div class="calendarIconTopBar small"><span class="month"><%= Date.today.strftime('%B') %></span></div>
+            <div class="calendarIconDay small"><span class="day"><%= Date.today.strftime('%e') %></span></div>
+          </div>
+          <span class="ratingCircle active dashboard"><span class="ratingNumber">?</span></span>
+        </div>
+
+        <ol class="dashboardTodoList">
+          <li class="dashboardTodo">
+            <span class="complete">
+              Software dev
+            </span>
+            <span class="checkMark">&#10004</span>
+          </li>
+          <li class="dashboardTodo">
+            <span class="complete">
+              Read book
+            </span>
+            <span class="checkMark">&#10004</span>
+          </li>
+          <li class="dashboardTodo">
+            <span class="complete">
+              Clean room
+            </span>
+            <span class="checkMark">&#10004</span>
+          </li>
+          <li class="dashboardTodo">Follow up with client</li>
+          <li class="dashboardTodo">Practice piano</li>
+        </ol>
+      </li>
+    </a>
+
     <li class="daySummary">
-      <div class="calendarIcon">
-        <div class="calendarIconTopBar"><span class="month"><%= Date.yesterday.strftime('%B') %></span></div>
-        <div class="calendarIconDay"><span class="day"><%= Date.yesterday.strftime('%e') %></span></div>
+      <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+        <div class="calendarIcon small">
+          <div class="calendarIconTopBar small"><span class="month"><%= Date.yesterday.strftime('%B') %></span></div>
+          <div class="calendarIconDay small"><span class="day"><%= Date.yesterday.strftime('%e') %></span></div>
+        </div>
+        <span class="ratingCircle active dashboard"><span class="ratingNumber">10</span></span>
       </div>
-      <ol class="smallTodoList">
-        <li class="smallTodo">Software dev</li>
-        <li class="smallTodo">Read book</li>
-        <li class="smallTodo">Clean room</li>
-        <li class="smallTodo">Follow up with client</li>
-        <li class="smallTodo">Practice piano</li>
+
+      <ol class="dashboardTodoList">
+        <li class="dashboardTodo">
+          <span class="complete">
+            Software dev
+          </span>
+          <span class="checkMark">&#10004</span>
+        </li>
+        <li class="dashboardTodo">
+          <span class="complete">
+            Read book
+          </span>
+          <span class="checkMark">&#10004</span>
+        </li>
+        <li class="dashboardTodo">
+          <span class="complete">
+            Clean room
+          </span>
+          <span class="checkMark">&#10004</span>
+        </li>
+        <li class="dashboardTodo">Follow up with client</li>
+        <li class="dashboardTodo">Practice piano</li>
       </ol>
-      <span class="ratingCircle active dashboard"><span class="ratingNumber">10</span></span>
-    </li>
-    <li class="daySummary">
-      <div class="calendarIcon">
-        <div class="calendarIconTopBar"><span class="month"><%= Date.yesterday.strftime('%B') %></span></div>
-        <div class="calendarIconDay"><span class="day"><%= Date.yesterday.strftime('%e') %></span></div>
-      </div>
-      <ol class="smallTodoList">
-        <li class="smallTodo">Software dev</li>
-        <li class="smallTodo">Read book</li>
-        <li class="smallTodo">Clean room</li>
-        <li class="smallTodo">Follow up with client</li>
-        <li class="smallTodo">Practice piano</li>
-      </ol>
-      <span class="ratingCircle active dashboard"><span class="ratingNumber">10</span></span>
-    </li>
-    <li class="daySummary">
-      <div class="calendarIcon">
-        <div class="calendarIconTopBar"><span class="month"><%= Date.yesterday.strftime('%B') %></span></div>
-        <div class="calendarIconDay"><span class="day"><%= Date.yesterday.strftime('%e') %></span></div>
-      </div>
-      <ol class="smallTodoList">
-        <li class="smallTodo">Software dev</li>
-        <li class="smallTodo">Read book</li>
-        <li class="smallTodo">Clean room</li>
-        <li class="smallTodo">Follow up with client</li>
-        <li class="smallTodo">Practice piano</li>
-      </ol>
-      <span class="ratingCircle active dashboard"><span class="ratingNumber">10</span></span>
     </li>
   </ul>
 </section>

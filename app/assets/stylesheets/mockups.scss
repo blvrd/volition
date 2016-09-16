@@ -152,7 +152,7 @@
       content: "Rating";
       color: $dark-gray;
       position: absolute;
-      top: -10px;
+      top: -20px;
     }
   }
 }
@@ -171,6 +171,11 @@
 .calendarIcon {
   width: 80px;
   height: 75px;
+
+  &.small {
+    width: 50px;
+    height: 45px;
+  }
 }
 
 .calendarIconTopBar {
@@ -178,6 +183,10 @@
   text-align: center;
   color: #fff;
   background: $red;
+
+  &.small {
+    font-size: 9px;
+  }
 }
 
 .calendarIconDay {
@@ -186,10 +195,15 @@
   border: 1px solid $medium-gray;
   border-radius: $base-border-radius;
   border-top: none;
+  background: $white;
+
+  &.small {
+    font-size: 20px;
+  }
 }
 
 .saveTomorrowButton {
-  margin-bottom: 30px;
+  margin-right: 10px;
 }
 
 .niceJobGif {
@@ -200,19 +214,44 @@
 .daySummary {
   @include display-flex;
   @include align-items(center);
-  @include justify-content(space-around);
-  width: 550px;
+  // @include justify-content(space-around);
+  width: 400px;
   height: 175px;
-  border: 2px solid $medium-gray;
+  border: 2px solid $light-gray;
   border-radius: $base-border-radius;
   margin-bottom: 40px;
+
+  &.today {
+    border: 2px solid $action-color;
+  }
+}
+
+.daySummaryInfoColumn {
+  background: $light-gray;
+  height: 100%;
+  height: 100%;
+  width: 75px;
+  padding: 20px 0;
 }
 
 .todayLink {
   margin-bottom: 40px;
 }
 
-.smallTodoList {
-  font-size: 12px;
+.dashboardTodoList {
+  font-size: 16px;
+  @include flex(1);
 }
+
+.dashboardTodo {
+  .complete {
+    text-decoration: line-through;
+  }
+
+  .checkMark {
+    color: $action-color;
+    margin-left: 5px;
+  }
+}
+
 
