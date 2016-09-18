@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160916204110) do
     t.text     "wrong"
     t.text     "right"
     t.text     "undone"
+    t.datetime "date"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

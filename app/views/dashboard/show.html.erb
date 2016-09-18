@@ -1,0 +1,67 @@
+<section class="dashboardSection">
+  <h1>Dashboard</h1>
+  <a class="todayLink" href="/mockups/today">go to today's tasks &rarr;</a>
+  <ul class="daySummaryList">
+    <a href="/mockups/today" class="noTextStyle">
+      <li class="daySummary today">
+        <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+          <div class="calendarIcon small">
+            <div class="calendarIconTopBar small"><span class="month"><%= Date.today.strftime('%B') %></span></div>
+            <div class="calendarIconDay small"><span class="day"><%= Date.today.strftime('%e') %></span></div>
+          </div>
+          <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= @todays_todo_list.reflection.rating || "?" %></span></span>
+        </div>
+
+        <% if @todays_todo_list.present? %>
+          <ol class="dashboardTodoList">
+            <% @todays_todo_list.todos.each do |todo| %>
+              <li class="dashboardTodo">
+                <% if todo.complete? %>
+                  <span class="complete">
+                    <%= todo.content %>
+                  </span>
+                  <span class="checkMark">&#10004</span>
+                <% else %>
+                  <%= todo.content %>
+                <% end %>
+              </li>
+            <% end %>
+          </ol>
+        <% else %>
+          <p class="noTasks">No tasks yet.</p>
+        <% end %>
+      </li>
+    </a>
+
+    <% if @past_todo_lists.present? %>
+      <% @past_todo_lists.each do |todo_list| %>
+        <li class="daySummary">
+          <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+            <div class="calendarIcon small">
+              <div class="calendarIconTopBar small"><span class="month"><%= todo_list.date.strftime('%B') %></span></div>
+              <div class="calendarIconDay small"><span class="day"><%= todo_list.date.strftime('%e') %></span></div>
+            </div>
+            <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= todo_list.reflection.rating || "?" %></span></span>
+          </div>
+
+          <ol class="dashboardTodoList">
+            <% todo_list.todos.each do |todo| %>
+              <li class="dashboardTodo">
+                <% if todo.complete? %>
+                  <span class="complete">
+                    <%= todo.content %>
+                  </span>
+                  <span class="checkMark">&#10004</span>
+                <% else %>
+                  <%= todo.content %>
+                <% end %>
+              </li>
+            <% end %>
+          </ol>
+        </li>
+      <% end %>
+    <% else %>
+      <p class="noTodoLists">No past todo lists. Keep coming back every day to see more.</p>
+    <% end %>
+  </ul>
+</section>

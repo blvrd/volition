@@ -5,6 +5,7 @@ class CreateReflections < ActiveRecord::Migration[5.0]
       t.text :wrong
       t.text :right
       t.text :undone
+      t.datetime :date
       t.references :user, foreign_key: true
 
       t.timestamps

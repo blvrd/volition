@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get '/mockups/reflect' => 'mockups#reflect'
   get '/mockups/nice_job' => 'mockups#nice_job'
   get '/mockups/dashboard' => 'mockups#dashboard'
+
+  get '/dashboard' => 'dashboard#show'
 end
