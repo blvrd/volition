@@ -18,7 +18,7 @@ list_1 = TodoList.create(
 
 list_2 = TodoList.create(
   user: user,
-  date: Date.yesterday
+  date: Date.today.prev_day
 )
 
 5.times do
@@ -49,5 +49,5 @@ Reflection.create(
 Reflection.create(
   user: user,
   rating: 8,
-  date: Date.yesterday
+  date: Date.today.prev_day
 )

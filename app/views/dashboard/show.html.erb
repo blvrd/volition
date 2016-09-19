@@ -1,15 +1,15 @@
 <section class="dashboardSection">
   <h1>Dashboard</h1>
-  <a class="todayLink" href="/mockups/today">go to today's tasks &rarr;</a>
+  <%= link_to "go to today's tasks &rarr;".html_safe, today_path, class: "todayLink" %>
   <ul class="daySummaryList">
-    <a href="/mockups/today" class="noTextStyle">
+    <%= link_to today_path, class: "noTextStyle" do %>
       <li class="daySummary today">
         <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
           <div class="calendarIcon small">
             <div class="calendarIconTopBar small"><span class="month"><%= Date.today.strftime('%B') %></span></div>
             <div class="calendarIconDay small"><span class="day"><%= Date.today.strftime('%e') %></span></div>
           </div>
-          <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= @todays_todo_list.reflection.rating || "?" %></span></span>
+          <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= @todays_todo_list.try(:reflection).try(:rating) || "?" %></span></span>
         </div>
 
         <% if @todays_todo_list.present? %>
@@ -31,7 +31,7 @@
           <p class="noTasks">No tasks yet.</p>
         <% end %>
       </li>
-    </a>
+    <% end %>
 
     <% if @past_todo_lists.present? %>
       <% @past_todo_lists.each do |todo_list| %>
