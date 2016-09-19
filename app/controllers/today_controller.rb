@@ -1,6 +1,8 @@
 class TodayController < ApplicationController
   def show
-    unless TodoList.today(current_user)
+    @todo_list = TodoList.today(current_user)
+
+    unless @todo_list
       redirect_to new_today_path
     end
   end

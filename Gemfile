@@ -24,6 +24,7 @@ gem "listen"
 gem "spring"
 gem "spring-commands-rspec"
 gem 'letter_opener'
+gem 'react-rails'
 
 group :development, :test do
   gem "awesome_print"

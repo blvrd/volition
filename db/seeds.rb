@@ -43,11 +43,6 @@ end
 
 Reflection.create(
   user: user,
-  date: Date.today
-)
-
-Reflection.create(
-  user: user,
   rating: 8,
   date: Date.today.prev_day
 )

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'dashboard#show'
+
   get '/mockups/today' => 'mockups#today'
   get '/mockups/tomorrow' => 'mockups#tomorrow'
   get '/mockups/reflect' => 'mockups#reflect'
