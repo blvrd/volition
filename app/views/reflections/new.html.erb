@@ -1,7 +1,7 @@
 <section class="reflectSection">
   <h1>Daily reflection</h1>
 
-  <%= form_for @reflection, class: 'reflectionForm' do |f| %>
+  <%= form_for @reflection, html: { class: 'reflectionForm' } do |f| %>
     <% if @reflection.errors.any? %>
       <p class="error">You must fill out all fields.</p>
     <% end %>

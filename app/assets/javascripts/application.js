@@ -28,4 +28,11 @@ $(function() {
 
     $('#ratingInput').val($(this).find('.ratingNumber').text())
   })
+
+  var removeFlash = function() {
+    $('.flash').fadeOut()
+  }
+
+  setTimeout(removeFlash, 5000)
 })
+
