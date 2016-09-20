@@ -1,0 +1,45 @@
+<section class="reflectSection">
+  <h1>Daily reflection</h1>
+
+  <%= form_for @reflection, class: 'reflectionForm' do |f| %>
+    <% if @reflection.errors.any? %>
+      <p class="error">You must fill out all fields.</p>
+    <% end %>
+
+    <div class="inputGroup">
+      <%= f.label :rating, 'How would you rate your day?' %>
+      <div class="dayRating">
+        <%= f.hidden_field :rating, id: 'ratingInput' %>
+        <span class="ratingCircle"><span class="ratingNumber">1</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">2</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">3</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">4</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">5</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">6</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">7</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">8</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">9</span></span>
+        <span class="ratingCircle"><span class="ratingNumber">10</span></span>
+      </div>
+    </div>
+
+    <div class="inputGroup">
+      <%= f.label :wrong, 'What did you do wrong today?' %>
+      <%= f.text_area :wrong %>
+    </div>
+
+    <div class="inputGroup">
+      <%= f.label :right, 'What did you do right today?' %>
+      <%= f.text_area :right %>
+    </div>
+
+    <div class="inputGroup">
+      <%= f.label :undone, 'What was left undone?' %>
+      <%= f.text_area :undone %>
+    </div>
+
+    <div class="inputGroup">
+      <%= f.submit 'Save' %>
+    </div>
+  <% end %>
+</section>

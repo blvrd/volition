@@ -270,3 +270,10 @@
   color: $medium-gray;
 }
 
+.error {
+  padding: 10px;
+  border: 2px solid $red;
+  border-radius: $base-border-radius;
+  color: $red;
+  margin-top: 20px;
+}

@@ -21,7 +21,11 @@
 var update = React.addons.update
 
 $(function() {
-  $('.todoPomodoros').click(function(e) {
-    $($(this).find('.pomodoroCircle').not('.active')[0]).addClass('active')
+  $('.ratingCircle').click(function(e) {
+    console.log($(this).find('.ratingNumber').text())
+    $('.ratingCircle').removeClass('active')
+    $(this).addClass('active')
+
+    $('#ratingInput').val($(this).find('.ratingNumber').text())
   })
 })

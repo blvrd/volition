@@ -2,12 +2,12 @@ class TodoTimeBlocksInput extends React.Component {
   render() {
     var activeCircles = []
     for (var i=0; i < this.props.actualTimeBlocks; i++) {
-      activeCircles.push(<span className="pomodoroCircle active"></span>)
+      activeCircles.push(<span key={`active${i}`} className="pomodoroCircle active"></span>)
     }
 
     var inactiveCircles = []
     for (var i=0; i < (5 - this.props.actualTimeBlocks); i++) {
-      inactiveCircles.push(<span className="pomodoroCircle"></span>)
+      inactiveCircles.push(<span key={`inactive${i}`} className="pomodoroCircle"></span>)
     }
 
     return (
