@@ -29,13 +29,20 @@
 }
 
 .todoList {
-  margin-top: 20px;
   width: 600px;
+  padding: 0;
 
   &.tomorrow {
     width: 500px;
     padding: 0;
     margin-bottom: 20px;
+  }
+
+  .recentlySaved {
+    transition: all 400ms;
+    font-size: 14px;
+    color: $medium-gray;
+    text-align: center;
   }
 }
 
@@ -262,3 +269,4 @@
 .noTodoLists {
   color: $medium-gray;
 }
+

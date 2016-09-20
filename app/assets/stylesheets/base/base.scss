@@ -82,6 +82,10 @@ ul {
   display: none !important;
 }
 
+.invisible {
+  opacity: 0;
+}
+
 .flexRow {
   @include display-flex;
 }

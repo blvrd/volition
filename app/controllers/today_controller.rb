@@ -1,14 +1,19 @@
 class TodayController < ApplicationController
   def show
     @todo_list = TodoList.today(current_user)
-    @todos = @todo_list.todos.select(:actual_time_blocks, :complete, :content, :id)
 
-    unless @todo_list
+    if @todo_list.blank?
       redirect_to new_today_path
+    else
+      @todos = @todo_list.todos.frontend_info
     end
   end
 
   def new
+    if TodoList.today(current_user)
+      redirect_to today_path
+    end
+
     @todo_list = TodoList.new
     5.times do
       @todo_list.todos.build

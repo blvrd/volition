@@ -21,10 +21,11 @@ class Todo extends React.Component {
   updateTodo(index, inputType, e) {
     this.props.updateTodo(index, inputType, e)
   }
+
 }
 
 Todo.propTypes = {
-  todo: React.PropTypes.object.isRequired,
-  index: React.PropTypes.number.isRequired,
-  updateTodo: React.PropTypes.func.isRequired
+  todo:          React.PropTypes.object.isRequired,
+  index:         React.PropTypes.number.isRequired,
+  updateTodo:    React.PropTypes.func.isRequired
 };

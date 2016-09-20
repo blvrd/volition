@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get '/today' => 'today#show', as: :today
   get '/today/new' => 'today#new', as: :new_today
   post '/today' => 'today#create'
+
+  resources :todos, only: [:update]
 end

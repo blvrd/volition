@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 20160916204110) do
 
   create_table "todos", force: :cascade do |t|
     t.string   "content"
-    t.boolean  "complete"
-    t.integer  "estimated_time_blocks"
-    t.integer  "actual_time_blocks"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.boolean  "complete",              default: false
+    t.integer  "estimated_time_blocks", default: 0
+    t.integer  "actual_time_blocks",    default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.integer  "todo_list_id"
     t.index ["todo_list_id"], name: "index_todos_on_todo_list_id", using: :btree
   end
