@@ -1,6 +1,7 @@
 class TodayController < ApplicationController
   def show
     @todo_list = TodoList.today(current_user)
+    @todos = @todo_list.todos.select(:actual_time_blocks, :complete, :content, :id)
 
     unless @todo_list
       redirect_to new_today_path

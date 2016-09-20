@@ -1,23 +1,19 @@
 class TodoList extends React.Component {
-  render () {
-    var todos = this.props.todos.map((todo, index) => {
+  constructor(props) {
+    super(props)
+    this.state = {
+      todos: this.props.todos
+    }
+  }
+
+  render() {
+    var todos = this.state.todos.map((todo, index) => {
       return (
-        <li className="todo" key={index}>
-          <div className="todoComplete">
-            <div className="checkbox">
-              <input className="completeInput" id={`complete${index}`} type="checkbox" />
-              <label htmlFor={`complete${index}`}></label>
-            </div>
-          </div>
-          <div className="todoContent"><input className="contentInput" type="text" value={todo.content} /></div>
-          <div className="todoPomodoros">
-            <span className="pomodoroCircle"></span>
-            <span className="pomodoroCircle"></span>
-            <span className="pomodoroCircle"></span>
-            <span className="pomodoroCircle"></span>
-            <span className="pomodoroCircle"></span>
-          </div>
-        </li>
+        <Todo
+          todo={todo}
+          index={index}
+          updateTodo={this.updateTodo.bind(this)}
+          key={index} />
       )
     })
     return (
@@ -30,6 +26,14 @@ class TodoList extends React.Component {
         { todos }
       </ul>
     );
+  }
+
+  updateTodo(index, inputType, e) {
+    newTodoState = update(this.state.todos, {
+      [index]: { [inputType]: {$set: e.target.value} }
+    })
+
+    this.setState({todos: newTodoState})
   }
 }
 

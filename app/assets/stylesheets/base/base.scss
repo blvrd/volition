@@ -99,10 +99,18 @@ ul {
   @include justify-content(space-around)
 }
 
+.flexJustifyCenter {
+  @include justify-content(center)
+}
+
 .flexAlignCenter {
   @include align-items(center)
 }
 
 .breatheBottom {
   margin-bottom: 40px;
+}
+
+.breatheTop {
+  margin-top: 40px;
 }

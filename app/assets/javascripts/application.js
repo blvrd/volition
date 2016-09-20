@@ -18,6 +18,8 @@
 //= require components
 //= require_tree .
 
+var update = React.addons.update
+
 $(function() {
   $('.todoPomodoros').click(function(e) {
     $($(this).find('.pomodoroCircle').not('.active')[0]).addClass('active')
