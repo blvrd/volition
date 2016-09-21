@@ -5,6 +5,7 @@ describe TodoList do
   let!(:todo_list_1) { create(:todo_list, user: user, date: Date.today) }
   let!(:todo_list_2) { create(:todo_list, user: user, date: Date.today.prev_day) }
   let!(:todo_list_3) { create(:todo_list, user: user, date: Date.today.prev_day.prev_day) }
+  let!(:todo_list_4) { create(:todo_list, user: user, date: Date.today.next_day) }
 
   describe '.today' do
     it 'should return the todo list for today' do

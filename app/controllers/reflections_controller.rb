@@ -13,7 +13,7 @@ class ReflectionsController < ApplicationController
     @reflection.date = Date.today
 
     if @reflection.save
-      redirect_to dashboard_path
+      redirect_to tomorrow_path
     else
       render :new
     end

@@ -10,8 +10,12 @@ class TodoList < ApplicationRecord
     find_by(date: Date.today, user_id: user.id)
   end
 
+  def self.tomorrow(user)
+    find_by(date: Date.today.next_day, user_id: user.id)
+  end
+
   def self.past(user)
-    where('date != ? and user_id = ?', Date.today, user.id).order(date: :desc)
+    where('date < ? and user_id = ?', Date.today, user.id).order(date: :desc)
   end
 
   def reflection

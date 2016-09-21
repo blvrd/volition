@@ -7,6 +7,7 @@
   <script src="https://use.typekit.net/gim5cyg.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+  <%= render "javascript" %>
   <%#
     Configure default and controller-, and view-specific titles in
     config/locales/en.yml. For more see:
@@ -19,7 +20,6 @@
 <body class="<%= body_class %>">
   <%= render "flashes" -%>
   <%= yield %>
-  <%= render "javascript" %>
   <%= render "css_overrides" %>
 </body>
 </html>

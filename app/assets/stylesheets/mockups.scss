@@ -225,6 +225,10 @@
   margin: 20px 0 20px 0;
 }
 
+.daySummaryList {
+  padding: 0;
+}
+
 .daySummary {
   @include display-flex;
   @include align-items(center);

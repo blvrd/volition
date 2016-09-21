@@ -1,0 +1,33 @@
+<section class="tomorrowSection">
+  <h1>Tomorrow</h1>
+  <div class="calendarIcon">
+    <div class="calendarIconTopBar"><span class="month"><%= Date.today.next_day.strftime('%B') %></span></div>
+    <div class="calendarIconDay"><span class="day"><%= Date.today.next_day.strftime('%e') %></span></div>
+  </div>
+
+  <p class="tomorrowExplanation">Let's plan tasks for tomorrow. In the "estimate" column, enter your guess for how many 25 minute blocks it will take to finish each task. If you think it will take more than five, break it down into smaller tasks.</p>
+
+  <%= form_for @todo_list, url: '/tomorrow' do |f| %>
+    <ul class="todoList tomorrow">
+      <li class="todoLabels">
+        <span></span>
+        <span class="todoLabel">Estimate</span>
+      </li>
+
+      <%= f.fields_for :todos do |t| %>
+        <li class="todo">
+          <div class="todoContent">
+            <%= t.text_field :content, class: "contentInput" %>
+          </div>
+          <div class="todoEstimate">
+            <%= t.text_field :estimated_time_blocks, class: "estimateInput", maxlength: 1 %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="flexRow flexJustifyCenter breatheBottom breatheTop">
+      <%= f.submit "Save", class: "saveTomorrowButton button" %>
+    </div>
+  <% end %>
+</section>
