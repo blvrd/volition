@@ -1,5 +1,7 @@
 # Todo app
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/garrettqmartin8/todo_app)
+
 ## Getting Started
 
 After you have cloned this repo, run this setup script to set up your machine
