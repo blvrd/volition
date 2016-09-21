@@ -7,16 +7,16 @@
   },
   "env": {
     "SMTP_ADDRESS": {
-      "value": "Will provide later"
+      "value": "You can add this later."
     },
     "SMTP_DOMAIN": {
-      "value": "Will provide later"
+      "value": "You can add this later."
     },
     "SMTP_PASSWORD": {
-      "value": "Will provide later"
+      "value": "You can add this later."
     },
     "SMTP_USERNAME": {
-      "value": "Will provide later"
+      "value": "You can add this later."
     }
   }
 }
