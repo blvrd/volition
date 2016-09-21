@@ -7,7 +7,7 @@ Rails.application.configure do
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.assets.js_compressor = :uglifier
   config.assets.compile = false
-  config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
+  config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV["APPLICATION_HOST"])
   config.log_level = :debug
   config.log_tags = [ :request_id ]
   config.action_mailer.perform_caching = false
@@ -24,6 +24,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.middleware.use Rack::Deflater
   config.static_cache_control = "public, max-age=31557600"
-  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
+  config.action_mailer.default_url_options = { host: ENV["APPLICATION_HOST"] }
 end
 Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i

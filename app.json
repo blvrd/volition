@@ -1,5 +1,19 @@
 {
   "name": "Todo App",
   "description": "Work in progress.",
-  "repository": "https://github.com/garrettqmartin8/todo_app"
+  "repository": "https://github.com/garrettqmartin8/todo_app",
+  "env": {
+    "SMTP_ADDRESS": {
+      "value": "Will provide later"
+    },
+    "SMTP_DOMAIN": {
+      "value": "Will provide later"
+    },
+    "SMTP_PASSWORD": {
+      "value": "Will provide later"
+    },
+    "SMTP_USERNAME": {
+      "value": "Will provide later"
+    }
+  }
 }
