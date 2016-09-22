@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'dashboard#show'
+  root 'users#new'
 
   get '/mockups/today' => 'mockups#today'
   get '/mockups/tomorrow' => 'mockups#tomorrow'
@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   get '/tomorrow' => 'tomorrow#new', as: :tomorrow
   post '/tomorrow' => 'tomorrow#create'
   get '/reflect' => 'reflections#new', as: :reflect
+  get '/login' => 'sessions#new', as: :login
+  post '/login' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy', as: :logout
 
   resources :todos, only: [:update]
   resources :reflections, only: [:create]
+  resources :users, only: [:new, :create]
 end

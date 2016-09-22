@@ -25,6 +25,7 @@ gem "spring"
 gem "spring-commands-rspec"
 gem 'letter_opener'
 gem 'react-rails'
+gem 'bcrypt'
 
 group :development, :test do
   gem "awesome_print"

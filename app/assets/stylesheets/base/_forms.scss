@@ -58,6 +58,11 @@ select[multiple=multiple], input[type="text"], input[type="password"], textarea 
   }
 }
 
+input[type="text"], input[type="password"] {
+  border: none;
+  border-bottom: 1px solid $medium-gray;
+}
+
 textarea {
   resize: vertical;
 }

@@ -1,0 +1,22 @@
+<section class="loginSection">
+  <h1>Log in</h1>
+  <div class="loginForm">
+    <%= form_tag '/login' do |f| %>
+
+      <div class="inputGroup">
+        <%= label_tag :email %>
+        <%= text_field_tag :email %>
+      </div>
+
+      <div class="inputGroup">
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </div>
+
+      <div class="inputGroup flexRow flexAlignCenter">
+        <%= submit_tag 'Log in' %>
+        <%= link_to 'or sign up', new_user_path %>
+      </div>
+    <% end %>
+  </div>
+</section>

@@ -1,4 +1,6 @@
 class ReflectionsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     if Reflection.today(current_user).present?
       flash[:error] = 'You already wrote your reflection for today.'

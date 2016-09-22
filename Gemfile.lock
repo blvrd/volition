@@ -50,6 +50,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    bcrypt (3.1.11)
     builder (3.2.2)
     bullet (5.4.0)
       activesupport (>= 3.0.0)
@@ -274,6 +275,7 @@ DEPENDENCIES
   appsignal
   autoprefixer-rails
   awesome_print
+  bcrypt
   bullet
   bundler-audit (>= 0.5.0)
   capybara-webkit

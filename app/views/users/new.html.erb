@@ -1,0 +1,26 @@
+<section class="newUserSection">
+  <h1>Sign up</h1>
+  <div class="newUserForm">
+    <%= form_for @user do |f| %>
+      <div class="inputGroup">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="inputGroup">
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </div>
+
+      <div class="inputGroup">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+
+      <div class="inputGroup flexRow flexAlignCenter">
+        <%= f.submit 'Sign up' %>
+        <%= link_to 'or log in', login_path %>
+      </div>
+    <% end %>
+  </div>
+</section>

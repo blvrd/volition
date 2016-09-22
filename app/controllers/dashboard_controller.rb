@@ -1,8 +1,7 @@
 class DashboardController < ApplicationController
+  before_action :authenticate_user!
   def show
-    @user = User.first
-    login(@user)
-    @todays_todo_list = TodoList.today(@user)
-    @past_todo_lists = TodoList.past(@user)
+    @todays_todo_list = TodoList.today(current_user)
+    @past_todo_lists = TodoList.past(current_user)
   end
 end

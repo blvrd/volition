@@ -1,4 +1,6 @@
 class TodayController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     @todo_list = TodoList.today(current_user)
 

@@ -1,4 +1,6 @@
 class TomorrowController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     if Reflection.today(current_user).blank?
       flash[:error] = 'You must write a reflection for today before planning tomorrow\'s tasks.'

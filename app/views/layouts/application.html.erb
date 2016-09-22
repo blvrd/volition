@@ -18,6 +18,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= body_class %>">
+  <%= render partial: 'layouts/navigation' %>
   <%= render "flashes" -%>
   <%= yield %>
   <%= render "css_overrides" %>
