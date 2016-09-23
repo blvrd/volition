@@ -21,6 +21,9 @@
 var update = React.addons.update
 
 $(function() {
+  var timezone = jstz.determine()
+  cookies({timezone: timezone})
+
   $('.ratingCircle').click(function(e) {
     console.log($(this).find('.ratingNumber').text())
     $('.ratingCircle').removeClass('active')

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  around_action :with_timezone
+
   def login(user)
     session[:user_id] = user.id
   end
@@ -16,5 +18,12 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     redirect_to login_path unless current_user
+  end
+
+  private
+
+  def with_timezone
+    timezone = Time.find_zone(cookies[:timezone])
+    Time.use_zone(timezone) { yield }
   end
 end
