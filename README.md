@@ -2,6 +2,14 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/garrettqmartin8/todo_app)
 
+## Updating
+
+To update your deployed app with the lastest code:
+
+1. Clone this repo: `git clone git@github.com:garrettqmartin8/todo_app.git`
+2. Run `bin/update_heroku` from the command line.
+3. Enjoy your updated app!
+
 ## Getting Started
 
 After you have cloned this repo, run this setup script to set up your machine
