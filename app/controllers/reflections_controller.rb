@@ -5,7 +5,11 @@ class ReflectionsController < ApplicationController
     if Reflection.today(current_user).present?
       flash[:error] = 'You already wrote your reflection for today.'
       redirect_to dashboard_path
+    elsif TodoList.today(current_user).blank?
+      flash[:error] = 'You must start your tasks for today before writing a reflection.'
+      redirect_to dashboard_path
     end
+
     @reflection = Reflection.new
   end
 
