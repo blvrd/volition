@@ -22,7 +22,7 @@ var update = React.addons.update
 
 $(function() {
   var timezone = jstz.determine()
-  cookies({timezone: timezone})
+  cookies({timezone: timezone.name()})
 
   $('.ratingCircle').click(function(e) {
     console.log($(this).find('.ratingNumber').text())
