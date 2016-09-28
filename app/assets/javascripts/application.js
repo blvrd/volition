@@ -20,7 +20,7 @@
 
 var update = React.addons.update
 
-$(function() {
+$(document).on('turbolinks:load', function() {
   var timezone = jstz.determine()
   cookies({timezone: timezone.name()})
 
