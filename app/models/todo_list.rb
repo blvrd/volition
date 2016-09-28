@@ -15,7 +15,7 @@ class TodoList < ApplicationRecord
   end
 
   def self.past(user)
-    where('date < ? and user_id = ?', Time.zone.now.beginning_of_day, user.id).order(date: :desc)
+    where('date < ? and user_id = ?', Time.zone.now, user.id).order(date: :desc)
   end
 
   def reflection
