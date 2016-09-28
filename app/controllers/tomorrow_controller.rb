@@ -18,7 +18,7 @@ class TomorrowController < ApplicationController
 
   def create
     @todo_list = TodoList.new(
-      date: Date.today.next_day,
+      date: Time.current.to_date.next_day.beginning_of_day,
       user: current_user
     )
 

@@ -7,7 +7,7 @@ class Reflection < ApplicationRecord
   validates :undone, presence: true
 
   def self.today(user)
-    find_by(date: Time.zone.now.beginning_of_day, user_id: user.id)
+    find_by(date: Time.current.to_date.beginning_of_day, user_id: user.id)
   end
 
   def todo_list

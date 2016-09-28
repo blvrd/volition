@@ -16,7 +16,7 @@ class ReflectionsController < ApplicationController
   def create
     @reflection = Reflection.new(reflection_params)
     @reflection.user = current_user
-    @reflection.date = Date.today
+    @reflection.date = Time.current.to_date.beginning_of_day
 
     if @reflection.save
       redirect_to tomorrow_path
