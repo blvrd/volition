@@ -24,7 +24,7 @@ class TodayController < ApplicationController
 
   def create
     @todo_list = TodoList.new(
-      date: Time.current.to_date.beginning_of_day,
+      date: Date.current,
       user: current_user
     )
 
