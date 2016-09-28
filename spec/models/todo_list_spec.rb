@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe TodoList do
+  before             { Time.zone = ActiveSupport::TimeZone['UTC'] }
   let!(:user)        { create(:user) }
   let!(:todo_list_1) { create(:todo_list, user: user, date: Date.today) }
   let!(:todo_list_2) { create(:todo_list, user: user, date: Date.today.prev_day) }
