@@ -7,15 +7,15 @@ class TodoList < ApplicationRecord
                                 reject_if: :all_blank
 
   def self.today(user)
-    find_by(date: Time.zone.beginning_of_day, user_id: user.id)
+    find_by(date: Time.zone.now.beginning_of_day, user_id: user.id)
   end
 
   def self.tomorrow(user)
-    find_by(date: Time.zone.beginning_of_day.next_day, user_id: user.id)
+    find_by(date: Time.zone.now.beginning_of_day.next_day, user_id: user.id)
   end
 
   def self.past(user)
-    where('date < ? and user_id = ?', Time.zone.beginning_of_day, user.id).order(date: :desc)
+    where('date < ? and user_id = ?', Time.zone.now.beginning_of_day, user.id).order(date: :desc)
   end
 
   def reflection
