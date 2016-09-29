@@ -1,0 +1,17 @@
+.appSection {
+  @include display-flex;
+  @include flex-direction(column);
+  @include align-items(center);
+  padding-top: 50px;
+
+  h1 {
+    font-size: 30px;
+    color: $dark-gray;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 20px;
+    color: $medium-gray;
+  }
+}

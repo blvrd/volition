@@ -1,0 +1,16 @@
+.dayRating {
+  @include display-flex;
+  @include justify-content(space-between);
+  width: 500px;
+}
+
+.reflectionForm {
+  margin: 40px 0;
+
+  .error {
+    padding: 10px;
+    border: 2px solid $red;
+    border-radius: $base-border-radius;
+    color: $red;
+  }
+}

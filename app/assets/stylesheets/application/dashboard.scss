@@ -1,0 +1,56 @@
+.daySummaryList {
+  padding: 0;
+  width: 400px;
+}
+
+.daySummary {
+  @include display-flex;
+  @include align-items(center);
+  // @include justify-content(space-around);
+  width: 100%;
+  height: 175px;
+  border: 2px solid $light-gray;
+  border-radius: $base-border-radius;
+  margin-bottom: 40px;
+
+  &.today {
+    border: 2px solid $action-color;
+  }
+}
+
+.daySummaryInfoColumn {
+  background: $light-gray;
+  height: 100%;
+  height: 100%;
+  width: 75px;
+  padding: 20px 0;
+}
+
+.todayLink {
+  margin-bottom: 40px;
+}
+
+.dashboardTodoList {
+  font-size: 16px;
+  @include flex(1);
+}
+
+.dashboardTodo {
+  .complete {
+    text-decoration: line-through;
+  }
+
+  .checkMark {
+    color: $action-color;
+    margin-left: 5px;
+  }
+}
+
+.noTasks {
+  margin: 0 auto;
+  color: $medium-gray;
+}
+
+.noTodoLists {
+  color: $medium-gray;
+}

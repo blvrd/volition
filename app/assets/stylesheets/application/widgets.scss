@@ -1,0 +1,68 @@
+.ratingCircle {
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  font-size: 14px;
+  border: 2px solid $medium-gray;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover, &.active {
+    background-color: $action-color;
+    border: 1px solid $action-color;
+    color: #fff;
+  }
+
+  &.dashboard {
+    cursor: default;
+
+    &:before {
+      content: "Rating";
+      color: $dark-gray;
+      position: absolute;
+      top: -20px;
+    }
+  }
+}
+
+.calendarIcon {
+  width: 80px;
+  height: 75px;
+
+  &.small {
+    width: 50px;
+    height: 45px;
+  }
+}
+
+.calendarIconTopBar {
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  background: $red;
+
+  &.small {
+    font-size: 9px;
+  }
+}
+
+.calendarIconDay {
+  font-size: 32px;
+  text-align: center;
+  border: 1px solid $medium-gray;
+  border-radius: $base-border-radius;
+  border-top: none;
+  background: $white;
+
+  &.small {
+    font-size: 22px;
+  }
+}
+
+.niceJobGif {
+  width: 300px;
+  margin: 20px 0 20px 0;
+}
