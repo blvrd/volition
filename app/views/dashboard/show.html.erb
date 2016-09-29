@@ -6,8 +6,8 @@
       <li class="daySummary today">
         <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
           <div class="calendarIcon small">
-            <div class="calendarIconTopBar small"><span class="month"><%= Date.today.strftime('%B') %></span></div>
-            <div class="calendarIconDay small"><span class="day"><%= Date.today.strftime('%e') %></span></div>
+            <div class="calendarIconTopBar small"><span class="month"><%= Date.current.strftime('%B') %></span></div>
+            <div class="calendarIconDay small"><span class="day"><%= Date.current.strftime('%e') %></span></div>
           </div>
           <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= @todays_todo_list.try(:reflection).try(:rating) || "?" %></span></span>
         </div>
