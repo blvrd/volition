@@ -8,6 +8,7 @@ class TodosController < ApplicationController
       @todo.update!(todo_params)
       render json: { saved: true }
     rescue => e
+      puts e
       render json: { saved: false }, status: :unprocessable_entity
     end
 
@@ -17,6 +18,6 @@ class TodosController < ApplicationController
 
   def todo_params
     params.require(:todo)
-          .permit(:content, :complete, :actual_time_blocks)
+          .permit(:content, :complete, :actual_time_blocks, :id)
   end
 end

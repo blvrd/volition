@@ -3,6 +3,7 @@
   @include justify-content(center);
   @include align-items(center);
   font-size: 14px;
+  font-weight: 700;
   border: 2px solid $medium-gray;
   border-radius: 50%;
   height: 30px;
@@ -21,6 +22,7 @@
 
     &:before {
       content: "Rating";
+      font-weight: 400;
       color: $dark-gray;
       position: absolute;
       top: -20px;
