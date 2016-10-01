@@ -1,6 +1,30 @@
 <section class="appSection">
   <h1>Daily reflection</h1>
 
+  <div class="daySummary reflectionDaySummary breatheTop">
+    <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+      <div class="calendarIcon small">
+        <div class="calendarIconTopBar small"><span class="month"><%= @todo_list.date.strftime('%B') %></span></div>
+        <div class="calendarIconDay small"><span class="day"><%= @todo_list.date.strftime('%e') %></span></div>
+      </div>
+    </div>
+
+    <ol class="dashboardTodoList">
+      <% @todo_list.todos.each do |todo| %>
+        <li class="dashboardTodo">
+          <% if todo.complete? %>
+            <span class="complete">
+              <%= todo.content %>
+            </span>
+            <span class="checkMark">&#10004</span>
+          <% else %>
+            <%= todo.content %>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+
   <%= form_for @reflection, html: { class: 'reflectionForm' } do |f| %>
     <% if @reflection.errors.any? %>
       <p class="error">You must fill out all fields.</p>

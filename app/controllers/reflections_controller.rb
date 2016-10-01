@@ -11,6 +11,7 @@ class ReflectionsController < ApplicationController
     end
 
     @reflection = Reflection.new
+    @todo_list = TodoList.today(current_user)
   end
 
   def create
