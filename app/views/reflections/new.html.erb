@@ -14,11 +14,11 @@
         <li class="dashboardTodo">
           <% if todo.complete? %>
             <span class="complete">
-              <%= todo.content %>
+              <%= todo.content.truncate(40) %>
             </span>
             <span class="checkMark">&#10004</span>
           <% else %>
-            <%= todo.content %>
+            <%= todo.content.truncate(40) %>
           <% end %>
         </li>
       <% end %>
