@@ -23,8 +23,12 @@ class ApplicationController < ActionController::Base
   private
 
   def with_timezone
-    timezone = ActiveSupport::TimeZone.all.find do |tz|
-      tz.tzinfo.name == cookies[:timezone].delete('\"')
+    begin
+      timezone = ActiveSupport::TimeZone.all.find do |tz|
+        tz.tzinfo.name == cookies[:timezone].delete('\"')
+      end
+    rescue
+      timezone = ActiveSupport::TimeZone['UTC']
     end
 
     Time.use_zone(timezone) { yield }
