@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       login(@user)
       redirect_to dashboard_path
     else
-      flash[:error] = 'The information you entered is incorrect.'
+      flash.now[:error] = 'The information you entered is incorrect.'
       render :new
     end
   end
