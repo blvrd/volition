@@ -1,4 +1,4 @@
-# Todo app
+# Volition
 
 ![Build status](https://circleci.com/gh/garrettqmartin8/volition.svg?style=shield&circle-token=f883f7406ee9df386967c67b4a6f5a330083fe29)
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/garrettqmartin8/volition)
