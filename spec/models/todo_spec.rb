@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Todo do
-  let!(:user)       { create(:user) }
+  let!(:user)      { create(:user) }
   let!(:todo_list) { create(:todo_list, user: user) }
   let!(:todo)      { create(:todo, todo_list: todo_list) }
 
