@@ -1,6 +1,6 @@
 development: &default
   adapter: postgresql
-  database: todo_app_development
+  database: volition_development
   encoding: utf8
   min_messages: warning
   pool: <%= Integer(ENV.fetch("DB_POOL", 5)) %>
@@ -9,7 +9,7 @@ development: &default
 
 test:
   <<: *default
-  database: todo_app_test
+  database: volition_test
 
 production: &deploy
   encoding: utf8

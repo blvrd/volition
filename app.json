@@ -1,7 +1,7 @@
 {
   "name": "Todo App",
   "description": "Work in progress.",
-  "repository": "https://github.com/garrettqmartin8/todo_app",
+  "repository": "https://github.com/garrettqmartin8/volition",
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"
   },
