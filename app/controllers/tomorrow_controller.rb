@@ -24,8 +24,13 @@ class TomorrowController < ApplicationController
 
     if @todo_list.save
       @todo_list.update(todos_attributes: todo_list_params[:todos_attributes])
-      flash[:success] = 'Nice job today! Get some rest.'
-      redirect_to dashboard_path
+
+      if current_user.had_a_great_day?
+        redirect_to nice_job_path
+      else
+        flash[:success] = 'Nice job today! Get some rest.'
+        redirect_to dashboard_path
+      end
     end
 
   end
