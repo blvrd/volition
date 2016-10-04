@@ -66,9 +66,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.11.1)
-      capybara (>= 2.3.0, < 2.8.0)
-      json
     coderay (1.1.1)
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
@@ -282,7 +279,6 @@ DEPENDENCIES
   bcrypt
   bullet
   bundler-audit (>= 0.5.0)
-  capybara-webkit
   database_cleaner
   dotenv-rails
   factory_girl_rails
