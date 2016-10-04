@@ -22,6 +22,7 @@ class ReflectionsController < ApplicationController
     if @reflection.save
       redirect_to tomorrow_path
     else
+      @todo_list = TodoList.today(current_user)
       render :new
     end
   end
