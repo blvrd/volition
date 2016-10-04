@@ -6,3 +6,17 @@
     margin: 0 auto;
   }
 }
+
+.logo {
+  height: 30px;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.logoutLink {
+  @include display-flex;
+  @include flex-direction(column);
+  @include justify-content(flex-end);
+}

@@ -1,6 +1,8 @@
 <section class="navigation">
   <div class="navLinks flexRow flexJustifySpaceBetween">
-    <%= link_to 'Logo/Name', dashboard_path %>
+    <%= link_to dashboard_path, class: 'logo' do %>
+      <%= image_tag 'logo' %>
+    <% end %>
     <%= link_to 'Log out', logout_path, method: :delete, class: 'logoutLink' %>
   </div>
 </section>
