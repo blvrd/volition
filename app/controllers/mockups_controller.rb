@@ -4,4 +4,5 @@ class MockupsController < ApplicationController
   def reflect; end
   def nice_job; end
   def dashboard; end
+  def settings; end
 end

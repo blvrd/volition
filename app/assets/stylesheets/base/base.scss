@@ -40,6 +40,14 @@ a {
 
   &.noTextStyle {
     color: $dark-gray;
+
+    &:hover {
+      color: $dark-gray;
+    }
+  }
+
+  &:hover {
+    color: $dark-green;
   }
 }
 
@@ -118,4 +126,12 @@ ul {
 
 .breatheTop {
   margin-top: 40px;
+}
+
+.breatheRight {
+  margin-right: 10px;
+}
+
+.breatheLeft {
+  margin-left: 10px;
 }
