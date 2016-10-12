@@ -16,5 +16,6 @@ module TodoApp
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.active_job.queue_adapter = :sidekiq
     config.react.addons = true
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
   end
 end

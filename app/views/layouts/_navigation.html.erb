@@ -5,7 +5,9 @@
     <% end %>
 
     <div class="navRight flexRow flexJustifySpaceBetween">
-      <%= link_to 'Settings', '/mockups/settings', class: 'navLink' %>
+      <% if current_user %>
+        <%= link_to 'Settings', '/mockups/settings', class: 'navLink' %>
+      <% end %>
       <%= link_to 'Log out', logout_path, method: :delete, class: 'navLink' %>
     </div>
   </div>

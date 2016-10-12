@@ -23,8 +23,9 @@ Rails.application.routes.draw do
   get '/login'             => 'sessions#new', as: :login
   post '/login'            => 'sessions#create'
   delete '/logout'         => 'sessions#destroy', as: :logout
+  get '/settings'          => 'users#edit', as: :settings
 
   resources :todos, only: [:update]
   resources :reflections, only: [:create]
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show, :update]
 end

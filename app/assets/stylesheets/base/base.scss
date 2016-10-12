@@ -120,6 +120,10 @@ ul {
   @include align-items(center)
 }
 
+.flexWrap {
+  @include flex-wrap(wrap);
+}
+
 .breatheBottom {
   margin-bottom: 40px;
 }

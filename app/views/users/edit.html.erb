@@ -1,22 +1,22 @@
 <section class="appSection">
   <h1>Settings</h1>
-  <div class="settingsForm breatheTop">
+  <%= form_for @form, html: { class: 'settingsForm breatheTop' } do |f| %>
     <div class="settingsSection">
       <h2 class="settingsHeading">Contact</h2>
       <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween flexWrap">
         <div class="settingsInputGroup">
-          <label for="">Email</label>
-          <input class="settingsInput" type="text" value="email@example.com">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'settingsInput' %>
         </div>
 
         <div class="settingsInputGroup">
-          <label for="">Name</label>
-          <input class="settingsInput" type="text">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'settingsInput' %>
         </div>
 
         <div class="settingsInputGroup breatheTop">
-          <label for="">Phone</label>
-          <input class="settingsInput" type="text">
+          <%= f.label :phone %>
+          <%= f.text_field :phone, class: 'settingsInput' %>
         </div>
       </div>
     </div>
@@ -25,13 +25,13 @@
       <h2 class="settingsHeading">Change password</h2>
       <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
         <div class="settingsInputGroup">
-          <label for="">Old</label>
-          <input class="settingsInput" type="password">
+          <%= f.label :old_password %>
+          <%= f.password_field :old_password, nil, class: 'settingsInput' %>
         </div>
 
         <div class="settingsInputGroup">
-          <label for="">New</label>
-          <input class="settingsInput" type="password">
+          <%= f.label :password, 'New' %>
+          <%= f.password_field :password, class: 'settingsInput' %>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
           <label for="" class="flexRow">
             Email
             <div class="checkbox breatheLeft">
-              <input class="completeInput" id="complete1" type="checkbox">
+              <input class="completeInput" id="complete1" type="checkbox" name="user[settings][email_notifications]">
               <label for="complete1"></label>
             </div>
           </label>
@@ -53,13 +53,13 @@
           <label for="" class="flexRow">
             Phone
             <div class="checkbox breatheLeft">
-              <input class="completeInput" id="complete2" type="checkbox">
+              <input class="completeInput" id="complete2" type="checkbox" name="user[settings][phone_notifications]">
               <label for="complete2"></label>
             </div>
           </label>
         </div>
       </div>
     </div>
-    <button>Save</button>
-  </div>
+    <%= f.submit %>
+  <% end %>
 </section>
