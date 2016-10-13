@@ -1,0 +1,53 @@
+<section class="appSection">
+  <div class="welcomeLetter">
+    <p>
+    Welcome <span class="welcomeUser"><%= current_user.name %></span>!
+    </p>
+
+    <p>
+    You've made an important step towards becoming more productive.
+    </p>
+
+    <p>
+    If you don't already know, here is Volition's philosophy: 
+    </p>
+
+    <ul class="philosophy">
+      <li>
+        Work should be fulfilling, not consuming.
+      </li>
+      <li>
+        Productivity should be measured by impact, not the number of tasks you can complete.
+      </li>
+      <li>
+        Without reflection, we don't become better people.
+      </li>
+    </ul>
+
+    <p>
+    Before you get started, I'd like to take a moment to explain how to use Volition. Let's walk through what your day will look like using Volition:
+    </p>
+
+    <p>
+    The goal is to become more consistent and mindful about the work you do during your day. To do this, you'll plan each day night before, writing down your five most important tasks and how long you think they will take. Put some thought into planning your day the night before and you will have more energy for tackling those tough morning tasks.
+    </p>
+
+    <p>
+    Once you start your day, you can check off tasks as you complete them and mark how much time they took you to complete.
+    </p>
+
+    <p>
+    After you have finished your tasks or decided that you're done for the day, you'll get a chance to reflect on your day. This is an important; we don't get better at anything if we don't examine what we did and think aboout how we can improve.
+    </p>
+
+    <p>
+    That's it! I hope that this tool helps you become more productive and gives you some peace of mind.
+    </p>
+
+    <%= image_tag 'garrett', class: 'garrett' %>
+    <p>&mdash;Garrett Martin</p>
+
+    <%= link_to 'Get started &rarr;'.html_safe, dashboard_path %>
+  </div>
+
+</section>
