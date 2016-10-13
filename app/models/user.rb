@@ -13,4 +13,8 @@ class User < ApplicationRecord
       reflection.rating == 10 &&
       tomorrows_todo_list.present?
   end
+
+  def recently_signed_up?
+    created_at > 30.minutes.ago
+  end
 end

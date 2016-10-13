@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      redirect_to dashboard_path
+      redirect_to welcome_path
     else
       render :new
     end
