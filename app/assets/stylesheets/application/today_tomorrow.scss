@@ -89,6 +89,7 @@
   @include display-flex;
   @include justify-content(space-between);
   width: 120px;
+  cursor: pointer;
 
   .pomodoroCircle {
     width: 20px;
