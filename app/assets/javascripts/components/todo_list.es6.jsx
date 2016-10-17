@@ -31,9 +31,12 @@ class TodoList extends React.Component {
   }
 
   updateTodo(index, inputType, e) {
+    var todo = this.state.todos[index]
+    if (todo.content.length === 0 && inputType !== 'content') { return; }
+
     newTodoState = update(this.state.todos, {
       [index]: {
-        [inputType]:   {$set: e.target.value}
+        [inputType]: {$set: e.target.value}
       }
     })
 
@@ -53,9 +56,7 @@ class TodoList extends React.Component {
             console.log(data)
           }
         }
-
       })
-
     })
   }
 
