@@ -3,5 +3,11 @@ class Todo < ApplicationRecord
 
   default_scope { order(id: :asc) }
 
-  scope :frontend_info, -> { select(:actual_time_blocks, :complete, :content, :id) }
+  scope :frontend_info, -> {
+    select(:actual_time_blocks,
+           :estimated_time_blocks,
+           :complete,
+           :content,
+           :id)
+  }
 end

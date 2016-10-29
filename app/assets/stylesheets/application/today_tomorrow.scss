@@ -90,6 +90,7 @@
   @include justify-content(space-between);
   width: 120px;
   cursor: pointer;
+  position: relative;
 
   .pomodoroCircle {
     width: 20px;
@@ -100,6 +101,16 @@
     &.active {
       background: $action-color;
       border: 1px solid $action-color;
+    }
+  }
+
+  &:hover {
+    .hoverEstimate {
+      opacity: 1;
+    }
+
+    .estimated {
+      background: $medium-gray;
     }
   }
 }
@@ -117,3 +128,13 @@
 .finishDayButton {
   margin-top: 20px;
 }
+
+.hoverEstimate {
+  opacity: 0;
+  transition: all 300ms;
+  position: absolute;
+  font-size: 14px;
+  color: $medium-gray;
+  right: -100px;
+}
+
