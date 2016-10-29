@@ -18,6 +18,6 @@ class TodosController < ApplicationController
 
   def todo_params
     params.require(:todo)
-          .permit(:content, :complete, :actual_time_blocks, :id)
+          .permit(:content, :complete, :actual_time_blocks, :estimated_time_blocks, :id)
   end
 end

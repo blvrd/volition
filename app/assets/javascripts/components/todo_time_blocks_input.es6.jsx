@@ -5,9 +5,15 @@ class TodoTimeBlocksInput extends React.Component {
       activeCircles.push(<span key={`active${i}`} className="pomodoroCircle active"></span>)
     }
 
+    var numberInactive = 5 - this.props.actualTimeBlocks
     var inactiveCircles = []
-    for (var i=0; i < (5 - this.props.actualTimeBlocks); i++) {
-      inactiveCircles.push(<span key={`inactive${i}`} className="pomodoroCircle"></span>)
+    for (var i=0; i < numberInactive; i++) {
+      var classList = ['pomodoroCircle']
+      if ((this.props.actualTimeBlocks + i) < this.props.estimatedTimeBlocks) {
+        classList.push('estimated')
+      }
+
+      inactiveCircles.push(<span key={`inactive${i}`} className={classList.join(' ')}></span>)
     }
 
     return (
@@ -16,6 +22,7 @@ class TodoTimeBlocksInput extends React.Component {
         onClick={this._onClick.bind(this)}>
         { activeCircles }
         { inactiveCircles }
+        <span className={`hoverEstimate ${this.props.estimatedTimeBlocks > 0 ? '': 'hidden'}`}>Estimated: {this.props.estimatedTimeBlocks}</span>
       </div>
     );
   }

@@ -13,6 +13,7 @@ class Todo extends React.Component {
           onChange={this.updateTodo.bind(this, this.props.index, 'content')} />
         <TodoTimeBlocksInput
           actualTimeBlocks={todo.actual_time_blocks}
+          estimatedTimeBlocks={todo.estimated_time_blocks}
           onClick={this.updateTodo.bind(this, this.props.index, 'actual_time_blocks')} />
       </li>
     );
