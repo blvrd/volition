@@ -26,6 +26,7 @@ gem "spring-commands-rspec"
 gem 'letter_opener'
 gem 'react-rails'
 gem 'bcrypt'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
   gem "awesome_print"

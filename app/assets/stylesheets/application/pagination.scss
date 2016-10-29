@@ -1,0 +1,12 @@
+.pagination {
+  margin-bottom: 20px;
+
+  .current {
+    font-size: 16px;
+    color: $dark-gray;
+  }
+
+  a, em {
+    margin: 0 3px;
+  }
+}

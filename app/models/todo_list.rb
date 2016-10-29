@@ -6,6 +6,8 @@ class TodoList < ApplicationRecord
   accepts_nested_attributes_for :todos,
                                 reject_if: :all_blank
 
+  self.per_page = 5
+
   def self.today(user)
     find_by(date: Date.current, user_id: user.id)
   end

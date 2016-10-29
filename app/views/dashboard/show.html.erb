@@ -60,6 +60,7 @@
           </ol>
         </li>
       <% end %>
+      <%= will_paginate @past_todo_lists %>
     <% else %>
       <p class="noTodoLists">No past todo lists. Keep coming back every day to see more.</p>
     <% end %>
