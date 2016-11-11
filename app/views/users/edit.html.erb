@@ -1,6 +1,6 @@
 <section class="appSection">
   <h1>Settings</h1>
-  <%= form_for @form, html: { class: 'settingsForm breatheTop' } do |f| %>
+  <%= form_for @user, html: { class: 'settingsForm breatheTop' } do |f| %>
     <div class="settingsSection">
       <h2 class="settingsHeading">Contact</h2>
       <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween flexWrap">
@@ -22,44 +22,48 @@
     </div>
 
     <div class="settingsSection">
-      <h2 class="settingsHeading">Change password</h2>
+      <h2 class="settingsHeading">Reminders</h2>
+      <p>If you allow it, Volition will send you daily reminders to reflect.</p>
       <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
         <div class="settingsInputGroup">
-          <%= f.label :old_password %>
-          <%= f.password_field :old_password, nil, class: 'settingsInput' %>
+          <label for="" class="flexRow">
+            <div class="checkbox breatheRight">
+              <%= f.check_box :email_notifications, class: 'completeInput' %>
+              <%= f.label :email_notifications do %>
+              <% end %>
+            </div>
+            Email
+          </label>
         </div>
 
         <div class="settingsInputGroup">
-          <%= f.label :password, 'New' %>
-          <%= f.password_field :password, class: 'settingsInput' %>
+          <label for="" class="flexRow">
+            <div class="checkbox breatheRight">
+              <%= f.check_box :sms_notifications, class: 'completeInput' %>
+              <%= f.label :sms_notifications do %>
+              <% end %>
+            </div>
+            SMS
+          </label>
         </div>
       </div>
     </div>
 
     <div class="settingsSection">
-      <h2 class="settingsHeading">Notifications</h2>
+      <h2 class="settingsHeading">Other</h2>
       <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
         <div class="settingsInputGroup">
           <label for="" class="flexRow">
-            Email
-            <div class="checkbox breatheLeft">
-              <input class="completeInput" id="complete1" type="checkbox" name="user[settings][email_notifications]">
-              <label for="complete1"></label>
+            <div class="checkbox breatheRight">
+              <%= f.check_box :track_weekends, class: 'completeInput' %>
+              <%= f.label :track_weekends do %>
+              <% end %>
             </div>
-          </label>
-        </div>
-
-        <div class="settingsInputGroup">
-          <label for="" class="flexRow">
-            Phone
-            <div class="checkbox breatheLeft">
-              <input class="completeInput" id="complete2" type="checkbox" name="user[settings][phone_notifications]">
-              <label for="complete2"></label>
-            </div>
+            Track tasks on weekends
           </label>
         </div>
       </div>
     </div>
-    <%= f.submit %>
+    <%= f.submit "Save" %>
   <% end %>
 </section>

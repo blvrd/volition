@@ -20,7 +20,7 @@ class UpdateUserForm
 
   validates :email, presence: true
   validates :phone, numericality: true
-  validate :old_password_authenticated, if: -> { updating_password? }
+  validate  :old_password_authenticated, if: -> { updating_password? }
 
   def save
     if valid?
