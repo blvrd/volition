@@ -1,0 +1,16 @@
+today:
+  user: garrett
+  date: <%= Date.current %>
+
+yesterday:
+  user: garrett
+  date: <%= Date.current.prev_day %>
+
+two_days_ago:
+  user: garrett
+  date: <%= Date.current.prev_day.prev_day %>
+
+tomorrow:
+  user: garrett
+  date: <%= Date.current.next_day %>
+
