@@ -1,0 +1,4 @@
+get_groceries:
+  content: Get groceries
+  estimated_time_blocks: 3
+  todo_list: today
