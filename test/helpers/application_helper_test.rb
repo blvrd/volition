@@ -11,8 +11,14 @@ class ApplicationHelperTest < ActionView::TestCase
     travel_to(Date.current.end_of_week)
   end
 
+  teardown do
+    travel_back
+  end
+
   test '#today_is_trackable? false' do
-    assert_not(today_is_trackable?)
+    @user.update(track_weekends: false)
+
+    refute(today_is_trackable?)
   end
 
   test '#today_is_trackable? true' do

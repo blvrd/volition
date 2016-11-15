@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.password_confirmation = user_params[:password]
+    @user.timezone = Time.zone.tzinfo.name
 
     if @user.save
       login(@user)
@@ -39,9 +40,10 @@ class UsersController < ApplicationController
       :name,
       :email,
       :phone,
-      :email_notifications,
-      :sms_notifications,
-      :track_weekends
+      :email_reminders,
+      :sms_reminders,
+      :track_weekends,
+      :password
     )
   end
 end

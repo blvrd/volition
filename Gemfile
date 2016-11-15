@@ -27,6 +27,7 @@ gem 'letter_opener'
 gem 'react-rails'
 gem 'bcrypt'
 gem 'will_paginate', '~> 3.1.0'
+gem 'twilio-ruby'
 
 group :development, :test do
   gem "awesome_print"
