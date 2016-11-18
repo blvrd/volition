@@ -30,6 +30,9 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = 'Settings updated'
       redirect_to root_path
+    else
+      flash[:error] = @user.errors.full_messages.join(', ')
+      redirect_to settings_path
     end
   end
 

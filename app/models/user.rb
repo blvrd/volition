@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   scope :want_sms_reminders, -> { where(sms_reminders: true) }
 
+  validates :phone, presence: true, if: -> { self.sms_reminders? }
+  validates :email, presence: true
+
   # TODO extract timezone logic to concern and convert to scope
   def self.finishing_their_day
     timezones = ActiveSupport::TimeZone.all.map do |tz|

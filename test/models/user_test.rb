@@ -42,7 +42,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test '.want_sms_reminders' do
-    @user.update(sms_reminders: true)
+    @user.update(sms_reminders: true, phone: '9144825484')
     new_user = User.create(
       email: 'new@example.com',
       password: 'password',
@@ -70,5 +70,13 @@ class UserTest < ActiveSupport::TestCase
       assert_includes(User.finishing_their_day, @user)
       refute_includes(User.finishing_their_day, new_user)
     end
+  end
+
+  test 'validation phone number is present when sms_reminders is true' do
+    @user.sms_reminders = true
+
+    @user.save
+
+    assert_not_nil(@user.errors.full_messages)
   end
 end
