@@ -53,6 +53,18 @@ class UserTest < ActiveSupport::TestCase
     refute_includes(User.want_sms_reminders, new_user)
   end
 
+  test '.want_email_reminders' do
+    @user.update(email_reminders: true)
+    new_user = User.create(
+      email: 'new@example.com',
+      password: 'password',
+      password_confirmation: 'password'
+    )
+
+    assert_includes(User.want_email_reminders, @user)
+    refute_includes(User.want_email_reminders, new_user)
+  end
+
   test '.finishing_their_day' do
     chicago_time_zone = ActiveSupport::TimeZone.all.find {|zone| zone.tzinfo.name == 'America/Chicago'}
 

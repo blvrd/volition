@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_secure_password
 
   scope :want_sms_reminders, -> { where(sms_reminders: true) }
+  scope :want_email_reminders, -> { where(email_reminders: true) }
 
   validates :phone, presence: true, if: -> { self.sms_reminders? }
   validates :email, presence: true

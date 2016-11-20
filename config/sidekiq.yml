@@ -4,3 +4,4 @@
 :queues:
   - default
   - sms_reminders
+  - email_reminders

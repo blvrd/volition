@@ -28,6 +28,7 @@ gem 'react-rails'
 gem 'bcrypt'
 gem 'will_paginate', '~> 3.1.0'
 gem 'twilio-ruby'
+gem 'premailer-rails'
 
 group :development, :test do
   gem "awesome_print"

@@ -74,6 +74,8 @@ GEM
     connection_pool (2.2.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    css_parser (1.4.6)
+      addressable
     database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
@@ -98,6 +100,7 @@ GEM
       activesupport (>= 4.1.0)
     hashdiff (0.3.0)
     high_voltage (3.0.0)
+    htmlentities (4.3.4)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -137,6 +140,12 @@ GEM
       mini_portile2 (~> 2.1.0)
     normalize-rails (3.0.3)
     pg (0.19.0)
+    premailer (1.8.7)
+      css_parser (>= 1.4.5)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.9.4)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -307,6 +316,7 @@ DEPENDENCIES
   minitest-reporters
   normalize-rails (~> 3.0.0)
   pg
+  premailer-rails
   pry-byebug
   pry-rails
   puma
