@@ -1,0 +1,30 @@
+.settingsForm {
+  width: 600px;
+  border: 2px solid $light-gray;
+  border-radius: $base-border-radius;
+  padding: 30px;
+}
+
+.settingsSection {
+  width: 100%;
+  margin-bottom: 60px;
+  // padding: 5px 15px 15px 15px;
+}
+
+.settingsFormContent {
+  padding: 15px;
+}
+
+.settingsFormTopBar {
+  background: $blue;
+  border-radius: $base-border-radius;
+  color: $white;
+}
+
+.settingsInputGroup {
+  width: 45%;
+}
+
+.settingsInput {
+}
+

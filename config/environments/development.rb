@@ -1,3 +1,5 @@
+require Rails.root.join("config/smtp")
+
 Rails.application.configure do
   config.cache_classes = false
   config.eager_load = false
@@ -18,7 +20,10 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     Bullet.rails_logger = true
   end
-  config.action_mailer.delivery_method = :file
+  config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = SMTP_SETTINGS
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false
   config.active_support.deprecation = :log
   config.active_record.migration_error = :page_load

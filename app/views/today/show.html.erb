@@ -4,7 +4,6 @@
     <div class="calendarIconTopBar"><span class="month"><%= Date.current.strftime('%B') %></span></div>
     <div class="calendarIconDay"><span class="day"><%= Date.current.strftime('%e') %></span></div>
   </div>
-  <h2></h2>
 
   <%= react_component 'TodoList', todos: @todos %>
   <%= link_to 'All done', reflect_path, class: 'finishDayButton button' %>

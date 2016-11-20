@@ -1,6 +1,11 @@
 <section class="appSection">
   <h1>Dashboard</h1>
-  <%= link_to "go to today's tasks &rarr;".html_safe, today_path, class: "todayLink" %>
+  <% if today_is_trackable? %>
+    <%= link_to "go to today's tasks &rarr;".html_safe, today_path, class: "todayLink" %>
+  <% else %>
+    <p class="weekendMessage">Have a good <%= Date::DAYNAMES[Date.current.wday] %> and get some rest.</p>
+  <% end %>
+
   <ul class="daySummaryList">
     <%= link_to today_path, class: "noTextStyle" do %>
       <li class="daySummary today">
@@ -9,7 +14,9 @@
             <div class="calendarIconTopBar small"><span class="month"><%= Date.current.strftime('%B') %></span></div>
             <div class="calendarIconDay small"><span class="day"><%= Date.current.strftime('%e') %></span></div>
           </div>
-          <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= @todays_todo_list.try(:reflection).try(:rating) || "?" %></span></span>
+          <% if today_is_trackable? %>
+            <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= @todays_todo_list.try(:reflection).try(:rating) || "?" %></span></span>
+          <% end %>
         </div>
 
         <% if @todays_todo_list.present? %>
@@ -28,7 +35,11 @@
             <% end %>
           </ol>
         <% else %>
-          <p class="noTasks">No tasks yet.</p>
+          <% if today_is_trackable? %>
+            <p class="noTasks">No tasks yet.</p>
+          <% else %>
+            <p class="noTasks">Nothing to do today.</p>
+          <% end %>
         <% end %>
       </li>
     <% end %>

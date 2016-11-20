@@ -3,6 +3,12 @@
     <%= link_to dashboard_path, class: 'logo' do %>
       <%= image_tag 'logo' %>
     <% end %>
-    <%= link_to 'Log out', logout_path, method: :delete, class: 'logoutLink' %>
+
+    <div class="navRight flexRow flexJustifySpaceBetween">
+      <% if current_user %>
+        <%= link_to 'Settings', settings_path, class: 'navLink' %>
+      <% end %>
+      <%= link_to 'Log out', logout_path, method: :delete, class: 'navLink' %>
+    </div>
   </div>
 </section>

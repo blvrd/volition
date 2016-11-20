@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/mockups/reflect'   => 'mockups#reflect'
   get '/mockups/nice_job'  => 'mockups#nice_job'
   get '/mockups/dashboard' => 'mockups#dashboard'
+  get '/mockups/settings'  => 'mockups#settings'
 
   get '/nice_job'          => 'pages#nice_job', as: :nice_job
   get '/welcome'           => 'pages#welcome', as: :welcome
@@ -22,8 +23,12 @@ Rails.application.routes.draw do
   get '/login'             => 'sessions#new', as: :login
   post '/login'            => 'sessions#create'
   delete '/logout'         => 'sessions#destroy', as: :logout
+  get '/settings'          => 'users#edit', as: :settings
 
   resources :todos, only: [:update]
   resources :reflections, only: [:create]
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show, :update]
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

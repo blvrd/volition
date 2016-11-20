@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless current_user
   end
 
+  def verify_that_today_is_trackable
+    redirect_to dashboard_path unless view_context.today_is_trackable?
+  end
+
   private
 
   def with_timezone

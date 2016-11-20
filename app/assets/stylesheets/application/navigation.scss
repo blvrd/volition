@@ -15,8 +15,12 @@
   }
 }
 
-.logoutLink {
+.navLink {
   @include display-flex;
   @include flex-direction(column);
   @include justify-content(flex-end);
+}
+
+.navRight {
+  width: 145px;
 }

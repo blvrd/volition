@@ -21,7 +21,7 @@ button, a.button, input[type="submit"] {
 
   &:hover,
   &:focus {
-    background-color: darken($action-color, 10%);
+    background-color: $dark-green;
     color: #fff;
   }
 
