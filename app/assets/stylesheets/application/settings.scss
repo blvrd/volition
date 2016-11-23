@@ -1,0 +1,48 @@
+.settingsForm {
+  width: 90%;
+  border: 2px solid $light-gray;
+  border-radius: $base-border-radius;
+  padding: 30px;
+
+  @include MQ(M) {
+    width: 600px;
+  }
+
+  .contactInputs {
+    @include display-flex;
+    @include flex-direction(column);
+
+    @include MQ(M) {
+      @include flex-direction(row);
+    }
+  }
+}
+
+.settingsSection {
+  width: 100%;
+  margin-bottom: 60px;
+  // padding: 5px 15px 15px 15px;
+}
+
+.settingsFormContent {
+  padding: 15px;
+}
+
+.settingsFormTopBar {
+  background: $blue;
+  border-radius: $base-border-radius;
+  color: $white;
+}
+
+.settingsInputGroup {
+  width: 100%;
+
+  @include MQ(M) {
+    width: 45%;
+  }
+}
+
+.settingsInput {
+  margin-bottom: 40px;
+}
+
