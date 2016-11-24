@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
 
   around_action :with_timezone
 
+  before_action :detect_user_agent
+
+  MOBILE_USER_AGENT = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile/
+
+  def detect_user_agent
+    @user_agent ||= MOBILE_USER_AGENT.match(request.user_agent) ? :mobile : :desktop
+  end
+
   def login(user)
     session[:user_id] = user.id
   end

@@ -26,4 +26,14 @@ class ApplicationHelperTest < ActionView::TestCase
 
     assert(today_is_trackable?)
   end
+
+   test 'truncate(user_agent: :desktop)' do
+     truncated_string = truncate('This is a long todo. I should do this by the end of the day', user_agent: :desktop)
+     assert_equal('This is a long todo. I should do this...', truncated_string)
+   end
+
+   test 'truncate(user_agent: :mobile)' do
+     truncated_string = truncate('This is a long todo. I should do this by the end of the day', user_agent: :mobile)
+     assert_equal('This is a long todo. I...', truncated_string)
+   end
 end

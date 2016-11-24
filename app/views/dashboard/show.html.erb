@@ -25,11 +25,11 @@
               <li class="dashboardTodo">
                 <% if todo.complete? %>
                   <span class="complete">
-                    <%= todo.content.truncate(40) %>
+                    <%= truncate(todo.content, user_agent: @user_agent) %>
                   </span>
                   <span class="checkMark"></span>
                 <% else %>
-                  <%= todo.content.truncate(40) %>
+                  <%= truncate(todo.content, user_agent: @user_agent) %>
                 <% end %>
               </li>
             <% end %>
@@ -60,11 +60,11 @@
               <li class="dashboardTodo">
                 <% if todo.complete? %>
                   <span class="complete">
-                    <%= todo.content.truncate(40) %>
+                    <%= truncate(todo.content, user_agent: @user_agent) %>
                   </span>
                   <span class="checkMark"></span>
                 <% else %>
-                  <%= todo.content.truncate(40) %>
+                  <%= truncate(todo.content, user_agent: @user_agent) %>
                 <% end %>
               </li>
             <% end %>

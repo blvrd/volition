@@ -6,4 +6,12 @@ module ApplicationHelper
 
     false if today.on_weekend?
   end
+
+  def truncate(string, user_agent: :desktop)
+    if user_agent == :desktop
+      string.truncate(40)
+    else
+      string.truncate(25)
+    end
+  end
 end
