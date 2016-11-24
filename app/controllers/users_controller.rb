@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: :new
+  before_action :authenticate_user!, except: [:new, :create]
 
   def new
     if current_user.present?
