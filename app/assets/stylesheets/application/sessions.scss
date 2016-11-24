@@ -1,5 +1,9 @@
 .newUserForm, .loginForm {
-  width: 450px;
+  width: 90%;
+
+  @include MQ(M) {
+    width: 450px;
+  }
 
   input[type="submit"] {
     margin-right: 10px

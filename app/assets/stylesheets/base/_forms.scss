@@ -32,6 +32,8 @@ select[multiple=multiple], input[type="text"], input[type="password"], textarea 
   background-color: $base-background-color;
   border: $base-border;
   border-radius: none;
+  -webkit-appearance: none;
+  -webkit-border-radius:0px;
   box-sizing: border-box;
   font-family: $heading-font-family;
   font-size: $base-font-size;

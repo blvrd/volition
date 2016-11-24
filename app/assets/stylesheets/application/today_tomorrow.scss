@@ -97,7 +97,6 @@ div[data-react-class='TodoList'] {
 }
 
 .checkbox {
-
   label {
     position: relative;
     border: 1px solid $medium-gray;
@@ -120,12 +119,16 @@ div[data-react-class='TodoList'] {
 
     &:checked + label {
       &:before {
-        content: "\2714";
-        font-size: 18px;
-        color: $action-color;
+        content: "";
+        display: block;
+        width: 7px;
+        height: 16px;
         position: absolute;
-        top: -3px;
-        left: 2px;
+        border: solid $action-color;
+        transform: rotate(45deg);
+        border-width: 0 3px 3px 0;
+        top: -2px;
+        left: 4px;
       }
     }
   }
