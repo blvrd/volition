@@ -3,7 +3,7 @@
   <%= form_for @user, html: { class: 'settingsForm breatheTop' } do |f| %>
     <div class="settingsSection">
       <h2 class="settingsHeading">Contact</h2>
-      <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween flexWrap">
+      <div class="contactInputs breatheTop breatheBottom flexJustifySpaceBetween flexWrap">
         <div class="settingsInputGroup">
           <%= f.label :email %>
           <%= f.text_field :email, class: 'settingsInput' %>
@@ -14,7 +14,7 @@
           <%= f.text_field :name, class: 'settingsInput' %>
         </div>
 
-        <div class="settingsInputGroup breatheTop">
+        <div class="settingsInputGroup">
           <%= f.label :phone %>
           <%= f.text_field :phone, class: 'settingsInput' %>
         </div>

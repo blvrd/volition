@@ -1,11 +1,38 @@
 .dayRating {
   @include display-flex;
   @include justify-content(space-between);
-  width: 500px;
+  width: 100%;
+
+  @include MQ(M) {
+    width: 500px;
+  }
+
+  .ratingCircle {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+
+    @include MQ(S) {
+      width: 25px;
+      height: 25px;
+      font-size: 14px;
+    }
+
+    @include MQ(M) {
+      width: 30px;
+      height: 30px;
+      font-size: 14px;
+    }
+  }
 }
 
 .reflectionForm {
   margin: 20px 0;
+  width: 90%;
+
+  @include MQ(M) {
+    width: initial;
+  }
 
   .error {
     padding: 10px;
@@ -16,6 +43,10 @@
 }
 
 .reflectionDaySummary {
-  width: 500px;
-  margin-bottom: 0
+  margin-bottom: 0;
+  width: 90%;
+
+  @include MQ(M) {
+    width: 500px;
+  }
 }

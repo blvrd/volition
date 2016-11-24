@@ -2,7 +2,7 @@
   margin-top: 20px;
 
   .navLinks {
-    width: 1000px;
+    width: 80%;
     margin: 0 auto;
   }
 }
@@ -19,6 +19,7 @@
   @include display-flex;
   @include flex-direction(column);
   @include justify-content(flex-end);
+  padding: 10px 0;
 }
 
 .navRight {
