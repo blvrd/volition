@@ -1,8 +1,11 @@
 .pagination {
   margin-bottom: 20px;
+  :not(.disabled) {
+    font-size: 24px;
+  }
 
   .current {
-    font-size: 16px;
+    font-size: 24px;
     color: $dark-gray;
   }
 

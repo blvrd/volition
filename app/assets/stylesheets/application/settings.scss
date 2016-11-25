@@ -3,6 +3,7 @@
   border: 2px solid $light-gray;
   border-radius: $base-border-radius;
   padding: 30px;
+  margin-bottom: 40px;
 
   @include MQ(M) {
     width: 600px;
