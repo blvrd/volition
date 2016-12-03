@@ -29,6 +29,7 @@ gem 'bcrypt'
 gem 'will_paginate', '~> 3.1.0'
 gem 'twilio-ruby'
 gem 'premailer-rails'
+gem 'rubycritic', require: false
 
 group :development, :test do
   gem "awesome_print"
