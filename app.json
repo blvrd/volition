@@ -26,6 +26,9 @@
     },
     "TWILIO_SENDER_PHONE_NUMBER": {
       "value": "Optional"
+    },
+    "SELF_HOSTED": {
+      "value": "true"
     }
   }
 }

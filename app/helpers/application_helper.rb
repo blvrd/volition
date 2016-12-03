@@ -14,4 +14,8 @@ module ApplicationHelper
       string.truncate(25)
     end
   end
+
+  def self_hosted?
+    ENV['SELF_HOSTED'] == 'true'
+  end
 end
