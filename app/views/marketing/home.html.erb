@@ -1,0 +1,73 @@
+<section class="heroSection">
+  <div class="mobileHeader">
+    <%= image_tag 'logo', class: 'heroLogo mobile' %>
+  </div>
+  <div class="heroMain">
+    <div class="heroTitleSection">
+      <%= image_tag 'logo', class: 'heroLogo' %>
+      <%= render partial: 'subscribe' %>
+    </div>
+    <div class="heroExplanation">
+      <h1 class="heroTagline">Be less busy and more productive.</h1>
+      <p>
+      Volition is more than a todo list. It’s a framework for becoming more effective. It encourages you be more intentional in planning your day and reflecting on the decisions you made.</p>
+      <p>
+      If you want to start using Volition now, try <%= link_to 'self hosting', ENV['LINK_TO_GITHUB_REPO'] %>.
+    </p>
+    </div>
+  </div>
+</section>
+<section class="philosophySection">
+  <p>
+    I’m Garrett Martin. I write software for a living. Here is the philosophy I used to build Volition:
+  </p>
+
+  <div class="philosophyPoint">
+    <h4 class="philosophyTagline">
+      Work should be fulfilling, not consuming
+    </h4>
+    <p class="philosophyContent">
+      I helped start a business so that I could create something new and useful. I also had a vision of a lifestyle I wanted to build; one that didn't revolve solely around work. Working myself to the bone for years on the off chance that I would have enough money to retire did not seem a likely path to happiness.
+    </p>
+  </div>
+  <div class="philosophyPoint">
+    <h4 class="philosophyTagline">
+      Time should be used intentionally
+    </h4>
+    <p class="philosophyContent">
+      I have had too many days that were figured out as the day went on. For me, that is not a recipe for good work, whether creative or rote. It leads to too many dead ends and allows for too many wasteful diversions.
+
+      When I have a plan for the day, on the other hand, I can navigate smoothly from one task to the next. It takes less thought and willpower to get started, to stay on track, and to actually get things done. It's liberating, both because it relieves the stress created by knowing that things need to get done, but not knowing quite what or how, and also because it leaves more time in my day for things other than work.
+    </p>
+  </div>
+  <div class="philosophyPoint">
+    <h4 class="philosophyTagline">
+      Without reflection, we don't become better people
+    </h4>
+    <p class="philosophyContent">
+      In that past, I have often ignored my mistakes so as to not relive the moment. That's wrong and I regret it. Having the courage to face mistakes allows me to more easily make corrections and improve. Intuitive, yes, but it seems that most of us rarely do it.
+      <br>
+      <br>
+      Epictetus, a first century Greek philosopher, was well aware of our aversion as humans to acknowledging failure and analyzing what we have done wrong. He asks us in his <em>Discourses</em> to overcome that aversion:
+
+      <blockquote>
+        Let sleep not come upon thy languid eyes
+        Before each daily action thou hast scann'd;
+        What's done amiss, what done, what left undone;
+        From first to last examine all, and then
+        Blame what is wrong, in what is right rejoice.
+      </blockquote>
+    </p>
+  </div>
+  <div class="philosophyPoint">
+    <h4 class="philosophyTagline">
+      Users should control their own data
+    </h4>
+    <p class="philosophyContent">
+      Now more than ever, we have less control over who sees what we do on the internet. For now, Volition is exclusively self-hosted. In the not-so-distant future, I'll be releasing a hosted version, but I want to first give something useful to the community that has given me so much.
+    </p>
+  </div>
+  <%= render partial: 'subscribe' %>
+</section>
+<footer>
+</footer>

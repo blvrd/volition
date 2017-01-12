@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'pages/nice_job'
 
-  root 'users#new'
+  root 'marketing#home'
 
   get '/mockups/today'     => 'mockups#today'
   get '/mockups/tomorrow'  => 'mockups#tomorrow'
