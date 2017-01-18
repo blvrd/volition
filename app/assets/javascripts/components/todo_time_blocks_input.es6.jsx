@@ -51,10 +51,12 @@ class TodoTimeBlocksInput extends React.Component {
       }
     });
 
-    if ($('.pomodoroCircle.active').length > 0) {
-      var $nextInactiveCircle = $(e.target).closest('.todoPomodoros').find('.pomodoroCircle.active').last().next('.pomodoroCircle')
+    var $section = $(e.target).closest('.todoPomodoros')
+
+    if ($section.find('.pomodoroCircle.active').length > 0) {
+      var $nextInactiveCircle = $section.find('.pomodoroCircle.active').last().next('.pomodoroCircle')
     } else {
-      var $nextInactiveCircle = $(e.target).closest('.todoPomodoros').find('.pomodoroCircle').first()
+      var $nextInactiveCircle = $section.find('.pomodoroCircle').first()
     }
 
     burst
