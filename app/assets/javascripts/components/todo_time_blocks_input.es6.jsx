@@ -30,13 +30,13 @@ class TodoTimeBlocksInput extends React.Component {
   _onClick(e) {
     if (this.props.actualTimeBlocks < 5) {
       this.props.onClick({target: {value: this.props.actualTimeBlocks + 1}})
-      this.burstAnimation()
+      this.burstAnimation(e)
     } else {
       this.props.onClick({target: {value: 0}})
     }
   }
 
-  burstAnimation() {
+  burstAnimation(e) {
     var burst = new mojs.Burst({
       left: 0,
       top: 0,
@@ -52,9 +52,9 @@ class TodoTimeBlocksInput extends React.Component {
     });
 
     if ($('.pomodoroCircle.active').length > 0) {
-      var $nextInactiveCircle = $('.pomodoroCircle.active').last().next('.pomodoroCircle')
+      var $nextInactiveCircle = $(e.target).closest('.todoPomodoros').find('.pomodoroCircle.active').last().next('.pomodoroCircle')
     } else {
-      var $nextInactiveCircle = $('.pomodoroCircle').first()
+      var $nextInactiveCircle = $(e.target).closest('.todoPomodoros').find('.pomodoroCircle').first()
     }
 
     burst
