@@ -27,6 +27,25 @@ class ApplicationHelperTest < ActionView::TestCase
     assert(today_is_trackable?)
   end
 
+  test '#tomorrow_is_trackable? false' do
+    travel_to(Date.current.end_of_week - 2)
+    @user.update(track_weekends: false)
+
+    refute(tomorrow_is_trackable?)
+  end
+
+  test '#tomorrow_is_trackable? true' do
+    travel_to(Date.current.end_of_week - 2)
+    @user.update(track_weekends: true)
+
+    assert(tomorrow_is_trackable?)
+
+    travel_to(Date.current.end_of_week)
+    @user.update(track_weekends: false)
+
+    assert(tomorrow_is_trackable?)
+  end
+
    test 'truncate(user_agent: :desktop)' do
      truncated_string = truncate('This is a long todo. I should do this by the end of the day', user_agent: :desktop)
      assert_equal('This is a long todo. I should do this...', truncated_string)
