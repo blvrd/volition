@@ -1,0 +1,163 @@
+%marketingSection {
+  padding: 1.5rem;
+  margin: 0 auto;
+
+  @include MQ(M) {
+    padding: 4rem;
+  }
+}
+
+.marketingCard {
+  border: 2px solid $green;
+  border-radius: $base-border-radius;
+  padding: 1rem;
+}
+
+.heroSection {
+  @extend %marketingSection;
+  @include display-flex;
+  @include align-items(center);
+  @include flex-direction(column);
+  width: 100vw;
+  color: $white;
+  background: $blue;
+
+  @include MQ(M) {
+    @include flex-direction(row);
+    height: 600px;
+  }
+}
+
+.mobileHeader {
+  @include display-flex;
+  @include align-items(center);
+  width: 100%;
+
+  @include MQ(M) {
+    display: none;
+  }
+}
+
+.heroMain {
+  @include display-flex;
+  @include flex-direction(column-reverse);
+  width: 100%;
+
+  @include MQ(M) {
+    @include flex-direction(row);
+    @include align-items(flex-start);
+    @include justify-content(space-around);
+  }
+}
+
+.heroLogo {
+  display: none;
+
+  &.mobile {
+    display: block;
+    width: 150px;
+    margin-bottom: 1rem;
+  }
+
+  @include MQ(M) {
+    display: block;
+    width: 150px;
+  }
+}
+
+.heroTitleSection {
+  .subscribe {
+    p {
+      color: $white;
+    }
+
+    .email {
+      input {
+        padding: 0.6rem;
+        border: none;
+      }
+    }
+  }
+}
+
+.subscribe {
+  margin-top: 25px;
+  @include display-flex;
+  @include flex-direction(column);
+
+  @include MQ(M) {
+    width: 400px;
+    @include flex-direction(row);
+    @include justify-content(space-between);
+  }
+
+  p {
+    color: $dark-gray;
+    margin: 0;
+  }
+
+  .email {
+    width: 100%;
+
+    @include MQ(M) {
+      width: 65%;
+    }
+
+    input {
+      border-radius: $base-border-radius;
+      color: $dark-gray;
+      border: 2px solid $medium-gray;
+    }
+  }
+
+  #subscribeButton {
+    margin-top: 10px;
+    align-self: flex-start;
+
+    @include MQ(M) {
+      align-self: flex-end;
+      margin: 0;
+    }
+  }
+}
+
+.heroTagline {
+  font-size: 2rem;
+}
+
+.heroExplanation {
+  @include MQ(M) {
+    width: 50%;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+.philosophySection, .dayWithVolitionSection {
+  @extend %marketingSection;
+  @include MQ(M) {
+    width: 65%;
+  }
+}
+
+.philosophySection {
+  padding-top: 0 !important;
+}
+
+.marketingTagline {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.downArrow {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0 !important;
+  color: $light-blue;
+}
+
+.sectionHeading {
+  font-size: 2rem;
+}

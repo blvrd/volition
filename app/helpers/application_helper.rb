@@ -32,4 +32,8 @@ module ApplicationHelper
   def self_hosted?
     ENV['SELF_HOSTED'] == 'true'
   end
+
+  def on_home_page?
+    controller.action_name == 'home'
+  end
 end
