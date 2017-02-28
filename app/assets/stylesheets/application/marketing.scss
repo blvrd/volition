@@ -1,9 +1,16 @@
 %marketingSection {
   padding: 1.5rem;
+  margin: 0 auto;
 
   @include MQ(M) {
     padding: 4rem;
   }
+}
+
+.marketingCard {
+  border: 2px solid $green;
+  border-radius: $base-border-radius;
+  padding: 1rem;
 }
 
 .heroSection {
@@ -64,8 +71,9 @@
       color: $white;
     }
 
-    #email {
+    .email {
       input {
+        padding: 0.6rem;
         border: none;
       }
     }
@@ -88,7 +96,7 @@
     margin: 0;
   }
 
-  #email {
+  .email {
     width: 100%;
 
     @include MQ(M) {
@@ -127,14 +135,29 @@
   }
 }
 
-.philosophySection {
+.philosophySection, .dayWithVolitionSection {
   @extend %marketingSection;
   @include MQ(M) {
     width: 65%;
   }
 }
 
-.philosophyTagline {
+.philosophySection {
+  padding-top: 0 !important;
+}
+
+.marketingTagline {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+.downArrow {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0 !important;
+  color: $light-blue;
+}
+
+.sectionHeading {
+  font-size: 2rem;
 }
