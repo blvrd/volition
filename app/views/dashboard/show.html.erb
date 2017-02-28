@@ -7,6 +7,32 @@
   <% end %>
 
   <ul class="daySummaryList">
+    <% if @tomorrows_todo_list.present? %>
+      <li class="daySummary tomorrow">
+        <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+          <div class="calendarIcon small">
+            <div class="calendarIconTopBar small"><span class="month"><%= Date.current.next_day.strftime('%B') %></span></div>
+            <div class="calendarIconDay small"><span class="day"><%= Date.current.next_day.strftime('%e') %></span></div>
+          </div>
+        </div>
+
+        <ol class="dashboardTodoList">
+          <% @tomorrows_todo_list.todos.each do |todo| %>
+            <li class="dashboardTodo">
+              <% if todo.complete? %>
+                <span class="complete">
+                  <%= truncate(todo.content, user_agent: @user_agent) %>
+                </span>
+                <span class="checkMark"></span>
+              <% else %>
+                <%= truncate(todo.content, user_agent: @user_agent) %>
+              <% end %>
+            </li>
+          <% end %>
+        </ol>
+      </li>
+    <% end %>
+
     <%= link_to today_path, class: "noTextStyle" do %>
       <li class="daySummary today">
         <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">

@@ -13,6 +13,16 @@ class TodoListTest < ActiveSupport::TestCase
     end
   end
 
+  test '.tomorrow' do
+    user = users(:garrett)
+
+    Time.use_zone('Central Time (US & Canada)') do
+      travel_to(current_time) do
+        assert(TodoList.tomorrow(user) == todo_lists(:tomorrow))
+      end
+    end
+  end
+
   test '.past' do
     user = users(:garrett)
 

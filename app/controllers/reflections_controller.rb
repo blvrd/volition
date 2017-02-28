@@ -1,4 +1,6 @@
 class ReflectionsController < ApplicationController
+  include ApplicationHelper
+
   before_action :authenticate_user!
 
   def new
@@ -20,7 +22,7 @@ class ReflectionsController < ApplicationController
     @reflection.date = Date.current
 
     if @reflection.save
-      redirect_to tomorrow_path
+      redirect_to after_create_path
     else
       @todo_list = TodoList.today(current_user)
       render :new
@@ -28,6 +30,15 @@ class ReflectionsController < ApplicationController
   end
 
   private
+
+  def after_create_path
+    if tomorrow_is_trackable?
+      tomorrow_path
+    else
+      flash[:success] = 'Nice job today! Get some rest.'
+      dashboard_path
+    end
+  end
 
   def reflection_params
     params.require(:reflection).permit(:rating, :right, :wrong, :undone)

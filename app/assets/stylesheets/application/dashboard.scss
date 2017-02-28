@@ -20,6 +20,10 @@
   &.today {
     border: 2px solid $action-color;
   }
+
+  &.tomorrow {
+    border: 2px dashed $light-gray;
+  }
 }
 
 .daySummaryInfoColumn {
