@@ -8,7 +8,6 @@ module ApplicationHelper
   end
 
   def tomorrow_is_trackable?
-    return false
     return true if current_user.track_weekends?
 
     today = Time.current
