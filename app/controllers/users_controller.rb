@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:new, :create]
+  if Rails.env == 'production'
+    http_basic_authenticate_with name: ENV['HTTP_AUTH_USERNAME'], password: ENV['HTTP_AUTH_PASSWORD']
+  end
 
   def new
     if current_user.present?
