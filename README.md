@@ -1,6 +1,6 @@
 # Volition
 
-![Build status](https://circleci.com/gh/garrettqmartin8/volition.svg?style=shield&circle-token=f883f7406ee9df386967c67b4a6f5a330083fe29)
+Build status: [![CircleCI](https://circleci.com/gh/garrettqmartin8/volition.svg?style=svg&circle-token=f883f7406ee9df386967c67b4a6f5a330083fe29)](https://circleci.com/gh/garrettqmartin8/volition)
 
 ## Self hosting
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/garrettqmartin8/volition)
