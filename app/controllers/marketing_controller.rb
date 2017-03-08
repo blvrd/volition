@@ -4,4 +4,6 @@ class MarketingController < ApplicationController
       redirect_to login_path
     end
   end
+
+  def privacy; end
 end

@@ -1,0 +1,16 @@
+.contentSection {
+  padding: 2rem;
+
+  @include MQ(M) {
+    text-align: center;
+    padding: 4rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

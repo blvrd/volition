@@ -3,6 +3,7 @@
   @include flex-direction(column);
   @include align-items(center);
   padding-top: 50px;
+  margin-bottom: 4rem;
 
   h1 {
     font-size: 30px;
@@ -21,4 +22,8 @@ blockquote {
   margin-left: 0;
   border-left: 4px solid $medium-gray;
   padding-left: 20px;
+}
+
+footer {
+  text-align: center;
 }
