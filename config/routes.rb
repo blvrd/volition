@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get '/nice_job'          => 'pages#nice_job', as: :nice_job
   get '/welcome'           => 'pages#welcome', as: :welcome
+  get '/privacy'           => 'marketing#privacy', as: :privacy
 
   get '/dashboard'         => 'dashboard#show', as: :dashboard
   get '/today'             => 'today#show', as: :today
