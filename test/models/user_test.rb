@@ -13,7 +13,6 @@ class UserTest < ActiveSupport::TestCase
     user = User.create!(email: 'g@example.com', password: 'password')
 
     refute_nil(user.stripe_customer_id)
-    binding.pry
   end
 
   test '#had_a_great_day? returns false' do
