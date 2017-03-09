@@ -1,6 +1,6 @@
 <section class="appSection">
   <h1>Settings</h1>
-  <%= form_for @user, html: { class: 'settingsForm breatheTop' } do |f| %>
+  <%= form_for @user, html: { class: 'settingsForm breatheTop', id: 'payment-form' } do |f| %>
     <div class="settingsSection">
       <h2 class="settingsHeading">Contact</h2>
       <div class="contactInputs breatheTop breatheBottom flexJustifySpaceBetween flexWrap">
@@ -62,6 +62,15 @@
             Track tasks on weekends
           </label>
         </div>
+      </div>
+    </div>
+
+    <div class="settingsSection">
+      <h2 class="settingsHeading">Payment</h2>
+      <div class="breatheTop breatheBottom">
+        <label for="card-element">Credit or debit card</label>
+        <div id="card-element"></div>
+        <div id="card-errors"></div>
       </div>
     </div>
     <%= f.submit "Save" %>
