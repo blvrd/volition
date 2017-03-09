@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validates :phone, presence: true, if: -> { self.sms_reminders? }
   validates :email, presence: true, unless: -> { self.guest? }
 
+  before_create :create_stripe_customer
+
   # TODO extract timezone logic to concern and convert to scope
   def self.finishing_their_day
     timezones = ActiveSupport::TimeZone.all.map do |tz|
@@ -33,5 +35,15 @@ class User < ApplicationRecord
 
   def recently_signed_up?
     created_at > 30.minutes.ago
+  end
+
+  private
+
+  def create_stripe_customer
+    customer = Stripe::Customer.create(
+      email: self.email
+    )
+
+    self.stripe_customer_id = customer.id
   end
 end

@@ -50,14 +50,15 @@ ActiveRecord::Schema.define(version: 20170506152633) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "phone"
-    t.boolean  "email_reminders", default: false
-    t.boolean  "sms_reminders",   default: false
-    t.boolean  "track_weekends",  default: true
+    t.boolean  "email_reminders",    default: false
+    t.boolean  "sms_reminders",      default: false
+    t.boolean  "track_weekends",     default: true
     t.string   "timezone"
     t.boolean  "guest"
+    t.string   "stripe_customer_id"
   end
 
   add_foreign_key "reflections", "users"
