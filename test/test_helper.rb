@@ -1,8 +1,10 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
-require "minitest/reporters"
+require 'minitest/reporters'
 require 'minitest/mock'
+require 'webmock/minitest'
+Dir["#{Rails.root}/test/support/*.rb"].each {|file| require file }
 
 Minitest::Reporters.use!(Minitest::Reporters::SpecReporter.new)
 
