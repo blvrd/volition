@@ -32,10 +32,6 @@ class CreditCardService
     end
   end
 
-  def charge
-
-  end
-
   private
 
   attr_reader :user
