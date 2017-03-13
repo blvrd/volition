@@ -59,12 +59,4 @@ class CreditCardServiceTest < ActiveSupport::TestCase
       refute(result)
     end
   end
-
-  test '#charge success' do
-
-  end
-
-  test '#charge failure' do
-
-  end
 end

@@ -11,8 +11,6 @@ class User < ApplicationRecord
   validates :phone, presence: true, if: -> { self.sms_reminders? }
   validates :email, presence: true
 
-  before_create :create_stripe_customer
-
   # TODO extract timezone logic to concern and convert to scope
   def self.finishing_their_day
     timezones = ActiveSupport::TimeZone.all.map do |tz|
@@ -47,15 +45,5 @@ class User < ApplicationRecord
     return nil if stripe_subscription_id.blank?
 
     @stripe_subscription ||= Stripe::Subscription.retrieve(stripe_subscription_id)
-  end
-
-  private
-
-  def create_stripe_customer
-    customer = Stripe::Customer.create(
-      email: self.email
-    )
-
-    self.stripe_customer_id = customer.id
   end
 end
