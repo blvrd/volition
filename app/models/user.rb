@@ -37,6 +37,18 @@ class User < ApplicationRecord
     created_at > 30.minutes.ago
   end
 
+  def stripe_customer
+    return nil if stripe_customer_id.blank?
+
+    @stripe_customer ||= Stripe::Customer.retrieve(stripe_customer_id)
+  end
+
+  def stripe_subscription
+    return nil if stripe_subscription_id.blank?
+
+    @stripe_subscription ||= Stripe::Subscription.retrieve(stripe_subscription_id)
+  end
+
   private
 
   def create_stripe_customer

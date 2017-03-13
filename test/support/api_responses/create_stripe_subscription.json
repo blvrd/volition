@@ -1,0 +1,66 @@
+{
+  "id": "sub_6frLfGSNcqoxyU",
+  "object": "subscription",
+  "application_fee_percent": null,
+  "cancel_at_period_end": false,
+  "canceled_at": null,
+  "created": 1437842167,
+  "current_period_end": 1490459767,
+  "current_period_start": 1488040567,
+  "customer": "cus_6frLDSoSJkALqH",
+  "discount": null,
+  "ended_at": null,
+  "items": {
+    "object": "list",
+    "data": [
+      {
+        "id": "si_18U6qAJbTaUI61bRn31wweBp",
+        "object": "subscription_item",
+        "created": 1437842167,
+        "plan": {
+          "id": "basic",
+          "object": "plan",
+          "amount": 500,
+          "created": 1436649180,
+          "currency": "usd",
+          "interval": "month",
+          "interval_count": 1,
+          "livemode": false,
+          "metadata": {
+          },
+          "name": "Basic",
+          "statement_descriptor": "Verba",
+          "trial_period_days": null
+        },
+        "quantity": 1
+      }
+    ],
+    "has_more": false,
+    "total_count": 1,
+    "url": "/v1/subscription_items?subscription=sub_6frLfGSNcqoxyU"
+  },
+  "livemode": false,
+  "metadata": {
+  },
+  "plan": {
+    "id": "basic",
+    "object": "plan",
+    "amount": 500,
+    "created": 1436649180,
+    "currency": "usd",
+    "interval": "month",
+    "interval_count": 1,
+    "livemode": false,
+    "metadata": {
+    },
+    "name": "Basic",
+    "statement_descriptor": "Verba",
+    "trial_period_days": null
+  },
+  "quantity": 1,
+  "start": 1437842167,
+  "status": "active",
+  "tax_percent": null,
+  "trial_end": null,
+  "trial_start": null
+}

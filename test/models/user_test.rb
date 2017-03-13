@@ -7,12 +7,19 @@ class UserTest < ActiveSupport::TestCase
     @user = users(:garrett)
     stub_create_stripe_customer
     stub_retrieve_stripe_customer
+    stub_retrieve_stripe_subscription
   end
 
-  test 'on creation it creates a stripe customer and subscription' do
-    user = User.create!(email: 'g@example.com', password: 'password')
+  test '#stripe_customer' do
+    @user.update(stripe_customer_id: 'abc123')
 
-    refute_nil(user.stripe_customer_id)
+    refute_nil(@user.stripe_customer)
+  end
+
+  test '#stripe_subscription' do
+    @user.update(stripe_subscription_id: 'abc123')
+
+    refute_nil(@user.stripe_subscription)
   end
 
   test '#had_a_great_day? returns false' do
