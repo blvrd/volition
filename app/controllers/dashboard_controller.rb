@@ -1,6 +1,4 @@
-class DashboardController < ApplicationController
-  before_action :authenticate_user!
-
+class DashboardController < AuthenticatedController
   def show
     if current_user.guest?
       redirect_to today_path

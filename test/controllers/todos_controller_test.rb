@@ -1,8 +1,11 @@
 require 'test_helper'
 
-class TodosTest < ActionDispatch::IntegrationTest
+class TodosControllerTest < ActionDispatch::IntegrationTest
   setup do
     @todo = todos(:get_groceries)
+    @user = users(:garrett)
+
+    login_as(@user)
   end
 
   test 'update todo success' do

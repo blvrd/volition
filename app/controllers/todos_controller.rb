@@ -1,4 +1,4 @@
-class TodosController < ApplicationController
+class TodosController < AuthenticatedController
   protect_from_forgery except: [:update]
 
   def update
