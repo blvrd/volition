@@ -11,6 +11,7 @@ class CreditCardServiceTest < ActiveSupport::TestCase
     stub_retrieve_stripe_customer
     stub_create_stripe_subscription
     stub_retrieve_stripe_subscription
+    stub_create_stripe_source
   end
 
   test '#create_customer success' do
@@ -55,6 +56,23 @@ class CreditCardServiceTest < ActiveSupport::TestCase
   test '#create_subscription failure' do
     Stripe::Subscription.stub(:create, proc { raise StandardError }) do
       result = @service.create_subscription
+
+      refute(result)
+    end
+  end
+
+  test '#add_card_to_customer success' do
+    @service.create_customer
+    result = @service.add_card_to_customer(token: 'abc123')
+
+    assert_equal(Stripe::Card, result.class)
+  end
+
+  test '#add_card_to_customer failure' do
+    @service.create_customer
+
+    Stripe::ListObject.stub_any_instance(:create, proc { raise StandardError }) do
+      result = @service.add_card_to_customer(token: 'abc123')
 
       refute(result)
     end

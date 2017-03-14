@@ -67,7 +67,17 @@
 
     <div class="settingsSection">
       <h2 class="settingsHeading">Payment</h2>
-      <div class="breatheTop breatheBottom">
+      <% if @existing_card %>
+        <p>
+        <%= fa_icon("cc-#{@existing_card.brand.downcase}") %>
+        <%= "ending in #{@existing_card.last4}" %>
+        </p>
+
+        <p class="green">or add a new card</p>
+      <% end %>
+
+
+      <div class="breatheBottom">
         <label for="card-element">Credit or debit card</label>
         <div id="card-element"></div>
         <div id="card-errors"></div>

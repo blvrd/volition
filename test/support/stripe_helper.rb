@@ -27,6 +27,20 @@ module StripeHelper
     )
   end
 
+  def stub_create_stripe_source
+    stub_request(:post, /sources/).to_return(
+      status: 200,
+      body: get_json_response('create_stripe_source')
+    )
+  end
+
+  def stub_retrieve_stripe_subscription
+    stub_request(:get, /subscriptions/).to_return(
+      status: 200,
+      body: get_json_response('create_stripe_subscription')
+    )
+  end
+
   def get_json_response(filename)
     File.read(File.join('test', 'support', 'api_responses', "#{filename}.json"))
   end
