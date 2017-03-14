@@ -58,6 +58,7 @@ group :test do
   gem "webmock"
   gem 'minitest-reporters'
   gem 'minitest-stub_any_instance'
+  gem 'climate_control'
 end
 
 group :staging, :production do

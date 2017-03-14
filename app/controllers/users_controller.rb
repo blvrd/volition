@@ -1,8 +1,6 @@
-class UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :create]
-  if Rails.env == 'production' && ENV['SELF_HOSTED'].blank?
-    http_basic_authenticate_with name: ENV['HTTP_AUTH_USERNAME'], password: ENV['HTTP_AUTH_PASSWORD']
-  end
+class UsersController < AuthenticatedController
+  skip_before_action :authenticate_user!, only: [:new, :create]
+  skip_before_action :ensure_user_paid!, only: [:new, :create, :edit]
 
   def new
     if current_user.present? && !current_user.guest?
@@ -35,7 +33,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
-    @existing_card = @user.stripe_customer.sources.first
+    if @user.stripe_customer
+      @existing_card = @user.stripe_customer.sources.first
+    end
   end
 
   def update

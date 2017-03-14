@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class TodayController < ApplicationController
   before_action :set_user
   before_action :verify_that_today_is_trackable

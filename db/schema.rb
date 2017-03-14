@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170506152633) do
     t.boolean  "guest"
     t.string   "stripe_customer_id"
     t.string   "stripe_subscription_id"
+    t.boolean  "paid",                   default: true,  null: false
   end
 
   add_foreign_key "reflections", "users"

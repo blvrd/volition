@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
+
   protect_from_forgery
 
   around_action :with_timezone
@@ -26,6 +28,12 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     redirect_to login_path unless current_user
+  end
+
+  def ensure_user_paid!
+    unless self_hosted?
+      redirect_to settings_path unless current_user.paid?
+    end
   end
 
   def verify_that_today_is_trackable
