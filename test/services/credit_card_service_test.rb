@@ -62,10 +62,13 @@ class CreditCardServiceTest < ActiveSupport::TestCase
   end
 
   test '#add_card_to_customer success' do
+    @user.update(paid: false)
     @service.create_customer
+
     result = @service.add_card_to_customer(token: 'abc123')
 
     assert_equal(Stripe::Card, result.class)
+    assert(@user.paid?)
   end
 
   test '#add_card_to_customer failure' do
@@ -75,6 +78,7 @@ class CreditCardServiceTest < ActiveSupport::TestCase
       result = @service.add_card_to_customer(token: 'abc123')
 
       refute(result)
+      refute(@user.paid?)
     end
   end
 end

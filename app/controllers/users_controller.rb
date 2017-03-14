@@ -1,6 +1,6 @@
 class UsersController < AuthenticatedController
   skip_before_action :authenticate_user!, only: [:new, :create]
-  skip_before_action :ensure_user_paid!, only: [:new, :create, :edit]
+  skip_before_action :ensure_user_paid!
 
   def new
     if current_user.present? && !current_user.guest?
@@ -51,6 +51,10 @@ class UsersController < AuthenticatedController
       flash[:error] = @user.errors.full_messages.join(', ')
       redirect_to settings_path
     end
+  end
+
+  def cancel
+
   end
 
   private
