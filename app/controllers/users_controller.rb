@@ -23,7 +23,9 @@ class UsersController < ApplicationController
     @user.password_confirmation = user_params[:password]
     @user.timezone = Time.zone.tzinfo.name
 
-    if @user.save
+    valid = @user.save && create_customer_and_subscription
+
+    if valid
       login(@user)
       redirect_to welcome_path
     else
@@ -33,13 +35,16 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @existing_card = @user.stripe_customer.sources.first
   end
 
   def update
     @user = current_user
     @user.assign_attributes(user_params)
 
-    if @user.save
+    valid = @user.save && add_card_to_user
+
+    if valid
       flash[:success] = 'Settings updated'
       redirect_to dashboard_path
     else
@@ -49,6 +54,23 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def create_customer_and_subscription
+    @credit_card_service = CreditCardService.new(user: @user)
+
+    @credit_card_service.create_customer &&
+      @credit_card_service.create_subscription
+  end
+
+  def add_card_to_user
+    @credit_card_service = CreditCardService.new(user: @user)
+
+    if params[:stripeToken]
+      @credit_card_service.add_card_to_customer(token: params[:stripeToken])
+    else
+      true
+    end
+  end
 
   def user_params
     params.require(:user).permit(

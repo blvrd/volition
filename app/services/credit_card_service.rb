@@ -12,7 +12,7 @@ class CreditCardService
       )
       user.update(stripe_customer_id: customer.id)
       customer
-    rescue
+    rescue => e
       false
     end
   end
@@ -27,7 +27,17 @@ class CreditCardService
       )
       user.update(stripe_subscription_id: subscription.id)
       subscription
-    rescue
+    rescue => e
+      false
+    end
+  end
+
+  def add_card_to_customer(token:)
+    return nil unless user.stripe_customer_id.present?
+
+    begin
+      user.stripe_customer.sources.create({ source: token })
+    rescue => e
       false
     end
   end
