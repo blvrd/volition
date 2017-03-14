@@ -1,6 +1,6 @@
 class UsersController < AuthenticatedController
   skip_before_action :authenticate_user!, only: [:new, :create]
-  skip_before_action :ensure_user_paid!, only: [:new, :create, :edit]
+  skip_before_action :ensure_user_paid!
 
   if Rails.env == 'production'
     http_basic_authenticate_with name: ENV['HTTP_AUTH_USERNAME'], password: ENV['HTTP_AUTH_PASSWORD']
@@ -55,6 +55,10 @@ class UsersController < AuthenticatedController
       flash[:error] = @user.errors.full_messages.join(', ')
       redirect_to settings_path
     end
+  end
+
+  def cancel
+
   end
 
   private

@@ -36,8 +36,11 @@ class CreditCardService
     return false unless user.stripe_customer_id.present?
 
     begin
-      user.stripe_customer.sources.create({ source: token })
+      card = user.stripe_customer.sources.create({ source: token })
+      user.update(paid: true)
+      card
     rescue => e
+      user.update(paid: false)
       false
     end
   end
