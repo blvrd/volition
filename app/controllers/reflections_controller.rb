@@ -1,7 +1,5 @@
-class ReflectionsController < ApplicationController
+class ReflectionsController < AuthenticatedController
   include ApplicationHelper
-
-  before_action :authenticate_user!
 
   def new
     if Reflection.today(current_user).present?

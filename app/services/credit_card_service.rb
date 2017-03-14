@@ -33,7 +33,7 @@ class CreditCardService
   end
 
   def add_card_to_customer(token:)
-    return nil unless user.stripe_customer_id.present?
+    return false unless user.stripe_customer_id.present?
 
     begin
       user.stripe_customer.sources.create({ source: token })

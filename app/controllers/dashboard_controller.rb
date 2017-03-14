@@ -1,6 +1,4 @@
-class DashboardController < ApplicationController
-  before_action :authenticate_user!
-
+class DashboardController < AuthenticatedController
   def show
     @tomorrows_todo_list = TodoList.includes(:todos).tomorrow(current_user)
     @todays_todo_list = TodoList.includes(:todos).today(current_user)

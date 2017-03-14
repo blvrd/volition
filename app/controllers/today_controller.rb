@@ -1,5 +1,4 @@
-class TodayController < ApplicationController
-  before_action :authenticate_user!
+class TodayController < AuthenticatedController
   before_action :verify_that_today_is_trackable
 
   def show
