@@ -46,4 +46,12 @@ class User < ApplicationRecord
 
     @stripe_subscription ||= Stripe::Subscription.retrieve(stripe_subscription_id)
   end
+
+  def trialing?
+    stripe_subscription.trial_end > Time.current.to_i
+  end
+
+  def can_cancel_subscription?
+    !trialing? && paid
+  end
 end
