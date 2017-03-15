@@ -28,7 +28,11 @@ Rails.application.routes.draw do
 
   resources :todos, only: [:update]
   resources :reflections, only: [:create]
-  resources :users, only: [:new, :create, :show, :update]
+  resources :users do
+    member do
+      delete :cancel_subscription
+    end
+  end
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'

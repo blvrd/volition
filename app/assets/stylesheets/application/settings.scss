@@ -20,7 +20,23 @@
 .settingsSection {
   width: 100%;
   margin-bottom: 60px;
-  // padding: 5px 15px 15px 15px;
+
+  &.dangerZone {
+    border: 2px solid $red;
+  }
+
+  .dangerZoneContent {
+    padding: 10px;
+  }
+}
+
+.settingsHeading {
+  &.dangerZone {
+    background: $red;
+    color: $white;
+    margin: 0;
+    padding: 5px;
+  }
 }
 
 .settingsFormContent {
