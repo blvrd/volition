@@ -17,14 +17,20 @@ class CreditCardService
     end
   end
 
-  def create_subscription
+  def create_subscription(with_trial: true)
     return user.stripe_subscription if user.stripe_subscription_id.present?
 
+    options = {
+      customer: user.stripe_customer,
+      plan: 'basic'
+    }
+
+    unless with_trial
+      options.merge({ trial_period_days: 0 })
+    end
+
     begin
-      subscription = Stripe::Subscription.create(
-        customer: user.stripe_customer,
-        plan: 'basic'
-      )
+      subscription = Stripe::Subscription.create(options)
       user.update(stripe_subscription_id: subscription.id)
       subscription
     rescue => e
@@ -41,6 +47,16 @@ class CreditCardService
       card
     rescue => e
       user.update(paid: false)
+      false
+    end
+  end
+
+  def cancel_subscription
+    begin
+      user.stripe_subscription.delete
+      user.update(paid: false, stripe_subscription_id: nil)
+    rescue => e
+      @error = e
       false
     end
   end
