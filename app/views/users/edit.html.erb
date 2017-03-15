@@ -93,13 +93,16 @@
 
       <div class="dangerZoneContent">
         <p>These actions are destructive and won't be reversible. Proceed with caution!</p>
-        <% unless self_hosted? || !@user.paid? %>
+        <% if !self_hosted? && @user.can_cancel_subscription? %>
           <%= link_to 'Cancel subscription',
             cancel_subscription_user_path(@user),
             method: :delete,
             class: 'button danger breatheRight' %>
         <% end %>
-        <%= link_to 'Delete account', '#', class: 'button danger' %>
+        <%= link_to 'Delete account',
+          user_path(@user),
+          method: :delete,
+          class: 'button danger' %>
       </div>
     </div>
 
