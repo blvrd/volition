@@ -108,4 +108,31 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not_nil(@user.errors.full_messages)
   end
+
+  test '#trialing?' do
+    subscription_expiring_tomorrow = Stripe::Subscription.construct_from({ trial_end: DateTime.tomorrow.to_time.to_i })
+    subscription_expired_yesterday = Stripe::Subscription.construct_from({ trial_end: DateTime.yesterday.to_time.to_i })
+
+    @user.stub(:stripe_subscription, subscription_expiring_tomorrow) do
+      assert(@user.trialing?)
+    end
+
+    @user.stub(:stripe_subscription, subscription_expired_yesterday) do
+      refute(@user.trialing?)
+    end
+  end
+
+  test '#can_cancel_subscription?' do
+    @user.stub(:trialing?, true) do
+      refute(@user.can_cancel_subscription?)
+    end
+
+    @user.stub(:trialing?, false) do
+      assert(@user.can_cancel_subscription?)
+
+      @user.update(paid: false)
+
+      refute(@user.can_cancel_subscription?)
+    end
+  end
 end

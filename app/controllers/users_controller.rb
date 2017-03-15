@@ -53,6 +53,18 @@ class UsersController < AuthenticatedController
     end
   end
 
+  def destroy
+    @credit_card_service = CreditCardService.new(user: @user)
+
+    if @credit_card_service.cancel_subscription || @user.destroy
+      flash[:success] = 'Account deleted. Sorry to see you go!'
+    else
+      flash[:error] = 'Something went wrong.'
+    end
+
+    redirect_to new_user_path
+  end
+
   def cancel_subscription
     @credit_card_service = CreditCardService.new(user: @user)
 

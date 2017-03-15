@@ -18,19 +18,21 @@ class AuthenticatedControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should require a user to have paid in non self hosted version' do
-    @user.update(paid: false)
+    ClimateControl.modify(SELF_HOSTED: 'false') do
+      @user.update(paid: false)
 
-    login_as(@user)
+      login_as(@user)
 
-    get dashboard_path
+      get dashboard_path
 
-    assert_redirected_to(settings_path)
+      assert_redirected_to(settings_path)
 
-    @user.update(paid: true)
+      @user.update(paid: true)
 
-    get dashboard_path
+      get dashboard_path
 
-    assert_response(:ok)
+      assert_response(:ok)
+    end
   end
 
   test 'doesnt require a user to have paid in the self hosted version' do
