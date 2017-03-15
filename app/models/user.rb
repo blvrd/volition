@@ -48,7 +48,7 @@ class User < ApplicationRecord
   end
 
   def trialing?
-    stripe_subscription.trial_end > Time.current.to_i
+    stripe_subscription.status == 'trialing'
   end
 
   def can_cancel_subscription?
