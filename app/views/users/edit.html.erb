@@ -85,6 +85,24 @@
         </div>
       </div>
     <% end %>
+
+    <div class="settingsSection dangerZone">
+      <h2 class="settingsHeading dangerZone">
+        Danger zone
+      </h2>
+
+      <div class="dangerZoneContent">
+        <p>These actions are destructive and won't be reversible. Proceed with caution!</p>
+        <% unless self_hosted? || !@user.paid? %>
+          <%= link_to 'Cancel subscription',
+            cancel_subscription_user_path(@user),
+            method: :delete,
+            class: 'button danger breatheRight' %>
+        <% end %>
+        <%= link_to 'Delete account', '#', class: 'button danger' %>
+      </div>
+    </div>
+
     <%= f.submit "Save" %>
   <% end %>
 </section>

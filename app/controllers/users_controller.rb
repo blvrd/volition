@@ -2,9 +2,7 @@ class UsersController < AuthenticatedController
   skip_before_action :authenticate_user!, only: [:new, :create]
   skip_before_action :ensure_user_paid!
 
-  if Rails.env == 'production'
-    http_basic_authenticate_with name: ENV['HTTP_AUTH_USERNAME'], password: ENV['HTTP_AUTH_PASSWORD']
-  end
+  before_action :set_user
 
   def new
     if current_user.present?
@@ -29,14 +27,12 @@ class UsersController < AuthenticatedController
   end
 
   def edit
-    @user = current_user
     if @user.stripe_customer
-      @existing_card = @user.stripe_customer.sources.first
+      @existing_card = current_user.stripe_customer.sources.first
     end
   end
 
   def update
-    @user = current_user
     @user.assign_attributes(user_params)
 
     valid = @user.save && add_card_to_user
@@ -50,8 +46,16 @@ class UsersController < AuthenticatedController
     end
   end
 
-  def cancel
+  def cancel_subscription
+    @credit_card_service = CreditCardService.new(user: @user)
 
+    if @credit_card_service.cancel_subscription
+      flash[:success] = 'Subscription cancelled.'
+    else
+      flash[:error] = 'Something went wrong.'
+    end
+
+    redirect_to settings_path
   end
 
   private
@@ -71,6 +75,10 @@ class UsersController < AuthenticatedController
     else
       true
     end
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def user_params

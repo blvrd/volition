@@ -34,8 +34,8 @@ module StripeHelper
     )
   end
 
-  def stub_retrieve_stripe_subscription
-    stub_request(:get, /subscriptions/).to_return(
+  def stub_delete_stripe_subscription
+    stub_request(:delete, /subscriptions/).to_return(
       status: 200,
       body: get_json_response('create_stripe_subscription')
     )

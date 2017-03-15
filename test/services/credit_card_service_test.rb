@@ -11,6 +11,7 @@ class CreditCardServiceTest < ActiveSupport::TestCase
     stub_retrieve_stripe_customer
     stub_create_stripe_subscription
     stub_retrieve_stripe_subscription
+    stub_delete_stripe_subscription
     stub_create_stripe_source
   end
 
@@ -79,6 +80,25 @@ class CreditCardServiceTest < ActiveSupport::TestCase
 
       refute(result)
       refute(@user.paid?)
+    end
+  end
+
+  test '#cancel subscription success' do
+    @service.create_subscription
+    @service.cancel_subscription
+
+    refute(@user.paid?)
+    assert_nil(@user.stripe_subscription_id)
+  end
+
+  test '#cancel subscription failure' do
+    @service.create_subscription
+
+    Stripe::Subscription.stub_any_instance(:delete, proc { raise StandardError }) do
+      @service.cancel_subscription
+
+      assert(@user.paid?)
+      refute_nil(@user.stripe_subscription_id)
     end
   end
 end
