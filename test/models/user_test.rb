@@ -110,14 +110,14 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test '#trialing?' do
-    subscription_expiring_tomorrow = Stripe::Subscription.construct_from({ trial_end: DateTime.tomorrow.to_time.to_i })
-    subscription_expired_yesterday = Stripe::Subscription.construct_from({ trial_end: DateTime.yesterday.to_time.to_i })
+    subscription_trialing = Stripe::Subscription.construct_from({ status: 'trialing' })
+    subscription_not_trialing = Stripe::Subscription.construct_from({ status: 'active' })
 
-    @user.stub(:stripe_subscription, subscription_expiring_tomorrow) do
+    @user.stub(:stripe_subscription, subscription_trialing) do
       assert(@user.trialing?)
     end
 
-    @user.stub(:stripe_subscription, subscription_expired_yesterday) do
+    @user.stub(:stripe_subscription, subscription_not_trialing) do
       refute(@user.trialing?)
     end
   end
