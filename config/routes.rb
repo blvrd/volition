@@ -35,5 +35,6 @@ Rails.application.routes.draw do
   end
 
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web,        at: '/sidekiq'
+  mount StripeEvent::Engine, at: '/stripe-events'
 end
