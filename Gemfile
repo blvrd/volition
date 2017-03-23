@@ -32,6 +32,7 @@ gem 'premailer-rails'
 gem 'rubycritic', require: false
 gem 'stripe'
 gem 'font-awesome-rails'
+gem 'stripe_event'
 
 group :development, :test do
   gem "awesome_print"
