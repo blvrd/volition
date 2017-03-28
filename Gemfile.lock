@@ -158,7 +158,7 @@ GEM
       ruby-progressbar
     multi_json (1.12.1)
     nio4r (1.2.1)
-    nokogiri (1.6.8.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     normalize-rails (3.0.3)
     parser (2.3.3.1)
@@ -396,4 +396,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.7
