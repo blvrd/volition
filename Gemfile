@@ -60,7 +60,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'minitest-stub_any_instance'
   gem 'climate_control'
-  gem 'stripe-ruby-mock', '~> 2.4.0', :require => 'stripe_mock'
+  gem 'stripe-ruby-mock', '~> 2.4.0', :require => 'stripe_mock', path: '~/Desktop/Projects/stripe-ruby-mock'
 end
 
 group :staging, :production do
