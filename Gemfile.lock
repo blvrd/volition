@@ -1,3 +1,11 @@
+PATH
+  remote: ~/Desktop/Projects/stripe-ruby-mock
+  specs:
+    stripe-ruby-mock (2.4.0)
+      dante (>= 0.2.0)
+      multi_json (~> 1.0)
+      stripe (~> 1.31)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -320,10 +328,6 @@ GEM
       sprockets (>= 3.0.0)
     stripe (1.52.0)
       rest-client (>= 1.4, < 3.0)
-    stripe-ruby-mock (2.4.0)
-      dante (>= 0.2.0)
-      multi_json (~> 1.0)
-      stripe (~> 1.31)
     stripe_event (1.5.1)
       activesupport (>= 3.1)
       stripe (~> 1.6)
@@ -414,7 +418,7 @@ DEPENDENCIES
   sprockets (>= 3.0.0)
   sprockets-es6
   stripe
-  stripe-ruby-mock (~> 2.4.0)
+  stripe-ruby-mock (~> 2.4.0)!
   stripe_event
   timecop
   title
