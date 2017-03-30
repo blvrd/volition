@@ -47,9 +47,9 @@ class UsersController < AuthenticatedController
   end
 
   def destroy
-    @credit_card_service = CreditCardService.new(user: @user)
+    @payment_service = PaymentService.new(user: @user)
 
-    if @credit_card_service.cancel_subscription || @user.destroy
+    if @payment_service.cancel_subscription || @user.destroy
       flash[:success] = 'Account deleted. Sorry to see you go!'
     else
       flash[:error] = 'Something went wrong.'
@@ -59,9 +59,9 @@ class UsersController < AuthenticatedController
   end
 
   def cancel_subscription
-    @credit_card_service = CreditCardService.new(user: @user)
+    @payment_service = PaymentService.new(user: @user)
 
-    if @credit_card_service.cancel_subscription
+    if @payment_service.cancel_subscription
       flash[:success] = 'Subscription cancelled.'
     else
       flash[:error] = 'Something went wrong.'
@@ -73,17 +73,17 @@ class UsersController < AuthenticatedController
   private
 
   def create_customer_and_subscription
-    @credit_card_service = CreditCardService.new(user: @user)
+    @payment_service = PaymentService.new(user: @user)
 
-    @credit_card_service.create_customer &&
-      @credit_card_service.create_subscription
+    @payment_service.create_customer &&
+      @payment_service.create_subscription
   end
 
   def add_card_to_user
-    @credit_card_service = CreditCardService.new(user: @user)
+    @payment_service = PaymentService.new(user: @user)
 
     if params[:stripeToken]
-      @credit_card_service.add_card_to_customer(token: params[:stripeToken])
+      @payment_service.add_card_to_customer(token: params[:stripeToken])
     else
       true
     end
