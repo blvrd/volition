@@ -5,12 +5,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @user = users(:garrett)
-    login_as(@user)
+    @stripe_helper = StripeMock.create_test_helper
 
-    stub_create_stripe_customer
-    stub_retrieve_stripe_customer
-    stub_create_stripe_subscription
-    stub_create_stripe_source
+    login_as(@user)
+    StripeMock.start
+    @stripe_helper.create_plan(id: 'basic', amount: 100, trial_period_days: 30)
+  end
+
+  teardown do
+    StripeMock.stop
   end
 
   test '#create should set timezone' do
@@ -29,12 +32,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '#update adding credit card success' do
-    @user.update(stripe_customer_id: 'abc123')
+    customer = Stripe::Customer.create
+    @user.update(stripe_customer_id: customer.id)
+    token = @stripe_helper.generate_card_token
 
     # email is unchanged
     put user_path(@user), params: {
       user: { email: 'garrett@example.com' },
-      stripeToken: 'abc123'
+      stripeToken: token
     }
 
     assert_redirected_to(dashboard_path)
@@ -49,5 +54,45 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
       assert_redirected_to(settings_path)
     end
+  end
+
+  test '#create sets stripe ids' do
+    logout
+
+    post users_path, params: {
+      user: {
+        email: 'me@g.com',
+        name: 'G',
+        password: 'password'
+      }
+    }
+
+    user = User.last
+
+    assert_redirected_to(welcome_path)
+    assert(user.stripe_customer_id)
+    assert(user.stripe_subscription_id)
+  end
+
+  test '#destroy should cancel subscription and destroy user' do
+    customer = Stripe::Customer.create
+    subscription = Stripe::Subscription.create(plan: 'basic', customer: customer.id)
+    @user.update(stripe_subscription_id: subscription.id, stripe_customer_id: customer.id)
+
+    delete user_path(@user)
+
+    refute(User.exists?(@user.id))
+    # refute(Stripe::Subscription.retrieve(subscription.id))
+    assert_redirected_to(new_user_path)
+  end
+
+  test '#cancel_subscription' do
+    customer = Stripe::Customer.create
+    subscription = Stripe::Subscription.create(plan: 'basic', customer: customer.id)
+    @user.update(stripe_subscription_id: subscription.id, stripe_customer_id: customer.id)
+
+    delete cancel_subscription_user_path(@user)
+
+    refute(@user.reload.stripe_subscription_id)
   end
 end
