@@ -47,21 +47,23 @@ class UsersController < AuthenticatedController
   end
 
   def destroy
-    @payment_service = PaymentService.new(user: @user)
+    @payment_service = PaymentService.new(stripe_subscription_id: @user.stripe_subscription_id)
 
-    if @payment_service.cancel_subscription || @user.destroy
+    if @payment_service.cancel_subscription && @user.destroy
       flash[:success] = 'Account deleted. Sorry to see you go!'
+      redirect_to new_user_path
     else
       flash[:error] = 'Something went wrong.'
+      redirect_to settings_path
     end
 
-    redirect_to new_user_path
   end
 
   def cancel_subscription
-    @payment_service = PaymentService.new(user: @user)
+    @payment_service = PaymentService.new(stripe_subscription_id: @user.stripe_subscription_id)
 
     if @payment_service.cancel_subscription
+      @user.update(stripe_subscription_id: nil)
       flash[:success] = 'Subscription cancelled.'
     else
       flash[:error] = 'Something went wrong.'
@@ -73,14 +75,18 @@ class UsersController < AuthenticatedController
   private
 
   def create_customer_and_subscription
-    @payment_service = PaymentService.new(user: @user)
+    payment_service = PaymentService.new({ email: @user.email })
 
-    @payment_service.create_customer &&
-      @payment_service.create_subscription
+    customer = payment_service.create_customer
+    @user.update(stripe_customer_id: customer.id)
+
+    payment_service = PaymentService.new({ stripe_customer_id: @user.stripe_customer_id })
+    subscription = payment_service.create_subscription
+    @user.update(stripe_subscription_id: subscription.id)
   end
 
   def add_card_to_user
-    @payment_service = PaymentService.new(user: @user)
+    @payment_service = PaymentService.new({ stripe_customer_id: @user.stripe_customer_id })
 
     if params[:stripeToken]
       @payment_service.add_card_to_customer(token: params[:stripeToken])
