@@ -20,7 +20,8 @@
   @include flex-direction(column);
   width: 100vw;
   color: $white;
-  background: $blue;
+  background-image: linear-gradient($blue, $light-blue);
+  position: relative;
 
   @include MQ(M) {
     @include flex-direction(row);
