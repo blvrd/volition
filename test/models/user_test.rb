@@ -1,23 +1,27 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  include StripeHelper
-
   setup do
     @user = users(:garrett)
-    stub_create_stripe_customer
-    stub_retrieve_stripe_customer
-    stub_retrieve_stripe_subscription
+    StripeMock.start
+    @stripe_helper = StripeMock.create_test_helper
+    @stripe_helper.create_plan(id: 'basic', amount: 100)
+    @customer = Stripe::Customer.create(source: @stripe_helper.generate_card_token)
+    @subscription = Stripe::Subscription.create(plan: 'basic', customer: @customer)
+  end
+
+  teardown do
+    StripeMock.stop
   end
 
   test '#stripe_customer' do
-    @user.update(stripe_customer_id: 'abc123')
+    @user.update(stripe_customer_id: @customer.id)
 
     refute_nil(@user.stripe_customer)
   end
 
   test '#stripe_subscription' do
-    @user.update(stripe_subscription_id: 'abc123')
+    @user.update(stripe_subscription_id: @subscription.id)
 
     refute_nil(@user.stripe_subscription)
   end
