@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  include StripeHelper
-
   setup do
     @user = users(:garrett)
     @stripe_helper = StripeMock.create_test_helper
