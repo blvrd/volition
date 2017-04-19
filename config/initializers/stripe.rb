@@ -1,8 +1,11 @@
-Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+Stripe.api_key                    = ENV['STRIPE_SECRET_KEY']
+StripeEvent.authentication_secret = ENV['STRIPE_WEBHOOK_SECRET']
 
 StripeEvent.configure do |events|
   events.subscribe 'customer.subscription.trial_will_end' do |event|
-    # email user that trial ending soon
+    user = User.find_by(stripe_customer_id: event.data.customer)
+
+    PaymentsMailer.send_trial_ending_to(user)
   end
 
   events.subscribe 'charge.succeeded' do |event|
