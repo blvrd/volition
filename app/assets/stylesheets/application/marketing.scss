@@ -8,9 +8,11 @@
 }
 
 .marketingCard {
-  border: 2px solid $green;
-  border-radius: $base-border-radius;
-  padding: 1rem;
+  img {
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    margin-bottom: 20px;
+    border-radius: $base-border-radius;
+  }
 }
 
 .heroSection {
