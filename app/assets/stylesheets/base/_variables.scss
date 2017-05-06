@@ -25,7 +25,8 @@ $dark-red: darken($red, 5%);
 $green: #49be5a;
 $dark-green: darken($green, 10%);
 $blue: #25323c;
-$light-blue: lighten($blue, 15%);
+$light-blue: lighten($blue, 8%);
+$lighter-blue: lighten($blue, 15%);
 $lightest-blue: lighten($blue, 40%);
 $white: #fff;
 
@@ -49,3 +50,5 @@ $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $l
 // Animations
 $base-duration: 150ms;
 $base-timing: ease;
+
+$box-shadow: 0 2px 12px 0 rgba(0,0,0,0.2);
