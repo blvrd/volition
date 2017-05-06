@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114004422) do
+ActiveRecord::Schema.define(version: 20170506152633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20161114004422) do
     t.boolean  "sms_reminders",   default: false
     t.boolean  "track_weekends",  default: true
     t.string   "timezone"
+    t.boolean  "guest"
   end
 
   add_foreign_key "reflections", "users"
