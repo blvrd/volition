@@ -1,14 +1,18 @@
-<% path = current_user.present? ? dashboard_path : root_path %>
+<% logo_path = current_user.present? && !current_user.guest? ? dashboard_path : root_path %>
 <section class="navigation">
   <div class="navLinks flexRow flexJustifySpaceBetween">
-    <%= link_to path, class: 'logo' do %>
+    <%= link_to logo_path, class: 'logo' do %>
       <%= image_tag 'logo' %>
     <% end %>
 
     <div class="navRight flexRow flexJustifySpaceBetween">
       <% if current_user %>
-        <%= link_to 'Settings', settings_path, class: 'navLink' %>
-        <%= link_to 'Log out', logout_path, method: :delete, class: 'navLink' %>
+        <% if current_user.guest? %>
+          <%= link_to 'Sign up', new_user_path(guest: true), class: 'navLink' %>
+        <% else %>
+          <%= link_to 'Settings', settings_path, class: 'navLink' %>
+          <%= link_to 'Log out', logout_path, method: :delete, class: 'navLink' %>
+        <% end %>
       <% else %>
         <%= link_to 'Sign up', new_user_path, class: 'navLink' %>
         <%= link_to 'Log in', login_path, class: 'navLink' %>

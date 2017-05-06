@@ -1,4 +1,4 @@
-.newUserForm, .loginForm {
+.newUserForm, .loginForm, .thanksForDemoing {
   width: 90%;
 
   @include MQ(M) {
@@ -8,4 +8,9 @@
   input[type="submit"] {
     margin-right: 10px
   }
+}
+
+.thanksForDemoing {
+  margin: 40px 0;
+  color: $green;
 }
