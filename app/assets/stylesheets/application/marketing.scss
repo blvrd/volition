@@ -99,6 +99,7 @@
 
   @include MQ(M) {
     width: 400px;
+    @include display-flex;
     @include flex-direction(row);
     @include justify-content(space-between);
   }
