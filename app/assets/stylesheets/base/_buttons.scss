@@ -48,6 +48,12 @@ button, a.button, input[type="submit"] {
     font-size: 1rem;
   }
 
+  &.secondary {
+    background-color: transparent;
+    border: 2px solid $green;
+    padding: 0.6em $base-spacing;
+  }
+
 }
 
 div.sliderButtons {

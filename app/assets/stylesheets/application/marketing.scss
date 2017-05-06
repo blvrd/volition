@@ -67,6 +67,14 @@
 }
 
 .heroTitleSection {
+  div {
+    a:first-of-type {
+      margin-right: 15px;
+    }
+  }
+}
+
+.heroExplanation {
   .subscribe {
     p {
       color: $white;
