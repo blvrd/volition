@@ -1,4 +1,4 @@
-button, a.button, input[type="submit"] {
+button, .button, input[type="submit"] {
   appearance: none;
   background-color: $action-color;
   border: 0;
@@ -54,6 +54,19 @@ button, a.button, input[type="submit"] {
     padding: 0.6em $base-spacing;
   }
 
+  &.light {
+    background-color: $white;
+    color: $green;
+  }
+
+  &.image {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  &.expanding {
+    @include expandingButton;
+  }
 }
 
 div.sliderButtons {

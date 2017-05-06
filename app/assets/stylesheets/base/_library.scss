@@ -173,6 +173,14 @@ $col_width: ($max_width - $total_gutter_width) / $col_count;
                   overflow-y: scroll;
 }
 
+@mixin expandingButton {
+  transition: transform 0.3s;
+
+  &:hover {
+    @include scale(1.1);
+  }
+}
+
 // Development
 // ••••••••••••••••••••••••••••••••••••••••••••••••••
 

@@ -9,8 +9,8 @@
 
 .marketingCard {
   img {
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    margin-bottom: 20px;
+    box-shadow: $box-shadow;
+    margin-bottom: 40px;
     border-radius: $base-border-radius;
   }
 }
@@ -22,7 +22,9 @@
   @include flex-direction(column);
   width: 100vw;
   color: $white;
-  background-image: linear-gradient($blue, $light-blue);
+  background-color: $light-blue;
+  background-image: asset-url("dark-mosaic.png");
+
   position: relative;
 
   @include MQ(M) {
@@ -146,7 +148,7 @@
   }
 }
 
-.philosophySection, .dayWithVolitionSection {
+.philosophySection, .dayWithVolitionSection, .pricingSection {
   @extend %marketingSection;
   @include MQ(M) {
     width: 65%;
@@ -171,4 +173,27 @@
 
 .sectionHeading {
   font-size: 2rem;
+}
+
+.pricing {
+  @include display-flex;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .hosted, .selfHosted {
+    padding: 3rem 1rem;
+  }
+
+  .hosted {
+    background: $green;
+    color: $white;
+    border-radius: $base-border-radius;
+  }
+
+  .price {
+    font-size: 2rem;
+    font-weight: bold;
+  }
 }

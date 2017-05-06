@@ -1,3 +1,5 @@
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
 <section class="heroSection">
   <div class="mobileHeader">
     <%= image_tag 'logo', class: 'heroLogo mobile' %>
@@ -71,6 +73,32 @@
     <p>
     After you reflect on your day, you can plan your tasks for tomorrow. This helps you hit the ground running in the morning, without using precious reserves of willpower. 
     </p>
+  </div>
+</section>
+
+<section class="pricingSection">
+  <h2 class="sectionHeading">Pricing</h2>
+  <div class="pricing">
+    <div class="hosted">
+      <h3>Hosted</h3>
+      <p class="price">$1/month</p>
+      <p class="details">
+      For those of you that just want to sign up and get going with Volition, this option is for you. Get immediate access and a 30 day free trial.
+      </p>
+      <%= link_to 'Sign up', new_user_path, class: 'button light expanding' %>
+    </div>
+    <div class="selfHosted">
+      <h3>Self-hosted</h3>
+      <p class="price">Free <i class="em em-tada"></i></p>
+      <p class="details">
+      If you have technical chops and don't want to pay the monthly fee, self-hosting is for you! Check Volition out on <%= link_to 'Github', ENV['LINK_TO_GITHUB_REPO'] %> or use the deploy button below.
+      </p>
+      <p>
+      <%= link_to 'https://heroku.com/deploy?template=https://github.com/garrettqmartin8/volition' do %>
+        <%= image_tag 'https://www.herokucdn.com/deploy/button.svg', class: 'button image expanding'%>
+      <% end %>
+        </p>
+    </div>
   </div>
 </section>
 
