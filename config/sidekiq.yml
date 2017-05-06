@@ -4,3 +4,4 @@
   - default
   - sms_reminders
   - email_reminders
+  - destroy_guest_users
