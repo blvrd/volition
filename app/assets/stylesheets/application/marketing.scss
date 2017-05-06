@@ -95,8 +95,7 @@
 
 .subscribe {
   margin-top: 25px;
-  @include display-flex;
-  @include flex-direction(column);
+  display: none;
 
   @include MQ(M) {
     width: 400px;
