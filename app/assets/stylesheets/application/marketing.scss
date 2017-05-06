@@ -151,12 +151,12 @@
 .philosophySection, .dayWithVolitionSection, .pricingSection {
   @extend %marketingSection;
   @include MQ(M) {
+    width: 75%;
+  }
+
+  @include MQ(L) {
     width: 65%;
   }
-}
-
-.philosophySection {
-  padding-top: 0 !important;
 }
 
 .marketingTagline {
@@ -177,6 +177,11 @@
 
 .pricing {
   @include display-flex;
+  @include flex-direction(column);
+
+  @include MQ(M) {
+    @include flex-direction(row);
+  }
 
   h3 {
     font-size: 1.5rem;
