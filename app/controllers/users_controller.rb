@@ -5,14 +5,21 @@ class UsersController < ApplicationController
   end
 
   def new
-    if current_user.present?
+    if current_user.present? && !current_user.guest?
       redirect_to dashboard_path
     end
     @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
+    if current_user
+      @user = current_user
+      @user.assign_attributes(user_params)
+      @user.guest = false
+    else
+      @user = User.new(user_params)
+    end
+
     @user.password_confirmation = user_params[:password]
     @user.timezone = Time.zone.tzinfo.name
 
