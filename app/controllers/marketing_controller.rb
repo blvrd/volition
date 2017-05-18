@@ -5,5 +5,8 @@ class MarketingController < ApplicationController
     end
   end
 
+  def running_costs
+  end
+
   def privacy; end
 end
