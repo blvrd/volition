@@ -206,3 +206,11 @@
     font-weight: bold;
   }
 }
+
+.runningCosts {
+  @extend %marketingSection;
+}
+
+#runningCostsChart {
+  width: 70%;
+}

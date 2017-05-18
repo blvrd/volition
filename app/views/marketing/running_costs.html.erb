@@ -1,4 +1,8 @@
-<canvas id="myChart" width="400" height="400"></canvas>
+<section class="runningCosts">
+  <div id="runningCostsChart">
+    <canvas id="myChart"></canvas>
+  </div>
+</section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -13,29 +17,47 @@ function newDateString(days) {
   return moment().add(days, 'd').format();
 }
 
+function getDataSetAverage(dataset) {
+  return dataset.data.reduce(function(avg, datum) {
+    avg = avg + datum.y
+      return avg
+  }, 0) / dataset.data.length
+}
+
+function sortDataSetsByAverageAmount(datasets) {
+  return datasets.sort(function(first, next) {
+    return getDataSetAverage(first) - getDataSetAverage(next)
+  })
+}
+
 var firstDay = newDateString(-100)
 
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    datasets: [{
+var datasets = [{
       label: 'Heroku',
       data: [
         { x: firstDay, y: 0 },
-        { x: newDateString(20), y: 10 }
+        { x: newDateString(1), y: 10 },
+        { x: newDateString(20), y: 25 }
       ],
-      backgroundColor: 'rgba(150, 118, 185, 0.5)',
+      backgroundColor: 'rgba(150, 118, 185, 1)',
       borderWidth: 1
     },
     {
       label: 'Mailgun',
       data: [
         { x: firstDay, y: 0 },
-        { x: newDateString(20), y: 5 }
+        { x: newDateString(1), y: 9 },
+        { x: newDateString(20), y: 50 }
       ],
-      backgroundColor: 'rgba(192, 33, 38, 0.5)',
+      backgroundColor: 'rgba(192, 33, 38, 1)',
       borderWidth: 1
     }]
+
+
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    datasets: sortDataSetsByAverageAmount(datasets)
   },
   options: {
     tooltips: {
