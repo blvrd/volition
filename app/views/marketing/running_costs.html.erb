@@ -8,15 +8,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script>
 var ctx = document.getElementById("myChart")
-
-
-function newDate(months) {
-  return moment().add(months, 'month').toDate();
-}
-
-function newDateString(months) {
-  return moment().add(months, 'month').format();
-}
+Chart.defaults.global.defaultFontFamily = 'Karla'
+Chart.defaults.global.defaultFontSize = 14
 
 function getDataSetAverage(dataset) {
   return dataset.data.reduce(function(avg, datum) {
@@ -31,10 +24,7 @@ function sortDataSetsByAverageAmount(datasets) {
   })
 }
 
-var firstMonth = newDateString()
-
 var datasets = gon.chartData
-
 
 var myChart = new Chart(ctx, {
   type: 'line',
@@ -43,6 +33,10 @@ var myChart = new Chart(ctx, {
   },
   options: {
     tooltips: {
+      backgroundColor: '#49be5a',
+      xPadding: 10,
+      yPadding: 10,
+      titleFontSize: 16,
       callbacks: {
         title: function(tooltipItem, data) {
           return data.datasets[tooltipItem[0].datasetIndex].label

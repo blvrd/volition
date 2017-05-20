@@ -9,6 +9,7 @@ class MarketingController < ApplicationController
     first_month = Date.new(2016, 10)
     gon.chartData = [{
       label: 'Heroku',
+      lineTension: 0,
       data: [
         { x: first_month, y: 7 },
         { x: first_month.advance({ months: 1 }), y: 9.38 },
@@ -22,6 +23,7 @@ class MarketingController < ApplicationController
       borderWidth: 1
     }, {
       label: 'Appsignal',
+      lineTension: 0,
       data: [
         { x: first_month, y: 0 },
         { x: first_month.advance({ months: 1 }), y: 3.72 },
@@ -31,10 +33,11 @@ class MarketingController < ApplicationController
         { x: first_month.advance({ months: 5 }), y: 12 },
         { x: first_month.advance({ months: 6 }), y: 12 },
       ],
-      backgroundColor: 'rgba(225, 100, 41, 1)',
+      backgroundColor: 'rgba(225, 100, 41, 0.9)',
       borderWidth: 1
     }, {
       label: 'Expedited SSL',
+      lineTension: 0,
       data: [
         { x: first_month, y: 0 },
         { x: first_month.advance({ months: 1 }), y: 0 },
@@ -44,7 +47,7 @@ class MarketingController < ApplicationController
         { x: first_month.advance({ months: 5 }), y: 13.18 },
         { x: first_month.advance({ months: 6 }), y: 15 },
       ],
-      backgroundColor: 'rgba(37, 39, 43, 1)',
+      backgroundColor: 'rgba(37, 39, 43, 0.8)',
       borderWidth: 1
     }]
   end
