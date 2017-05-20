@@ -9,12 +9,13 @@
 <script>
 var ctx = document.getElementById("myChart")
 
-function newDate(days) {
-  return moment().add(days, 'd').toDate();
+
+function newDate(months) {
+  return moment().add(months, 'month').toDate();
 }
 
-function newDateString(days) {
-  return moment().add(days, 'd').format();
+function newDateString(months) {
+  return moment().add(months, 'month').format();
 }
 
 function getDataSetAverage(dataset) {
@@ -30,26 +31,27 @@ function sortDataSetsByAverageAmount(datasets) {
   })
 }
 
-var firstDay = newDateString(-100)
+firstMonth = newDateString()
+
 
 var datasets = [{
       label: 'Heroku',
       data: [
-        { x: firstDay, y: 0 },
+        { x: firstMonth, y: 0 },
         { x: newDateString(1), y: 10 },
         { x: newDateString(20), y: 25 }
       ],
-      backgroundColor: 'rgba(150, 118, 185, 1)',
+      backgroundColor: 'rgba(150, 118, 185, 0.9)',
       borderWidth: 1
     },
     {
       label: 'Mailgun',
       data: [
-        { x: firstDay, y: 0 },
+        { x: firstMonth, y: 0 },
         { x: newDateString(1), y: 9 },
         { x: newDateString(20), y: 50 }
       ],
-      backgroundColor: 'rgba(192, 33, 38, 1)',
+      backgroundColor: 'rgba(192, 33, 38, 0.9)',
       borderWidth: 1
     }]
 
