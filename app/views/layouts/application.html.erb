@@ -20,6 +20,7 @@
     <%= render partial: 'layouts/navigation' %>
   <% end %>
   <%= render "flashes" -%>
+  <%= Gon::Base.render_data %>
   <%= yield %>
   <%= render partial: 'layouts/footer' %>
   <%= render "javascript" %>
