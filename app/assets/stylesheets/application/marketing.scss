@@ -209,8 +209,23 @@
 
 .runningCosts {
   @extend %marketingSection;
+  width: 75%;
+
+  .runningCostsHeading {
+    margin-bottom: 40px;
+    h1 {
+      text-align: center;
+    }
+
+    p {
+      margin: 0 auto;
+      width: 65%;
+    }
+  }
 }
 
 #runningCostsChart {
-  width: 70%;
+  width: 100%;
+  margin: 0 auto;
 }
+
