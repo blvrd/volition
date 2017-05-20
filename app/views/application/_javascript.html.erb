@@ -1,5 +1,5 @@
-<script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
-<%= javascript_include_tag :application %>
+<script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js" data-turbolinks-eval=false></script>
+<%= javascript_include_tag :application, data: { turbolinks_eval: false }%>
 
 <%= yield :javascript %>
 

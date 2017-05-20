@@ -226,6 +226,29 @@
 
 #runningCostsChart {
   width: 100%;
-  margin: 0 auto;
+  margin-left: inherit auto;
 }
 
+.subscribeCenter {
+  form {
+    margin: 0 auto;
+  }
+}
+
+.providerList {
+  
+}
+
+.providerItem {
+  margin: 20px 0;
+  border: 2px solid $medium-gray;
+  border-radius: $base-border-radius;
+  padding: 10px;
+  color: $dark-gray;
+  @include display-flex;
+  @include justify-content(space-between);
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
