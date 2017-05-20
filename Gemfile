@@ -33,6 +33,7 @@ gem 'rubycritic', require: false
 gem 'stripe'
 gem 'font-awesome-rails'
 gem 'stripe_event'
+gem 'gon'
 
 group :development, :test do
   gem "awesome_print"

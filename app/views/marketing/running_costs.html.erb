@@ -31,29 +31,9 @@ function sortDataSetsByAverageAmount(datasets) {
   })
 }
 
-firstMonth = newDateString()
+var firstMonth = newDateString()
 
-
-var datasets = [{
-      label: 'Heroku',
-      data: [
-        { x: firstMonth, y: 0 },
-        { x: newDateString(1), y: 10 },
-        { x: newDateString(20), y: 25 }
-      ],
-      backgroundColor: 'rgba(150, 118, 185, 0.9)',
-      borderWidth: 1
-    },
-    {
-      label: 'Mailgun',
-      data: [
-        { x: firstMonth, y: 0 },
-        { x: newDateString(1), y: 9 },
-        { x: newDateString(20), y: 50 }
-      ],
-      backgroundColor: 'rgba(192, 33, 38, 0.9)',
-      borderWidth: 1
-    }]
+var datasets = gon.chartData
 
 
 var myChart = new Chart(ctx, {
