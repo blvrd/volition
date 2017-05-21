@@ -13,9 +13,9 @@
     <ul>
       <% @list_data.each do |item| %>
         <%= link_to item.url, target: '_blank' do %>
-          <li class="providerItem" style="border-color: <%= item.color %>">
+          <li class="providerItem" style="border-color: <%= item.backgroundColor %>">
             <div>
-              <h3><%= item.name %></h3>
+              <h3><%= item.label %></h3>
               <p><%= item.description %></p>
             </div>
 
