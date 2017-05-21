@@ -21,9 +21,7 @@
   @include align-items(center);
   @include flex-direction(column);
   width: 100vw;
-  color: $white;
-  background-color: $light-blue;
-  background-image: asset-url("dark-mosaic.png");
+  color: $dark-gray;
 
   position: relative;
 
@@ -74,21 +72,6 @@
   div {
     a:first-of-type {
       margin-right: 15px;
-    }
-  }
-}
-
-.heroExplanation {
-  .subscribe {
-    p {
-      color: $white;
-    }
-
-    .email {
-      input {
-        padding: 0.6rem;
-        border: none;
-      }
     }
   }
 }
