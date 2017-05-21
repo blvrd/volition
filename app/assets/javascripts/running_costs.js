@@ -15,7 +15,28 @@ function sortDataSetsByAverageAmount(datasets) {
   })
 }
 
+function getMaxPrice(datasets) {
+  return datasets.reduce(function(max, dataset) {
+    var maxInDataset = dataset.data.reduce(function(prev, next) {
+      if (typeof prev == 'object') {
+        return Math.max(prev.y, next.y)
+      } else if (typeof prev == 'number') {
+        return Math.max(prev, next.y)
+      } else {
+        return Math.max(0, next.y)
+      }
+    })
+
+    if (maxInDataset > max) {
+      max = maxInDataset
+    }
+
+    return max
+  }, 0)
+}
+
 var datasets = gon.chartData
+var maxPrice = getMaxPrice(datasets)
 
 var myChart = new Chart(ctx, {
   type: 'line',
@@ -40,6 +61,7 @@ var myChart = new Chart(ctx, {
     scales: {
       yAxes: [{
         ticks: {
+          max: maxPrice + (maxPrice * 0.20),
           beginAtZero:true,
           callback: function(value) {
             return '$' + value
