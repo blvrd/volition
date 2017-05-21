@@ -9,6 +9,7 @@
   <div class="subscribeCenter">
     <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
   </div>
+  <h3 class="sectionHeading runningCostsTotal">Total last month: <b><%= number_to_currency(@total_cost_last_month) %></b></h3>
   <div class="providerList">
     <ul>
       <% @list_data.each do |item| %>

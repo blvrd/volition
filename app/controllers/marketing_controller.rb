@@ -52,8 +52,59 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 5 }), y: 13.18 },
           { x: first_month.advance({ months: 6 }), y: 15 },
         ]
-      }
+      },
+      {
+        label: 'Redis To Go',
+        backgroundColor: 'rgba(184, 27, 15, 0.8)',
+        description: 'Hosted Redis instance for background job processing.',
+        url: 'http://redistogo.com/',
+        data: [
+          { x: first_month, y: 0 },
+          { x: first_month.advance({ months: 1 }), y: 0 },
+          { x: first_month.advance({ months: 2 }), y: 0 },
+          { x: first_month.advance({ months: 3 }), y: 0 },
+          { x: first_month.advance({ months: 4 }), y: 0 },
+          { x: first_month.advance({ months: 5 }), y: 0 },
+          { x: first_month.advance({ months: 6 }), y: 0 },
+        ]
+      },
+      {
+        label: 'Papertrail',
+        backgroundColor: 'rgba(11, 79, 151, 0.8)',
+        description: 'Server log management.',
+        url: 'https://papertrailapp.com/',
+        data: [
+          { x: first_month, y: 0 },
+          { x: first_month.advance({ months: 1 }), y: 0 },
+          { x: first_month.advance({ months: 2 }), y: 0 },
+          { x: first_month.advance({ months: 3 }), y: 0 },
+          { x: first_month.advance({ months: 4 }), y: 0 },
+          { x: first_month.advance({ months: 5 }), y: 0 },
+          { x: first_month.advance({ months: 6 }), y: 0 },
+        ]
+      },
+      {
+        label: 'Mailgun',
+        backgroundColor: 'rgba(180, 6, 15, 0.8)',
+        description: 'Transactional email provider.',
+        url: 'https://www.mailgun.com/',
+        data: [
+          { x: first_month, y: 0 },
+          { x: first_month.advance({ months: 1 }), y: 0 },
+          { x: first_month.advance({ months: 2 }), y: 0 },
+          { x: first_month.advance({ months: 3 }), y: 0 },
+          { x: first_month.advance({ months: 4 }), y: 0 },
+          { x: first_month.advance({ months: 5 }), y: 0 },
+          { x: first_month.advance({ months: 6 }), y: 0 },
+        ]
+      },
+
     ].map { |item| OpenStruct.new(item) }
+
+    @total_cost_last_month = @list_data.reduce(0) do |total, dataset|
+      total += dataset.data.last[:y]
+      total
+    end.round(2)
 
     gon.chartData = generate_chart_data(@list_data)
   end
