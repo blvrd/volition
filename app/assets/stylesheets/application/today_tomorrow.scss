@@ -17,7 +17,6 @@
   .estimateInput {
     width: 30px;
     height: 30px;
-    border: 1px solid $dark-gray;
   }
 }
 
@@ -147,7 +146,8 @@ div[data-react-class='TodoList'] {
 
   .contentInput {
     border: none;
-    border-bottom: 1px solid $medium-gray;
+    border-bottom: 2px solid $light-gray;
+    -webkit-border-radius: 0;
   }
 }
 
