@@ -16,7 +16,7 @@
 //= require react
 //= require react_ujs
 //= require components
-//= require_tree ./general
+//= require_tree .
 
 var update = React.addons.update
 
