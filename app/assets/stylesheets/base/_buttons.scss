@@ -52,6 +52,7 @@ button, .button, input[type="submit"] {
     background-color: transparent;
     border: 2px solid $green;
     padding: 0.6em $base-spacing;
+    color: $dark-gray;
   }
 
   &.light {
