@@ -34,6 +34,7 @@ class UsersController < AuthenticatedController
   end
 
   def edit
+    gon.stripe_public_key = ENV['STRIPE_PUBLIC_KEY']
     if @user.stripe_customer
       @existing_card = current_user.stripe_customer.sources.first
     end

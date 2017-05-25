@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   if ($('body').hasClass('users-edit')) {
-    var stripe = Stripe('pk_test_ybQBLkCEdGFySZ0urTdt91s4');
+    var stripe = Stripe(gon.stripe_public_key);
     var elements = stripe.elements();
     var form = document.getElementById('payment-form')
 
