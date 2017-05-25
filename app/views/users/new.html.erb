@@ -1,5 +1,12 @@
 <section class="appSection">
   <h1>Sign up</h1>
+
+  <% if params[:guest] %>
+    <p class="thanksForDemoing">
+      Thanks for trying out the demo! If you can imagine Volition helping you to become more productive, sign up below!
+    </p>
+  <% end %>
+
   <div class="newUserForm">
     <%= form_for @user do |f| %>
       <div class="inputGroup">
@@ -19,7 +26,9 @@
 
       <div class="inputGroup flexRow flexAlignCenter">
         <%= f.submit 'Sign up' %>
-        <%= link_to 'or log in', login_path %>
+        <% unless params[:guest] %>
+          <%= link_to 'or log in', login_path %>
+        <% end %>
       </div>
     <% end %>
   </div>

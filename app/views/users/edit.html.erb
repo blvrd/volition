@@ -1,6 +1,6 @@
 <section class="appSection">
   <h1>Settings</h1>
-  <%= form_for @user, html: { class: 'settingsForm breatheTop' } do |f| %>
+  <%= form_for @user, html: { class: 'settingsForm breatheTop', id: 'payment-form' } do |f| %>
     <div class="settingsSection">
       <h2 class="settingsHeading">Contact</h2>
       <div class="contactInputs breatheTop breatheBottom flexJustifySpaceBetween flexWrap">
@@ -64,6 +64,49 @@
         </div>
       </div>
     </div>
+
+    <% unless self_hosted? %>
+      <div class="settingsSection">
+        <h2 class="settingsHeading">Payment</h2>
+        <% if @existing_card %>
+          <p>
+          <%= fa_icon("cc-#{@existing_card.brand.downcase}") %>
+          <%= "ending in #{@existing_card.last4}" %>
+          </p>
+
+          <p class="green">or add a new card</p>
+        <% end %>
+
+
+        <div class="breatheBottom">
+          <label for="card-element">Credit or debit card</label>
+          <div id="card-element"></div>
+          <div id="card-errors"></div>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="settingsSection dangerZone">
+      <h2 class="settingsHeading dangerZone">
+        Danger zone
+      </h2>
+
+      <div class="dangerZoneContent">
+        <p>These actions are destructive and won't be reversible. Proceed with caution!</p>
+        <% if !self_hosted? && @user.can_cancel_subscription? %>
+          <%= link_to 'Cancel subscription',
+            cancel_subscription_user_path(@user),
+            method: :delete,
+            class: 'button danger breatheRight' %>
+        <% end %>
+        <%= link_to 'Delete account',
+          user_path(@user),
+          method: :delete,
+          class: 'button danger' %>
+      </div>
+    </div>
+
     <%= f.submit "Save" %>
   <% end %>
 </section>
+

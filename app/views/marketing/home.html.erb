@@ -1,3 +1,5 @@
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
 <section class="heroSection">
   <div class="mobileHeader">
     <%= image_tag 'logo', class: 'heroLogo mobile' %>
@@ -5,15 +7,19 @@
   <div class="heroMain">
     <div class="heroTitleSection">
       <%= image_tag 'logo', class: 'heroLogo' %>
-      <%= render partial: 'subscribe' %>
+      <div class="breatheTop flexRow flexAlignCenter">
+        <%= link_to 'Sign up', new_user_path, class: 'button' %>
+        <%= link_to 'Log in', login_path, class: 'button secondary' %>
+        <%= link_to 'or try a demo', new_today_path %>
+      </div>
     </div>
     <div class="heroExplanation">
       <h1 class="heroTagline">Be less busy and more productive.</h1>
       <p>
-      Volition is more than a todo list. It’s a framework for becoming more effective. It encourages you be more intentional in planning your day and reflecting on the decisions you made. <%= link_to 'Read more', 'https://medium.com/@usevolition/introducing-volition-c87764c199d#.fchez8mxq', target: '_blank' %> about why Volition was created.</p>
+      Volition is more than a todo list. It’s a framework for becoming more effective. It encourages you be more intentional in planning your day and reflecting on the decisions you made. <%= link_to 'Read more', 'https://medium.com/@usevolition/introducing-volition-c87764c199d#.fchez8mxq', target: '_blank' %> about why Volition was created or see how much it <%= link_to 'costs to run', running_costs_path %>.</p>
       <p>
-      If you want to start using Volition now, try <%= link_to 'self hosting', ENV['LINK_TO_GITHUB_REPO'] %>.
-    </p>
+      <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
+      </p>
     </div>
   </div>
 </section>
@@ -71,6 +77,32 @@
   </div>
 </section>
 
+<section class="pricingSection">
+  <h2 class="sectionHeading">Pricing</h2>
+  <div class="pricing">
+    <div class="hosted">
+      <h3>Hosted</h3>
+      <p class="price">$1/month</p>
+      <p class="details">
+      For those of you that just want to sign up and get going with Volition, this option is for you. Get immediate access and a 30 day free trial.
+      </p>
+      <%= link_to 'Sign up', new_user_path, class: 'button light expanding' %>
+    </div>
+    <div class="selfHosted">
+      <h3>Self-hosted</h3>
+      <p class="price">Free <i class="em em-tada"></i></p>
+      <p class="details">
+      If you have technical chops and don't want to pay the monthly fee, self-hosting is for you! Check Volition out on <%= link_to 'Github', ENV['LINK_TO_GITHUB_REPO'] %> or use the deploy button below.
+      </p>
+      <p>
+      <%= link_to 'https://heroku.com/deploy?template=https://github.com/garrettqmartin8/volition' do %>
+        <%= image_tag 'https://www.herokucdn.com/deploy/button.svg', class: 'button image expanding'%>
+      <% end %>
+        </p>
+    </div>
+  </div>
+</section>
+
 <section class="philosophySection">
   <p>
     I’m <b>Garrett Martin</b>. I write software for a living. Here is the philosophy I used to build Volition:
@@ -121,5 +153,5 @@
       Now more than ever, we have less control over who sees what we do on the internet. For now, Volition is exclusively self-hosted. In the not-so-distant future, I'll be releasing a hosted version, but I want to first give something useful to the community that has given me so much.
     </p>
   </div>
-  <%= render partial: 'subscribe' %>
+  <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
 </section>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/nice_job'          => 'pages#nice_job', as: :nice_job
   get '/welcome'           => 'pages#welcome', as: :welcome
   get '/privacy'           => 'marketing#privacy', as: :privacy
+  get '/running_costs'     => 'marketing#running_costs', as: :running_costs
 
   get '/dashboard'         => 'dashboard#show', as: :dashboard
   get '/today'             => 'today#show', as: :today
@@ -28,8 +29,13 @@ Rails.application.routes.draw do
 
   resources :todos, only: [:update]
   resources :reflections, only: [:create]
-  resources :users, only: [:new, :create, :show, :update]
+  resources :users do
+    member do
+      delete :cancel_subscription
+    end
+  end
 
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web,        at: '/sidekiq'
+  mount StripeEvent::Engine, at: '/stripe-events'
 end

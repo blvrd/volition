@@ -30,6 +30,10 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'twilio-ruby'
 gem 'premailer-rails'
 gem 'rubycritic', require: false
+gem 'stripe'
+gem 'font-awesome-rails'
+gem 'stripe_event'
+gem 'gon'
 
 group :development, :test do
   gem "awesome_print"
@@ -43,7 +47,7 @@ group :development, :test do
 end
 
 group :development, :staging do
-  gem "rack-mini-profiler", require: false
+  gem 'rack-mini-profiler', require: false
 end
 
 group :test do
@@ -55,6 +59,12 @@ group :test do
   gem "timecop"
   gem "webmock"
   gem 'minitest-reporters'
+  gem 'minitest-stub_any_instance'
+  gem 'climate_control'
+  gem 'stripe-ruby-mock',
+    git: 'https://github.com/rebelidealist/stripe-ruby-mock.git',
+    branch: 'master',
+    require: 'stripe_mock'
 end
 
 group :staging, :production do

@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
   def new
     if current_user.present?
-      redirect_to dashboard_path
+      if current_user.guest?
+        redirect_to new_user_path(guest: true)
+      else
+        redirect_to dashboard_path
+      end
     end
   end
 

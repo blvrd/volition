@@ -8,9 +8,11 @@
 }
 
 .marketingCard {
-  border: 2px solid $green;
-  border-radius: $base-border-radius;
-  padding: 1rem;
+  img {
+    box-shadow: $box-shadow;
+    margin-bottom: 40px;
+    border-radius: $base-border-radius;
+  }
 }
 
 .heroSection {
@@ -19,8 +21,8 @@
   @include align-items(center);
   @include flex-direction(column);
   width: 100vw;
-  color: $white;
-  background-image: linear-gradient($blue, $light-blue);
+  color: $dark-gray;
+
   position: relative;
 
   @include MQ(M) {
@@ -67,27 +69,20 @@
 }
 
 .heroTitleSection {
-  .subscribe {
-    p {
-      color: $white;
-    }
-
-    .email {
-      input {
-        padding: 0.6rem;
-        border: none;
-      }
+  div {
+    a {
+      margin-right: 15px;
     }
   }
 }
 
 .subscribe {
   margin-top: 25px;
-  @include display-flex;
-  @include flex-direction(column);
+  display: none;
 
   @include MQ(M) {
     width: 400px;
+    @include display-flex;
     @include flex-direction(row);
     @include justify-content(space-between);
   }
@@ -107,7 +102,7 @@
     input {
       border-radius: $base-border-radius;
       color: $dark-gray;
-      border: 2px solid $medium-gray;
+      border: 2px solid $light-gray;
     }
   }
 
@@ -136,15 +131,15 @@
   }
 }
 
-.philosophySection, .dayWithVolitionSection {
+.philosophySection, .dayWithVolitionSection, .pricingSection {
   @extend %marketingSection;
   @include MQ(M) {
+    width: 75%;
+  }
+
+  @include MQ(L) {
     width: 65%;
   }
-}
-
-.philosophySection {
-  padding-top: 0 !important;
 }
 
 .marketingTagline {
@@ -161,4 +156,87 @@
 
 .sectionHeading {
   font-size: 2rem;
+}
+
+.pricing {
+  @include display-flex;
+  @include flex-direction(column);
+
+  @include MQ(M) {
+    @include flex-direction(row);
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  .hosted, .selfHosted {
+    padding: 1rem 1rem;
+
+    @include MQ(M) {
+      padding: 3rem 1rem;
+    }
+  }
+
+  .hosted {
+    background: $green;
+    color: $white;
+    border-radius: $base-border-radius;
+  }
+
+  .price {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}
+
+.runningCosts {
+  @extend %marketingSection;
+  width: 75%;
+
+  .runningCostsHeading {
+    margin-bottom: 40px;
+    h1 {
+      text-align: center;
+    }
+
+    p {
+      margin: 0 auto;
+      width: 65%;
+    }
+  }
+}
+
+#runningCostsChart {
+  width: 100%;
+  margin-left: inherit auto;
+}
+
+.subscribeCenter {
+  form {
+    margin: 0 auto;
+  }
+  margin-bottom: 40px;
+}
+
+.providerList {
+  
+}
+
+.providerItem {
+  margin: 20px 0;
+  border: 2px solid $medium-gray;
+  border-radius: $base-border-radius;
+  padding: 10px;
+  color: $dark-gray;
+  @include display-flex;
+  @include justify-content(space-between);
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+.runningCostsTotal {
+  text-align: center;
 }

@@ -1,9 +1,9 @@
 class TodayController < ApplicationController
-  before_action :authenticate_user!
+  before_action :set_user
   before_action :verify_that_today_is_trackable
 
   def show
-    @todo_list = TodoList.today(current_user)
+    @todo_list = TodoList.today(@user)
 
     if @todo_list.blank?
       redirect_to new_today_path
@@ -13,7 +13,7 @@ class TodayController < ApplicationController
   end
 
   def new
-    if TodoList.today(current_user)
+    if TodoList.today(@user)
       redirect_to today_path
     end
 
@@ -26,7 +26,7 @@ class TodayController < ApplicationController
   def create
     @todo_list = TodoList.new(
       date: Date.current,
-      user: current_user
+      user: @user
     )
 
     if @todo_list.save
@@ -37,6 +37,15 @@ class TodayController < ApplicationController
   end
 
   private
+
+  def set_user
+    if current_user
+      @user = current_user
+    else
+      @user = User.create!(guest: true, password: 'password')
+      login(@user)
+    end
+  end
 
   def todo_list_params
     params.require(:todo_list).permit(todos_attributes: [:content, :estimated_time_blocks])

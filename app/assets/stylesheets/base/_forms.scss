@@ -31,9 +31,8 @@ label {
 select[multiple=multiple], input[type="text"], input[type="password"], textarea {
   background-color: $base-background-color;
   border: $base-border;
-  border-radius: none;
+  border-radius: $base-border-radius;
   -webkit-appearance: none;
-  -webkit-border-radius:0px;
   box-sizing: border-box;
   font-family: $heading-font-family;
   font-size: $base-font-size;
@@ -54,11 +53,6 @@ select[multiple=multiple], input[type="text"], input[type="password"], textarea 
     color: $medium-gray;
     cursor: not-allowed;
   }
-}
-
-input[type="text"], input[type="password"] {
-  border: none;
-  border-bottom: 1px solid $medium-gray;
 }
 
 textarea {

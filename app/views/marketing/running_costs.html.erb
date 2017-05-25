@@ -1,0 +1,33 @@
+<section class="runningCosts">
+  <div class="runningCostsHeading">
+    <h1 class='sectionHeading'>Running costs</h1>
+    <p>It's not free to keep Volition up and running. Every paid subscription gets me a bit closer to breaking even. Here's the breakdown of what I pay for every month:</p>
+  </div>
+  <div id="runningCostsChart" class="breatheBottom">
+    <canvas id="myChart"></canvas>
+  </div>
+  <div class="subscribeCenter">
+    <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
+  </div>
+  <h3 class="sectionHeading runningCostsTotal">Total last month: <b><%= number_to_currency(@total_cost_last_month) %></b></h3>
+  <div class="providerList">
+    <ul>
+      <% @list_data.each do |item| %>
+        <%= link_to item.url, target: '_blank' do %>
+          <li class="providerItem" style="border-color: <%= item.backgroundColor %>">
+            <div>
+              <h3><%= item.label %></h3>
+              <p><%= item.description %></p>
+            </div>
+
+            <h3>
+              <b class="providerItemPrice"><%= number_to_currency(item.data.last[:y]) %></b>
+              <p>last month</p>
+            </h3>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</section>
+

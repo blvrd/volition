@@ -1,7 +1,5 @@
 .settingsForm {
   width: 90%;
-  border: 2px solid $light-gray;
-  border-radius: $base-border-radius;
   padding: 30px;
   margin-bottom: 40px;
 
@@ -22,7 +20,23 @@
 .settingsSection {
   width: 100%;
   margin-bottom: 60px;
-  // padding: 5px 15px 15px 15px;
+
+  &.dangerZone {
+    border: 2px solid $red;
+  }
+
+  .dangerZoneContent {
+    padding: 10px;
+  }
+}
+
+.settingsHeading {
+  &.dangerZone {
+    background: $red;
+    color: $white;
+    margin: 0;
+    padding: 5px;
+  }
 }
 
 .settingsFormContent {
@@ -47,3 +61,21 @@
   margin-bottom: 40px;
 }
 
+.StripeElement {
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid $light-gray;
+}
+
+.StripeElement--focus {
+  border: 1px solid $green;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}

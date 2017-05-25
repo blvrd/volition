@@ -1,4 +1,4 @@
-button, a.button, input[type="submit"] {
+button, .button, input[type="submit"] {
   appearance: none;
   background-color: $action-color;
   border: 0;
@@ -19,6 +19,16 @@ button, a.button, input[type="submit"] {
   white-space: nowrap;
   // text-shadow: 1px 1px 1px #666;
 
+  &.danger {
+    background-color: $red;
+
+    &:hover,
+    &:focus {
+      background-color: $dark-red;
+      color: #fff;
+    }
+  }
+
   &:hover,
   &:focus {
     background-color: $dark-green;
@@ -38,6 +48,26 @@ button, a.button, input[type="submit"] {
     font-size: 1rem;
   }
 
+  &.secondary {
+    background-color: transparent;
+    border: 2px solid $green;
+    padding: 0.6em $base-spacing;
+    color: $dark-gray;
+  }
+
+  &.light {
+    background-color: $white;
+    color: $green;
+  }
+
+  &.image {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  &.expanding {
+    @include expandingButton;
+  }
 }
 
 div.sliderButtons {

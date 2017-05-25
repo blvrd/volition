@@ -3,6 +3,27 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   setup do
     @user = users(:garrett)
+    StripeMock.start
+    @stripe_helper = StripeMock.create_test_helper
+    @stripe_helper.create_plan(id: 'basic', amount: 100)
+    @customer = Stripe::Customer.create(source: @stripe_helper.generate_card_token)
+    @subscription = Stripe::Subscription.create(plan: 'basic', customer: @customer)
+  end
+
+  teardown do
+    StripeMock.stop
+  end
+
+  test '#stripe_customer' do
+    @user.update(stripe_customer_id: @customer.id)
+
+    refute_nil(@user.stripe_customer)
+  end
+
+  test '#stripe_subscription' do
+    @user.update(stripe_subscription_id: @subscription.id)
+
+    refute_nil(@user.stripe_subscription)
   end
 
   test '#had_a_great_day? returns false' do
@@ -90,5 +111,32 @@ class UserTest < ActiveSupport::TestCase
     @user.save
 
     assert_not_nil(@user.errors.full_messages)
+  end
+
+  test '#trialing?' do
+    subscription_trialing = Stripe::Subscription.construct_from({ status: 'trialing' })
+    subscription_not_trialing = Stripe::Subscription.construct_from({ status: 'active' })
+
+    @user.stub(:stripe_subscription, subscription_trialing) do
+      assert(@user.trialing?)
+    end
+
+    @user.stub(:stripe_subscription, subscription_not_trialing) do
+      refute(@user.trialing?)
+    end
+  end
+
+  test '#can_cancel_subscription?' do
+    @user.stub(:trialing?, true) do
+      refute(@user.can_cancel_subscription?)
+    end
+
+    @user.stub(:trialing?, false) do
+      assert(@user.can_cancel_subscription?)
+
+      @user.update(paid: false)
+
+      refute(@user.can_cancel_subscription?)
+    end
   end
 end
