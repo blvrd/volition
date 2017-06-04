@@ -208,6 +208,7 @@ GEM
     public_suffix (2.0.5)
     puma (3.8.2)
     rack (2.0.1)
+    rack-cors (0.4.1)
     rack-mini-profiler (0.10.2)
       rack (>= 1.2.0)
     rack-protection (1.5.3)
@@ -424,6 +425,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  rack-cors
   rack-mini-profiler
   rack-timeout
   rails (~> 5.0.0)

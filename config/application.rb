@@ -17,5 +17,13 @@ module TodoApp
     config.active_job.queue_adapter = :sidekiq
     config.react.addons = true
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
   end
 end
