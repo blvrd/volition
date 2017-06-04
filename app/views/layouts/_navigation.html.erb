@@ -3,6 +3,9 @@
   <div class="navLinks flexRow flexJustifySpaceBetween">
     <%= link_to logo_path, class: 'logo' do %>
       <%= image_tag 'logo' %>
+      <% if current_user.guest? %>
+        <span class="demoIndicator">Demo</span>
+      <% end %>
     <% end %>
 
     <div class="navRight flexRow flexJustifySpaceBetween">

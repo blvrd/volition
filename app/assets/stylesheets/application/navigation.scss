@@ -8,10 +8,22 @@
 }
 
 .logo {
+  @include display-flex;
+  @include align-items(flex-end);
   height: 30px;
   img {
     max-height: 100%;
     max-width: 100%;
+  }
+
+  .demoIndicator {
+    margin-left: 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-radius: 5px;
+    background: $red;
+    color: $white;
+    padding: 3px 5px;
   }
 }
 

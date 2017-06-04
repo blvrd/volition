@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   validates :phone, presence: true, if: -> { self.sms_reminders? }
   validates :email, presence: true, unless: -> { self.guest? }
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, unless: -> { self.guest? }
 
   # TODO extract timezone logic to concern and convert to scope
   def self.finishing_their_day
