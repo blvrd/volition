@@ -51,6 +51,14 @@ class User < ApplicationRecord
     stripe_subscription.status == 'trialing'
   end
 
+  def trial_days_left
+    return 0 unless trialing?
+
+    trial_end = Time.at(stripe_subscription.trial_end).to_date
+
+    (trial_end - Date.current).to_i
+  end
+
   def can_cancel_subscription?
     !trialing? && paid
   end
