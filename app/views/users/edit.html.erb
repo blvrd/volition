@@ -67,7 +67,7 @@
 
     <% unless self_hosted? %>
       <div class="settingsSection">
-        <h2 class="settingsHeading">Payment</h2>
+        <h2 class="settingsHeading">Payment <span class="instructions">(<%= pluralize(@user.trial_days_left, 'day') %> left in trial)</span></h2>
         <% if @existing_card %>
           <p>
           <%= fa_icon("cc-#{@existing_card.brand.downcase}") %>

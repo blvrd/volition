@@ -126,6 +126,19 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test '#trial_days_left' do
+    subscription_trialing = Stripe::Subscription.construct_from({ status: 'trialing', trial_end: 15.days.from_now.to_i })
+    subscription_not_trialing = Stripe::Subscription.construct_from({ status: 'active', trial_end: 5.days.ago.to_i })
+
+    @user.stub(:stripe_subscription, subscription_trialing) do
+      assert_equal(15, @user.trial_days_left)
+    end
+
+    @user.stub(:stripe_subscription, subscription_not_trialing) do
+      assert_equal(0, @user.trial_days_left)
+    end
+  end
+
   test '#can_cancel_subscription?' do
     @user.stub(:trialing?, true) do
       refute(@user.can_cancel_subscription?)

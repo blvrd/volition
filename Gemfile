@@ -34,6 +34,7 @@ gem 'stripe'
 gem 'font-awesome-rails'
 gem 'stripe_event'
 gem 'gon'
+gem 'redis-rails'
 
 group :development, :test do
   gem "awesome_print"
