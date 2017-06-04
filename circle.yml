@@ -1,13 +1,22 @@
 machine:
   environment:
     SECRET_KEY_BASE: b5f022ab2aa3e8be7bdacccb5cd3ca4bd1d66b5c10d0c3b663521eb4201e9e5f79377fbb2fa9135bdafc15b3a772cd45051c2011ecd2a460e2772ed251275c53
+  services:
+    - redis
 dependencies:
   pre:
-    - wget http://download.redis.io/releases/redis-3.2.0.tar.gz
-    - tar xzf redis-3.2.0.tar.gz
-    - cd redis-3.2.0 && make
+    - sudo service redis-server stop
+    - >
+      cd ~ && if [ ! -d "redis-3.2.5"  ]; then
+      wget http://download.redis.io/releases/redis-3.2.5.tar.gz
+      tar xzf redis-3.2.5.tar.gz
+      cd redis-3.2.5 && make;
+      fi
+    - cd ~/redis-3.2.5 && sudo make install
+    - sudo sed -i 's/bin/local\/bin/g' /etc/init/redis-server.conf
+    - sudo service redis-server start
   cache_directories:
-    - redis-3.2.0
+    - ~/redis-3.2.5
 database:
   override:
     - bin/setup
