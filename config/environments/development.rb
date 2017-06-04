@@ -6,12 +6,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
-    config.cache_store = :redis_store, {
-      host: 'localhost',
-      port: 6379,
-      db: 0,
-      namespace: '056redis'
-    }
+    config.cache_store = :redis_store, "redis://localhost:6379/0/cache"
     config.public_file_server.headers = {
       'Cache-Control' => 'public, max-age=172800'
     }
