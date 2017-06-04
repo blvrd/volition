@@ -72,30 +72,32 @@
 
     <% if @past_todo_lists.present? %>
       <% @past_todo_lists.each do |todo_list| %>
-        <li class="daySummary">
-          <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
-            <div class="calendarIcon small">
-              <div class="calendarIconTopBar small"><span class="month"><%= todo_list.date.strftime('%B') %></span></div>
-              <div class="calendarIconDay small"><span class="day"><%= todo_list.date.strftime('%e') %></span></div>
+        <%= link_to day_path(todo_list), class: 'noTextStyle' do %>
+          <li class="daySummary">
+            <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+              <div class="calendarIcon small">
+                <div class="calendarIconTopBar small"><span class="month"><%= todo_list.date.strftime('%B') %></span></div>
+                <div class="calendarIconDay small"><span class="day"><%= todo_list.date.strftime('%e') %></span></div>
+              </div>
+              <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= todo_list.reflection.try(:rating) || "?" %></span></span>
             </div>
-            <span class="ratingCircle active dashboard"><span class="ratingNumber"><%= todo_list.reflection.try(:rating) || "?" %></span></span>
-          </div>
 
-          <ol class="dashboardTodoList">
-            <% todo_list.todos.each do |todo| %>
-              <li class="dashboardTodo">
-                <% if todo.complete? %>
-                  <span class="complete">
+            <ol class="dashboardTodoList">
+              <% todo_list.todos.each do |todo| %>
+                <li class="dashboardTodo">
+                  <% if todo.complete? %>
+                    <span class="complete">
+                      <%= truncate(todo.content, user_agent: @user_agent) %>
+                    </span>
+                    <span class="checkMark"></span>
+                  <% else %>
                     <%= truncate(todo.content, user_agent: @user_agent) %>
-                  </span>
-                  <span class="checkMark"></span>
-                <% else %>
-                  <%= truncate(todo.content, user_agent: @user_agent) %>
-                <% end %>
-              </li>
-            <% end %>
-          </ol>
-        </li>
+                  <% end %>
+                </li>
+              <% end %>
+            </ol>
+          </li>
+        <% end %>
       <% end %>
       <%= will_paginate @past_todo_lists %>
     <% else %>

@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'pages/nice_job'
-
   root 'marketing#home'
 
   get '/mockups/today'     => 'mockups#today'
@@ -28,6 +26,7 @@ Rails.application.routes.draw do
   get '/settings'          => 'users#edit', as: :settings
 
   resources :todos, only: [:update]
+  resources :days, only: [:show]
   resources :reflections, only: [:create]
   resources :users do
     member do

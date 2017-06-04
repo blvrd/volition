@@ -1,0 +1,43 @@
+<section class="appSection">
+  <h1><%= @todo_list.date.strftime('%B %e') %></h1>
+
+  <div class="daySummary reflectionDaySummary breatheTop">
+    <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+      <div class="calendarIcon small">
+        <div class="calendarIconTopBar small"><span class="month"><%= @todo_list.date.strftime('%B') %></span></div>
+        <div class="calendarIconDay small"><span class="day"><%= @todo_list.date.strftime('%e') %></span></div>
+      </div>
+    </div>
+
+    <ol class="dashboardTodoList">
+      <% @todo_list.todos.each do |todo| %>
+        <li class="dashboardTodo">
+          <% if todo.complete? %>
+            <span class="complete">
+              <%= todo.content.truncate(40) %>
+            </span>
+            <span class="checkMark"></span>
+          <% else %>
+            <%= todo.content.truncate(40) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+
+  <% if @reflection.present? %>
+    <div class="reflectionDaySummary breatheTop">
+      <h2>Reflection</h2>
+      <h3>Rating</h3>
+      <p><%= @reflection.rating %></p>
+      <h3>What did you do wrong?</h3>
+      <p><%= @reflection.wrong %></p>
+      <h3>What did you do right?</h3>
+      <p><%= @reflection.right %></p>
+      <h3>What was left undone?</h3>
+      <p><%= @reflection.undone %></p>
+    </div>
+  <% else %>
+    <p class="noTodoLists breatheTop">No reflection for this day.</p>
+  <% end %>
+</section>
