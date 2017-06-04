@@ -16,9 +16,8 @@
   border: 2px solid $light-gray;
   border-radius: $base-border-radius;
   margin-bottom: 40px;
-  transition: border 250ms;
 
-  &.today, &:hover {
+  &.today {
     border: 2px solid $action-color;
   }
 
