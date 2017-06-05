@@ -4,8 +4,10 @@ class StripeCache
   end
 
   def refresh
-    purge_all
-    cache_all
+    if user.stripe_customer_id.present? && user.stripe_subscription_id.present?
+      purge_all
+      cache_all
+    end
     self
   end
 
