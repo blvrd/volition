@@ -2,6 +2,10 @@ Stripe.api_key                    = ENV['STRIPE_SECRET_KEY']
 StripeEvent.authentication_secret = ENV['STRIPE_WEBHOOK_SECRET']
 
 StripeEvent.configure do |events|
+  events.all do |event|
+    Rails.logger.info event.data
+  end
+
   events.subscribe 'customer.subscription.trial_will_end' do |event|
     user = User.find_by(stripe_customer_id: event.data.customer)
 
