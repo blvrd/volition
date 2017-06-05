@@ -37,27 +37,15 @@ class User < ApplicationRecord
   end
 
   def stripe_customer
-    return nil if stripe_customer_id.blank?
+    @cache ||= StripeCache.new(self)
 
-    stripe_customer = $redis.get('stripe_customer')
-
-    unless stripe_customer.present?
-      $redis.set('stripe_customer', Stripe::Customer.retrieve(stripe_customer_id))
-    end
-
-    JSON.parse($redis.get('stripe_customer'), object_class: OpenStruct)
+    @cache.customer
   end
 
   def stripe_subscription
-    return nil if stripe_subscription_id.blank?
+    @cache ||= StripeCache.new(self)
 
-    stripe_subscription = $redis.get('stripe_subscription')
-
-    unless stripe_subscription.present?
-      $redis.set('stripe_subscription', Stripe::Subscription.retrieve(stripe_subscription_id))
-    end
-
-    JSON.parse($redis.get('stripe_subscription'), object_class: OpenStruct)
+    @cache.subscription
   end
 
   def trialing?

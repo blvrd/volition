@@ -47,6 +47,7 @@ class UsersController < AuthenticatedController
     valid = @user.save && add_card_to_user
 
     if valid
+      RefreshStripeCacheJob.perform_later(@user.id)
       flash[:success] = 'Settings updated'
       redirect_to dashboard_path
     else
