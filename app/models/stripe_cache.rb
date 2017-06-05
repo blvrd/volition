@@ -12,7 +12,7 @@ class StripeCache
   def customer
     return @customer if @customer
 
-    @customer = Rails.cache.fetch(cache_key("customer")) do
+    @customer = Rails.cache.fetch(cache_key("customer"), expires_in: 30.minutes) do
       Stripe::Customer.retrieve(user.stripe_customer_id)
     end
   end
@@ -20,7 +20,7 @@ class StripeCache
   def subscription
     return @subscription if @subscription
 
-    @subscription = Rails.cache.fetch(cache_key("subscription")) do
+    @subscription = Rails.cache.fetch(cache_key("subscription"), expires_in: 30.minutes) do
       Stripe::Subscription.retrieve(user.stripe_subscription_id)
     end
   end
