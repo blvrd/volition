@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
 
     if @user && @user.authenticate(params[:password])
+      RefreshStripeCacheJob.perform_later(@user.id)
       login(@user)
       redirect_to dashboard_path
     else
