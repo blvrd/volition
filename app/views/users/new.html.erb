@@ -7,6 +7,10 @@
     </p>
   <% end %>
 
+  <%= google_sign_in(url: users_path) do %>
+    <%= button_tag("Signin with Google") %>
+  <% end %>
+
   <div class="newUserForm">
     <%= form_for @user do |f| %>
       <div class="inputGroup">

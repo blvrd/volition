@@ -10,58 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604205743) do
+ActiveRecord::Schema.define(version: 20170612101459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "reflections", force: :cascade do |t|
-    t.integer  "rating"
-    t.text     "wrong"
-    t.text     "right"
-    t.text     "undone"
-    t.date     "date"
-    t.integer  "user_id"
+  create_table "reflections", id: :serial, force: :cascade do |t|
+    t.integer "rating"
+    t.text "wrong"
+    t.text "right"
+    t.text "undone"
+    t.date "date"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_reflections_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_reflections_on_user_id"
   end
 
-  create_table "todo_lists", force: :cascade do |t|
-    t.integer  "user_id"
-    t.date     "date"
+  create_table "todo_lists", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_todo_lists_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_todo_lists_on_user_id"
   end
 
-  create_table "todos", force: :cascade do |t|
-    t.string   "content"
-    t.boolean  "complete",              default: false
-    t.integer  "estimated_time_blocks", default: 0
-    t.integer  "actual_time_blocks",    default: 0
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.integer  "todo_list_id"
-    t.index ["todo_list_id"], name: "index_todos_on_todo_list_id", using: :btree
+  create_table "todos", id: :serial, force: :cascade do |t|
+    t.string "content"
+    t.boolean "complete", default: false
+    t.integer "estimated_time_blocks", default: 0
+    t.integer "actual_time_blocks", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "todo_list_id"
+    t.index ["todo_list_id"], name: "index_todos_on_todo_list_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "phone"
-    t.boolean  "email_reminders",        default: false
-    t.boolean  "sms_reminders",          default: false
-    t.boolean  "track_weekends",         default: true
-    t.string   "timezone"
-    t.boolean  "guest"
-    t.string   "stripe_customer_id"
-    t.string   "stripe_subscription_id"
-    t.boolean  "paid",                   default: true,  null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "phone"
+    t.boolean "email_reminders", default: false
+    t.boolean "sms_reminders", default: false
+    t.boolean "track_weekends", default: true
+    t.string "timezone"
+    t.boolean "guest"
+    t.string "stripe_customer_id"
+    t.string "stripe_subscription_id"
+    t.boolean "paid", default: true, null: false
+    t.string "google_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "reflections", "users"

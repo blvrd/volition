@@ -16,11 +16,28 @@ class UsersController < AuthenticatedController
       @user = current_user
       @user.assign_attributes(user_params)
       @user.guest = false
+    elsif params[:google_id_token].present?
+      @user = User.new
+      @user.skip_password_validation = true
+      google_identity = GoogleSignIn::Identity.new(params[:google_id_token])
+      google_id = google_identity.user_id
+      email = google_identity.email_address
+      name = google_identity.name
+
+      @user.assign_attributes({
+        name: name,
+        email: email,
+        google_id: google_id
+      })
+
+      @user.save!
     else
       @user = User.new(user_params)
     end
 
-    @user.password_confirmation = user_params[:password]
+    if params[:user].present?
+      @user.password_confirmation = user_params[:password]
+    end
     @user.timezone = Time.zone.tzinfo.name
 
     valid = @user.save && create_customer_and_subscription

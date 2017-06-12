@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :todo_lists, dependent: :destroy
   has_many :todos, through: :todo_lists
 
-  has_secure_password
+  has_secure_password validations: false
 
   scope :want_sms_reminders,   -> { where(sms_reminders: true)   }
   scope :want_email_reminders, -> { where(email_reminders: true) }
@@ -11,6 +11,9 @@ class User < ApplicationRecord
   validates :phone, presence: true, if: -> { self.sms_reminders? }
   validates :email, presence: true, unless: -> { self.guest? }
   validates :email, uniqueness: true, unless: -> { self.guest? }
+  validates :password_digest, presence: true, unless: :skip_password_validation
+
+  attr_accessor :skip_password_validation
 
   # TODO extract timezone logic to concern and convert to scope
   def self.finishing_their_day
