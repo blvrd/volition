@@ -1,8 +1,11 @@
 <section class="appSection">
   <h1>Log in</h1>
   <div class="loginForm">
-    <%= form_tag '/login' do |f| %>
+    <%= google_sign_in(url: login_path) do %>
+      <%= button_tag("Signin with Google") %>
+    <% end %>
 
+    <%= form_tag '/login' do |f| %>
       <div class="inputGroup">
         <%= label_tag :email %>
         <%= text_field_tag :email %>

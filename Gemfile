@@ -12,9 +12,9 @@ gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem 'turbolinks'
 gem "puma"
-gem "rails", "~> 5.0.0"
+gem "rails", "~> 5.1.0"
 gem "recipient_interceptor"
-gem "sass-rails", "~> 5.0"
+gem "sass-rails"
 gem "sprockets", ">= 3.0.0"
 gem "sprockets-es6"
 gem "title"
@@ -22,7 +22,6 @@ gem "uglifier"
 gem "jbuilder"
 gem "listen"
 gem "spring"
-gem "spring-commands-rspec"
 gem 'letter_opener'
 gem 'react-rails'
 gem 'bcrypt'
@@ -36,16 +35,15 @@ gem 'stripe_event'
 gem 'gon'
 gem 'redis-rails'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'google_sign_in'
 
 group :development, :test do
   gem "awesome_print"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
   gem "dotenv-rails"
-  gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.5.0.beta4"
 end
 
 group :development, :staging do
