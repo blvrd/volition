@@ -30,7 +30,7 @@ class UsersController < AuthenticatedController
         google_id: google_id
       })
 
-      @user.save!
+      @user.save
     else
       @user = User.new(user_params)
     end

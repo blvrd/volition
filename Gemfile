@@ -36,7 +36,7 @@ gem 'gon'
 gem 'redis-rails'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'google_sign_in'
-gem 'google-id-token', github: 'google/google-id-token'
+gem 'google-id-token', git: 'https://github.com/google/google-id-token.git'
 
 group :development, :test do
   gem "awesome_print"

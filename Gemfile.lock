@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/google/google-id-token.git
+  remote: https://github.com/google/google-id-token.git
   revision: 4d0f02d70f6d5bef4f6759ccf18bf4e76bc60803
   specs:
     google-id-token (1.3.1)
