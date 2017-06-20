@@ -20,7 +20,8 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 3 }), y: 14.02 },
           { x: first_month.advance({ months: 4 }), y: 14.02 },
           { x: first_month.advance({ months: 5 }), y: 14.02 },
-          { x: first_month.advance({ months: 6 }), y: 14.02 }
+          { x: first_month.advance({ months: 6 }), y: 14.02 },
+          { x: first_month.advance({ months: 7 }), y: 14.02 }
         ]
       },
       {
@@ -36,6 +37,7 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 4 }), y: 12 },
           { x: first_month.advance({ months: 5 }), y: 12 },
           { x: first_month.advance({ months: 6 }), y: 12 },
+          { x: first_month.advance({ months: 7 }), y: 12 },
         ]
       },
       {
@@ -51,6 +53,7 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 4 }), y: 0 },
           { x: first_month.advance({ months: 5 }), y: 13.18 },
           { x: first_month.advance({ months: 6 }), y: 15 },
+          { x: first_month.advance({ months: 7 }), y: 15 },
         ]
       },
       {
@@ -66,6 +69,7 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 4 }), y: 0 },
           { x: first_month.advance({ months: 5 }), y: 0 },
           { x: first_month.advance({ months: 6 }), y: 0 },
+          { x: first_month.advance({ months: 7 }), y: 0 },
         ]
       },
       {
@@ -81,6 +85,7 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 4 }), y: 0 },
           { x: first_month.advance({ months: 5 }), y: 0 },
           { x: first_month.advance({ months: 6 }), y: 0 },
+          { x: first_month.advance({ months: 7 }), y: 0 },
         ]
       },
       {
@@ -96,6 +101,7 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 4 }), y: 0 },
           { x: first_month.advance({ months: 5 }), y: 0 },
           { x: first_month.advance({ months: 6 }), y: 0 },
+          { x: first_month.advance({ months: 7 }), y: 0 },
         ]
       },
 
