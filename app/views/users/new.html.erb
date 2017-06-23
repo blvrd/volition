@@ -1,3 +1,4 @@
+<%= content_for(:body_attributes, 'data-turbolinks=false') %>
 <section class="appSection">
   <h1>Sign up</h1>
 
@@ -7,8 +8,10 @@
     </p>
   <% end %>
 
-  <%= google_sign_in(url: users_path) do %>
-    <%= button_tag("Signin with Google") %>
+  <div class="g-signin2" data-onsuccess='onSignIn'></div>
+
+  <%= form_with url: '/login', id: 'google_signin', html: { style: 'display: none' } do |form| %>
+    <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
   <% end %>
 
   <div class="newUserForm">

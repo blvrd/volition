@@ -5,7 +5,6 @@
   <meta name="ROBOTS" content="NOODP" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
-  <%= yield :head %>
   <%= favicon_link_tag 'favicon' %>
   <%#
     Configure default and controller-, and view-specific titles in
@@ -15,9 +14,10 @@
   <title><%= title %></title>
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
+  <meta name="google-signin-client_id" content="<%= GoogleSignIn::Identity.client_id %>">
   <%= render "javascript" %>
 </head>
-<body class="<%= body_class %>">
+<body class="<%= body_class %>" <%= yield(:body_attributes) %>>
   <% unless on_home_page? %>
     <%= render partial: 'layouts/navigation' %>
   <% end %>
