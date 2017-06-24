@@ -10,11 +10,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:email])
+    authenticated_user = authenticate
 
-    if @user && @user.authenticate(params[:password])
-      RefreshStripeCacheJob.perform_later(@user.id)
-      login(@user)
+    if authenticated_user.present?
+      RefreshStripeCacheJob.perform_later(authenticated_user.id)
+      login(authenticated_user)
       redirect_to dashboard_path
     else
       flash.now[:error] = 'The information you entered is incorrect.'
@@ -26,5 +26,25 @@ class SessionsController < ApplicationController
     logout
     flash[:success] = 'Logged out.'
     redirect_to login_path
+  end
+
+  private
+
+  def authenticate
+    google_login = authenticate_with_google
+    user = google_login || User.find_by(email: params[:email])
+
+    if google_login.present?
+      user
+    else
+      user && user.password_digest.present? && user.authenticate(params[:password])
+    end
+  end
+
+  def authenticate_with_google
+    if params[:google_id_token].present?
+      User.find_by(
+        google_id: GoogleSignIn::Identity.new(params[:google_id_token]).user_id)
+    end
   end
 end

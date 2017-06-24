@@ -16,11 +16,28 @@ class UsersController < AuthenticatedController
       @user = current_user
       @user.assign_attributes(user_params)
       @user.guest = false
+    elsif params[:google_id_token].present?
+      @user = User.new
+      @user.skip_password_validation = true
+      google_identity = GoogleSignIn::Identity.new(params[:google_id_token])
+      google_id = google_identity.user_id
+      email = google_identity.email_address
+      name = google_identity.name
+
+      @user.assign_attributes({
+        name: name,
+        email: email,
+        google_id: google_id
+      })
+
+      @user.save
     else
       @user = User.new(user_params)
     end
 
-    @user.password_confirmation = user_params[:password]
+    if params[:user].present?
+      @user.password_confirmation = user_params[:password]
+    end
     @user.timezone = Time.zone.tzinfo.name
 
     valid = @user.save && create_customer_and_subscription
@@ -42,6 +59,12 @@ class UsersController < AuthenticatedController
   end
 
   def update
+    if params[:user][:google_id]
+      google_identity = GoogleSignIn::Identity.new(params[:user][:google_id])
+      google_id = google_identity.user_id
+      params[:user][:google_id] = google_id
+    end
+
     @user.assign_attributes(user_params)
 
     valid = @user.save && add_card_to_user
@@ -66,7 +89,6 @@ class UsersController < AuthenticatedController
       flash[:error] = 'Something went wrong.'
       redirect_to settings_path
     end
-
   end
 
   def cancel_subscription
@@ -117,7 +139,8 @@ class UsersController < AuthenticatedController
       :email_reminders,
       :sms_reminders,
       :track_weekends,
-      :password
+      :password,
+      :google_id
     )
   end
 end

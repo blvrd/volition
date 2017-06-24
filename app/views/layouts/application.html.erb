@@ -14,9 +14,10 @@
   <title><%= title %></title>
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
+  <meta name="google-signin-client_id" content="<%= GoogleSignIn::Identity.client_id %>">
   <%= render "javascript" %>
 </head>
-<body class="<%= body_class %>">
+<body class="<%= body_class %>" <%= yield(:body_attributes) %>>
   <% unless on_home_page? %>
     <%= render partial: 'layouts/navigation' %>
   <% end %>
