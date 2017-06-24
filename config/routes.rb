@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get    '/get_google_sign_in_iframe' => 'sessions#get_google_sign_in_iframe'
   delete '/logout'                    => 'sessions#destroy', as: :logout
   get    '/settings'                  => 'users#edit', as: :settings
+  get    '/add_google_sign_in'        => 'users#add_google_sign_in', as: :add_google_sign_in
 
   resources :todos, only: [:update]
   resources :days, only: [:show]

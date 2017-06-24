@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
     if google_login.present?
       user
     else
-      user && user.authenticate(params[:password])
+      user && user.password_digest.present? && user.authenticate(params[:password])
     end
   end
 

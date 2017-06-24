@@ -59,6 +59,12 @@ class UsersController < AuthenticatedController
   end
 
   def update
+    if params[:user][:google_id]
+      google_identity = GoogleSignIn::Identity.new(params[:user][:google_id])
+      google_id = google_identity.user_id
+      params[:user][:google_id] = google_id
+    end
+
     @user.assign_attributes(user_params)
 
     valid = @user.save && add_card_to_user
@@ -83,7 +89,6 @@ class UsersController < AuthenticatedController
       flash[:error] = 'Something went wrong.'
       redirect_to settings_path
     end
-
   end
 
   def cancel_subscription
@@ -134,7 +139,8 @@ class UsersController < AuthenticatedController
       :email_reminders,
       :sms_reminders,
       :track_weekends,
-      :password
+      :password,
+      :google_id
     )
   end
 end

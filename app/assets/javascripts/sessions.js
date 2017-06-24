@@ -3,7 +3,13 @@ function onSignIn(googleUser) {
 
   if (token !== null) {
     document.getElementById('google_id_token').value = token
-    document.getElementById('google_signin').submit()
+
+    if (document.getElementById('google_signin')) {
+      document.getElementById('google_signin').submit()
+    } else {
+      $('.google_signin').submit()
+    }
+
     gapi.auth2.getAuthInstance().signOut()
   }
 }
