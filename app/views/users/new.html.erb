@@ -3,19 +3,19 @@
 <section class="appSection">
   <h1>Sign up</h1>
 
-  <% if params[:guest] %>
-    <p class="thanksForDemoing">
-      Thanks for trying out the demo! If you can imagine Volition helping you to become more productive, sign up below!
-    </p>
-  <% end %>
-
-  <div class="g-signin2" data-onsuccess='onSignIn'></div>
-
-  <%= form_with url: '/login', id: 'google_signin', html: { style: 'display: none' } do |form| %>
-    <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
-  <% end %>
-
   <div class="newUserForm">
+    <% if params[:guest] %>
+      <p class="thanksForDemoing">
+      Thanks for trying out the demo! If you can imagine Volition helping you to become more productive, sign up below!
+      </p>
+    <% end %>
+
+    <%= render partial: "sessions/google_sign_in" %>
+
+    <%= form_with url: '/login', id: 'google_signin', html: { style: 'display: none' } do |form| %>
+      <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
+    <% end %>
+
     <%= form_for @user do |f| %>
       <div class="inputGroup">
         <%= f.label :name %>
