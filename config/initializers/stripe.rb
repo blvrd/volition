@@ -7,7 +7,7 @@ StripeEvent.configure do |events|
   end
 
   events.subscribe 'customer.subscription.trial_will_end' do |event|
-    user = User.find_by(stripe_customer_id: event.data.customer)
+    user = User.find_by(stripe_customer_id: event.data.object.customer)
 
     PaymentsMailer.send_trial_ending_to(user)
   end
