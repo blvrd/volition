@@ -6,6 +6,7 @@
     <div class="settingsSection">
       <h2 class="settingsHeading">Contact</h2>
       <% unless @user.google_id %>
+        <p>If you'd like to be able to sign into Volition with your Google account, use the button below.</p>
         <%= render partial: "sessions/google_sign_in" %>
         <%= f.hidden_field :google_id, id: 'google_id_token' %>
       <% end %>
