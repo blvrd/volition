@@ -12,7 +12,7 @@
 
     <%= render partial: "sessions/google_sign_in" %>
 
-    <%= form_with url: '/login', id: 'google_signin', html: { style: 'display: none' } do |form| %>
+    <%= form_with url: '/users', id: 'google_signin', html: { style: 'display: none' } do |form| %>
       <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
     <% end %>
 
