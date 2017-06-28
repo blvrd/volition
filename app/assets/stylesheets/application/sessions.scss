@@ -8,6 +8,17 @@
   input[type="submit"] {
     margin-right: 10px
   }
+
+  .passwordRules {
+    border: 2px solid $medium-gray;
+    border-radius: $base-border-radius;
+    font-size: 1rem;
+    margin-bottom: 20px;
+
+    p {
+      padding: 10px 20px;
+    }
+  }
 }
 
 .thanksForDemoing {

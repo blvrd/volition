@@ -19,7 +19,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     post users_path, params: {
       user: {
         email: 'user@example.com',
-        password: 'password'
+        password: SecureRandom.hex
       }
     }
 
@@ -61,7 +61,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       user: {
         email: 'me@g.com',
         name: 'G',
-        password: 'password'
+        password: SecureRandom.hex
       }
     }
 

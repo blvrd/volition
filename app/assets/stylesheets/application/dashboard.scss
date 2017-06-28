@@ -47,25 +47,6 @@
   .complete {
     text-decoration: line-through;
   }
-
-  .checkMark {
-    color: $action-color;
-    margin-left: 5px;
-    position: relative;
-
-    &:after {
-      content: "";
-      display: block;
-      width: 7px;
-      height: 16px;
-      position: absolute;
-      border: solid $action-color;
-      transform: rotate(45deg);
-      border-width: 0 3px 3px 0;
-      top: -2px;
-      left: 4px;
-    }
-  }
 }
 
 .noTasks {
