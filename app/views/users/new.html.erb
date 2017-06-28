@@ -29,11 +29,19 @@
 
       <div class="inputGroup">
         <%= f.label :password %>
+        <div class="passwordRules hidden">
+          <p>We know password rules are annoying, but there are some easy ways to ensure your account remains secure. For more info on why we use these password constraints, check out <%= link_to 'Password Rules Are Bullshit', 'https://blog.codinghorror.com/password-rules-are-bullshit/', target: '_blank' %> on the Coding Horror blog.</p>
+          <ol>
+            <li>Minimum length of 10 characters <span class="checkMark disabled"></span></li>
+            <li>Isn't in the <%= link_to 'top 100', 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_100.txt'%> most common passwords <span class="checkMark disabled"></span></li>
+            <li>Doesn't match your email <span class="checkMark disabled"></span></li>
+          </ol>
+        </div>
         <%= f.password_field :password %>
       </div>
 
       <div class="inputGroup flexRow flexAlignCenter">
-        <%= f.submit 'Sign up' %>
+        <%= f.submit 'Sign up', disabled: true %>
         <% unless params[:guest] %>
           <%= link_to 'or log in', login_path %>
         <% end %>

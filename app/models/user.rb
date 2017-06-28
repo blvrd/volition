@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates :email, presence: true, unless: -> { self.guest? }
   validates :email, uniqueness: true, unless: -> { self.guest? }
   validates :password_digest, presence: true, unless: :skip_password_validation
+  validate :validate_password
 
   attr_accessor :skip_password_validation
 
@@ -24,6 +25,12 @@ class User < ApplicationRecord
     end.compact
 
     User.where(timezone: timezones)
+  end
+
+  def validate_password
+    if password.length < 10 || password == email
+      errors.add(:password, 'is invalid')
+    end
   end
 
   def had_a_great_day?
