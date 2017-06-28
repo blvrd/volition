@@ -19,11 +19,11 @@ $(document).on('turbolinks:load', function() {
     })
 
     function markPassedRules(passedRules) {
-      $('.checkMark').addClass('disabled')
+      $('.checkMark').addClass('xMark').removeClass('checkMark')
       var ruleListItems = $('.passwordRules li')
 
       passedRules.forEach(function(passedRule) {
-        $(ruleListItems[passedRule]).find('.checkMark').removeClass('disabled')
+        $(ruleListItems[passedRule]).find('.xMark').removeClass('.xMark').addClass('checkMark')
       })
 
       if (passedRules.filter(function(rule) { return rule !== undefined }).length == ruleListItems.length) {
