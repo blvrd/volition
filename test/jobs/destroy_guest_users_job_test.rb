@@ -4,7 +4,7 @@ class DestroyGuestUsersJobTest < ActiveJob::TestCase
   test 'does not destroy recent guest users' do
     user = User.create(
       email: 'me@example.com',
-      password: 'password',
+      password: SecureRandom.hex,
       guest: true
     )
 

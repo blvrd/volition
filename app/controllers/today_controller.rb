@@ -42,7 +42,7 @@ class TodayController < ApplicationController
     if current_user
       @user = current_user
     else
-      @user = User.create!(guest: true, password: 'password')
+      @user = User.create!(guest: true, password: SecureRandom.hex)
       login(@user)
     end
   end
