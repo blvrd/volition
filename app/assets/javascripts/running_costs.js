@@ -46,6 +46,8 @@ $(document).on('turbolinks:load', function() {
         datasets: sortDataSetsByAverageAmount(datasets)
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         tooltips: {
           backgroundColor: '#49be5a',
           xPadding: 10,

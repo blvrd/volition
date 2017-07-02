@@ -192,7 +192,11 @@
 
 .runningCosts {
   @extend %marketingSection;
-  width: 75%;
+  width: 90%;
+
+  @include MQ(M) {
+    width: 75%;
+  }
 
   .runningCostsHeading {
     margin-bottom: 40px;
@@ -202,14 +206,23 @@
 
     p {
       margin: 0 auto;
-      width: 65%;
+
+      @include MQ(M) {
+        width: 65%;
+      }
     }
   }
 }
 
 #runningCostsChart {
+  position: relative;
+  height: 50vh;
   width: 100%;
   margin-left: inherit auto;
+
+  @include MQ(M) {
+    height: 30vh;
+  }
 }
 
 .subscribeCenter {
@@ -220,7 +233,9 @@
 }
 
 .providerList {
-  
+  ul {
+    padding: 0;
+  }
 }
 
 .providerItem {
