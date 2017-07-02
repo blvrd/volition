@@ -39,11 +39,13 @@ class TodayController < ApplicationController
   private
 
   def set_user
-    if current_user
-      @user = current_user
-    else
+    if params[:guest] == true
       @user = User.create!(guest: true, password: SecureRandom.hex)
       login(@user)
+    elsif current_user
+      @user = current_user
+    else
+      redirect_to login_path
     end
   end
 
