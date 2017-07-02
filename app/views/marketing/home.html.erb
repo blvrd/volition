@@ -10,7 +10,7 @@
       <div class="breatheTop flexRow flexAlignCenter">
         <%= link_to 'Sign up', new_user_path, class: 'button' %>
         <%= link_to 'Log in', login_path, class: 'button secondary' %>
-        <%= link_to 'or try a demo', new_today_path %>
+        <%= link_to 'or try a demo', new_today_path(guest: true) %>
       </div>
     </div>
     <div class="heroExplanation">
