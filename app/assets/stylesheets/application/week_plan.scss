@@ -1,0 +1,38 @@
+.weekPlan {
+  @include display-flex;
+  @include flex-direction(column);
+  @include align-items(center);
+  width: 30%;
+}
+
+.weeklyTodos {
+  font-size: 1rem;
+  width: 100%;
+  padding: 0;
+
+  .weeklyTodo {
+    @include display-flex;
+    @include justify-content(space-between);
+    border-radius: $base-border-radius;
+    padding: 5px;
+    padding-right: 10px;
+    cursor: default;
+
+    &:hover {
+      background: $light-gray;
+    }
+
+    .xMark {
+      cursor: pointer;
+    }
+  }
+}
+
+.weeklyTodoForm {
+  @include display-flex;
+  width: 100%;
+
+  input[type="text"] {
+    margin-right: 10px;
+  }
+}

@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   root 'marketing#home'
 
-  get    '/mockups/today'             => 'mockups#today'
-  get    '/mockups/tomorrow'          => 'mockups#tomorrow'
-  get    '/mockups/reflect'           => 'mockups#reflect'
-  get    '/mockups/nice_job'          => 'mockups#nice_job'
-  get    '/mockups/dashboard'         => 'mockups#dashboard'
-  get    '/mockups/settings'          => 'mockups#settings'
+  get '/mockups/week_plan' => 'mockups#week_plan', as: :week_plan
 
   get    '/nice_job'                  => 'pages#nice_job', as: :nice_job
   get    '/welcome'                   => 'pages#welcome', as: :welcome

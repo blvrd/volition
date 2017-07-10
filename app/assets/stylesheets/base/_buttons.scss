@@ -68,6 +68,10 @@ button, .button, input[type="submit"] {
   &.expanding {
     @include expandingButton;
   }
+
+  &.blue {
+    background-color: $lighter-blue;
+  }
 }
 
 div.sliderButtons {

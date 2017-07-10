@@ -36,4 +36,8 @@
 
 .navRight {
   width: 145px;
+
+  @include MQ(M) {
+    width: initial;
+  }
 }
