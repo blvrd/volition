@@ -4,9 +4,10 @@ class WeekPlanController < ApplicationController
   end
 
   def add_todo
+    @week_plan = current_week_plan
     @todo = Todo.create(
       content: params[:content],
-      todo_list: current_week_plan
+      todo_list: @week_plan
     )
 
     respond_to do |format|

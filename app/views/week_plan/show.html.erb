@@ -25,12 +25,7 @@
     <% end %>
 
     <ul class="weeklyTodos">
-      <% @week_plan.todos.each do |todo| %>
-        <li class="weeklyTodo">
-          <%= todo.content %>
-          <span class="xMark"></span>
-        </li>
-      <% end %>
+      <%= render partial: 'weekly_todos', locals: { week_plan: @week_plan } %>
     </ul>
   </div>
 </section>
