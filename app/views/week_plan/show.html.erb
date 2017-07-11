@@ -19,7 +19,7 @@
 
     <p class="instructions">Use this area as a brain dump. Add as many tasks as you need. You can always come back and add more throughout the week.</p>
 
-    <%= form_with url: '#', class: 'weeklyTodoForm breatheTop' do |f| %>
+    <%= form_with url: add_weekly_todo_path, class: 'weeklyTodoForm breatheTop' do |f| %>
       <%= f.text_field :content %>
       <%= f.submit "Add", class: 'button blue' %>
     <% end %>

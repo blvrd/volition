@@ -4,7 +4,10 @@ class WeekPlanController < ApplicationController
   end
 
   def add_todo
-    @todo = Todo.create(todo_params)
+    @todo = Todo.create(
+      content: params[:content],
+      todo_list: current_week_plan
+    )
 
     respond_to do |format|
       format.js
