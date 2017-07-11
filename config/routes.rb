@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get    '/add_google_sign_in'        => 'users#add_google_sign_in', as: :add_google_sign_in
   get    '/this_week'                 => 'week_plan#show', as: :week_plan
   post   '/add_weekly_todo'           => 'week_plan#add_todo', as: :add_weekly_todo
+  delete '/remove_weekly_todo'        => 'week_plan#remove_todo', as: :remove_weekly_todo
 
   resources :todos,       only: [:update]
   resources :days,        only: [:show]

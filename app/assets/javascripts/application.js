@@ -41,5 +41,9 @@ $(document).on('turbolinks:load', function() {
   }
 
   setTimeout(removeFlash, 5000)
+
+  $(document).on('click', '.js--submitForm', function(e) {
+    $(this).closest('form').submit()
+  })
 })
 

@@ -14,4 +14,17 @@ class WeekPlanController < ApplicationController
       format.js
     end
   end
+
+  def remove_todo
+    @week_plan = current_week_plan
+    @todo = @week_plan.todos.find_by(id: params[:id])
+
+    if @todo
+      @todo.destroy
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end

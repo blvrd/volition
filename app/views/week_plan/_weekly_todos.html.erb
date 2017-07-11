@@ -1,6 +1,9 @@
 <% week_plan.todos.each do |todo| %>
   <li class="weeklyTodo">
     <%= todo.content %>
-    <span class="xMark"></span>
+    <%= form_with url: remove_weekly_todo_path, method: :delete do |f| %>
+      <%= f.hidden_field :id, value: todo.id %>
+      <span class="xMark js--submitForm"></span>
+    <% end %>
   </li>
 <% end %>
