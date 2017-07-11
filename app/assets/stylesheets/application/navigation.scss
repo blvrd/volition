@@ -1,5 +1,5 @@
 .navigation {
-  margin-top: 20px;
+  padding-top: 20px;
 
   .navLinks {
     width: 80%;
@@ -25,6 +25,10 @@
     color: $white;
     padding: 3px 5px;
   }
+
+  &.large {
+    height: 40px;
+  }
 }
 
 .navLink {
@@ -35,9 +39,41 @@
 }
 
 .navRight {
-  width: 145px;
+  font-size: 1.2rem;
+  color: $lighter-blue;
+  @include align-items(flex-end);
+  cursor: pointer;
+}
 
-  @include MQ(M) {
-    width: initial;
+.menuOverlay {
+  width: 100vw !important;
+  height: 100vh !important;
+  background: $light-blue;
+  opacity: 0.95;
+  position: absolute;
+  z-index: 1000;
+  @include display-flex;
+  @include flex-direction(column);
+  @include align-items(center);
+
+  i.closeMenu {
+    color: $white;
+    font-size: 2rem;
+    position: absolute;
+    top: 20px;
+    right: 10%;
+    cursor: pointer;
+  }
+
+  .menuLinks {
+    @include display-flex;
+    @include flex-direction(column);
+    margin-top: 15vh;
+
+    a {
+      color: $white !important;
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
   }
 }

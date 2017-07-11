@@ -45,5 +45,13 @@ $(document).on('turbolinks:load', function() {
   $(document).on('click', '.js--submitForm', function(e) {
     $(this).closest('form').submit()
   })
+
+  $(document).on('click', '.js--openMenu', function(e) {
+    $('.menuOverlay').removeClass('hidden')
+  })
+
+  $(document).on('click', '.js--closeMenu', function(e) {
+    $('.menuOverlay').addClass('hidden')
+  })
 })
 
