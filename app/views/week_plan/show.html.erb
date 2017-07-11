@@ -3,15 +3,15 @@
   <div class="weekPlan">
     <div class="calendarRange">
       <div class="calendarIcon">
-        <div class="calendarIconTopBar"><span class="month"><%= Date.current.strftime('%B') %></span></div>
-        <div class="calendarIconDay"><span class="day"><%= Date.current.strftime('%e') %></span></div>
+        <div class="calendarIconTopBar"><span class="month"><%= @week_plan.date.strftime('%B') %></span></div>
+        <div class="calendarIconDay"><span class="day"><%= @week_plan.date.strftime('%e') %></span></div>
       </div>
       <span>
         &mdash;
       </span>
       <div class="calendarIcon">
-        <div class="calendarIconTopBar"><span class="month"><%= Date.current.advance({ days: 7 }).strftime('%B') %></span></div>
-        <div class="calendarIconDay"><span class="day"><%= Date.current.advance({ days: 7 }).strftime('%e') %></span></div>
+        <div class="calendarIconTopBar"><span class="month"><%= @week_plan.date.advance({ days: 7 }).strftime('%B') %></span></div>
+        <div class="calendarIconDay"><span class="day"><%= @week_plan.date.advance({ days: 7 }).strftime('%e') %></span></div>
       </div>
     </div>
 
