@@ -1,9 +1,15 @@
-<% week_plan.todos.each do |todo| %>
-  <li class="weeklyTodo">
-    <%= todo.content %>
-    <%= form_with url: remove_weekly_todo_path, method: :delete do |f| %>
-      <%= f.hidden_field :id, value: todo.id %>
-      <span class="xMark js--submitForm"></span>
+<% if week_plan.todos.present? %>
+  <ul class="weeklyTodos">
+    <% week_plan.todos.each do |todo| %>
+      <li class="weeklyTodo">
+        <%= todo.content %>
+        <%= form_with url: remove_weekly_todo_path, method: :delete do |f| %>
+          <%= f.hidden_field :id, value: todo.id %>
+          <span class="xMark js--submitForm"></span>
+        <% end %>
+      </li>
     <% end %>
-  </li>
+  </ul>
+<% else %>
+  <p class="noTasks">No tasks yet.</p>
 <% end %>

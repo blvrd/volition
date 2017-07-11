@@ -5,10 +5,17 @@
   width: 30%;
 }
 
-.weeklyTodos {
+.weeklyTodosSection {
   font-size: 1rem;
   width: 100%;
-  padding: 0;
+
+  ul {
+    padding: 0;
+  }
+
+  .noTasks {
+    text-align: center;
+  }
 
   .weeklyTodo {
     @include display-flex;

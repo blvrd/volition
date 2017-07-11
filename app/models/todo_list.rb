@@ -15,6 +15,14 @@ class TodoList < ApplicationRecord
   scope :weekly, -> { where(list_type: 'weekly') }
   scope :daily,  -> { where(list_type: 'daily') }
 
+  def weekly?
+    list_type == 'weekly'
+  end
+
+  def daily?
+    list_type == 'daily'
+  end
+
   def self.today(user)
     find_by(date: Date.current, user_id: user.id)
   end

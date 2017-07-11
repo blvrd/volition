@@ -1,2 +1,2 @@
-$('ul.weeklyTodos').html("<%= j render partial: 'weekly_todos', locals: { week_plan: @week_plan } %>")
+$('section.weeklyTodosSection').html("<%= j render partial: 'weekly_todos', locals: { week_plan: @week_plan } %>")
 $('.weeklyTodoForm')[0].reset()
