@@ -1,6 +1,6 @@
 <% if week_plan.todos.present? %>
   <ul class="weeklyTodos">
-    <% week_plan.todos.each do |todo| %>
+    <% week_plan.todos.reverse.each do |todo| %>
       <li class="weeklyTodo">
         <%= todo.content %>
         <%= form_with url: remove_weekly_todo_path, method: :delete do |f| %>

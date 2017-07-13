@@ -1,2 +1,5 @@
 $('section.weeklyTodosSection').html("<%= j render partial: 'weekly_todos', locals: { week_plan: @week_plan } %>")
 $('.weeklyTodoForm')[0].reset()
+var $newTodo = $($('.weeklyTodo')[0])
+$newTodo.addClass('new')
+setTimeout(function() { $newTodo.removeClass('new') }, 5000)

@@ -24,6 +24,9 @@
     padding: 5px;
     padding-right: 10px;
     cursor: default;
+    background: $white;
+    transition: background 600ms;
+
 
     &:hover {
       background: $light-gray;
@@ -31,6 +34,10 @@
 
     .xMark {
       cursor: pointer;
+    }
+
+    &.new {
+      background: $yellow;
     }
   }
 }
