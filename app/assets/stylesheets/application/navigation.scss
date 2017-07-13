@@ -35,7 +35,7 @@
   @include display-flex;
   @include flex-direction(column);
   @include justify-content(flex-end);
-  padding: 10px 0;
+  padding: 10px 10px;
 }
 
 .navRight {
