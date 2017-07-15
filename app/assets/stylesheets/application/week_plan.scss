@@ -1,23 +1,28 @@
 %weeklyTodos {
+  position: relative;
   background: $lightest-blue;
   border: 2px solid $lighter-blue;
   border-radius: $base-border-radius;
   color: $white;
   font-size: 1rem;
   margin: 40px 0;
-  padding: 5px 20px;
   height: 300px;
-  overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    background-color: $lightest-blue;
-    width: 5px;
+  .weeklyTodosScrollable {
+    padding: 5px 20px;
+    height: 100%;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      background-color: $lightest-blue;
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $lighter-blue;
+      border-radius: 3px;
+    }
   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: $lighter-blue;
-    border-radius: 3px;
-  }
 
   ul {
     padding: 0;
@@ -26,6 +31,24 @@
   li {
     @include display-flex;
     @include justify-content(space-between);
+  }
+
+  .closeWeekPlan {
+    @include display-flex;
+    @include align-items(center);
+    @include justify-content(center);
+    position: absolute;
+    top: -20px;
+    right: -2px;
+    background: $lighter-blue;
+    border-radius: 3px;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+
+    span {
+      font-size: 0.7rem;
+    }
   }
 }
 
