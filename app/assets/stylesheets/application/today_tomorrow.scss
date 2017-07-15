@@ -228,3 +228,11 @@ div[data-react-class='TodoList'] {
   }
 }
 
+section.addWeeklyTodos {
+  @extend %weeklyTodos;
+  width: 500px;
+
+  li {
+    margin-bottom: 10px;
+  }
+}

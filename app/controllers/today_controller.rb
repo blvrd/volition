@@ -17,6 +17,7 @@ class TodayController < ApplicationController
       redirect_to today_path
     end
 
+    @week_plan = current_week_plan
     @todo_list = TodoList.new
     5.times do
       @todo_list.todos.build

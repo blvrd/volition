@@ -8,6 +8,18 @@
 
   <p class="instructions">Let's plan tasks for today. In the "estimate" column, enter your guess for how many 25 minute blocks it will take to finish each task. If you think it will take more than five, break it down into smaller tasks.</p>
 
+  <%# <% if current_week_plan.todos.present? %>
+  <%#   <button class="secondary breatheTop">Add todos from your weekly plan</button>
+  <%# <% end %>
+
+  <section class="addWeeklyTodos">
+    <ul>
+      <% @week_plan.todos.each do |todo| %>
+        <li><span><%= todo.content %></span><button class="extraSmall js--addWeeklyTodo">Add</button></li>
+      <% end %>
+    </ul>
+  </section>
+
   <%= form_for @todo_list, url: '/today' do |f| %>
     <ul class="todoList tomorrow">
       <li class="todoLabels">

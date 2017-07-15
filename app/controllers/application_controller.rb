@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
 
     @current_week_plan ||= current_user.todo_lists.weekly.find_or_create_by(date: beginning_of_week)
   end
+  helper_method :current_week_plan
 
   private
 
