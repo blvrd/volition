@@ -230,7 +230,11 @@ div[data-react-class='TodoList'] {
 
 section.addWeeklyTodos {
   @extend %weeklyTodos;
-  width: 500px;
+  width: 90%;
+
+  @include MQ(M) {
+    width: 500px;
+  }
 
   li {
     margin-bottom: 10px;
