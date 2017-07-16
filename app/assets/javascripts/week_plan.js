@@ -16,5 +16,10 @@ $(document).on('click', '.js--addWeeklyTodo', function() {
     $(this).text('Added')
     $(this).attr('disabled', true)
     $(emptyTodo[0]).val(content)
+
+    // Trigger React onChange handler for the input
+    var event = new Event('input', { bubbles: true })
+    emptyTodo[0].dispatchEvent(event)
   }
 })
+

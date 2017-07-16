@@ -3,6 +3,7 @@ class TodayController < ApplicationController
   before_action :verify_that_today_is_trackable
 
   def show
+    @week_plan = current_week_plan
     @todo_list = TodoList.today(@user)
 
     if @todo_list.blank?
