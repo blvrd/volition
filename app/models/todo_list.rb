@@ -4,6 +4,7 @@ class TodoList < ApplicationRecord
   has_many :todos, dependent: :delete_all
 
   belongs_to :user
+  belongs_to :week_plan, class_name: 'TodoList', required: false
 
   accepts_nested_attributes_for :todos,
                                 reject_if: :all_blank
