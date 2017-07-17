@@ -24,7 +24,7 @@ class TodoList < ApplicationRecord
   end
 
   def self.today(user)
-    find_by(date: Date.current, user_id: user.id)
+    find_by(list_type: 'daily', date: Date.current, user_id: user.id)
   end
 
   def self.tomorrow(user)

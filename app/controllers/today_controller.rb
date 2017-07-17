@@ -28,7 +28,8 @@ class TodayController < ApplicationController
   def create
     @todo_list = TodoList.new(
       date: Date.current,
-      user: @user
+      user: @user,
+      list_type: 'daily'
     )
 
     if @todo_list.save

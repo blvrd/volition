@@ -56,7 +56,11 @@
   @include display-flex;
   @include flex-direction(column);
   @include align-items(center);
-  width: 30%;
+  width: 90%;
+
+  @include MQ(M) {
+    width: 30%;
+  }
 }
 
 .weeklyTodosSection {
@@ -69,7 +73,11 @@
   }
 
   .noTasks {
-    text-align: center;
+    height: 100%;
+    @include display-flex;
+    @include align-items(center);
+    @include justify-content(center);
+    color: $white;
   }
 
   .weeklyTodo {
