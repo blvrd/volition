@@ -1,16 +1,20 @@
 today:
   user: garrett
   date: <%= Date.current %>
+  list_type: 'daily'
 
 yesterday:
   user: garrett
   date: <%= Date.current.prev_day %>
+  list_type: 'daily'
 
 two_days_ago:
   user: garrett
   date: <%= Date.current.prev_day.prev_day %>
+  list_type: 'daily'
 
 tomorrow:
   user: garrett
   date: <%= Date.current.next_day %>
+  list_type: 'daily'
 
