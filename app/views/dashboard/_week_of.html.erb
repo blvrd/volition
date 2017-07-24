@@ -1,0 +1,3 @@
+<% if todo_list && todo_list.date == todo_list.date.beginning_of_week %>
+  <p class="weekOf">Week of <%= todo_list.date.beginning_of_week.strftime('%B %e') %></p>
+<% end %>

@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
   root 'marketing#home'
 
-  get    '/mockups/today'             => 'mockups#today'
-  get    '/mockups/tomorrow'          => 'mockups#tomorrow'
-  get    '/mockups/reflect'           => 'mockups#reflect'
-  get    '/mockups/nice_job'          => 'mockups#nice_job'
-  get    '/mockups/dashboard'         => 'mockups#dashboard'
-  get    '/mockups/settings'          => 'mockups#settings'
-
   get    '/nice_job'                  => 'pages#nice_job', as: :nice_job
   get    '/welcome'                   => 'pages#welcome', as: :welcome
   get    '/privacy'                   => 'marketing#privacy', as: :privacy
@@ -26,9 +19,12 @@ Rails.application.routes.draw do
   delete '/logout'                    => 'sessions#destroy', as: :logout
   get    '/settings'                  => 'users#edit', as: :settings
   get    '/add_google_sign_in'        => 'users#add_google_sign_in', as: :add_google_sign_in
+  get    '/this_week'                 => 'week_plan#show', as: :week_plan
+  post   '/add_weekly_todo'           => 'week_plan#add_todo', as: :add_weekly_todo
+  delete '/remove_weekly_todo'        => 'week_plan#remove_todo', as: :remove_weekly_todo
 
-  resources :todos, only: [:update]
-  resources :days, only: [:show]
+  resources :todos,       only: [:update]
+  resources :days,        only: [:show]
   resources :reflections, only: [:create]
   resources :users do
     member do

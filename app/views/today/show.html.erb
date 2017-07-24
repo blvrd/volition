@@ -6,6 +6,31 @@
   </div>
 
   <%= react_component 'TodoList', todos: @todos %>
+
+  <% if current_week_plan.todos.present? %>
+    <button class="blue breatheTop js--toggleWeekPlan showWeekPlan">Add todos from your weekly plan</button>
+
+    <section class="addWeeklyTodos hidden">
+      <div class="js--toggleWeekPlan closeWeekPlan">
+        <span>close</span>
+      </div>
+      <div class="weeklyTodosScrollable">
+        <ul>
+          <% @week_plan.todos.each do |todo| %>
+            <li>
+              <span><%= todo.content %></span>
+              <% if @todos.pluck(:content).include?(todo.content) %>
+                <button class="extraSmall js--addWeeklyTodo" disabled>Added</button>
+              <% else %>
+                <button class="extraSmall js--addWeeklyTodo">Add</button>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </section>
+  <% end %>
+
   <%= link_to 'All done', reflect_path, class: 'finishDayButton button' %>
   <p class="instructions light">Clicking "All done" will take you to the reflection page. You can come back here and edit your todos until tomorrow.</p>
 </section>

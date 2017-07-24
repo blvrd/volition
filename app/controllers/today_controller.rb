@@ -3,6 +3,7 @@ class TodayController < ApplicationController
   before_action :verify_that_today_is_trackable
 
   def show
+    @week_plan = current_week_plan
     @todo_list = TodoList.today(@user)
 
     if @todo_list.blank?
@@ -17,6 +18,7 @@ class TodayController < ApplicationController
       redirect_to today_path
     end
 
+    @week_plan = current_week_plan
     @todo_list = TodoList.new
     5.times do
       @todo_list.todos.build
@@ -26,7 +28,9 @@ class TodayController < ApplicationController
   def create
     @todo_list = TodoList.new(
       date: Date.current,
-      user: @user
+      user: @user,
+      list_type: 'daily',
+      week_plan: current_week_plan
     )
 
     if @todo_list.save

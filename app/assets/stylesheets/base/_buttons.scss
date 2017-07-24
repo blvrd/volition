@@ -37,14 +37,15 @@ button, .button, input[type="submit"] {
 
   &:disabled {
     cursor: not-allowed;
-    background-color: $light-gray;
-
-    &:hover {
-      background-color: $medium-gray;
-    }
+    background-color: $medium-gray;
   }
 
   &.small {
+    font-size: 1rem;
+  }
+
+  &.extraSmall {
+    padding: 5px 10px;
     font-size: 1rem;
   }
 
@@ -67,6 +68,12 @@ button, .button, input[type="submit"] {
 
   &.expanding {
     @include expandingButton;
+  }
+
+  &.blue {
+    background-color: $lightest-blue;
+    border: 2px solid $lighter-blue;
+    padding: 0.6em $base-spacing;
   }
 }
 

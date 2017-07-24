@@ -1,5 +1,8 @@
 .pagination {
   margin-bottom: 20px;
+  @include display-flex;
+  @include justify-content(space-between);
+
   :not(.disabled) {
     font-size: 24px;
   }

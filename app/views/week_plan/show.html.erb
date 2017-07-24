@@ -1,0 +1,31 @@
+<section class="appSection">
+  <h1>Your Week</h1>
+  <div class="weekPlan">
+    <div class="calendarRange">
+      <div class="calendarIcon">
+        <div class="calendarIconTopBar"><span class="month"><%= @week_plan.date.strftime('%B') %></span></div>
+        <div class="calendarIconDay"><span class="day"><%= @week_plan.date.strftime('%e') %></span></div>
+      </div>
+      <span>
+        &mdash;
+      </span>
+      <div class="calendarIcon">
+        <div class="calendarIconTopBar"><span class="month"><%= @week_plan.date.advance({ days: 7 }).strftime('%B') %></span></div>
+        <div class="calendarIconDay"><span class="day"><%= @week_plan.date.advance({ days: 7 }).strftime('%e') %></span></div>
+      </div>
+    </div>
+
+    <%= link_to "&larr; go back to dashboard".html_safe, dashboard_path %>
+
+    <p class="instructions">Use this area as a brain dump. Add as many tasks as you need. You can always come back and add more throughout the week.</p>
+
+    <%= form_with url: add_weekly_todo_path, class: 'weeklyTodoForm breatheTop' do |f| %>
+      <%= f.text_field :content %>
+      <%= f.submit "Add", class: 'button blue' %>
+    <% end %>
+
+    <section class="weeklyTodosSection breatheTop">
+      <%= render partial: 'weekly_todos', locals: { week_plan: @week_plan } %>
+    </section>
+  </div>
+</section>
