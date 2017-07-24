@@ -7,7 +7,7 @@ $(document).on('click', '.js--addWeeklyTodo', function() {
   var content = $(this).prev('span').text()
 
   var emptyTodo = $('.contentInput').filter(function(index, input) {
-    if (input.value == '') {
+    if (input.value === '') {
       return input
     }
   })
