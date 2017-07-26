@@ -9,6 +9,7 @@ class TomorrowController < AuthenticatedController
     end
 
     @todo_list = TodoList.new
+    @week_plan = current_week_plan
     5.times do
       @todo_list.todos.build
     end

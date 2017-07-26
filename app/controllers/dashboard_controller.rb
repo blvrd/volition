@@ -8,7 +8,7 @@ class DashboardController < AuthenticatedController
       @tomorrows_todo_list = TodoList.includes(:todos).tomorrow(current_user)
     end
 
-    @todays_todo_list = TodoList.includes(:todos).today(current_user)
-    @past_todo_lists = TodoList.includes(:todos).past(current_user).daily.paginate(page: params[:page])
+    @todays_todo_list = TodoList.includes(:todos, :user).today(current_user)
+    @past_todo_lists = TodoList.includes(:todos, :user).past(current_user).daily.paginate(page: params[:page])
   end
 end
