@@ -66,6 +66,7 @@ class UsersController < AuthenticatedController
     end
 
     @user.assign_attributes(user_params)
+    @user.skip_password_validation = true
 
     valid = @user.save && add_card_to_user
 
