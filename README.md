@@ -43,3 +43,5 @@ your machine with [this script].
 
 PRs are welcome!
 
+MIT License
+
