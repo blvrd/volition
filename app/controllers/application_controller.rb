@@ -41,10 +41,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_week_plan
-    today             = Date.current
-    beginning_of_week = today.at_beginning_of_week
+    today       = Date.current
+    end_of_week = today.at_end_of_week
 
-    @current_week_plan ||= current_user.todo_lists.weekly.find_or_create_by(date: beginning_of_week)
+    @current_week_plan ||= current_user.todo_lists
+                                       .weekly
+                                       .find_or_create_by(date: end_of_week)
   end
   helper_method :current_week_plan
 
