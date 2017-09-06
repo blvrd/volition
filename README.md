@@ -48,7 +48,7 @@ local   all             postgres                                trust
 # "local" is for Unix domain socket connections only
 local   all             all                                     trust
 ```
-## Post setup of Ruby & Postgres on Ubuntu Server
+### Post setup of Ruby & Postgres on Ubuntu Server
 
 You can try just running ./bin/setup at this point as mentioned at the bottom of this readme, but I found I had to work through the following three gotchas before anything worked.
 
@@ -56,13 +56,13 @@ You can try just running ./bin/setup at this point as mentioned at the bottom of
 2. install bundler gem: `gem install bundler`
 3. config bundler to get `pg` to install properly: `bundle config build.pg --with-pg-lib="/var/lib/postgresql/9.3/main"`
 
-## Run on local port 3000 on Ubuntu
+### Run on local port 3000 on Ubuntu
 
 Simply `rails -s`
 
 You can run this in `tmux` or daemonize this process using `passenger` or `systemd`
 
-## setup with NGINX reverse proxy
+### setup with NGINX reverse proxy
 
 create a new NGINX vhost file in /etc/nginx/sites-available/, for example /etc/nginx/sites-available/volition
 
