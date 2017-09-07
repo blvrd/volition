@@ -1,4 +1,4 @@
-class WeekPlanController < ApplicationController
+class WeekPlanController < AuthenticatedController
   def show
     @week_plan = current_week_plan
   end
