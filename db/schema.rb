@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170717153150) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "list_type"
+    t.string "list_type", default: "daily", null: false
     t.integer "week_plan_id"
     t.index ["user_id"], name: "index_todo_lists_on_user_id"
   end
@@ -59,10 +59,10 @@ ActiveRecord::Schema.define(version: 20170717153150) do
     t.boolean "sms_reminders", default: false
     t.boolean "track_weekends", default: true
     t.string "timezone"
-    t.boolean "guest"
     t.string "stripe_customer_id"
     t.string "stripe_subscription_id"
     t.boolean "paid", default: true, null: false
+    t.boolean "guest"
     t.string "google_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
