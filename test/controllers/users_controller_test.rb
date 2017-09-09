@@ -17,7 +17,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test '#create should set timezone' do
     cookies[:timezone] = "America/Chicago"
     post users_path, params: {
-      user: {
+      registration: {
         email: 'user@example.com',
         password: SecureRandom.hex
       }
@@ -58,7 +58,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     logout
 
     post users_path, params: {
-      user: {
+      registration: {
         email: 'me@g.com',
         name: 'G',
         password: SecureRandom.hex
