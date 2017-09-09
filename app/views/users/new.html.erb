@@ -16,7 +16,7 @@
       <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
     <% end %>
 
-    <%= form_for @user do |f| %>
+    <%= form_for @registration, url: users_path do |f| %>
       <div class="inputGroup">
         <%= f.label :name %>
         <%= f.text_field :name %>

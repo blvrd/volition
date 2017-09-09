@@ -1,10 +1,10 @@
 $(document).on('turbolinks:load', function() {
   if ($('body').hasClass('users-new')) {
-    $('#user_password').focus(function(e) {
+    $('#registration_password').focus(function(e) {
       $('.passwordRules').removeClass('hidden')
     })
 
-    $('#user_password').keyup(function(e) {
+    $('#registration_password').keyup(function(e) {
       var password = e.target.value
 
       var passedRules = checkPasswordRules(password)
