@@ -36,4 +36,9 @@ module ApplicationHelper
   def on_home_page?
     controller.action_name == 'home'
   end
+
+  def eligible_for_daily_reminders?
+    ENV["SMTP_ADDRESS"] != "You can add this later." &&
+      ENV["TWILIO_SID"] != "Optional"
+  end
 end

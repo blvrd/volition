@@ -14,18 +14,6 @@ class UserTest < ActiveSupport::TestCase
     StripeMock.stop
   end
 
-  test '#stripe_customer' do
-    @user.update(stripe_customer_id: @customer.id)
-
-    refute_nil(@user.stripe_customer)
-  end
-
-  test '#stripe_subscription' do
-    @user.update(stripe_subscription_id: @subscription.id)
-
-    refute_nil(@user.stripe_subscription)
-  end
-
   test '#had_a_great_day? returns false' do
     reflection = Reflection.create(
       rating: 6,
@@ -114,42 +102,26 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test '#trialing?' do
-    subscription_trialing = Stripe::Subscription.construct_from({ status: 'trialing' })
-    subscription_not_trialing = Stripe::Subscription.construct_from({ status: 'active' })
+    assert(@user.trialing?)
 
-    @user.stub(:stripe_subscription, subscription_trialing) do
-      assert(@user.trialing?)
-    end
-
-    @user.stub(:stripe_subscription, subscription_not_trialing) do
+    Timecop.travel(Date.current+30) do
       refute(@user.trialing?)
     end
   end
 
   test '#trial_days_left' do
-    subscription_trialing = Stripe::Subscription.construct_from({ status: 'trialing', trial_end: 15.days.from_now.to_i })
-    subscription_not_trialing = Stripe::Subscription.construct_from({ status: 'active', trial_end: 5.days.ago.to_i })
+    assert_equal(30, @user.trial_days_left)
 
-    @user.stub(:stripe_subscription, subscription_trialing) do
+    Timecop.travel(Date.current+15) do
       assert_equal(15, @user.trial_days_left)
     end
 
-    @user.stub(:stripe_subscription, subscription_not_trialing) do
+    Timecop.travel(Date.current+30) do
       assert_equal(0, @user.trial_days_left)
     end
-  end
 
-  test '#can_cancel_subscription?' do
-    @user.stub(:trialing?, true) do
-      refute(@user.can_cancel_subscription?)
-    end
-
-    @user.stub(:trialing?, false) do
-      assert(@user.can_cancel_subscription?)
-
-      @user.update(paid: false)
-
-      refute(@user.can_cancel_subscription?)
+    Timecop.travel(Date.current+40) do
+      assert_equal(0, @user.trial_days_left)
     end
   end
 end

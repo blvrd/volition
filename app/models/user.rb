@@ -46,31 +46,14 @@ class User < ApplicationRecord
     created_at > 30.minutes.ago
   end
 
-  def stripe_customer
-    @cache ||= StripeCache.new(self)
-
-    @cache.customer
-  end
-
-  def stripe_subscription
-    @cache ||= StripeCache.new(self)
-
-    @cache.subscription
-  end
-
   def trialing?
-    stripe_subscription.status == 'trialing'
+    trial_days_left > 0
   end
 
   def trial_days_left
-    return 0 unless trialing?
+    trial_end = (created_at + 30.days).to_date
 
-    trial_end = Time.at(stripe_subscription.trial_end).to_date
-
-    (trial_end - Date.current).to_i
-  end
-
-  def can_cancel_subscription?
-    !trialing? && paid
+    days_left = (trial_end - Date.current).to_i
+    days_left < 0 ? 0 : days_left
   end
 end

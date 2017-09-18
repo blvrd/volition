@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717153150) do
+ActiveRecord::Schema.define(version: 20170917182135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,11 +59,10 @@ ActiveRecord::Schema.define(version: 20170717153150) do
     t.boolean "sms_reminders", default: false
     t.boolean "track_weekends", default: true
     t.string "timezone"
-    t.string "stripe_customer_id"
-    t.string "stripe_subscription_id"
-    t.boolean "paid", default: true, null: false
+    t.boolean "paid", default: false, null: false
     t.boolean "guest"
     t.string "google_id"
+    t.string "stripe_charge_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

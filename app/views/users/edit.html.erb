@@ -31,30 +31,39 @@
 
     <div class="settingsSection">
       <h2 class="settingsHeading">Reminders</h2>
-      <p>If you allow it, Volition will send you daily reminders to reflect.</p>
-      <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
-        <div class="settingsInputGroup">
-          <label for="" class="flexRow">
-            <div class="checkbox breatheRight">
-              <%= f.check_box :email_reminders, class: 'completeInput' %>
-              <%= f.label :email_reminders do %>
-              <% end %>
-            </div>
-            Email
-          </label>
+      <% if !eligible_for_daily_reminders? && self_hosted? %>
+        <div class="settingsSection hostedFeature">
+          <p>
+          Daily reminders are not available by default in self-hosted mode.
+          See the README for info on how to use this feature.
+          </p>
         </div>
+      <% else %>
+        <p>If you allow it, Volition will send you daily reminders to reflect.</p>
+        <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
+          <div class="settingsInputGroup">
+            <label for="" class="flexRow">
+              <div class="checkbox breatheRight">
+                <%= f.check_box :email_reminders, class: 'completeInput' %>
+                <%= f.label :email_reminders do %>
+                <% end %>
+              </div>
+              Email
+            </label>
+          </div>
 
-        <div class="settingsInputGroup">
-          <label for="" class="flexRow">
-            <div class="checkbox breatheRight">
-              <%= f.check_box :sms_reminders, class: 'completeInput' %>
-              <%= f.label :sms_reminders do %>
-              <% end %>
-            </div>
-            SMS
-          </label>
+          <div class="settingsInputGroup">
+            <label for="" class="flexRow">
+              <div class="checkbox breatheRight">
+                <%= f.check_box :sms_reminders, class: 'completeInput' %>
+                <%= f.label :sms_reminders do %>
+                <% end %>
+              </div>
+              SMS
+            </label>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
 
     <div class="settingsSection">
@@ -73,24 +82,32 @@
       </div>
     </div>
 
-    <% unless self_hosted? %>
-      <div class="settingsSection">
-        <h2 class="settingsHeading">Payment <span class="instructions">(<%= pluralize(@user.trial_days_left, 'day') %> left in trial)</span></h2>
-        <% if @existing_card %>
-          <p>
-          <%= fa_icon("cc-#{@existing_card.brand.downcase}") %>
-          <%= "ending in #{@existing_card.last4}" %>
-          </p>
-        <% end %>
-
-
-        <div id="credit-card" class="hidden breatheBottom">
-          <label for="card-element">Credit or debit card</label>
-          <div id="card-element"></div>
-          <div id="card-errors"></div>
-        </div>
-        <button class="secondary js--initializeStripe">Add credit card</button>
+    <% if self_hosted? %>
+      <h2 class="settingsHeading">Payment</h2>
+      <div class="settingsSection hostedFeature">
+        <p>Payment is not available by default in self-hosted mode.</p>
       </div>
+    <% else %>
+     <% if @user.paid? %>
+       <div class="settingsSection">
+         <h2 class="settingsHeading">Payment <span class="instructions">(<%= pluralize(@user.trial_days_left, 'day') %> left in trial)</span></h2>
+         <div class="flexRow flexAlignCenter">
+           <%= render partial: "paid_icon" %>
+           <p>Thanks for supporting Volition! It's because people like you that Volition continues to exist.</p>
+         </div>
+       </div>
+     <% else %>
+       <div class="settingsSection">
+         <h2 class="settingsHeading">Payment <span class="instructions">(<%= pluralize(@user.trial_days_left, 'day') %> left in trial)</span></h2>
+
+         <div id="credit-card" class="hidden breatheBottom">
+           <label for="card-element">Credit or debit card</label>
+           <div id="card-element"></div>
+           <div id="card-errors"></div>
+         </div>
+         <button class="secondary js--initializeStripe">Add credit card</button>
+       </div>
+     <% end %>
     <% end %>
 
     <div class="settingsSection dangerZone">
@@ -99,17 +116,12 @@
       </h2>
 
       <div class="dangerZoneContent">
-        <p>These actions are destructive and won't be reversible. Proceed with caution!</p>
-        <% if !self_hosted? && @user.can_cancel_subscription? %>
-          <%= link_to 'Cancel subscription',
-            cancel_subscription_user_path(@user),
-            method: :delete,
-            class: 'button danger breatheRight' %>
-        <% end %>
+        <p>Deleting your account is irreversible!</p>
         <%= link_to 'Delete account',
           user_path(@user),
           method: :delete,
-          class: 'button danger' %>
+          class: 'button danger',
+          data: { confirm: "Are you sure you want to delete your account?" } %>
       </div>
     </div>
 
