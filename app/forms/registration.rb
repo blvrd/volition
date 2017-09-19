@@ -36,7 +36,7 @@ class Registration
     @user.guest = false
     @user.timezone = Time.zone.tzinfo.name
 
-    @user.save && create_customer_and_subscription
+    @user.save
   end
 
   private
@@ -44,16 +44,4 @@ class Registration
   def signing_up_with_google?
     params[:google_id_token].present?
   end
-
-  def create_customer_and_subscription
-    payment_service = PaymentService.new({ email: @user.email })
-
-    customer = payment_service.create_customer
-    @user.update(stripe_customer_id: customer.id)
-
-    payment_service = PaymentService.new({ stripe_customer_id: @user.stripe_customer_id })
-    subscription = payment_service.create_subscription
-    @user.update(stripe_subscription_id: subscription.id)
-  end
-
 end

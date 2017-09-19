@@ -28,6 +28,20 @@
   .dangerZoneContent {
     padding: 10px;
   }
+
+  &.hostedFeature {
+    padding: 40px 10px;
+    border: 2px dashed $medium-gray;
+    @include display-flex;
+    @include align-items(center);
+    @include justify-content(center);
+
+    p {
+      color: $medium-gray;
+      margin: 0;
+      text-align: center;
+    }
+  }
 }
 
 .settingsHeading {
@@ -78,4 +92,9 @@
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+#paidIcon {
+  height: 175px !important;
+  margin-right: 20px;
 }

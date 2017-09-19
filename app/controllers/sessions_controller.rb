@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
     authenticated_user = authenticate
 
     if authenticated_user.present?
-      RefreshStripeCacheJob.perform_later(authenticated_user.id)
       login(authenticated_user)
       redirect_to dashboard_path
     else

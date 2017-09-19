@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_user_paid!
-    unless self_hosted?
-      redirect_to settings_path unless current_user.paid?
+    unless self_hosted? || current_user.paid? || current_user.trialing?
+      redirect_to settings_path
     end
   end
 

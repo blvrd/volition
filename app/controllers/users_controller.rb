@@ -26,13 +26,10 @@ class UsersController < AuthenticatedController
 
   def edit
     gon.stripe_public_key = ENV['STRIPE_PUBLIC_KEY']
-    if @user.stripe_customer
-      @existing_card = current_user.stripe_customer.sources.first
-    end
   end
 
   def update
-    if params[:user][:google_id]
+    if params[:user][:google_id].present?
       google_identity = GoogleSignIn::Identity.new(params[:user][:google_id])
       google_id = google_identity.user_id
       params[:user][:google_id] = google_id
@@ -41,22 +38,28 @@ class UsersController < AuthenticatedController
     @user.assign_attributes(user_params)
     @user.skip_password_validation = true
 
-    valid = @user.save && add_card_to_user
+    valid = if params[:stripeToken]
+              @success_message = "Payment successful. Thank you!"
+              PaymentService.charge_card(
+                token: params[:stripeToken],
+                user: current_user
+              ) && @user.save
+            else
+              @success_message = "Settings updated."
+              @user.save
+            end
 
     if valid
-      RefreshStripeCacheJob.perform_later(@user.id)
-      flash[:success] = 'Settings updated'
-      redirect_to dashboard_path
+      flash[:success] = @success_message
     else
       flash[:error] = @user.errors.full_messages.join(', ')
-      redirect_to settings_path
     end
+
+    redirect_to settings_path
   end
 
   def destroy
-    @payment_service = PaymentService.new(stripe_subscription_id: @user.stripe_subscription_id)
-
-    if @payment_service.cancel_subscription && @user.destroy
+    if @user.destroy
       flash[:success] = 'Account deleted. Sorry to see you go!'
       redirect_to new_user_path
     else
