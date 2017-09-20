@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include ApplicationHelper
+
   has_many :reflections, dependent: :destroy
   has_many :todo_lists, dependent: :destroy
   has_many :todos, through: :todo_lists
@@ -13,6 +15,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, unless: -> { self.guest? }
   validates :password_digest, presence: true, unless: :skip_password_validation
   validate  :validate_password
+
+  after_create :add_to_mailchimp_newsletter
 
   attr_accessor :skip_password_validation
 
@@ -55,5 +59,18 @@ class User < ApplicationRecord
 
     days_left = (trial_end - Date.current).to_i
     days_left < 0 ? 0 : days_left
+  end
+
+  private
+
+  def add_to_mailchimp_newsletter
+    return nil if self_hosted? || Rails.env.development? || Rails.env.test?
+    gibbon = Gibbon::Request.new(api_key: ENV["MAILCHIMP_API_KEY"])
+    gibbon.lists(ENV["MAILCHIMP_LIST_ID"]).members.create(
+      body: {
+        email_address: email,
+        status: "subscribed"
+      }
+    )
   end
 end

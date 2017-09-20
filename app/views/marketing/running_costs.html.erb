@@ -6,9 +6,9 @@
   <div id="runningCostsChart" class="breatheBottom">
     <canvas id="myChart"></canvas>
   </div>
-  <div class="subscribeCenter">
+  <p class="flexColumn flexAlignCenter breatheTop breatheBottom">
     <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
-  </div>
+  </p>
   <h3 class="sectionHeading runningCostsTotal">Total last month: <b><%= number_to_currency(@total_cost_last_month) %></b></h3>
   <div class="providerList">
     <ul>

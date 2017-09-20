@@ -38,6 +38,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'google_sign_in'
 gem 'google-id-token', git: 'https://github.com/google/google-id-token.git'
 gem 'enumerize'
+gem "gibbon"
 
 group :development, :test do
   gem "awesome_print"
