@@ -1,7 +1,1 @@
-<%= form_tag 'https://tinyletter.com/usevolition', class: 'subscribe' do %>
-  <div class="email">
-    <p>Subscribe to our newsletter</p>
-    <%= text_field_tag :email, nil, placeholder: 'me@example.com' %>
-  </div>
-  <%= submit_tag 'Subscribe', class: button_class, id: 'subscribeButton' %>
-<% end %>
+<%= link_to "Subscribe to our newsletter", "http://eepurl.com/c4fOD9", class: "button", target: "_blank" %>

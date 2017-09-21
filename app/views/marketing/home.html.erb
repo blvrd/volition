@@ -17,9 +17,7 @@
       <h1 class="heroTagline">Be less busy and more productive.</h1>
       <p>
       Volition is more than a todo list. It’s a framework for becoming more effective. It encourages you be more intentional in planning your day and reflecting on the decisions you made. <%= link_to 'Read more', 'https://medium.com/@usevolition/introducing-volition-c87764c199d#.fchez8mxq', target: '_blank' %> about why Volition was created or see how much it <%= link_to 'costs to run', running_costs_path %>.</p>
-      <p>
       <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
-      </p>
     </div>
   </div>
 </section>
@@ -177,5 +175,7 @@
       Now more than ever, we have less control over who sees what we do on the internet. For now, Volition is exclusively self-hosted. In the not-so-distant future, I'll be releasing a hosted version, but I want to first give something useful to the community that has given me so much.
     </p>
   </div>
+  <p class="flexColumn flexAlignCenter breatheTop">
   <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
+  </p>
 </section>
