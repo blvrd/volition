@@ -1,5 +1,6 @@
 class Registration
   include ActiveModel::Model
+  include ApplicationHelper
 
   attr_accessor *%i(
     name
@@ -36,10 +37,22 @@ class Registration
     @user.guest = false
     @user.timezone = Time.zone.tzinfo.name
 
+    add_to_mailchimp_newsletter
     @user.save
   end
 
   private
+
+  def add_to_mailchimp_newsletter
+    return nil if self_hosted? || @user.guest?# || Rails.env.development? || Rails.env.test?
+    gibbon = Gibbon::Request.new(api_key: ENV["MAILCHIMP_API_KEY"])
+    gibbon.lists(ENV["MAILCHIMP_LIST_ID"]).members.create(
+      body: {
+        email_address: @user.email,
+        status: "subscribed"
+      }
+    )
+  end
 
   def signing_up_with_google?
     params[:google_id_token].present?
