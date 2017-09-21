@@ -34,7 +34,6 @@
     <% end %>
 
     <%= link_to today_path, class: "noTextStyle" do %>
-      <%= render partial: 'week_of', locals: { todo_list: @todays_todo_list } %>
       <li class="daySummary today">
         <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
           <div class="calendarIcon small">
