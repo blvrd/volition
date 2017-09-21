@@ -64,7 +64,7 @@ class User < ApplicationRecord
   private
 
   def add_to_mailchimp_newsletter
-    return nil if self_hosted? || Rails.env.development? || Rails.env.test?
+    return nil if self_hosted? || guest? || Rails.env.development? || Rails.env.test?
     gibbon = Gibbon::Request.new(api_key: ENV["MAILCHIMP_API_KEY"])
     gibbon.lists(ENV["MAILCHIMP_LIST_ID"]).members.create(
       body: {
