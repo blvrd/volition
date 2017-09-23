@@ -34,6 +34,20 @@ footer {
 
 .divider {
   margin: 40px auto;
+  position: relative;
+
+  &.choice {
+    span {
+      position: absolute;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      font-size: 16px;
+      top: -12px;
+      background: $white;
+      padding: 0 10px;
+    }
+  }
 }
 
 .xMark {
