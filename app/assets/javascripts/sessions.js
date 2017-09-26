@@ -13,3 +13,14 @@ function onSignIn(googleUser) {
     gapi.auth2.getAuthInstance().signOut()
   }
 }
+
+function setGoogleButtonText() {
+  var $span  = $("span:contains('Sign in with Google'):not('.abcRioButtonContents')")
+  var path   = window.location.pathname
+  var action = path === "/users/new" ? "Sign up" : "Log in"
+  $span.text(action + " with Google")
+}
+
+$(document).on('turbolinks:load', function() {
+  setTimeout(setGoogleButtonText, 100)
+})

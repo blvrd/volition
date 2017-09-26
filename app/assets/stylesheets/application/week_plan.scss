@@ -94,9 +94,19 @@
     //   background: $lighter-blue;
     // }
 
-    .xMark {
+    .deleteTodoButton {
+      width: 20px;
+      height: 20px;
+      background: $white;
+      border-radius: $base-border-radius;
       cursor: pointer;
-      font-size: 1.2rem;
+      @include display-flex;
+      @include align-items(center);
+      @include justify-content(center);
+
+      i {
+        color: $red;
+      }
     }
 
     &.new {
@@ -114,3 +124,4 @@
     margin-right: 10px;
   }
 }
+

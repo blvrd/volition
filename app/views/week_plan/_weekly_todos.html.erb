@@ -6,7 +6,9 @@
           <%= todo.content %>
           <%= form_with url: remove_weekly_todo_path, method: :delete do |f| %>
             <%= f.hidden_field :id, value: todo.id %>
-            <span class="xMark js--submitForm"></span>
+            <div class="deleteTodoButton js--submitForm">
+              <i class="fa fa-times"></i>
+            </div>
           <% end %>
         </li>
       <% end %>

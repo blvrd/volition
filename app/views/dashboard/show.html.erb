@@ -34,7 +34,6 @@
     <% end %>
 
     <%= link_to today_path, class: "noTextStyle" do %>
-      <%= render partial: 'week_of', locals: { todo_list: @todays_todo_list } %>
       <li class="daySummary today">
         <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
           <div class="calendarIcon small">
@@ -73,7 +72,6 @@
 
     <% if @past_todo_lists.present? %>
       <% @past_todo_lists.each do |todo_list| %>
-        <%= render partial: 'week_of', locals: { todo_list: todo_list } %>
         <%= link_to day_path(todo_list), class: 'noTextStyle' do %>
           <li class="daySummary">
             <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">

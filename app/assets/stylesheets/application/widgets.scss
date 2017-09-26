@@ -74,8 +74,4 @@
   @include display-flex;
   @include align-items(center);
   font-size: 1rem;
-
-  span {
-    margin: 0 10px;
-  }
 }
