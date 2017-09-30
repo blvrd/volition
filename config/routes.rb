@@ -3,8 +3,10 @@ Rails.application.routes.draw do
 
   get    '/nice_job'                  => 'pages#nice_job', as: :nice_job
   get    '/welcome'                   => 'pages#welcome', as: :welcome
+  get    '/thank_you'                 => 'pages#thank_you', as: :thank_you
   get    '/privacy'                   => 'marketing#privacy', as: :privacy
   get    '/running_costs'             => 'marketing#running_costs', as: :running_costs
+  get    '/philosophy'                => 'marketing#philosophy', as: :philosophy
 
   get    '/dashboard'                 => 'dashboard#show', as: :dashboard
   get    '/today'                     => 'today#show', as: :today
@@ -26,12 +28,9 @@ Rails.application.routes.draw do
   resources :todos,       only: [:update]
   resources :days,        only: [:show]
   resources :reflections, only: [:create]
-  resources :users do
-    member do
-      delete :cancel_subscription
-    end
-  end
+  resources :payments,    only: [:new, :create]
+  resources :users
 
   require 'sidekiq/web'
-  mount Sidekiq::Web,        at: '/sidekiq'
+  mount Sidekiq::Web, at: '/sidekiq'
 end

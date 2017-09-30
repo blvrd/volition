@@ -1,0 +1,7 @@
+#payment-form {
+  width: 90%;
+
+  @include MQ(M) {
+    width: 40%;
+  }
+}

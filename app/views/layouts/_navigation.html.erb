@@ -13,7 +13,7 @@
   </div>
 </div>
 <section class="navigation">
-  <div class="navLinks flexRow flexJustifySpaceBetween">
+  <div class="navLinks">
     <%= link_to logo_path, class: 'logo' do %>
       <%= image_tag 'logo' %>
       <% if current_user && current_user.guest? %>
@@ -21,16 +21,21 @@
       <% end %>
     <% end %>
 
-    <div class="navRight flexRow flexJustifySpaceBetween">
+    <div class="navRight">
       <% if current_user %>
         <% if current_user.guest? %>
           <%= link_to 'Sign up', new_user_path(guest: true), class: 'navLink' %>
         <% else %>
           <i class="fa fa-bars js--openMenu"></i>
         <% end %>
+      <% elsif current_page?(controller: :sessions, action: :new) %>
+        <%= render "marketing/subscribe" %>
+        <span class="navOr">or</span>
+        <%= link_to 'Sign up', new_user_path, class: 'navLink button' %>
       <% else %>
-        <%= link_to 'Sign up', new_user_path, class: 'navLink' %>
-        <%= link_to 'Log in', login_path, class: 'navLink' %>
+        <%= render "marketing/subscribe" %>
+        <span class="navOr">or</span>
+        <%= link_to 'Log in', login_path, class: 'navLink button secondary' %>
       <% end %>
     </div>
   </div>

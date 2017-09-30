@@ -3,6 +3,8 @@
 <section class="appSection">
   <h1>Sign up</h1>
 
+  <p class="instructions">Try Volition for 48 hours, and if it's for you, pay $12 to use it forever. You can also <%= link_to "self-host with Heroku", ENV["HEROKU_URL"], class: "herokuLink" %>.</p>
+
   <div class="newUserForm">
     <% if params[:guest] %>
       <p class="thanksForDemoing">
@@ -42,9 +44,6 @@
 
       <div class="inputGroup flexRow flexAlignCenter">
         <%= f.submit 'Sign up', disabled: true %>
-        <% unless params[:guest] %>
-          <%= link_to 'or log in', login_path %>
-        <% end %>
       </div>
     <% end %>
   </div>

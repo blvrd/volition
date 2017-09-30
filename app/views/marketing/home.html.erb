@@ -1,26 +1,17 @@
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 
 <section class="heroSection">
-  <div class="mobileHeader">
-    <%= image_tag 'logo', class: 'heroLogo mobile' %>
-  </div>
-
   <div class="heroMain">
-    <div class="heroTitleSection">
-      <%= image_tag 'logo', class: 'heroLogo' %>
-      <div class="breatheTop flexRow flexAlignCenter">
-        <%= link_to 'Sign up', new_user_path, class: 'button' %>
-        <%= link_to 'Log in', login_path, class: 'button secondary' %>
-        <%= link_to 'or try a demo', new_today_path(guest: true) %>
-      </div>
-    </div>
-
     <div class="heroExplanation">
       <h1 class="heroTagline">Be less busy and more productive.</h1>
       <p>
-        Volition is more than a todo list. It’s a framework for becoming more effective. It encourages you to be intentional in planning your day and reflecting on the decisions you made. Read about <%= link_to 'why Volition was created', 'https://medium.com/@usevolition/introducing-volition-c87764c199d#.fchez8mxq', target: '_blank' %> or see how much it <%= link_to 'costs to run', running_costs_path %>.
+        Volition is more than a todo list. It’s a framework for becoming more effective. It encourages you to be intentional in planning your day and reflecting on the decisions you made. Read about <%= link_to "the philosophy behind Volition", philosophy_path %> or see how much it <%= link_to 'costs to run', running_costs_path %>.
       </p>
-      <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
+      <div class="callToActionButtons">
+        <%= link_to 'Sign up', new_user_path, class: 'button' %>
+        <%= render partial:  "marketing/heroku_button" %>
+        <%= link_to 'or try a demo', new_today_path(guest: true) %>
+      </div>
     </div>
   </div>
 </section>
@@ -69,29 +60,10 @@
     </p>
   </div>
 
-  <p class='downArrow'>&#8595;</p>
-
-  <div class="marketingCard">
-    <h3 class="marketingTagline">Plan your week</h3>
-    <img data-aload="https://d1ax1i5f2y3x71.cloudfront.net/items/0Z2v1P3y393L0U0N3b2S/Screen%20Recording%202017-07-24%20at%2017.04.gif" alt="">
-    <p>
-      Your weekly plan can act as your brain dump for what needs to get done for the entire week. You can continue to add tasks to it as they come up throughout the week.
-    </p>
-  </div>
-
-  <p class='downArrow'>&#8595;</p>
-
-  <div class="marketingCard">
-    <h3 class="marketingTagline">Add tasks from your weekly plan to your day</h3>
-    <img data-aload="https://d1ax1i5f2y3x71.cloudfront.net/items/1T3J2r253x1D1k3R3Z0Z/Screen%20Recording%202017-07-24%20at%2017.05.gif" alt="">
-    <p>
-      The weekly plan makes it easy to remember what needs to get done, so you don't have to keep tasks for upcoming days in your head.
-    </p>
-  </div>
 </section>
 
 <section class="pricingSection">
-  <h2 class="sectionHeading">Pricing</h2>
+  <h2 class="sectionHeading">Ways to use Volition</h2>
   <div class="pricing">
     <div class="hosted">
       <h3>Hosted</h3>
@@ -109,58 +81,8 @@
         If you have technical chops and don't want to pay to support Volition's maintenance costs, self-hosting is for you! Check Volition out on <%= link_to 'Github', ENV['LINK_TO_GITHUB_REPO'] %> or use the deploy button below.
       </p>
       <p>
-        <%= link_to 'https://heroku.com/deploy?template=https://github.com/garrettqmartin8/volition' do %>
-          <%= image_tag 'https://www.herokucdn.com/deploy/button.svg', class: 'button image expanding'%>
-        <% end %>
+      <%= render partial: "marketing/heroku_button", locals: { expanding: true } %>
       </p>
     </div>
   </div>
-</section>
-
-<section class="philosophySection">
-  <p>
-    I’m <b>Garrett Martin</b>. I write software for a living. Here is the philosophy behind Volition:
-  </p>
-
-  <div class="philosophyPoint">
-    <h4 class="marketingTagline">Work should be fulfilling, not consuming</h4>
-    <p class="philosophyContent">
-      I helped start a business so that I could create something new and useful. I also had a vision of a lifestyle I wanted to build; one that didn't revolve solely around work. Working myself to the bone for years on the off chance that I would have enough money to retire did not seem like a path to happiness.
-    </p>
-  </div>
-
-  <div class="philosophyPoint">
-    <h4 class="marketingTagline">Time should be used intentionally</h4>
-    <p class="philosophyContent">
-      I have had too many days that were planned on the fly. For me, that is not a recipe for impactful work, whether creative or rote. It led me to many dead ends and allowed for wasteful diversions. When I have a plan for the day, I can navigate smoothly from one task to the next. It takes less thought and willpower to get started, to stay on track, and to get things done. It's liberating because it relieves the stress created by needing to figure out what must get done, and it leaves more time in my day for things other than work.
-    </p>
-  </div>
-
-  <div class="philosophyPoint">
-    <h4 class="marketingTagline">Without reflection, we don't become better people</h4>
-    <p class="philosophyContent">
-      In that past, I have often ignored my mistakes to avoid reliving those moments. That approach has been wrong for me, and I regret it. Having the courage to face my mistakes allows me to make corrections and improve. That's intuitive, but most of us rarely do it.
-      <br>
-      <br>
-      Epictetus, a first-century Greek philosopher, was well aware of people's' aversion to acknowledging failure and analyzing what they have done wrong. He asks us in his <em>Discourses</em> to overcome that aversion:
-      <blockquote>
-        Let sleep not come upon thy languid eyes
-        Before each daily action thou hast scann'd;
-        What's done amiss, what done, what left undone;
-        From first to last examine all, and then
-        Blame what is wrong, in what is right rejoice.
-      </blockquote>
-    </p>
-  </div>
-
-  <div class="philosophyPoint">
-    <h4 class="marketingTagline">Users should control their own data</h4>
-    <p class="philosophyContent">
-      New web applications and software products seem to be more ephemeral than ever. This is the reason I wanted Volition's users to have the option to self-host the product. If Volition helps you as much as it has helped me, I want you to rest easy knowing you'll have it forever.
-    </p>
-  </div>
-
-  <p class="flexColumn flexAlignCenter breatheTop">
-    <%= render partial: 'subscribe', locals: { button_class: 'button' } %>
-  </p>
 </section>
