@@ -4,7 +4,9 @@
     <div class="calendarIconTopBar"><span class="month"><%= Date.current.strftime('%B') %></span></div>
     <div class="calendarIconDay"><span class="day"><%= Date.current.strftime('%e') %></span></div>
   </div>
-  <%= link_to "&larr; go back to dashboard".html_safe, dashboard_path %>
+  <% unless current_user.guest? %>
+    <%= link_to "&larr; go back to dashboard".html_safe, dashboard_path %>
+  <% end %>
 
   <p class="instructions">Let's plan tasks for today. In the "estimate" column, enter your guess for how many 25 minute blocks it will take to finish each task. If you think it will take more than five, break it down into smaller tasks.</p>
 
