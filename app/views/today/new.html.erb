@@ -44,8 +44,11 @@
       <% end %>
     </ul>
 
-    <div class="flexRow flexJustifyCenter breatheBottom breatheTop">
+    <div class="flexColumn flexAlignCenter breatheBottom breatheTop">
       <%= f.submit "Save", class: "saveButton button" %>
+      <% if current_user.paid? && !TodoList.tomorrow(current_user).present? %>
+        <%= link_to "or skip to planning tomorrow", tomorrow_path %>
+      <% end %>
     </div>
   <% end %>
 </section>
