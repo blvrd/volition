@@ -5,6 +5,11 @@ class TodayController < ApplicationController
   def show
     @week_plan = current_week_plan
     @todo_list = TodoList.today(@user)
+    @button_text, @button_path = if Reflection.today(current_user).present?
+                                   ["Plan for tomorrow", tomorrow_path]
+                                 else
+                                   ["Reflect on your day", reflect_path]
+                                 end
 
     if @todo_list.blank?
       redirect_to new_today_path

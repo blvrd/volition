@@ -10,7 +10,7 @@ class TomorrowController < AuthenticatedController
              end
 
       if TodoList.tomorrow(current_user).present? ||
-          Reflection.tomorrow(current_user).blank?
+          Reflection.today(current_user).blank?
         flash[:error] = message
         redirect_to path
       end
