@@ -16,6 +16,7 @@
   border: 2px solid $light-gray;
   border-radius: $base-border-radius;
   margin-bottom: 40px;
+  position: relative;
 
   &.today {
     border: 2px solid $action-color;
@@ -65,4 +66,15 @@
 
 .weekOf {
   color: $medium-gray;
+}
+
+.todayBanner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $green;
+  color: $white;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  border-bottom-left-radius: $base-border-radius;
 }
