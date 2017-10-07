@@ -3,15 +3,6 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   setup do
     @user = users(:garrett)
-    StripeMock.start
-    @stripe_helper = StripeMock.create_test_helper
-    @stripe_helper.create_plan(id: 'basic', amount: 100)
-    @customer = Stripe::Customer.create(source: @stripe_helper.generate_card_token)
-    @subscription = Stripe::Subscription.create(plan: 'basic', customer: @customer)
-  end
-
-  teardown do
-    StripeMock.stop
   end
 
   test '#had_a_great_day? returns false' do
@@ -111,5 +102,41 @@ class UserTest < ActiveSupport::TestCase
     @user.reflections.build.save(validate: false)
 
     refute(@user.trialing?)
+  end
+
+  test "#completion_percentage" do
+    @user.todo_lists.first.todos.create
+
+    assert_equal(0, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
+
+    @user.todos.first.update(complete: true)
+
+    assert_equal(50, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
+
+    @user.todos.last.update(complete: true)
+
+    assert_equal(100, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
+  end
+
+  test '#average_rating' do
+    assert_equal(0, @user.average_rating(from: 6.days.ago, to: Date.current.end_of_day))
+
+    @user.reflections.create!(
+      rating: 1,
+      wrong: "Nothing",
+      right: "Nothing",
+      undone: "Nothing"
+    )
+
+    assert_equal(1, @user.average_rating(from: 6.days.ago, to: Date.current.end_of_day))
+
+    @user.reflections.create!(
+      rating: 10,
+      wrong: "Nothing",
+      right: "Nothing",
+      undone: "Nothing"
+    )
+
+    assert_equal(5, @user.average_rating(from: 6.days.ago, to: Date.current.end_of_day))
   end
 end

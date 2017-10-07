@@ -94,7 +94,8 @@ class UsersController < AuthenticatedController
       :sms_reminders,
       :track_weekends,
       :password,
-      :google_id
+      :google_id,
+      :weekly_summary
     )
   end
 end
