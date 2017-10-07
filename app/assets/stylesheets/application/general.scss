@@ -81,3 +81,11 @@ footer {
   background: $yellow;
   color: $dark-gray !important;
 }
+
+.herokuLink {
+  color: $heroku-purple;
+
+  &:hover {
+    color: $dark-heroku-purple;
+  }
+}

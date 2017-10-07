@@ -104,24 +104,12 @@ class UserTest < ActiveSupport::TestCase
   test '#trialing?' do
     assert(@user.trialing?)
 
-    Timecop.travel(Date.current+30) do
-      refute(@user.trialing?)
-    end
-  end
+    @user.reflections.build.save(validate: false)
 
-  test '#trial_days_left' do
-    assert_equal(30, @user.trial_days_left)
+    assert(@user.trialing?)
 
-    Timecop.travel(Date.current+15) do
-      assert_equal(15, @user.trial_days_left)
-    end
+    @user.reflections.build.save(validate: false)
 
-    Timecop.travel(Date.current+30) do
-      assert_equal(0, @user.trial_days_left)
-    end
-
-    Timecop.travel(Date.current+40) do
-      assert_equal(0, @user.trial_days_left)
-    end
+    refute(@user.trialing?)
   end
 end

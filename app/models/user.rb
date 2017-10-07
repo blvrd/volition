@@ -47,13 +47,6 @@ class User < ApplicationRecord
   end
 
   def trialing?
-    trial_days_left > 0
-  end
-
-  def trial_days_left
-    trial_end = (created_at + 30.days).to_date
-
-    days_left = (trial_end - Date.current).to_i
-    days_left < 0 ? 0 : days_left
+    reflections.count < 2
   end
 end

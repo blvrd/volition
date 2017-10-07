@@ -25,7 +25,6 @@ class UsersController < AuthenticatedController
   end
 
   def edit
-    gon.stripe_public_key = ENV['STRIPE_PUBLIC_KEY']
   end
 
   def update
@@ -38,19 +37,8 @@ class UsersController < AuthenticatedController
     @user.assign_attributes(user_params)
     @user.skip_password_validation = true
 
-    valid = if params[:stripeToken]
-              @success_message = "Payment successful. Thank you!"
-              PaymentService.charge_card(
-                token: params[:stripeToken],
-                user: current_user
-              ) && @user.save
-            else
-              @success_message = "Settings updated."
-              @user.save
-            end
-
-    if valid
-      flash[:success] = @success_message
+    if @user.save
+      flash[:success] = "Settings updated."
     else
       flash[:error] = @user.errors.full_messages.join(', ')
     end
@@ -66,19 +54,6 @@ class UsersController < AuthenticatedController
       flash[:error] = 'Something went wrong.'
       redirect_to settings_path
     end
-  end
-
-  def cancel_subscription
-    @payment_service = PaymentService.new(stripe_subscription_id: @user.stripe_subscription_id)
-
-    if @payment_service.cancel_subscription
-      @user.update(stripe_subscription_id: nil)
-      flash[:success] = 'Subscription cancelled.'
-    else
-      flash[:error] = 'Something went wrong.'
-    end
-
-    redirect_to settings_path
   end
 
   private

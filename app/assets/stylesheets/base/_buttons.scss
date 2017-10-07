@@ -1,7 +1,8 @@
 button, .button, input[type="submit"] {
+  outline: none;
   appearance: none;
   background-color: $action-color;
-  border: 0;
+  border: 2px solid $green;
   border-radius: $base-border-radius;
   color: #fff;
   cursor: pointer;
@@ -11,9 +12,9 @@ button, .button, input[type="submit"] {
   -webkit-font-smoothing: antialiased;
   font-weight: 700;
   line-height: 1;
-  padding: $small-spacing $base-spacing;
+  padding: 0.6em $base-spacing !important;
   text-decoration: none;
-  transition: background-color $base-duration $base-timing;
+  transition: background-color $base-duration $base-timing, border $base-duration $base-timing;
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
@@ -21,10 +22,12 @@ button, .button, input[type="submit"] {
 
   &.danger {
     background-color: $red;
+    border: 2px solid $red;
 
     &:hover,
     &:focus {
       background-color: $dark-red;
+      border: 2px solid $dark-red;
       color: #fff;
     }
   }
@@ -32,12 +35,14 @@ button, .button, input[type="submit"] {
   &:hover,
   &:focus {
     background-color: $dark-green;
+    border: 2px solid $dark-green;
     color: #fff;
   }
 
   &:disabled {
     cursor: not-allowed;
     background-color: $medium-gray;
+    border: 2px solid $medium-gray;
   }
 
   &.small {
@@ -49,6 +54,16 @@ button, .button, input[type="submit"] {
     font-size: 1rem;
   }
 
+  &.heroku {
+    background-color: $heroku-purple;
+    border: 2px solid $heroku-purple;
+
+    &:hover {
+      background-color: $dark-heroku-purple;
+      border: 2px solid $dark-heroku-purple;
+    }
+  }
+
   &.secondary {
     background-color: transparent;
     border: 2px solid $green;
@@ -58,6 +73,7 @@ button, .button, input[type="submit"] {
 
   &.light {
     background-color: $white;
+    border: 2px solid $white;
     color: $green;
   }
 

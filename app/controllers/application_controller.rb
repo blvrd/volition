@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_user_paid!
     unless self_hosted? || current_user.paid? || current_user.trialing?
-      redirect_to settings_path
+      redirect_to new_payment_path
     end
   end
 
