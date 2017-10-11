@@ -1,0 +1,143 @@
+<style>
+body {
+  color: #555;
+  line-height: 1.3;
+}
+
+.wrap {
+  width: 480px;
+  margin-bottom: 40px;
+}
+
+.subhead {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.stats {
+  background: #eee;
+}
+
+.statItem {
+  display: inline-block;
+  padding: 30px;
+}
+
+.statItem:first-of-type {
+}
+
+.arrow {
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.number {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.number.better {
+  color: #49be5a;
+}
+
+.number.worse {
+  color: #f44336;
+}
+
+.label {
+  margin: 0;
+  font-weight: normal;
+}
+
+.contentSection {
+  text-align: left;
+}
+
+ul {
+  padding: 0
+}
+
+li {
+  margin: 10px 0;
+}
+
+.button {
+  background: #49be5a;
+  display: block;
+  color: #ffffff;
+  padding: 0.6em 1.5em;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 18px;
+  margin-top: 40px;
+  width: 40%;
+}
+
+</style>
+
+<body>
+  <div class="wrap">
+    <%= email_image_tag 'logo.png', class: 'imgClass', width: 200, style: 'margin:0;margin-top: 40px; padding:0; border:none; display:block;', alt: "logo" %>
+
+    <h1>Weekly Summary</h1>
+    <h3>What gets measured gets mananged.</h3>
+
+    <section class="stats">
+      <div class="statItem">
+        <p class="number <%= @completion_percentage_class %>">
+        <%= @completion_percentage %>%
+
+        <span class="arrow"><%= @completion_percentage_arrow.try(:html_safe) %></span>
+        </p>
+
+        <p class="label">Tasks completed</p>
+      </div>
+
+      <div class="statItem">
+        <p class="number <%= @average_rating_class %>">
+        <%= @average_rating %>
+        <span class="arrow"><%= @average_rating_arrow.try(:html_safe) %></span>
+        </p>
+        <p class="label">Weekly rating</p>
+      </div>
+    </section>
+
+    <section class="contentSection">
+      <h3 class="subhead">Efficiency and Impact</h3>
+      <p><%= @recommendation %></p>
+    </section>
+
+    <section class="contentSection">
+      <h3 class="subhead">What you could have done better</h3>
+      <% if @wrong.present? %>
+        <ul>
+          <% @wrong.each do |item| %>
+            <li>
+              <%= item %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No reflections this week.</p>
+      <% end %>
+    </section>
+
+    <section class="contentSection">
+      <h3 class="subhead">What you did well</h3>
+      <% if @right.present? %>
+        <ul>
+          <% @right.each do |item| %>
+            <li>
+              <%= item %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No reflections this week.</p>
+      <% end %>
+    </section>
+
+    <%= link_to "Plan your week", week_plan_url, class: "button" %>
+  </div>
+</body>

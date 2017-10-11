@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170917182135) do
+ActiveRecord::Schema.define(version: 20171011211213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170917182135) do
     t.boolean "guest"
     t.string "google_id"
     t.string "stripe_charge_id"
+    t.boolean "weekly_summary", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

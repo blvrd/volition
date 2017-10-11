@@ -5,6 +5,7 @@ class Todo < ApplicationRecord
 
   validates :content, presence: true, if: -> { todo_list.weekly? }
 
+  scope :complete, -> { where(complete: true) }
   scope :frontend_info, -> {
     select(:actual_time_blocks,
            :estimated_time_blocks,
