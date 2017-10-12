@@ -42,11 +42,36 @@
 .dashboardTodoList {
   font-size: 16px;
   @include flex(1);
+  padding-left: 50px;
 }
 
 .dashboardTodo {
   .complete {
     text-decoration: line-through;
+  }
+
+  .checkMark {
+    margin-left: -35px;
+    margin-right: 30px;
+  }
+
+  &:hover {
+    .time {
+      opacity: 1;
+    }
+  }
+
+  .time {
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 150ms;
+    margin-left: 10px;
+    font-size: 0.8rem;
+
+    i {
+      font-size: 0.9rem;
+      color: $green;
+    }
   }
 }
 
