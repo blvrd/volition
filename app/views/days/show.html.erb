@@ -32,17 +32,8 @@
   </div>
 
   <% if @reflection.present? %>
-    <div class="reflectionDaySummary breatheTop">
-      <h2>Reflection</h2>
-      <h3>Rating</h3>
-      <p><%= @reflection.rating %></p>
-      <h3>What did you do wrong?</h3>
-      <p><%= @reflection.wrong %></p>
-      <h3>What did you do right?</h3>
-      <p><%= @reflection.right %></p>
-      <h3>What was left undone?</h3>
-      <p><%= @reflection.undone %></p>
-    </div>
+    <%= render partial: "reflections/reflection",
+      locals: { reflection: @reflection } %>
   <% else %>
     <p class="noTodoLists breatheTop">No reflection for this day.</p>
   <% end %>
