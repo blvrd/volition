@@ -8,9 +8,8 @@ class UserTest < ActiveSupport::TestCase
   test '#had_a_great_day? returns false' do
     reflection = Reflection.create(
       rating: 6,
-      wrong: 'Took too many breaks today.',
-      right: 'Finished most of my tasks.',
-      undone: 'Some things.',
+      negative: 'Took too many breaks today.',
+      positive: 'Finished most of my tasks.',
       date: Date.current,
       user: @user
     )
@@ -21,9 +20,8 @@ class UserTest < ActiveSupport::TestCase
   test '#had_a_great_day? returns true' do
     reflection = Reflection.create(
       rating: 10,
-      wrong: 'Nothing!',
-      right: 'Finished all of my tasks.',
-      undone: 'Nothing.',
+      negative: 'Nothing!',
+      positive: 'Finished all of my tasks.',
       date: Date.current,
       user: @user
     )
@@ -123,18 +121,16 @@ class UserTest < ActiveSupport::TestCase
 
     @user.reflections.create!(
       rating: 1,
-      wrong: "Nothing",
-      right: "Nothing",
-      undone: "Nothing"
+      negative: "Nothing",
+      positive: "Nothing",
     )
 
     assert_equal(1, @user.average_rating(from: 6.days.ago, to: Date.current.end_of_day))
 
     @user.reflections.create!(
       rating: 10,
-      wrong: "Nothing",
-      right: "Nothing",
-      undone: "Nothing"
+      negative: "Nothing",
+      positive: "Nothing",
     )
 
     assert_equal(5, @user.average_rating(from: 6.days.ago, to: Date.current.end_of_day))

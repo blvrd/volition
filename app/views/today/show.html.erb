@@ -31,5 +31,10 @@
     </section>
   <% end %>
 
-  <%= link_to @button_text, @button_path, class: 'finishDayButton button' %>
+  <% if @reflection.present? %>
+    <%= render partial: "reflections/reflection",
+      locals: { reflection: @reflection } %>
+  <% else %>
+    <%= link_to @button_text, @button_path, class: 'finishDayButton button' %>
+  <% end %>
 </section>

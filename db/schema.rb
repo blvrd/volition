@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011211213) do
+ActiveRecord::Schema.define(version: 20171029194215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "reflections", id: :serial, force: :cascade do |t|
     t.integer "rating"
-    t.text "wrong"
-    t.text "right"
-    t.text "undone"
+    t.text "negative"
+    t.text "positive"
     t.date "date"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -63,7 +62,7 @@ ActiveRecord::Schema.define(version: 20171011211213) do
     t.boolean "guest"
     t.string "google_id"
     t.string "stripe_charge_id"
-    t.boolean "weekly_summary", default: true
+    t.boolean "weekly_summary", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
