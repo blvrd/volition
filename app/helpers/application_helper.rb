@@ -1,10 +1,12 @@
 module ApplicationHelper
   def today_is_trackable?
-    return true if current_user.track_weekends
+    if current_user.track_weekends?
+      true
+    else
+      today = Time.current
 
-    today = Time.current
-
-    false if today.on_weekend?
+      today.on_weekday?
+    end
   end
 
   def tomorrow_is_trackable?

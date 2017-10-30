@@ -3,23 +3,13 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   setup do
     @user = users(:garrett)
-    StripeMock.start
-    @stripe_helper = StripeMock.create_test_helper
-    @stripe_helper.create_plan(id: 'basic', amount: 100)
-    @customer = Stripe::Customer.create(source: @stripe_helper.generate_card_token)
-    @subscription = Stripe::Subscription.create(plan: 'basic', customer: @customer)
-  end
-
-  teardown do
-    StripeMock.stop
   end
 
   test '#had_a_great_day? returns false' do
     reflection = Reflection.create(
       rating: 6,
-      wrong: 'Took too many breaks today.',
-      right: 'Finished most of my tasks.',
-      undone: 'Some things.',
+      negative: 'Took too many breaks today.',
+      positive: 'Finished most of my tasks.',
       date: Date.current,
       user: @user
     )
@@ -30,9 +20,8 @@ class UserTest < ActiveSupport::TestCase
   test '#had_a_great_day? returns true' do
     reflection = Reflection.create(
       rating: 10,
-      wrong: 'Nothing!',
-      right: 'Finished all of my tasks.',
-      undone: 'Nothing.',
+      negative: 'Nothing!',
+      positive: 'Finished all of my tasks.',
       date: Date.current,
       user: @user
     )
@@ -104,24 +93,46 @@ class UserTest < ActiveSupport::TestCase
   test '#trialing?' do
     assert(@user.trialing?)
 
-    Timecop.travel(Date.current+30) do
-      refute(@user.trialing?)
-    end
+    @user.reflections.build.save(validate: false)
+
+    assert(@user.trialing?)
+
+    @user.reflections.build.save(validate: false)
+
+    refute(@user.trialing?)
   end
 
-  test '#trial_days_left' do
-    assert_equal(30, @user.trial_days_left)
+  test "#completion_percentage" do
+    @user.todo_lists.first.todos.create
 
-    Timecop.travel(Date.current+15) do
-      assert_equal(15, @user.trial_days_left)
-    end
+    assert_equal(0, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
 
-    Timecop.travel(Date.current+30) do
-      assert_equal(0, @user.trial_days_left)
-    end
+    @user.todos.first.update(complete: true)
 
-    Timecop.travel(Date.current+40) do
-      assert_equal(0, @user.trial_days_left)
-    end
+    assert_equal(50, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
+
+    @user.todos.last.update(complete: true)
+
+    assert_equal(100, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
+  end
+
+  test '#average_rating' do
+    assert_equal(0, @user.average_rating(from: 6.days.ago, to: Date.current.end_of_day))
+
+    @user.reflections.create!(
+      rating: 1,
+      negative: "Nothing",
+      positive: "Nothing",
+    )
+
+    assert_equal(1, @user.average_rating(from: 6.days.ago, to: Date.current.end_of_day))
+
+    @user.reflections.create!(
+      rating: 10,
+      negative: "Nothing",
+      positive: "Nothing",
+    )
+
+    assert_equal(5, @user.average_rating(from: 6.days.ago, to: Date.current.end_of_day))
   end
 end

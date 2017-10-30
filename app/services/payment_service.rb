@@ -9,12 +9,13 @@ module PaymentService
         receipt_email: user.email
       )
       if charge.status == "succeeded"
-        user.update(
+        user.skip_password_validation = true
+        user.update!(
           paid: true,
           stripe_charge_id: charge.id
         )
       end
-    rescue => e
+    rescue Stripe::CardError
       false
     end
   end

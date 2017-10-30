@@ -20,7 +20,7 @@ $base-z-index: 0;
 $dark-gray: #555;
 $medium-gray: #999;
 $light-gray: #ddd;
-$red: lighten(#d9414e, 5%);
+$red: #f44336;
 $dark-red: darken($red, 5%);
 $green: #49be5a;
 $dark-green: darken($green, 10%);
@@ -30,6 +30,8 @@ $lighter-blue: lighten($blue, 15%);
 $lightest-blue: lighten($blue, 40%);
 $white: #fff;
 $yellow: lighten(#ffff00, 35%);
+$heroku-purple: #7057bc;
+$dark-heroku-purple: darken($heroku-purple, 10%);
 
 // Font Colors
 $base-font-color: $dark-gray;

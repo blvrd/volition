@@ -4,6 +4,12 @@
   .navLinks {
     width: 80%;
     margin: 0 auto;
+    @include display-flex;
+    @include justify-content(space-between);
+    @include MQ(M) {
+      width: 65%;
+      padding: 0 4rem;
+    }
   }
 }
 
@@ -32,17 +38,38 @@
 }
 
 .navLink {
-  @include display-flex;
-  @include flex-direction(column);
-  @include justify-content(flex-end);
-  padding: 10px 10px;
+  @include align-self(flex-end);
+  text-align: right;
+
+  @include MQ(M) {
+    padding: 0 10px;
+    @include align-self(center);
+  }
+}
+
+.navOr {
+  @include align-self(flex-end);
+  margin: 10px 40px 5px 0;
+  font-size: 1rem;
+  color: $medium-gray;
+
+  @include MQ(M) {
+    display: none;
+  }
 }
 
 .navRight {
+  @include display-flex;
+  @include flex-direction(column-reverse);
   font-size: 1.2rem;
   color: $lighter-blue;
-  @include align-items(flex-end);
   cursor: pointer;
+
+  @include MQ(M) {
+    @include align-items(center);
+    @include flex-direction(row);
+    @include justify-content(center);
+  }
 }
 
 .menuOverlay {

@@ -180,13 +180,13 @@ div[data-react-class='TodoList'] {
     }
   }
 
+  .estimated {
+    background: $light-gray;
+  }
+
   &:hover {
     .hoverEstimate {
       opacity: 1;
-    }
-
-    .estimated {
-      background: $medium-gray;
     }
   }
 }

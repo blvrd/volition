@@ -26,13 +26,18 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def user_logged_in?
+    current_user.present?
+  end
+  helper_method :user_logged_in?
+
   def authenticate_user!
     redirect_to login_path unless current_user
   end
 
   def ensure_user_paid!
     unless self_hosted? || current_user.paid? || current_user.trialing?
-      redirect_to settings_path
+      redirect_to new_payment_path
     end
   end
 

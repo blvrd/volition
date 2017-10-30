@@ -16,4 +16,9 @@ en:
         "%B %d"
 
   titles:
-    application: Volition
+    application: "Volition"
+
+  reflection_questions:
+    positive: "What did you do well?"
+    negative: "What could you have done better?"
+

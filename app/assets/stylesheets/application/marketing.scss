@@ -18,16 +18,32 @@
 .heroSection {
   @extend %marketingSection;
   @include display-flex;
-  @include align-items(center);
-  @include flex-direction(column);
   width: 100vw;
   color: $dark-gray;
-
   position: relative;
 
   @include MQ(M) {
-    @include flex-direction(row);
-    height: 600px;
+    // height: 600px;
+  }
+}
+
+.callToActionButtons {
+  a {
+    margin-right: 10px;
+  }
+  @extend .breatheTop;
+  @extend .flexRow;
+  @extend .flexAlignCenter;
+  @include flex-wrap(wrap);
+
+  a:last-child {
+    margin-top: 10px;
+  }
+
+  @include MQ(M) {
+    a:last-child {
+      margin-top: 0px;
+    }
   }
 }
 
@@ -42,14 +58,8 @@
 }
 
 .heroMain {
-  @include display-flex;
-  @include flex-direction(column-reverse);
-  width: 100%;
 
   @include MQ(M) {
-    @include flex-direction(row);
-    @include align-items(flex-start);
-    @include justify-content(space-around);
   }
 }
 
@@ -122,16 +132,9 @@
 }
 
 .heroExplanation {
-  @include MQ(M) {
-    width: 50%;
-  }
-
-  p {
-    font-size: 1rem;
-  }
 }
 
-.philosophySection, .dayWithVolitionSection, .pricingSection {
+.philosophySection, .dayWithVolitionSection, .pricingSection, .heroSection {
   @extend %marketingSection;
   @include MQ(M) {
     width: 75%;

@@ -75,9 +75,32 @@ footer {
     top: -2px;
     left: 4px;
   }
+
+  &.small {
+    &:after {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 10px;
+      position: absolute;
+      border: solid $action-color;
+      transform: rotate(45deg);
+      border-width: 0 3px 3px 0;
+      top: 1px;
+      left: 4px;
+    }
+  }
 }
 
 .highlight {
   background: $yellow;
   color: $dark-gray !important;
+}
+
+.herokuLink {
+  color: $heroku-purple;
+
+  &:hover {
+    color: $dark-heroku-purple;
+  }
 }

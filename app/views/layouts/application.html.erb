@@ -18,9 +18,7 @@
   <%= render "javascript" %>
 </head>
 <body class="<%= body_class %>" <%= yield(:body_attributes) %>>
-  <% unless on_home_page? %>
-    <%= render partial: 'layouts/navigation' %>
-  <% end %>
+  <%= render partial: 'layouts/navigation' %>
   <%= render "flashes" -%>
   <%= Gon::Base.render_data %>
   <%= yield %>

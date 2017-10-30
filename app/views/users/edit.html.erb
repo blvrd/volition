@@ -4,6 +4,15 @@
 
   <%= form_for @user, html: { class: 'settingsForm breatheTop google_signin', id: 'payment-form' } do |f| %>
     <div class="settingsSection">
+      <% if @user.paid? %>
+        <div class="settingsSection">
+          <div class="flexRow flexAlignCenter">
+            <%= render partial: "paid_icon" %>
+            <p>Thanks for supporting Volition! It's because people like you that Volition continues to exist.</p>
+          </div>
+        </div>
+      <% end %>
+
       <h2 class="settingsHeading">Contact</h2>
       <% unless @user.google_id %>
         <p>If you'd like to be able to sign into Volition with your Google account, use the button below.</p>
@@ -79,37 +88,19 @@
             Track tasks on weekends
           </label>
         </div>
+
+        <div class="settingsInputGroup">
+          <label for="" class="flexRow">
+            <div class="checkbox breatheRight">
+              <%= f.check_box :weekly_summary, class: 'completeInput' %>
+              <%= f.label :weekly_summary do %>
+              <% end %>
+            </div>
+            Receive weekly summaries
+          </label>
+        </div>
       </div>
     </div>
-
-    <% if self_hosted? %>
-      <h2 class="settingsHeading">Payment</h2>
-      <div class="settingsSection hostedFeature">
-        <p>Payment is not available by default in self-hosted mode.</p>
-      </div>
-    <% else %>
-     <% if @user.paid? %>
-       <div class="settingsSection">
-         <h2 class="settingsHeading">Payment <span class="instructions">(<%= pluralize(@user.trial_days_left, 'day') %> left in trial)</span></h2>
-         <div class="flexRow flexAlignCenter">
-           <%= render partial: "paid_icon" %>
-           <p>Thanks for supporting Volition! It's because people like you that Volition continues to exist.</p>
-         </div>
-       </div>
-     <% else %>
-       <div class="settingsSection">
-         <h2 class="settingsHeading">Payment <span class="instructions">(<%= pluralize(@user.trial_days_left, 'day') %> left in trial)</span></h2>
-
-         <div id="credit-card" class="hidden breatheBottom">
-           <h4>Pay $12, use Volition forever.</h4>
-           <label for="card-element">Credit or debit card</label>
-           <div id="card-element"></div>
-           <div id="card-errors"></div>
-         </div>
-         <button class="secondary js--initializeStripe">Add credit card</button>
-       </div>
-     <% end %>
-    <% end %>
 
     <div class="settingsSection dangerZone">
       <h2 class="settingsHeading dangerZone">

@@ -5,8 +5,10 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
 
-  scope :want_sms_reminders,   -> { where(sms_reminders: true)   }
-  scope :want_email_reminders, -> { where(email_reminders: true) }
+  scope :want_sms_reminders,     -> { where(sms_reminders: true) }
+  scope :want_email_reminders,   -> { where(email_reminders: true) }
+  scope :want_weekly_summaries,  -> { where(weekly_summary: true) }
+  scope :paid,                   -> { where(paid: true) }
 
   validates :phone, presence: true, if: -> { self.sms_reminders? }
   validates :email, presence: true, unless: -> { self.guest? }
@@ -47,13 +49,22 @@ class User < ApplicationRecord
   end
 
   def trialing?
-    trial_days_left > 0
+    reflections.count < 2
   end
 
-  def trial_days_left
-    trial_end = (created_at + 30.days).to_date
+  def completion_percentage(from:, to:)
+    list_ids       = todo_lists.daily.where(created_at: from..to).pluck(:id)
+    all_todos      = todos.where(todo_list_id: list_ids)
+    complete_todos = all_todos.merge(Todo.complete)
 
-    days_left = (trial_end - Date.current).to_i
-    days_left < 0 ? 0 : days_left
+    if all_todos.count == 0 && complete_todos.count == 0
+      return 0
+    end
+
+    ((complete_todos.count.to_f / all_todos.count) * 100).round(2)
+  end
+
+  def average_rating(from:, to:)
+    (reflections.where(created_at: from..to).average(:rating) || 0).to_i
   end
 end

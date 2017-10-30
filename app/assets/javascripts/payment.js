@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
-  if ($('body').hasClass('users-edit')) {
-    var initializeStripe = function(e) {
+  if ($('body').hasClass('payments-new')) {
+    var initializeStripe = (function(e) {
       var stripe = Stripe(gon.stripe_public_key);
       var elements = stripe.elements();
       var form = document.getElementById('payment-form')
@@ -40,23 +40,20 @@ $(document).on('turbolinks:load', function() {
 
       form.addEventListener('submit', function(e) {
         event.preventDefault()
+        $(".fa-cog").removeClass("hidden")
+        $(".submitButtonText").addClass("hidden")
 
         stripe.createToken(card).then(function(result) {
           if (result.error) {
             var errorElement = document.getElementById('card-errors')
             errorElement.textContent = result.error.message
+            $(".fa-cog").addClass("hidden")
+            $(".submitButtonText").removeClass("hidden")
           } else {
             stripeTokenHandler(result.token)
           }
         })
       })
-    }
+    }())
   }
-
-  $('.js--initializeStripe').click(function(e) {
-    e.preventDefault()
-    $('#credit-card').removeClass('hidden')
-    $(this).addClass('hidden')
-    initializeStripe()
-  })
 })

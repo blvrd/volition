@@ -21,7 +21,11 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 4 }), y: 14.02 },
           { x: first_month.advance({ months: 5 }), y: 14.02 },
           { x: first_month.advance({ months: 6 }), y: 14.02 },
-          { x: first_month.advance({ months: 7 }), y: 14.02 }
+          { x: first_month.advance({ months: 7 }), y: 14.02 },
+          { x: first_month.advance({ months: 8 }), y: 14.04 },
+          { x: first_month.advance({ months: 9 }), y: 14.03 },
+          { x: first_month.advance({ months: 10 }), y: 14.03 },
+          { x: first_month.advance({ months: 11 }), y: 14.04 },
         ]
       },
       {
@@ -38,6 +42,10 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 5 }), y: 12 },
           { x: first_month.advance({ months: 6 }), y: 12 },
           { x: first_month.advance({ months: 7 }), y: 12 },
+          { x: first_month.advance({ months: 8 }), y: 12 },
+          { x: first_month.advance({ months: 9 }), y: 12 },
+          { x: first_month.advance({ months: 10 }), y: 12 },
+          { x: first_month.advance({ months: 11 }), y: 12 },
         ]
       },
       {
@@ -54,6 +62,10 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 5 }), y: 13.18 },
           { x: first_month.advance({ months: 6 }), y: 15 },
           { x: first_month.advance({ months: 7 }), y: 15 },
+          { x: first_month.advance({ months: 8 }), y: 9.89 },
+          { x: first_month.advance({ months: 9 }), y: 0 },
+          { x: first_month.advance({ months: 10 }), y: 0 },
+          { x: first_month.advance({ months: 11 }), y: 0 },
         ]
       },
       {
@@ -70,6 +82,10 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 5 }), y: 0 },
           { x: first_month.advance({ months: 6 }), y: 0 },
           { x: first_month.advance({ months: 7 }), y: 0 },
+          { x: first_month.advance({ months: 8 }), y: 0 },
+          { x: first_month.advance({ months: 9 }), y: 0 },
+          { x: first_month.advance({ months: 10 }), y: 0 },
+          { x: first_month.advance({ months: 11 }), y: 0 },
         ]
       },
       {
@@ -86,6 +102,10 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 5 }), y: 0 },
           { x: first_month.advance({ months: 6 }), y: 0 },
           { x: first_month.advance({ months: 7 }), y: 0 },
+          { x: first_month.advance({ months: 8 }), y: 0 },
+          { x: first_month.advance({ months: 9 }), y: 0 },
+          { x: first_month.advance({ months: 10 }), y: 0 },
+          { x: first_month.advance({ months: 11 }), y: 0 },
         ]
       },
       {
@@ -102,6 +122,10 @@ class MarketingController < ApplicationController
           { x: first_month.advance({ months: 5 }), y: 0 },
           { x: first_month.advance({ months: 6 }), y: 0 },
           { x: first_month.advance({ months: 7 }), y: 0 },
+          { x: first_month.advance({ months: 8 }), y: 0 },
+          { x: first_month.advance({ months: 9 }), y: 0 },
+          { x: first_month.advance({ months: 10 }), y: 0 },
+          { x: first_month.advance({ months: 11 }), y: 0 },
         ]
       },
 
