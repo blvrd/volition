@@ -110,9 +110,9 @@ li {
 
     <section class="contentSection">
       <h3 class="subhead">What you could have done better</h3>
-      <% if @wrong.present? %>
+      <% if @negative.present? %>
         <ul>
-          <% @wrong.each do |item| %>
+          <% @negative.each do |item| %>
             <li>
               <%= item %>
             </li>
@@ -125,9 +125,9 @@ li {
 
     <section class="contentSection">
       <h3 class="subhead">What you did well</h3>
-      <% if @right.present? %>
+      <% if @positive.present? %>
         <ul>
-          <% @right.each do |item| %>
+          <% @positive.each do |item| %>
             <li>
               <%= item %>
             </li>

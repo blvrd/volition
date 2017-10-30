@@ -36,8 +36,8 @@ class WeeklySummaryMailer < ApplicationMailer
                       end
 
     reflections = user.reflections.where(created_at: date_args_this_week[:from]..date_args_this_week[:to])
-    @wrong = reflections.pluck(:wrong)
-    @right = reflections.pluck(:right)
+    @negative = reflections.pluck(:negative)
+    @positive = reflections.pluck(:positive)
 
     mail(to: @user.email, subject: "[Volition] Your weekly summary")
   end

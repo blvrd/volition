@@ -39,6 +39,6 @@ class ReflectionsController < AuthenticatedController
   end
 
   def reflection_params
-    params.require(:reflection).permit(:rating, :right, :wrong, :undone)
+    params.require(:reflection).permit(:rating, :positive, :negative, :undone)
   end
 end
