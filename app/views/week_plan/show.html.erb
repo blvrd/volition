@@ -17,15 +17,35 @@
 
     <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
 
-    <p class="instructions">Use this area as a brain dump. Add as many tasks as you need. You can always come back and add more throughout the week.</p>
+    <p class="instructions">
+      Use this area as a brain dump. Add as many tasks as you need. You can always come back and add more throughout the week.
+    </p>
+
+    <% if @last_week.present? %>
+      <div class="button blue breatheTop js--toggleWeekPlan showWeekPlan">Previous week <span class="arrowDown">&#9660;</span></div>
+      <section class="weeklyTodosSection breatheTop hidden lastWeek">
+        <div class="js--toggleWeekPlan closeWeekPlan">
+          <span>close</span>
+        </div>
+        <%= render partial: 'weekly_todos', locals: {
+          week_plan: @last_week,
+          button_partial_name: "move_button",
+          blank_slate_text: "No more tasks."
+        } %>
+      </section>
+    <% end %>
 
     <%= form_with url: add_weekly_todo_path, class: 'weeklyTodoForm breatheTop' do |f| %>
       <%= f.text_field :content %>
       <%= f.submit "Add", class: 'button blue' %>
     <% end %>
 
-    <section class="weeklyTodosSection breatheTop">
-      <%= render partial: 'weekly_todos', locals: { week_plan: @week_plan } %>
+    <section class="weeklyTodosSection breatheTop current">
+      <%= render partial: 'weekly_todos', locals: {
+        week_plan: @week_plan,
+        button_partial_name: "delete_button",
+        blank_slate_text: "No tasks yet."
+      } %>
     </section>
   </div>
 </section>

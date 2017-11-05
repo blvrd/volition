@@ -40,6 +40,7 @@ gem 'google-id-token', git: 'https://github.com/google/google-id-token.git'
 gem 'enumerize'
 gem "gibbon"
 gem 'premailer-rails'
+gem 'rails-erd'
 
 group :development, :test do
   gem "awesome_print"

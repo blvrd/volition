@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   has_many :reflections, dependent: :destroy
   has_many :todo_lists, dependent: :destroy
-  has_many :todos, through: :todo_lists
+  has_many :daily_todos, through: :todo_lists
+  has_many :weekly_todos, through: :todo_lists
+  has_many :daily_snapshots, -> { where.not(date: Date.current) }, through: :todo_lists
+  has_many :weekly_summaries
 
   has_secure_password validations: false
 
@@ -53,15 +56,11 @@ class User < ApplicationRecord
   end
 
   def completion_percentage(from:, to:)
-    list_ids       = todo_lists.daily.where(created_at: from..to).pluck(:id)
-    all_todos      = todos.where(todo_list_id: list_ids)
-    complete_todos = all_todos.merge(Todo.complete)
-
-    if all_todos.count == 0 && complete_todos.count == 0
-      return 0
-    end
-
-    ((complete_todos.count.to_f / all_todos.count) * 100).round(2)
+    snapshots = DailySnapshot.where(created_at: from..to)
+    snapshots.reduce(0) do |sum, snapshot|
+      sum += snapshot.completion_percentage
+      sum
+    end / snapshots.size
   end
 
   def average_rating(from:, to:)

@@ -47,6 +47,7 @@ button, .button, input[type="submit"] {
 
   &.small {
     font-size: 1rem;
+    padding: 0.4em 0.5em !important;
   }
 
   &.extraSmall {
@@ -96,6 +97,20 @@ button, .button, input[type="submit"] {
       background-color: $dark-blue;
       border: 2px solid $dark-blue;
       color: #fff;
+    }
+  }
+
+  &.delete {
+    background-color: $white;
+    border: 2px solid $white;
+    padding: 0.6em $base-spacing;
+    color: $red;
+
+    &:hover,
+    &:focus {
+      background-color: darken($white, 5%);
+      border: 2px solid darken($white, 5%);
+      color: darken($red, 5%);
     }
   }
 }
