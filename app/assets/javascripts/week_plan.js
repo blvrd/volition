@@ -1,6 +1,7 @@
 $(document).on('click', '.js--toggleWeekPlan', function() {
   $('.addWeeklyTodos').toggleClass('hidden')
   $('.showWeekPlan').toggleClass('hidden')
+  $('.lastWeek').toggleClass('hidden')
 })
 
 $(document).on('click', '.js--addWeeklyTodo', function() {

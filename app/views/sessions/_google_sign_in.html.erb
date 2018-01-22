@@ -1,5 +1,10 @@
 <div class="g-signin2" data-onsuccess="onSignIn" data-longtitle="true" data-theme="dark"></div>
-<div class="divider choice">
-  <span>or</span>
+
+<% if user_logged_in? %>
   <hr>
-</div>
+<% else %>
+  <div class="divider choice">
+    <span>or</span>
+    <hr>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 <section class="appSection">
-  <h1>Your Week</h1>
+  <h1>Weekly Plan</h1>
   <div class="weekPlan">
     <div class="calendarRange">
       <div class="calendarIcon">
@@ -17,15 +17,33 @@
 
     <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
 
-    <p class="instructions">Use this area as a brain dump. Add as many tasks as you need. You can always come back and add more throughout the week.</p>
+    <p class="instructions">
+      Use this area as a brain dump. Add as many tasks as you need. You can always come back and add more throughout the week.
+    </p>
+
+    <section class="weeklyTodosSection breatheTop current">
+      <%= render partial: 'weekly_todos', locals: {
+        week_plan: @week_plan,
+        button_partial_name: "delete_button",
+        blank_slate_text: "No tasks yet."
+      } %>
+    </section>
 
     <%= form_with url: add_weekly_todo_path, class: 'weeklyTodoForm breatheTop' do |f| %>
       <%= f.text_field :content %>
-      <%= f.submit "Add", class: 'button blue' %>
+      <%= f.submit "Add a task", class: 'button green' %>
     <% end %>
 
-    <section class="weeklyTodosSection breatheTop">
-      <%= render partial: 'weekly_todos', locals: { week_plan: @week_plan } %>
-    </section>
+    <% if @last_week.present? %>
+      <div class="button blue breatheTop js--toggleWeekPlan showWeekPlan">Last week's plan <span class="arrowDown">&#9660;</span></div>
+      <section class="weeklyTodosSection breatheTop hidden lastWeek">
+        <%= render partial: 'weekly_todos', locals: {
+          week_plan: @last_week,
+          button_partial_name: "move_button",
+          blank_slate_text: "No more tasks.",
+          closeable: true
+        } %>
+      </section>
+    <% end %>
   </div>
 </section>

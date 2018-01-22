@@ -1,36 +1,71 @@
 <section class="appSection">
   <h1>Today</h1>
-  <div class="calendarIcon">
-    <div class="calendarIconTopBar"><span class="month"><%= Date.current.strftime('%B') %></span></div>
-    <div class="calendarIconDay"><span class="day"><%= Date.current.strftime('%e') %></span></div>
-  </div>
 
-  <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
+  <% if @reflection.blank? %>
+    <div class="calendarIcon">
+      <div class="calendarIconTopBar"><span class="month"><%= Date.current.strftime('%B') %></span></div>
+      <div class="calendarIconDay"><span class="day"><%= Date.current.strftime('%e') %></span></div>
+    </div>
 
-  <%= react_component 'TodoList', todos: @todos %>
+    <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
 
-  <% if current_week_plan.todos.present? %>
-    <button class="blue breatheTop js--toggleWeekPlan showWeekPlan">Add todos from your weekly plan</button>
+    <%= react_component 'TodoList', todos: @todos %>
 
-    <section class="addWeeklyTodos hidden">
-      <div class="js--toggleWeekPlan closeWeekPlan">
-        <span>close</span>
+    <% if current_week_plan.todos.present? %>
+      <button class="blue breatheTop js--toggleWeekPlan showWeekPlan">Add tasks from your weekly plan</button>
+
+      <section class="weeklyTodosSection addWeeklyTodos hidden">
+        <div class="js--toggleWeekPlan closeWeekPlan">
+          <span>close</span>
+        </div>
+        <div class="weeklyTodosScrollable">
+          <ul>
+            <% @week_plan.todos.each do |todo| %>
+              <li class="weeklyTodo">
+                <span><%= todo.content %></span>
+                <% if @todos.pluck(:content).include?(todo.content) %>
+                  <button class="button small js--addWeeklyTodo" disabled>Added</button>
+                <% else %>
+                  <button class="button small js--addWeeklyTodo">Add</button>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </section>
+    <% end %>
+  <% else %>
+    <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
+
+    <div class="daySummary reflectionDaySummary breatheTop">
+      <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
+        <div class="calendarIcon small">
+          <div class="calendarIconTopBar small"><span class="month"><%= @todo_list.daily_snapshot.date.strftime('%B') %></span></div>
+          <div class="calendarIconDay small"><span class="day"><%= @todo_list.daily_snapshot.date.strftime('%e') %></span></div>
+        </div>
       </div>
-      <div class="weeklyTodosScrollable">
-        <ul>
-          <% @week_plan.todos.each do |todo| %>
-            <li>
-              <span><%= todo.content %></span>
-              <% if @todos.pluck(:content).include?(todo.content) %>
-                <button class="extraSmall js--addWeeklyTodo" disabled>Added</button>
-              <% else %>
-                <button class="extraSmall js--addWeeklyTodo">Add</button>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </section>
+
+      <ol class="dashboardTodoList">
+        <% @todo_list.daily_snapshot.todos.each do |todo| %>
+          <li class="dashboardTodo">
+            <% if todo.complete %>
+              <span class="checkMark small"></span>
+              <span class="complete">
+                <%= todo.content %>
+              </span>
+            <% else %>
+              <%= todo.content %>
+            <% end %>
+            <% if todo.content.present? %>
+              <span class="time">
+                <i class="fa fa-clock-o"></i>
+                <span><%= todo.actual_time_blocks %>/<%= todo.estimated_time_blocks %></span>
+              </span>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    </div>
   <% end %>
 
   <% if @reflection.present? %>

@@ -1,0 +1,9 @@
+Hi, <%= @gift.recipient_name %>!
+
+<%= @sender.name %> has sent you a 1-year gift subscription to Volition! They sent the following message with this gift:
+
+<%= @gift.message %>
+
+To learn more about Volition, visit <%= root_url %>.
+
+To sign up and activate your subscription, visit <%= new_user_url(gift_token: @gift.unique_token) %>

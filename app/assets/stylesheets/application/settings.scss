@@ -17,17 +17,69 @@
   }
 }
 
+.settingsWrapper {
+  width: 90%;
+  margin-top: 20px;
+
+  @include MQ(M) {
+    width: 50%;
+  }
+}
+
 .settingsSection {
   width: 100%;
   margin-bottom: 60px;
 
-  &.dangerZone {
-    border: 2px solid $red;
+  .subscriptionCard {
+    width: 100%;
+    font-family: courier;
+    padding: 30px;
+    margin-bottom: 15px;
+    border-radius: $base-border-radius;
+    transform: rotate(-1deg);
+    box-shadow: 1px 1px $light-gray;
+    background-color: #ffeaa7;
+    // background-color: lighten($green, 40%);
+
+    img {
+      display: none;
+      width: 20%;
+      vertical-align: top;
+      margin-right: 10px;
+
+      @include MQ(S) {
+        display: inline-block;
+      }
+    }
+
+    .headerText {
+      h4 { margin: 0; }
+      display: inline-block;
+    }
+
+    hr {
+      border-bottom: 1px solid $base-font-color;
+      margin: 10px 0 10px 0;
+    }
+
+    .cancelLink {
+      text-align: right;
+      color: $red;
+      font-size: .9rem;
+      text-decoration: underline;
+      text-decoration-skip: ink;
+
+      &:hover,
+      &:active {
+        color: $dark-red;
+      }
+    }
+
   }
 
-  .dangerZoneContent {
-    padding: 10px;
-  }
+  hr { margin: 30px 0 20px 0; }
+
+  .dangerZone { h2  { color: $red; } }
 
   &.hostedFeature {
     padding: 40px 10px;
@@ -72,7 +124,7 @@
 }
 
 .settingsInput {
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 
 .StripeElement {
@@ -97,4 +149,34 @@
 #paidIcon {
   height: 175px !important;
   margin-right: 20px;
+}
+
+.referralWidget {
+  position: relative;
+  margin: 40px 0;
+
+  .copyButton {
+    font-size: 14px;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+  }
+
+  input {
+    padding: 30px 0;
+    background: lighten($green, 40%);
+    text-align: center;
+    font-family: courier;
+    font-size: 1rem;
+    border: 2px solid $green;
+  }
+}
+
+.referredUsers {
+  .checkMark {
+    margin-left: 0;
+    margin-right: 10px;
+  }
 }

@@ -16,7 +16,7 @@ button, .button, input[type="submit"] {
   text-decoration: none;
   transition: background-color $base-duration $base-timing, border $base-duration $base-timing;
   user-select: none;
-  vertical-align: middle;
+  // vertical-align: middle;
   white-space: nowrap;
   // text-shadow: 1px 1px 1px #666;
 
@@ -28,7 +28,7 @@ button, .button, input[type="submit"] {
     &:focus {
       background-color: $dark-red;
       border: 2px solid $dark-red;
-      color: #fff;
+      color: $white;
     }
   }
 
@@ -47,6 +47,7 @@ button, .button, input[type="submit"] {
 
   &.small {
     font-size: 1rem;
+    padding: 0.4em 0.5em !important;
   }
 
   &.extraSmall {
@@ -68,13 +69,37 @@ button, .button, input[type="submit"] {
     background-color: transparent;
     border: 2px solid $green;
     padding: 0.6em $base-spacing;
-    color: $dark-gray;
+    color: $green;
+
+    &:hover,
+    &:focus {
+      border: 2px solid $dark-green;
+      color: $dark-green;
+    }
   }
 
   &.light {
     background-color: $white;
     border: 2px solid $white;
     color: $green;
+
+    &:hover,
+    &:focus {
+      background-color: darken(#fff, 10%);
+      border: 2px solid darken(#fff, 10%);
+    }
+  }
+
+  &.danger {
+    border: 2px solid $red;
+    color: $red;
+
+    &:hover,
+    &:active {
+      background: transparent;
+      border: 2px solid $dark-red;
+      color: $dark-red;
+    }
   }
 
   &.image {
@@ -96,6 +121,20 @@ button, .button, input[type="submit"] {
       background-color: $dark-blue;
       border: 2px solid $dark-blue;
       color: #fff;
+    }
+  }
+
+  &.delete {
+    background-color: $red;
+    border: 2px solid $red;
+    padding: 0.6em $base-spacing;
+    color: $white;
+
+    &:hover,
+    &:focus {
+      background-color: $dark-red;
+      border: 2px solid $dark-red;
+      color: $white;
     }
   }
 }

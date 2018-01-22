@@ -31,15 +31,16 @@
   width: 90%;
 
   @include MQ(M) {
-    width: initial;
+    width: 500px;
   }
 
-  .error {
-    padding: 10px;
-    border: 2px solid $red;
-    border-radius: $base-border-radius;
-    color: $red;
-  }
+}
+
+.error {
+  padding: 10px;
+  border: 2px solid $red;
+  border-radius: $base-border-radius;
+  color: $red;
 }
 
 .reflectionDaySummary {
@@ -52,5 +53,19 @@
 
   h3 {
     font-size: 20px;
+  }
+}
+
+.addToWeeklyPlan {
+  // background-color: $lightest-blue;
+}
+
+.incompleteTodos {
+  font-size: 1rem;
+  padding: 0;
+
+  li {
+    margin: 10px 0;
+    @include display-flex;
   }
 }

@@ -11,16 +11,16 @@
   <p class="instructions">Let's plan tasks for today. In the "estimate" column, enter your guess for how many 25 minute blocks it will take to finish each task. If you think it will take more than five, break it down into smaller tasks.</p>
 
   <% if current_week_plan.todos.present? %>
-    <button class="blue breatheTop breatheBottom js--toggleWeekPlan showWeekPlan">Add todos from your weekly plan</button>
+    <button class="blue breatheTop breatheBottom js--toggleWeekPlan showWeekPlan">Add tasks from your weekly plan</button>
 
-    <section class="addWeeklyTodos hidden">
+    <section class="weeklyTodosSection addWeeklyTodos hidden">
       <div class="js--toggleWeekPlan closeWeekPlan">
         <span>close</span>
       </div>
       <div class="weeklyTodosScrollable">
         <ul>
           <% @week_plan.todos.each do |todo| %>
-            <li><span><%= todo.content %></span><button class="extraSmall js--addWeeklyTodo">Add</button></li>
+            <li class="weeklyTodo"><span><%= todo.content %></span><button class="button small js--addWeeklyTodo">Add</button></li>
           <% end %>
         </ul>
       </div>
@@ -34,7 +34,7 @@
         <span class="todoLabel">Estimate</span>
       </li>
 
-      <%= f.fields_for :todos do |t| %>
+      <%= f.fields_for :daily_todos do |t| %>
         <li class="todo">
           <div class="todoContent">
             <%= t.text_field :content, class: "contentInput" %>

@@ -2,121 +2,175 @@
   <h1>Settings</h1>
   <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
 
-  <%= form_for @user, html: { class: 'settingsForm breatheTop google_signin', id: 'payment-form' } do |f| %>
+  <div class="settingsWrapper">
     <div class="settingsSection">
-      <% if @user.paid? %>
-        <div class="settingsSection">
-          <div class="flexRow flexAlignCenter">
-            <%= render partial: "paid_icon" %>
-            <p>Thanks for supporting Volition! It's because people like you that Volition continues to exist.</p>
-          </div>
-        </div>
-      <% end %>
-
-      <h2 class="settingsHeading">Contact</h2>
-      <% unless @user.google_id %>
-        <p>If you'd like to be able to sign into Volition with your Google account, use the button below.</p>
+      <% unless @user.google_id || self_hosted? %>
+        <p>If you'd like to sign in to Volition with your Google account, click below.</p>
         <%= render partial: "sessions/google_sign_in" %>
-        <%= f.hidden_field :google_id, id: 'google_id_token' %>
+        <%= hidden_field_tag :google_id, id: 'google_id_token' %>
       <% end %>
 
-      <div class="contactInputs breatheTop breatheBottom flexJustifySpaceBetween flexWrap">
-        <div class="settingsInputGroup">
-          <%= f.label :email %>
-          <%= f.text_field :email, class: 'settingsInput' %>
-        </div>
+      <div class="settingsCard">
+        <h2 class="settingsHeading">Subscription</h2>
 
-        <div class="settingsInputGroup">
-          <%= f.label :name %>
-          <%= f.text_field :name, class: 'settingsInput' %>
-        </div>
-
-        <div class="settingsInputGroup">
-          <%= f.label :phone %>
-          <%= f.text_field :phone, class: 'settingsInput' %>
-        </div>
+        <% if !self_hosted? %>
+          <% if @subscription.active? %>
+            <div class="subscriptionCard">
+              <%= image_tag "paid" %>
+              <div class="headerText">
+                <h4>Volition <%= @subscription.name %> Subscription</h4>
+                <p>Renews on <%= @subscription.current_period_end.strftime("%B %e, %Y") %></p>
+              </div>
+              <hr>
+              <p>Thank you for your support. Your subscription allows us to to keep making Volition better.</p>
+              <%= link_to "Cancel subscription", subscription_path(@subscription), class: "cancelLink",  method: :delete, data: { confirm: "Are you sure?" } %>
+            </div>
+            <% unless @subscription.coupon&.include?("gift") %>
+              <h3>Credit Card Details</h3>
+              <p>Name: <%= current_user.name %></p>
+              <p>Card Number:  •••• •••• •••• <%= @subscription.card_last4 %></p>
+              <p>Expiry: <%= @subscription.card_expiration.strftime("%m/%Y") %></p>
+              <%= link_to "Update billing info",
+                edit_payment_path(current_user.id),
+                class: "button update" %>
+            <% else %>
+              <%= link_to "Update billing info",
+                edit_payment_path(current_user.id),
+                class: "button update breatheTop" %>
+            <% end %>
+          <% else %>
+            <p>You don't have a subscription yet. <%= "Your referral trial ends on #{(current_user.created_at + 1.month).strftime("%B %e, %Y")}" if current_user.in_referral_month? %></p>
+            <%= link_to "Subscribe", new_payment_path, class: "button secondary" %>
+          <% end %>
+        <% else %>
+          <div class="settingsSection hostedFeature">
+            <p>
+              Subscriptions are not necessary in self-hosted mode.
+              <br>
+              If you'd like to contribute to Volition you can <%= link_to "support us on Patreon", "https://www.patreon.com/usevolition", :target => "_blank" %>.
+            </p>
+          </div>
+        <% end %>
       </div>
-    </div>
 
-    <div class="settingsSection">
-      <h2 class="settingsHeading">Reminders</h2>
-      <% if !eligible_for_daily_reminders? && self_hosted? %>
-        <div class="settingsSection hostedFeature">
-          <p>
-          Daily reminders are not available by default in self-hosted mode.
-          See the README for info on how to use this feature.
-          </p>
-        </div>
-      <% else %>
-        <p>If you allow it, Volition will send you daily reminders to reflect.</p>
-        <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
-          <div class="settingsInputGroup">
-            <label for="" class="flexRow">
-              <div class="checkbox breatheRight">
-                <%= f.check_box :email_reminders, class: 'completeInput' %>
-                <%= f.label :email_reminders do %>
-                <% end %>
-              </div>
-              Email
-            </label>
-          </div>
+      <hr>
 
-          <div class="settingsInputGroup">
-            <label for="" class="flexRow">
-              <div class="checkbox breatheRight">
-                <%= f.check_box :sms_reminders, class: 'completeInput' %>
-                <%= f.label :sms_reminders do %>
-                <% end %>
+      <div class="settingsCard">
+        <h2 class="settingsHeading">Preferences</h2>
+        <%= form_tag preference_path(current_user), method: :patch do %>
+          <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
+            <div class="settingsInputGroup">
+              <label for="" class="flexRow">
+                <div class="checkbox breatheRight">
+                  <%= check_box_tag :track_weekends, nil, current_user.track_weekends, class: 'completeInput' %>
+                  <%= label_tag :track_weekends do %>
+                  <% end %>
+                </div>
+                Track tasks on weekends
+              </label>
+            </div>
+
+            <% unless self_hosted? %>
+              <div class="settingsInputGroup">
+                <label for="" class="flexRow">
+                  <div class="checkbox breatheRight">
+                    <%= check_box_tag :weekly_summary, nil, current_user.weekly_summary, class: 'completeInput' %>
+                    <%= label_tag :weekly_summary do %>
+                    <% end %>
+                  </div>
+                  Receive weekly summaries
+                </label>
               </div>
-              SMS
-            </label>
+            <% end %>
           </div>
+          <%= submit_tag "Save" %>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <% unless current_user.google_id %>
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Update email address</h2>
+          <%= form_tag update_email_preference_path(current_user), method: :patch do %>
+            <p>To change your email address from <%= current_user.email %>, enter the new email address and your current password below.</p>
+            <div class="settingsInputGroup">
+              <%= label_tag :email %>
+              <%= text_field_tag :email, nil, class: 'settingsInput' %>
+              <%= label_tag :current_password %>
+              <%= password_field_tag :password, nil, class: 'settingsInput' %>
+            </div>
+            <%= submit_tag "Save" %>
+          <% end %>
         </div>
+
+        <hr>
+
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Update password</h2>
+          <p>To change your password, enter your current password, then your new password below.</p>
+          <%= form_tag update_password_preference_path(current_user), method: :patch do %>
+            <div class="settingsInputGroup">
+              <%= label_tag :new_password %>
+              <%= password_field_tag :new_password, nil, class: 'settingsInput' %>
+              <%= label_tag :current_password %>
+              <%= password_field_tag :current_password, nil, class: 'settingsInput' %>
+            </div>
+            <%= submit_tag "Save" %>
+          <% end %>
+        </div>
+
+        <hr>
       <% end %>
-    </div>
 
-    <div class="settingsSection">
-      <h2 class="settingsHeading">Other</h2>
-      <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
-        <div class="settingsInputGroup">
-          <label for="" class="flexRow">
-            <div class="checkbox breatheRight">
-              <%= f.check_box :track_weekends, class: 'completeInput' %>
-              <%= f.label :track_weekends do %>
+      <% unless self_hosted? %>
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Gift and share Volition</h2>
+          <p><%= link_to "Purchase a Volition gift subscription", new_gift_path %> or copy and share your unique referral link. For every person that signs up and pays for Volition with your unique link, you'll both get a month free.</p>
+          <div class="referralWidget">
+            <button class="small copyButton">Copy and send link!</button>
+            <%= text_field_tag :referral_link,
+              current_user.referral_code,
+              readonly: true,
+              data: { referral_link: current_user.referral_link,
+                      referral_code: current_user.referral_code } %>
+          </div>
+
+          <% if current_user.referred_users.present? && !self_hosted? %>
+            <h4>Referrals</h4>
+            <div class="flexTable flexTable--3cols referredUsers">
+              <div style="order:1;" class="flexTable-cell"><strong>Email</strong></div>
+              <% current_user.referred_users.each_with_index do |user, index| %>
+                <div style="order:<%= index + 2 %>;" class="flexTable-cell"><%= user.email %></div>
+              <% end %>
+
+              <div style="order:1;" class="flexTable-cell right"><strong>Account Created On</strong></div>
+              <% current_user.referred_users.each_with_index do |user, index| %>
+                <div style="order:<%= index + 2 %>;" class="flexTable-cell right"><%= user.created_at.strftime("%m/%d/%Y") %></div>
+              <% end %>
+
+              <div style="order:1;" class="flexTable-cell right"><strong>Referral Activated</strong></div>
+              <% current_user.referred_users.each_with_index do |user, index| %>
+                <div style="order:<%= index + 2 %>;" class="flexTable-cell right">
+                  <% if user.subscription.stripe_id.present? %>
+                    <span class="checkMark small"></span>
+                  <% else %>
+                    <span class="xMark"></span>
+                  <% end %>
+                </div>
               <% end %>
             </div>
-            Track tasks on weekends
-          </label>
+          <% end %>
         </div>
 
-        <div class="settingsInputGroup">
-          <label for="" class="flexRow">
-            <div class="checkbox breatheRight">
-              <%= f.check_box :weekly_summary, class: 'completeInput' %>
-              <%= f.label :weekly_summary do %>
-              <% end %>
-            </div>
-            Receive weekly summaries
-          </label>
-        </div>
+        <hr>
+      <% end %>
+
+      <div class="settingsCard dangerZone">
+        <h2 class="settingsHeading">Delete account</h2>
+        <p>Delete your account if you no longer wish to use Volition (and want all of your account data deleted).</p>
+        <%= link_to "Delete account".html_safe, user_path(current_user), method: :delete, data: {confirm: "Are you sure you want to delete your account?"}, class: "button secondary danger" %>
       </div>
     </div>
-
-    <div class="settingsSection dangerZone">
-      <h2 class="settingsHeading dangerZone">
-        Danger zone
-      </h2>
-
-      <div class="dangerZoneContent">
-        <p>Deleting your account is irreversible!</p>
-        <%= link_to 'Delete account',
-          user_path(@user),
-          method: :delete,
-          class: 'button danger',
-          data: { confirm: "Are you sure you want to delete your account?" } %>
-      </div>
-    </div>
-
-    <%= f.submit "Save" %>
-  <% end %>
+  </div>
 </section>

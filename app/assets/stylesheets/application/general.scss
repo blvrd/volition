@@ -6,14 +6,25 @@
   margin-bottom: 4rem;
 
   h1 {
-    font-size: 30px;
+    font-size: 2rem;
     color: $dark-gray;
     margin: 0;
   }
 
   h2 {
-    font-size: 20px;
+    font-size: 1.5rem;
     color: $green;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    color: $dark-gray;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: bold;
   }
 }
 
@@ -104,3 +115,33 @@ footer {
     color: $dark-heroku-purple;
   }
 }
+
+.flexTable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 3em 0;
+  padding: 0;
+  font-size: 1rem;
+}
+.flexTable-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;  // Default to full width
+  padding-right: 1.5em;
+  overflow: hidden; // Or flex might break
+  text-overflow: ellipsis;
+  list-style: none;
+  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
+
+  &.right {
+    text-align: right;
+  }
+}
+
+/* Table column sizing
+================================== */
+.flexTable--2cols > .flexTable-cell  { width: 50%; }
+.flexTable--3cols > .flexTable-cell  { width: 33.33%; }
+.flexTable--4cols > .flexTable-cell  { width: 25%; }
+.flexTable--5cols > .flexTable-cell  { width: 20%; }
+.flexTable--6cols > .flexTable-cell  { width: 16.6%; }

@@ -1,8 +1,16 @@
 <section class="appSection">
   <h1>Payment</h1>
 
-  <p class="instructions">You've had a chance to try Volition. If you found it useful, you can pay $12 to use it forever! If you don't want to pay and you have some technical chops, you can also <%= link_to "self-host with Heroku", ENV["HEROKU_URL"], class: "herokuLink", target: "_blank" %>.</p>
+  <p class="instructions">You've had a chance to try Volition. If you found it useful, you can keep using it for $5 per month, or get two free months if you purchase a yearly subscription. If you don't want to pay and you have some technical chops, you can also <%= link_to "self-host with Heroku", ENV["HEROKU_URL"], class: "herokuLink", target: "_blank" %>.</p>
+  <h3>Selected plan: <span id="selectedPlan"><%= @monthly_plan.name %> (<%= number_to_currency(@monthly_plan.amount/100) %>)</span></h3>
+
+  <div class="planOptions">
+    <button class="" id="js--monthlyPlan">Monthly</button>
+    <button class="update" id="js--yearlyPlan">Yearly</button>
+  </div>
+
   <%= form_with url: payments_path, local: true, id: "payment-form" do %>
+    <%= hidden_field_tag :plan_id, value: @monthly_plan.id %>
     <form id="payment-form" action="">
       <div id="credit-card" class="breatheBottom">
         <label for="card-element">Credit or debit card</label>

@@ -1,0 +1,2 @@
+$('section.weeklyTodosSection.current').html("<%= j render partial: 'weekly_todos', locals: { week_plan: @week_plan, button_partial_name: "delete_button" } %>")
+$("section.weeklyTodosSection").not(".current").html("<%= j render partial: 'weekly_todos', locals: { week_plan: @last_week, button_partial_name: "move_button", closeable: true } %>")
