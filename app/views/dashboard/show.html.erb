@@ -1,7 +1,7 @@
 <section class="appSection">
   <h1>Dashboard</h1>
   <% if today_is_trackable? %>
-    <%= link_to "go to today's tasks &rarr;".html_safe, today_path, class: "todayLink" %>
+    <%= link_to "Go to today's tasks".html_safe, today_path, class: "todayLink" %>
   <% else %>
     <p class="weekendMessage">Have a good <%= Date::DAYNAMES[Date.current.wday] %> and get some rest.</p>
   <% end %>
