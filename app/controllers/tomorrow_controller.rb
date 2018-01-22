@@ -5,7 +5,7 @@ class TomorrowController < AuthenticatedController
                message = "You already planned tomorrow\'s tasks. You can change them when you start your day."
                dashboard_path
              else
-               message = "You must write a reflection for today before planning tomorrow\'s tasks." 
+               message = "You must write a reflection for today before planning tomorrow\'s tasks."
                reflect_path
              end
 
@@ -19,7 +19,7 @@ class TomorrowController < AuthenticatedController
     @todo_list = TodoList.new
     @week_plan = current_week_plan
     5.times do
-      @todo_list.todos.build
+      @todo_list.daily_todos.new
     end
   end
 

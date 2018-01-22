@@ -4,16 +4,11 @@
       <% week_plan.todos.reverse.each do |todo| %>
         <li class="weeklyTodo">
           <%= todo.content %>
-          <%= form_with url: remove_weekly_todo_path, method: :delete do |f| %>
-            <%= f.hidden_field :id, value: todo.id %>
-            <div class="deleteTodoButton js--submitForm">
-              <i class="fa fa-times"></i>
-            </div>
-          <% end %>
+          <%= render partial: button_partial_name, locals: { todo: todo } %>
         </li>
       <% end %>
     </ul>
   </div>
 <% else %>
-  <p class="noTasks">No tasks yet.</p>
+  <p class="noTasks"><%= local_assigns.fetch(:blank_slate_text, "No tasks yet.") %></p>
 <% end %>

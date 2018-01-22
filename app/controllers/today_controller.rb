@@ -24,10 +24,10 @@ class TodayController < ApplicationController
       redirect_to today_path
     end
 
-    @week_plan = current_week_plan
     @todo_list = TodoList.new
+    @week_plan = current_week_plan
     5.times do
-      @todo_list.todos.build
+      @todo_list.daily_todos.new
     end
   end
 
@@ -38,9 +38,13 @@ class TodayController < ApplicationController
       list_type: 'daily',
       week_plan: current_week_plan
     )
-
     if @todo_list.save
-      @todo_list.update(todos_attributes: todo_list_params[:todos_attributes])
+
+      @todo_list.update(daily_todos_attributes: daily_todo_list_params[:daily_todos_attributes])
+      overlapping_todo_content = @todo_list.todos.pluck(:content) & current_week_plan.todos.pluck(:content)
+      if overlapping_todo_content.size > 0
+        current_week_plan.todos.where(content: overlapping_todo_content).destroy_all
+      end
       redirect_to today_path
     end
 
@@ -59,7 +63,7 @@ class TodayController < ApplicationController
     end
   end
 
-  def todo_list_params
-    params.require(:todo_list).permit(todos_attributes: [:content, :estimated_time_blocks])
+  def daily_todo_list_params
+    params.require(:todo_list).permit(daily_todos_attributes: [:content, :estimated_time_blocks])
   end
 end

@@ -21,12 +21,6 @@
           <% else %>
             <%= todo.content.truncate(40) %>
           <% end %>
-          <% if todo.content.present? %>
-            <span class="time">
-              <i class="fa fa-clock-o"></i>
-              <span><%= todo.actual_time_blocks %>/<%= todo.estimated_time_blocks %></span>
-            </span>
-          <% end %>
         </li>
       <% end %>
     </ol>
@@ -62,6 +56,22 @@
     <div class="inputGroup">
       <%= f.label :positive, t("reflection_questions.positive") %>
       <%= f.text_area :positive %>
+    </div>
+
+    <div class="inputGroup">
+      <label>Add incomplete tasks to your week</label>
+      <ul class="incompleteTodos">
+        <% @todo_list.todos.incomplete.each do |todo| %>
+          <li>
+            <div class="checkbox breatheRight">
+              <%= check_box_tag "add_to_week[]", todo.id, false, class: "completeInput", id: "add_to_week_#{todo.id}" %>
+              <%= label_tag "add_to_week_#{todo.id}" do %>
+              <% end %>
+            </div>
+            <%= todo.content %>
+          </li>
+        <% end %>
+      </ul>
     </div>
 
     <div class="inputGroup">

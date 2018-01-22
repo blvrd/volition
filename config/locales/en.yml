@@ -22,3 +22,5 @@ en:
     positive: "What did you do well?"
     negative: "What could you have done better?"
 
+  daily_snapshot:
+    weekly_todo_list_error_message: "You can only create a daily snapshot from daily todo lists"

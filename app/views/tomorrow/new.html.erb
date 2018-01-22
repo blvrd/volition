@@ -31,7 +31,7 @@
         <span class="todoLabel">Estimate</span>
       </li>
 
-      <%= f.fields_for :todos do |t| %>
+      <%= f.fields_for :daily_todos do |t| %>
         <li class="todo">
           <div class="todoContent">
             <%= t.text_field :content, class: "contentInput" %>

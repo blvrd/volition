@@ -54,3 +54,17 @@
     font-size: 20px;
   }
 }
+
+.addToWeeklyPlan {
+  // background-color: $lightest-blue;
+}
+
+.incompleteTodos {
+  font-size: 1rem;
+  padding: 0;
+
+  li {
+    margin: 10px 0;
+    @include display-flex;
+  }
+}
