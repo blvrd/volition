@@ -87,9 +87,16 @@ button, .button, input[type="submit"] {
   }
 
   &.blue {
-    background-color: $lightest-blue;
-    border: 2px solid $lighter-blue;
+    background-color: $blue;
+    border: 2px solid $blue;
     padding: 0.6em $base-spacing;
+
+    &:hover,
+    &:focus {
+      background-color: $dark-blue;
+      border: 2px solid $dark-blue;
+      color: #fff;
+    }
   }
 }
 
