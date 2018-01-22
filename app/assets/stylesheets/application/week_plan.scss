@@ -1,7 +1,7 @@
 %weeklyTodos {
   position: relative;
-  background: $lightest-blue;
-  border: 2px solid $lighter-blue;
+  background: $blue;
+  border: 2px solid $blue;
   border-radius: $base-border-radius;
   color: $white;
   font-size: 1rem;
@@ -13,12 +13,12 @@
     height: 100%;
     overflow-y: auto;
     &::-webkit-scrollbar {
-      background-color: $lightest-blue;
+      background-color: $blue;
       width: 5px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: $lighter-blue;
+      background-color: $dark-blue;
       border-radius: 3px;
     }
   }
@@ -40,7 +40,7 @@
     position: absolute;
     top: -20px;
     right: -2px;
-    background: $lighter-blue;
+    background: $blue;
     border-radius: 3px;
     width: 40px;
     height: 20px;
@@ -89,11 +89,6 @@
     cursor: default;
     transition: background 400ms;
 
-
-    // &:hover {
-    //   background: $lighter-blue;
-    // }
-
     .deleteTodoButton {
       width: 20px;
       height: 20px;
@@ -124,4 +119,3 @@
     margin-right: 10px;
   }
 }
-
