@@ -51,7 +51,7 @@
   @include align-self(flex-end);
   margin: 10px 40px 5px 0;
   font-size: 1rem;
-  color: $medium-gray;
+  color: $dark-gray;
 
   @include MQ(M) {
     display: none;
@@ -62,7 +62,7 @@
   @include display-flex;
   @include flex-direction(column-reverse);
   font-size: 1.2rem;
-  color: $lighter-blue;
+  color: $medium-gray;
   cursor: pointer;
 
   @include MQ(M) {
@@ -75,8 +75,8 @@
 .menuOverlay {
   width: 100vw !important;
   height: 100vh !important;
-  background: $light-blue;
-  opacity: 0.95;
+  background: $dark-gray;
+  opacity: .97;
   position: absolute;
   z-index: 1000;
   @include display-flex;

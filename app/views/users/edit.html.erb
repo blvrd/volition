@@ -1,6 +1,6 @@
 <section class="appSection">
   <h1>Settings</h1>
-  <%= link_to "&larr; go back to dashboard".html_safe, dashboard_path %>
+  <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
 
   <%= form_for @user, html: { class: 'settingsForm breatheTop google_signin', id: 'payment-form' } do |f| %>
     <div class="settingsSection">
@@ -120,4 +120,3 @@
     <%= f.submit "Save" %>
   <% end %>
 </section>
-
