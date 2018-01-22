@@ -5,6 +5,8 @@
     <div class="calendarIconDay"><span class="day"><%= Date.current.strftime('%e') %></span></div>
   </div>
 
+  <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
+
   <%= react_component 'TodoList', todos: @todos %>
 
   <% if current_week_plan.todos.present? %>
