@@ -1,3 +1,9 @@
+<% if local_assigns.fetch(:closeable, false) %>
+  <div class="js--toggleWeekPlan closeWeekPlan">
+    <span>close</span>
+  </div>
+<% end %>
+
 <% if week_plan.todos.present? %>
   <div class="weeklyTodosScrollable">
     <ul class="weeklyTodos">
