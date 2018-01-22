@@ -1,13 +1,28 @@
 class TodoList < ApplicationRecord
   extend Enumerize
 
-  has_many :todos, dependent: :delete_all
+  before_destroy :delete_todos
+
+  with_options class_name: 'Todo' do |options|
+    options.has_many :daily_todos, foreign_key: :daily_todo_list_id
+    options.has_many :weekly_todos, foreign_key: :weekly_todo_list_id
+  end
+
+  def todos
+    daily_todos.or(weekly_todos)
+  end
 
   belongs_to :user
   belongs_to :week_plan, class_name: 'TodoList', required: false
 
-  accepts_nested_attributes_for :todos,
+  has_one :daily_snapshot
+
+  accepts_nested_attributes_for :daily_todos,
                                 reject_if: :all_blank
+
+  accepts_nested_attributes_for :weekly_todos,
+                                reject_if: :all_blank
+
 
   self.per_page = 5
 
@@ -15,6 +30,14 @@ class TodoList < ApplicationRecord
 
   scope :weekly, -> { where(list_type: 'weekly') }
   scope :daily,  -> { where(list_type: 'daily') }
+  scope :missing_snapshot, -> {
+    daily.left_outer_joins(:daily_snapshot)
+         .where(daily_snapshots: { id: nil })
+  }
+
+  def delete_todos
+    todos.delete_all
+  end
 
   def weekly?
     list_type == 'weekly'

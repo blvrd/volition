@@ -1,0 +1,6 @@
+<%= form_with url: remove_weekly_todo_path, method: :delete do |f| %>
+  <%= f.hidden_field :id, value: todo.id %>
+  <div class="button delete small js--submitForm">
+    <span>Remove</span>
+  </div>
+<% end %>

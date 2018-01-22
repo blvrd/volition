@@ -5,7 +5,7 @@
   border-radius: $base-border-radius;
   color: $white;
   font-size: 1rem;
-  margin: 40px 0;
+  margin-top: 40px;
   height: 300px;
 
   .weeklyTodosScrollable {
@@ -89,9 +89,13 @@
     cursor: default;
     transition: background 400ms;
 
+
+    // &:hover {
+    //   background: $lighter-blue;
+    // }
+
     .deleteTodoButton {
-      width: 20px;
-      height: 20px;
+      padding: 5px 10px;
       background: $white;
       border-radius: $base-border-radius;
       cursor: pointer;
@@ -99,8 +103,9 @@
       @include align-items(center);
       @include justify-content(center);
 
-      i {
+      span {
         color: $red;
+        font-weight: bold;
       }
     }
 
@@ -117,5 +122,14 @@
 
   input[type="text"] {
     margin-right: 10px;
+  }
+}
+
+div.showWeekPlan {
+  width: 100%;
+  text-align: center;
+
+  .arrowDown {
+    font-size: 10px;
   }
 }

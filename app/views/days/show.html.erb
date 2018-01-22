@@ -12,7 +12,7 @@
     <ol class="dashboardTodoList">
       <% @todo_list.todos.each do |todo| %>
         <li class="dashboardTodo">
-          <% if todo.complete? %>
+          <% if todo.complete %>
             <span class="checkMark small"></span>
             <span class="complete">
               <%= todo.content.truncate(40) %>

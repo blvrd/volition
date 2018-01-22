@@ -62,7 +62,12 @@
   }
 
   .time {
-    display: inline-block;
+    display: none;
+
+    @include MQ(M) {
+      display: inline-block;
+    }
+
     opacity: 0;
     transition: opacity 150ms;
     margin-left: 10px;

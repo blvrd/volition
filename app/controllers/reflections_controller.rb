@@ -19,7 +19,16 @@ class ReflectionsController < AuthenticatedController
     @reflection.user = current_user
     @reflection.date = Date.current
 
+    DailySnapshot.create_from_todo_list(TodoList.today(current_user))
+
     if @reflection.save
+      Todo.where(id: params[:add_to_week]).each do |todo|
+        todo.update(
+          weekly_todo_list_id: current_week_plan.id,
+          daily_todo_list_id: nil
+        )
+      end
+
       redirect_to after_create_path
     else
       @todo_list = TodoList.today(current_user)

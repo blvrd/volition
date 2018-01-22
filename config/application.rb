@@ -14,6 +14,7 @@ module TodoApp
       generate.view_specs false
     end
     config.action_controller.action_on_unpermitted_parameters = :raise
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
     config.active_job.queue_adapter = :sidekiq
     config.react.addons = true
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
