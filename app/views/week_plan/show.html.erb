@@ -24,9 +24,6 @@
     <% if @last_week.present? %>
       <div class="button blue breatheTop js--toggleWeekPlan showWeekPlan">Previous week <span class="arrowDown">&#9660;</span></div>
       <section class="weeklyTodosSection breatheTop hidden lastWeek">
-        <div class="js--toggleWeekPlan closeWeekPlan">
-          <span>close</span>
-        </div>
         <%= render partial: 'weekly_todos', locals: {
           week_plan: @last_week,
           button_partial_name: "move_button",
