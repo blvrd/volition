@@ -39,30 +39,6 @@ class UserTest < ActiveSupport::TestCase
     assert(@user.recently_signed_up? == true)
   end
 
-  test '.want_sms_reminders' do
-    @user.update(sms_reminders: true, phone: '9144825484')
-    new_user = User.create(
-      email: 'new@example.com',
-      password: 'password',
-      password_confirmation: 'password'
-    )
-
-    assert_includes(User.want_sms_reminders, @user)
-    refute_includes(User.want_sms_reminders, new_user)
-  end
-
-  test '.want_email_reminders' do
-    @user.update(email_reminders: true)
-    new_user = User.create(
-      email: 'new@example.com',
-      password: 'password',
-      password_confirmation: 'password'
-    )
-
-    assert_includes(User.want_email_reminders, @user)
-    refute_includes(User.want_email_reminders, new_user)
-  end
-
   test '.finishing_their_day' do
     chicago_time_zone = ActiveSupport::TimeZone.all.find {|zone| zone.tzinfo.name == 'America/Chicago'}
 
@@ -82,14 +58,6 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test 'validation phone number is present when sms_reminders is true' do
-    @user.sms_reminders = true
-
-    @user.save
-
-    assert_not_nil(@user.errors.full_messages)
-  end
-
   test '#trialing?' do
     assert(@user.trialing?)
 
@@ -100,20 +68,6 @@ class UserTest < ActiveSupport::TestCase
     @user.reflections.build.save(validate: false)
 
     refute(@user.trialing?)
-  end
-
-  test "#completion_percentage" do
-    @user.todo_lists.first.todos.create
-
-    assert_equal(0, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
-
-    @user.todos.first.update(complete: true)
-
-    assert_equal(50, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
-
-    @user.todos.last.update(complete: true)
-
-    assert_equal(100, @user.completion_percentage(from: 6.days.ago, to: Date.current.end_of_day))
   end
 
   test '#average_rating' do

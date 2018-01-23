@@ -30,49 +30,7 @@
           <%= f.label :name %>
           <%= f.text_field :name, class: 'settingsInput' %>
         </div>
-
-        <div class="settingsInputGroup">
-          <%= f.label :phone %>
-          <%= f.text_field :phone, class: 'settingsInput' %>
-        </div>
       </div>
-    </div>
-
-    <div class="settingsSection">
-      <h2 class="settingsHeading">Reminders</h2>
-      <% if !eligible_for_daily_reminders? && self_hosted? %>
-        <div class="settingsSection hostedFeature">
-          <p>
-          Daily reminders are not available by default in self-hosted mode.
-          See the README for info on how to use this feature.
-          </p>
-        </div>
-      <% else %>
-        <p>If you allow it, Volition will send you daily reminders to reflect.</p>
-        <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
-          <div class="settingsInputGroup">
-            <label for="" class="flexRow">
-              <div class="checkbox breatheRight">
-                <%= f.check_box :email_reminders, class: 'completeInput' %>
-                <%= f.label :email_reminders do %>
-                <% end %>
-              </div>
-              Email
-            </label>
-          </div>
-
-          <div class="settingsInputGroup">
-            <label for="" class="flexRow">
-              <div class="checkbox breatheRight">
-                <%= f.check_box :sms_reminders, class: 'completeInput' %>
-                <%= f.label :sms_reminders do %>
-                <% end %>
-              </div>
-              SMS
-            </label>
-          </div>
-        </div>
-      <% end %>
     </div>
 
     <div class="settingsSection">

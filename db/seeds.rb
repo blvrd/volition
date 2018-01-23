@@ -26,7 +26,7 @@ list_2 = TodoList.create(
     content: 'Read a book.',
     estimated_time_blocks: 5,
     actual_time_blocks: 4,
-    todo_list: list_1,
+    daily_todo_list: list_1,
     complete: false
   )
 end
@@ -36,7 +36,7 @@ end
     content: 'Follow up with client',
     estimated_time_blocks: 3,
     actual_time_blocks: 4,
-    todo_list: list_2,
+    daily_todo_list: list_2,
     complete: true
   )
 end

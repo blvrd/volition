@@ -76,9 +76,6 @@ class UsersController < AuthenticatedController
     params.require(:registration).permit(
       :name,
       :email,
-      :phone,
-      :email_reminders,
-      :sms_reminders,
       :track_weekends,
       :password,
       :google_id
@@ -89,9 +86,6 @@ class UsersController < AuthenticatedController
     params.require(:user).permit(
       :name,
       :email,
-      :phone,
-      :email_reminders,
-      :sms_reminders,
       :track_weekends,
       :password,
       :google_id,
