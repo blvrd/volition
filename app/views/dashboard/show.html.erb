@@ -22,10 +22,10 @@
               <% if todo.complete %>
                 <span class="checkMark small"></span>
                 <span class="complete">
-                  <%= truncate(todo.content, user_agent: @user_agent) %>
+                  <%= todo.content %>
                 </span>
               <% else %>
-                <%= truncate(todo.content, user_agent: @user_agent) %>
+                <%= todo.content %>
               <% end %>
             </li>
           <% end %>
@@ -53,10 +53,10 @@
                 <% if todo.complete %>
                   <span class="checkMark small"></span>
                   <span class="complete">
-                    <%= truncate(todo.content, user_agent: @user_agent) %>
+                    <%= todo.content %>
                   </span>
                 <% else %>
-                  <%= truncate(todo.content, user_agent: @user_agent) %>
+                  <%= todo.content %>
                 <% end %>
                 <% if todo.content.present? %>
                   <span class="time">
@@ -95,10 +95,10 @@
                   <% if todo.complete %>
                     <span class="checkMark small"></span>
                     <span class="complete">
-                      <%= truncate(todo.content, user_agent: @user_agent) %>
+                      <%= todo.content %>
                     </span>
                   <% else %>
-                    <%= truncate(todo.content, user_agent: @user_agent) %>
+                    <%= todo.content %>
                   <% end %>
                   <% if todo.content.present? %>
                     <span class="time">

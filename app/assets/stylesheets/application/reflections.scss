@@ -31,7 +31,7 @@
   width: 90%;
 
   @include MQ(M) {
-    width: initial;
+    width: 500px;
   }
 
   .error {

@@ -15,10 +15,10 @@
           <% if todo.complete %>
             <span class="checkMark small"></span>
             <span class="complete">
-              <%= todo.content.truncate(40) %>
+              <%= todo.content %>
             </span>
           <% else %>
-            <%= todo.content.truncate(40) %>
+            <%= todo.content %>
           <% end %>
           <% if todo.content.present? %>
             <span class="time">
