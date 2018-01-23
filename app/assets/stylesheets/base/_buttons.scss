@@ -1,4 +1,5 @@
 button, .button, input[type="submit"] {
+  height: max-content;
   outline: none;
   appearance: none;
   background-color: $action-color;
