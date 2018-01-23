@@ -28,7 +28,7 @@ button, .button, input[type="submit"] {
     &:focus {
       background-color: $dark-red;
       border: 2px solid $dark-red;
-      color: #fff;
+      color: $white;
     }
   }
 
@@ -101,16 +101,16 @@ button, .button, input[type="submit"] {
   }
 
   &.delete {
-    background-color: $white;
-    border: 2px solid $white;
+    background-color: $red;
+    border: 2px solid $red;
     padding: 0.6em $base-spacing;
-    color: $red;
+    color: $white;
 
     &:hover,
     &:focus {
-      background-color: darken($white, 5%);
-      border: 2px solid darken($white, 5%);
-      color: darken($red, 5%);
+      background-color: $dark-red;
+      border: 2px solid $dark-red;
+      color: $white;
     }
   }
 }

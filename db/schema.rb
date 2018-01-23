@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20180120183158) do
     t.text "todo_list_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "user_id", null: false
+    t.integer "user_id"
     t.index ["user_id"], name: "index_weekly_summaries_on_user_id"
   end
 
