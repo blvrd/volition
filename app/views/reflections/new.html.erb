@@ -58,6 +58,7 @@
       <%= f.text_area :positive %>
     </div>
 
+<<<<<<< HEAD
     <%  if @todo_list.todos.incomplete.present? %>
       <div class="inputGroup">
         <label>Add incomplete tasks to your weekly plan</label>
@@ -75,6 +76,23 @@
         </ul>
       </div>
     <% end %>
+=======
+    <div class="inputGroup">
+      <label>Add incomplete tasks to your weekly plan</label>
+      <ul class="incompleteTodos">
+        <% @todo_list.todos.incomplete.each do |todo| %>
+          <li>
+            <div class="checkbox breatheRight">
+              <%= check_box_tag "add_to_week[]", todo.id, false, class: "completeInput", id: "add_to_week_#{todo.id}" %>
+              <%= label_tag "add_to_week_#{todo.id}" do %>
+              <% end %>
+            </div>
+            <%= todo.content %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+>>>>>>> 548f4794424b6a3608242532b8c9ac4028f4fb78
 
     <div class="inputGroup">
       <%= f.submit 'Save' %>
