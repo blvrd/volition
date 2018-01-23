@@ -32,7 +32,7 @@
   height: 100%;
   height: 100%;
   width: 75px;
-  padding: 20px 0;
+  padding: 20px;
 }
 
 .todayLink {
@@ -42,10 +42,17 @@
 .dashboardTodoList {
   font-size: 16px;
   @include flex(1);
-  padding-left: 50px;
+  padding-left: 20px;
+  width: 85%;
 }
 
 .dashboardTodo {
+  list-style-position:inside;
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   .complete {
     text-decoration: line-through;
   }
