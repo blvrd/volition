@@ -18,11 +18,15 @@ class WeeklySummary < ApplicationRecord
   end
 
   def generate_stats
-    daily_completion_percentages = daily_snapshots.map(&:completion_percentage).compact
-    return unless daily_completion_percentages.present?
-    self.completion_percentage = daily_completion_percentages.reduce(0, :+) /
-      daily_completion_percentages.count
-    self.weekly_rating = reflections.map(&:rating).reduce(0, :+) / reflections.count
+    weekly_todos = daily_snapshots.flat_map(&:todos)
+    complete_todos = weekly_todos.select(&:complete)
+    self.completion_percentage = (complete_todos.count / weekly_todos.count.to_f) * 100
+
+    if reflections.present?
+      self.weekly_rating = reflections.map(&:rating).reduce(0, :+) / reflections.count
+    else
+      self.weekly_rating = 0
+    end
   end
 
   def arrow_and_class(sym)

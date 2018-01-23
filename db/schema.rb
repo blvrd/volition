@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120183158) do
+ActiveRecord::Schema.define(version: 20180123171724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,9 +64,6 @@ ActiveRecord::Schema.define(version: 20180120183158) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "phone"
-    t.boolean "email_reminders", default: false
-    t.boolean "sms_reminders", default: false
     t.boolean "track_weekends", default: true
     t.string "timezone"
     t.boolean "paid", default: false, null: false
@@ -83,7 +80,7 @@ ActiveRecord::Schema.define(version: 20180120183158) do
     t.text "todo_list_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.boolean "user_id", null: false
     t.index ["user_id"], name: "index_weekly_summaries_on_user_id"
   end
 

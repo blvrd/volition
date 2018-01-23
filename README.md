@@ -92,22 +92,6 @@ server {
 and go to what you set in your server\_name field and it should just work
 
 
-### Setting up reminders
-To take advantage of the daily reflection reminders, you may need to do some extra setup:
-
-#### SMS reminders
-You’ll need to create a Twilio account and set three environment variables in the `.env` file:
-- `TWILIO_SID`
-- `TWILIO_AUTH_TOKEN`
-- `TWILIO_SENDER_PHONE_NUMBER`
-
-#### Email reminders
-You’ll need to set some SMTP environment variables in the `.env` file:
-- `SMTP_ADDRESS`
-- `SMTP_DOMAIN`
-- `SMTP_PASSWORD`
-- `SMTP_USERNAME`
-
 ## Contributing
 
 After you have cloned this repo, run this setup script to set up your machine

@@ -39,12 +39,14 @@ describe DailySnapshot do
 
     Todo.last.update!(complete: false)
 
+    DailySnapshot.destroy_all
     new_daily_snapshot = DailySnapshot.create_from_todo_list(@daily_todo_list)
 
     assert_equal(80, new_daily_snapshot.completion_percentage)
 
     Todo.last.update!(content: "")
 
+    DailySnapshot.destroy_all
     another_daily_snapshot = DailySnapshot.create_from_todo_list(@daily_todo_list)
 
     assert_equal(100, another_daily_snapshot.completion_percentage)

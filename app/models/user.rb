@@ -8,12 +8,9 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
 
-  scope :want_sms_reminders,     -> { where(sms_reminders: true) }
-  scope :want_email_reminders,   -> { where(email_reminders: true) }
   scope :want_weekly_summaries,  -> { where(weekly_summary: true) }
   scope :paid,                   -> { where(paid: true) }
 
-  validates :phone, presence: true, if: -> { self.sms_reminders? }
   validates :email, presence: true, unless: -> { self.guest? }
   validates :email, uniqueness: true, unless: -> { self.guest? }
   validates :password_digest, presence: true, unless: :skip_password_validation
@@ -56,8 +53,15 @@ class User < ApplicationRecord
   end
 
   def completion_percentage(from:, to:)
-    snapshots = DailySnapshot.where(created_at: from..to)
+    snapshots = DailySnapshot.where(
+      created_at: from..to,
+      todo_list_id: todo_lists.pluck(:id)
+    )
+
+    return 0 if snapshots.blank?
+
     snapshots.reduce(0) do |sum, snapshot|
+      next sum unless snapshot.completion_percentage.is_a?(Integer)
       sum += snapshot.completion_percentage
       sum
     end / snapshots.size

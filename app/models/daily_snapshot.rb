@@ -35,8 +35,10 @@ class DailySnapshot < ApplicationRecord
   end
 
   def completion_percentage
+    return 0 unless todos.present?
     todos_filled_out = todos.select { |todo| todo.content.present? }
     return 0 unless todos_filled_out.present?
+
     (todos_filled_out.select { |todo| todo.complete  }.count / todos_filled_out.count.to_f) * 100
   end
 end
