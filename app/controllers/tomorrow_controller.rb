@@ -30,7 +30,7 @@ class TomorrowController < AuthenticatedController
     )
 
     if @todo_list.save
-      @todo_list.update(todos_attributes: todo_list_params[:todos_attributes])
+      @todo_list.update(daily_todos_attributes: todo_list_params[:daily_todos_attributes])
       redirect_to after_create_path
     end
 
@@ -58,6 +58,6 @@ class TomorrowController < AuthenticatedController
   end
 
   def todo_list_params
-    params.require(:todo_list).permit(todos_attributes: [:content, :estimated_time_blocks])
+    params.require(:todo_list).permit(daily_todos_attributes: [:content, :estimated_time_blocks])
   end
 end
