@@ -4,37 +4,38 @@
 
   <%= form_for @user, html: { class: 'settingsForm breatheTop google_signin', id: 'payment-form' } do |f| %>
     <div class="settingsSection">
-      <% if @user.paid? %>
-        <div class="settingsSection">
-          <div class="flexRow flexAlignCenter">
-            <%= render partial: "paid_icon" %>
-            <p>Thanks for supporting Volition! It's because people like you that Volition continues to exist.</p>
-          </div>
-        </div>
-      <% end %>
-
-      <h2 class="settingsHeading">Contact</h2>
       <% unless @user.google_id %>
-        <p>If you'd like to be able to sign into Volition with your Google account, use the button below.</p>
+        <p>If you'd like to sign in to Volition with your Google account, click below.</p>
         <%= render partial: "sessions/google_sign_in" %>
         <%= f.hidden_field :google_id, id: 'google_id_token' %>
       <% end %>
 
+      <h2 class="settingsHeading">Account Information</h2>
       <div class="contactInputs breatheTop breatheBottom flexJustifySpaceBetween flexWrap">
-        <div class="settingsInputGroup">
-          <%= f.label :email %>
-          <%= f.text_field :email, class: 'settingsInput' %>
-        </div>
+
+        <% if @user.paid? %>
+          <div class="settingsSection">
+            <div class="flexRow flexAlignCenter">
+              <%= render partial: "paid_icon" %>
+              <p>Thanks for your support. Your subscription will allow us to keep improving Voliton long into the future.</p>
+            </div>
+          </div>
+        <% end %>
 
         <div class="settingsInputGroup">
           <%= f.label :name %>
           <%= f.text_field :name, class: 'settingsInput' %>
         </div>
+
+        <div class="settingsInputGroup">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'settingsInput' %>
+        </div>
       </div>
     </div>
 
     <div class="settingsSection">
-      <h2 class="settingsHeading">Other</h2>
+      <h2 class="settingsHeading">Preferences</h2>
       <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
         <div class="settingsInputGroup">
           <label for="" class="flexRow">
