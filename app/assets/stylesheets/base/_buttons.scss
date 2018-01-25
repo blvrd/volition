@@ -1,5 +1,4 @@
 button, .button, input[type="submit"] {
-  height: max-content;
   outline: none;
   appearance: none;
   background-color: $action-color;
@@ -17,7 +16,7 @@ button, .button, input[type="submit"] {
   text-decoration: none;
   transition: background-color $base-duration $base-timing, border $base-duration $base-timing;
   user-select: none;
-  vertical-align: middle;
+  // vertical-align: middle;
   white-space: nowrap;
   // text-shadow: 1px 1px 1px #666;
 
