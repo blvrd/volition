@@ -30,7 +30,11 @@ class TomorrowController < AuthenticatedController
     )
 
     if @todo_list.save
-      @todo_list.update(daily_todos_attributes: todo_list_params[:daily_todos_attributes])
+      @todo_list.update(daily_todos_attributes: daily_todo_list_params[:daily_todos_attributes])
+      overlapping_todo_content = @todo_list.todos.pluck(:content) & current_week_plan.todos.pluck(:content)
+      if overlapping_todo_content.size > 0
+        current_week_plan.todos.where(content: overlapping_todo_content).destroy_all
+      end
       redirect_to after_create_path
     end
 
@@ -57,7 +61,7 @@ class TomorrowController < AuthenticatedController
     end
   end
 
-  def todo_list_params
+  def daily_todo_list_params
     params.require(:todo_list).permit(daily_todos_attributes: [:content, :estimated_time_blocks])
   end
 end
