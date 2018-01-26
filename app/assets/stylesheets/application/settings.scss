@@ -21,13 +21,45 @@
   width: 100%;
   margin-bottom: 60px;
 
-  &.dangerZone {
-    border: 2px solid $red;
+  .subscriptionCard {
+    width: 100%;
+    font-family: courier;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: $base-border-radius;
+    transform: rotate(-1deg);
+    box-shadow: 1px 1px $light-gray;
+    background-color: #ffeaa7;
+
+    img {
+      display: none;
+      width: 18%;
+      vertical-align: top;
+      margin-right: 10px;
+
+      @include MQ(S) {
+        display: inline-block;
+      }
+    }
+
+    .headerText {
+      h4 { margin: 0; }
+      display: inline-block;
+    }
+
+    hr {
+      border-bottom: 1px solid $base-font-color;
+      margin: 10px 0 10px 0;
+    }
+
+    @include MQ(L) {
+      width: 75%;
+    }
   }
 
-  .dangerZoneContent {
-    padding: 10px;
-  }
+  hr { margin: 30px 0 20px 0; }
+
+  .dangerZone { h2  { color: $red; } }
 
   &.hostedFeature {
     padding: 40px 10px;
@@ -72,7 +104,7 @@
 }
 
 .settingsInput {
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 
 .StripeElement {

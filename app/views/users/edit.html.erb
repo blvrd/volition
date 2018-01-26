@@ -12,78 +12,85 @@
 
       <div class="settingsCard">
         <h2 class="settingsHeading">Subscription</h2>
-        <p>You have a monthly subscription. The card below will be charged $5 on January 27, 2018.</p>
+        <div class="subscriptionCard">
+          <img src="/assets/favicon.png" alt="">
+          <div class="headerText">
+            <h4>Volition Monthly Subscription</h4>
+            <p>Renews on January 27, 2018</p>
+          </div>
+          <hr>
+          <p>Thank you for your support. Your subscription allows us to to keep making Volition better.</p>
+        </div>
         <h3>Credit Card Details</h3>
         <p>Name: Harsha Murthy</p>
         <p>Card Number:  •••• •••• •••• 1434</p>
         <p>Expiry: 10/2019</p>
-        <button type="button" name="button" class=" button update">Update billing info</button>
+        <%= link_to "Update billing info".html_safe, "#", class: "button update" %>
       </div>
 
       <hr>
-      <h2 class="settingsHeading">Account Information</h2>
-      <div class="contactInputs breatheTop breatheBottom flexJustifySpaceBetween flexWrap">
 
-        <% if @user.paid? %>
-          <div class="settingsSection">
-            <div class="flexRow flexAlignCenter">
-              <%= render partial: "paid_icon" %>
-              <p>Thanks for your support. Your subscription will allow us to keep improving Voliton long into the future.</p>
-            </div>
+      <div class="settingsCard">
+        <h2 class="settingsHeading">Preferences</h2>
+        <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
+          <div class="settingsInputGroup">
+            <label for="" class="flexRow">
+              <div class="checkbox breatheRight">
+                <%= f.check_box :track_weekends, class: 'completeInput' %>
+                <%= f.label :track_weekends do %>
+                <% end %>
+              </div>
+              Track tasks on weekends
+            </label>
           </div>
-        <% end %>
 
-        <div class="settingsInputGroup">
-          <%= f.label :name %>
-          <%= f.text_field :name, class: 'settingsInput' %>
+          <div class="settingsInputGroup">
+            <label for="" class="flexRow">
+              <div class="checkbox breatheRight">
+                <%= f.check_box :weekly_summary, class: 'completeInput' %>
+                <%= f.label :weekly_summary do %>
+                <% end %>
+              </div>
+              Receive weekly summaries
+            </label>
+          </div>
         </div>
+      </div>
 
+      <hr>
+
+      <div class="settingsCard">
+        <h2 class="settingsHeading">Update email address</h2>
+        <p>To change your password, enter your current password, then your new password.</p>
         <div class="settingsInputGroup">
           <%= f.label :email %>
           <%= f.text_field :email, class: 'settingsInput' %>
+          <%= f.label :current_password %>
+          <%= f.password_field :password, class: 'settingsInput' %>
         </div>
+        <%= link_to "Save".html_safe, "#", class: "button" %>
       </div>
-    </div>
 
-    <div class="settingsSection">
-      <h2 class="settingsHeading">Preferences</h2>
-      <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
-        <div class="settingsInputGroup">
-          <label for="" class="flexRow">
-            <div class="checkbox breatheRight">
-              <%= f.check_box :track_weekends, class: 'completeInput' %>
-              <%= f.label :track_weekends do %>
-              <% end %>
-            </div>
-            Track tasks on weekends
-          </label>
-        </div>
+      <hr>
 
+      <div class="settingsCard">
+        <h2 class="settingsHeading">Update password</h2>
+        <p>To change your email address from harshamurthy2@gmail.com, enter the new email address and your current password below.</p>
         <div class="settingsInputGroup">
-          <label for="" class="flexRow">
-            <div class="checkbox breatheRight">
-              <%= f.check_box :weekly_summary, class: 'completeInput' %>
-              <%= f.label :weekly_summary do %>
-              <% end %>
-            </div>
-            Receive weekly summaries
-          </label>
+          <%= f.label :current_password %>
+          <%= f.password_field :password, class: 'settingsInput' %>
+          <%= f.label :new_password %>
+          <%= f.password_field :password, class: 'settingsInput' %>
         </div>
+        <%= link_to "Save".html_safe, "#", class: "button" %>
       </div>
-    </div>
 
-    <div class="settingsSection dangerZone">
-      <h2 class="settingsHeading dangerZone">
-        Danger zone
-      </h2>
+      <hr>
 
-      <div class="dangerZoneContent">
-        <p>Deleting your account is irreversible!</p>
-        <%= link_to 'Delete account',
-          user_path(@user),
-          method: :delete,
-          class: 'button danger',
-          data: { confirm: "Are you sure you want to delete your account?" } %>
+      <div class="settingsCard dangerZone">
+        <h2 class="settingsHeading">Delete account</h2>
+        <p>Delete your account if you no longer wish to use Volition (and want all of your account data deleted).</p>
+        <%= link_to "Delete account".html_safe, "#", class: "button updateDanger" %>
       </div>
     </div>
 
