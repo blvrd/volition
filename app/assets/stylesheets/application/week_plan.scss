@@ -65,6 +65,7 @@
 
 .weeklyTodosSection {
   font-size: 1rem;
+  margin-bottom: 20px;
   width: 100%;
   @extend %weeklyTodos;
 
@@ -89,24 +90,12 @@
     cursor: default;
     transition: background 400ms;
 
-
     // &:hover {
     //   background: $lighter-blue;
     // }
 
-    .deleteTodoButton {
-      padding: 5px 10px;
-      background: $white;
-      border-radius: $base-border-radius;
-      cursor: pointer;
-      @include display-flex;
-      @include align-items(center);
-      @include justify-content(center);
-
-      span {
-        color: $red;
-        font-weight: bold;
-      }
+    .button {
+      @include align-self(flex-start);
     }
 
     &.new {
