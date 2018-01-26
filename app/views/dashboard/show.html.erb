@@ -79,7 +79,7 @@
 
     <% if @past_todo_lists.present? %>
       <% @past_todo_lists.each do |snapshot| %>
-        <%= link_to day_path(snapshot), class: 'noTextStyle' do %>
+        <%= link_to day_path(snapshot.date), class: 'noTextStyle' do %>
           <li class="daySummary">
             <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
               <div class="calendarIcon small">
