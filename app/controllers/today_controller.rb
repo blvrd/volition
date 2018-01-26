@@ -9,7 +9,7 @@ class TodayController < ApplicationController
     @button_text, @button_path = if Reflection.today(current_user).present?
                                    ["Plan for tomorrow", tomorrow_path]
                                  else
-                                   ["Reflect on your day", reflect_path]
+                                   ["Reflect on your day", reflect_path(date: @todo_list.date)]
                                  end
 
     if @todo_list.blank?
