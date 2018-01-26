@@ -33,7 +33,7 @@
 
     img {
       display: none;
-      width: 18%;
+      width: 20%;
       vertical-align: top;
       margin-right: 10px;
 
@@ -50,6 +50,19 @@
     hr {
       border-bottom: 1px solid $base-font-color;
       margin: 10px 0 10px 0;
+    }
+
+    .cancelLink {
+      text-align: right;
+      color: $red;
+      font-size: .9rem;
+      text-decoration: underline;
+      text-decoration-skip: ink;
+
+      &:hover,
+      &:active {
+        color: $dark-red;
+      }
     }
 
     @include MQ(L) {

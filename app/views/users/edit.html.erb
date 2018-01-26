@@ -13,13 +13,14 @@
       <div class="settingsCard">
         <h2 class="settingsHeading">Subscription</h2>
         <div class="subscriptionCard">
-          <img src="/assets/favicon.png" alt="">
+          <img src="/assets/paid.png" alt="">
           <div class="headerText">
             <h4>Volition Monthly Subscription</h4>
             <p>Renews on January 27, 2018</p>
           </div>
           <hr>
           <p>Thank you for your support. Your subscription allows us to to keep making Volition better.</p>
+          <a href="#" class="cancelLink">Cancel subscription</a>
         </div>
         <h3>Credit Card Details</h3>
         <p>Name: Harsha Murthy</p>
@@ -61,7 +62,7 @@
 
       <div class="settingsCard">
         <h2 class="settingsHeading">Update email address</h2>
-        <p>To change your password, enter your current password, then your new password.</p>
+        <p>To change your email address from harshamurthy2@gmail.com, enter the new email address and your current password below.</p>
         <div class="settingsInputGroup">
           <%= f.label :email %>
           <%= f.text_field :email, class: 'settingsInput' %>
@@ -75,7 +76,7 @@
 
       <div class="settingsCard">
         <h2 class="settingsHeading">Update password</h2>
-        <p>To change your email address from harshamurthy2@gmail.com, enter the new email address and your current password below.</p>
+        <p>To change your password, enter your current password, then your new password below.</p>
         <div class="settingsInputGroup">
           <%= f.label :current_password %>
           <%= f.password_field :password, class: 'settingsInput' %>
@@ -87,13 +88,18 @@
 
       <hr>
 
+      <div class="settingsCard">
+        <h2 class="settingsHeading">Gift or share Volition</h2>
+        <p><a href="#">Purchase a Volition gift subscription</a> or copy and share <a href="#">your unique refferal link.</a> You'll get a month free for every person who signs up and pays for Volition using your unique link.</p>
+      </div>
+
+      <hr>
+
       <div class="settingsCard dangerZone">
         <h2 class="settingsHeading">Delete account</h2>
         <p>Delete your account if you no longer wish to use Volition (and want all of your account data deleted).</p>
         <%= link_to "Delete account".html_safe, "#", class: "button updateDanger" %>
       </div>
     </div>
-
-    <%= f.submit "Save" %>
   <% end %>
 </section>
