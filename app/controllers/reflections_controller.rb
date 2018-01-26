@@ -51,7 +51,7 @@ class ReflectionsController < AuthenticatedController
 
   def after_create_path
     if @reflection.date != Date.current
-      day_path(@daily_snapshot)
+      day_path(@daily_snapshot.date)
     elsif tomorrow_is_trackable?
       tomorrow_path
     else
