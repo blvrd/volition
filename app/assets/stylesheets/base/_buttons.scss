@@ -33,6 +33,19 @@ button, .button, input[type="submit"] {
     }
   }
 
+  &.update {
+    background-color: $white;
+    border: 2px solid $green;
+    color: $green;
+
+    &:hover,
+    &:focus {
+      background-color: $white;
+      border: 2px solid $green;
+      color: $dark-green;
+    }
+  }
+
   &:hover,
   &:focus {
     background-color: $dark-green;
