@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post   '/today'                     => 'today#create'
   get    '/tomorrow'                  => 'tomorrow#new', as: :tomorrow
   post   '/tomorrow'                  => 'tomorrow#create'
-  get    '/reflect'                   => 'reflections#new', as: :reflect
+  get    '/reflect/:date'             => 'reflections#new', as: :reflect
   get    '/login'                     => 'sessions#new', as: :login
   post   '/login'                     => 'sessions#create'
   get    '/get_google_sign_in_iframe' => 'sessions#get_google_sign_in_iframe'
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   delete '/remove_weekly_todo'        => 'week_plan#remove_todo', as: :remove_weekly_todo
 
   resources :todos,       only: [:update]
-  resources :days,        only: [:show]
+  resources :days,        only: [:show], param: :date
   resources :reflections, only: [:create]
   resources :payments,    only: [:new, :create]
   resources :users

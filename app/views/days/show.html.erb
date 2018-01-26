@@ -1,16 +1,16 @@
 <section class="appSection">
-  <h1><%= @todo_list.date.strftime('%B %e') %></h1>
+  <h1><%= @daily_snapshot.date.strftime('%B %e') %></h1>
 
   <div class="daySummary reflectionDaySummary breatheTop">
     <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
       <div class="calendarIcon small">
-        <div class="calendarIconTopBar small"><span class="month"><%= @todo_list.date.strftime('%B') %></span></div>
-        <div class="calendarIconDay small"><span class="day"><%= @todo_list.date.strftime('%e') %></span></div>
+        <div class="calendarIconTopBar small"><span class="month"><%= @daily_snapshot.date.strftime('%B') %></span></div>
+        <div class="calendarIconDay small"><span class="day"><%= @daily_snapshot.date.strftime('%e') %></span></div>
       </div>
     </div>
 
     <ol class="dashboardTodoList">
-      <% @todo_list.todos.each do |todo| %>
+      <% @daily_snapshot.todos.each do |todo| %>
         <li class="dashboardTodo">
           <% if todo.complete %>
             <span class="checkMark small"></span>
@@ -36,5 +36,8 @@
       locals: { reflection: @reflection } %>
   <% else %>
     <p class="noTodoLists breatheTop">No reflection for this day.</p>
+    <% if @daily_snapshot.date == Date.yesterday %>
+      <%= link_to "Reflect", reflect_path(@daily_snapshot.date), class: "button" %>
+    <% end %>
   <% end %>
 </section>

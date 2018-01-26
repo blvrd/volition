@@ -1,6 +1,6 @@
 <section class="appSection">
   <h1>Daily reflection</h1>
-  <%= link_to "Go back to today's tasks".html_safe, today_path %>
+  <%= link_to @link_text.html_safe, @link_url %>
 
   <div class="daySummary reflectionDaySummary breatheTop">
     <div class="flexColumn flexAlignCenter flexJustifySpaceAround daySummaryInfoColumn">
@@ -11,9 +11,9 @@
     </div>
 
     <ol class="dashboardTodoList">
-      <% @todo_list.todos.each do |todo| %>
+      <% @daily_snapshot.todos.each do |todo| %>
         <li class="dashboardTodo">
-          <% if todo.complete? %>
+          <% if todo.complete %>
             <span class="checkMark small"></span>
             <span class="complete">
               <%= todo.content %>
@@ -30,6 +30,8 @@
     <% if @reflection.errors.any? %>
       <p class="error">You must fill out all fields.</p>
     <% end %>
+
+    <%= f.hidden_field :date, value: @todo_list.date %>
 
     <div class="inputGroup">
       <%= f.label :rating, 'How would you rate your day?' %>
@@ -58,7 +60,7 @@
       <%= f.text_area :positive %>
     </div>
 
-    <%  if @todo_list.todos.incomplete.present? %>
+    <% if @todo_list.todos.incomplete.present? %>
       <div class="inputGroup">
         <label>Add incomplete tasks to your weekly plan</label>
         <ul class="incompleteTodos">
