@@ -6,15 +6,18 @@ class TodayController < ApplicationController
     @week_plan = current_week_plan
     @reflection = Reflection.today(current_user)
     @todo_list = TodoList.today(@user)
-    @button_text, @button_path = if Reflection.today(current_user).present?
-                                   ["Plan for tomorrow", tomorrow_path]
-                                 else
-                                   ["Reflect on your day", reflect_path(date: @todo_list.date)]
-                                 end
 
     if @todo_list.blank?
       redirect_to new_today_path
     else
+      @button_text, @button_path = if Reflection.today(current_user).present?
+                                     ["Plan for tomorrow", tomorrow_path]
+                                   else
+                                     [
+                                       "Reflect on your day",
+                                       reflect_path(@todo_list.date),
+                                     ]
+                                   end
       @todos = @todo_list.todos.frontend_info
     end
   end
@@ -36,10 +39,9 @@ class TodayController < ApplicationController
       date: Date.current,
       user: @user,
       list_type: 'daily',
-      week_plan: current_week_plan
+      week_plan: current_week_plan,
     )
     if @todo_list.save
-
       @todo_list.update(daily_todos_attributes: daily_todo_list_params[:daily_todos_attributes])
       overlapping_todo_content = @todo_list.todos.pluck(:content) & current_week_plan.todos.pluck(:content)
       if overlapping_todo_content.size > 0
@@ -47,7 +49,6 @@ class TodayController < ApplicationController
       end
       redirect_to today_path
     end
-
   end
 
   private
