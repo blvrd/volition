@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123171724) do
+ActiveRecord::Schema.define(version: 20180128195629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20180123171724) do
     t.string "google_id"
     t.string "stripe_charge_id"
     t.boolean "weekly_summary", default: false
+    t.string "password_reset_token"
+    t.datetime "password_reset_token_expiration"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

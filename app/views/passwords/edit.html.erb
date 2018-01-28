@@ -1,0 +1,24 @@
+<%= render partial: 'disable_turbolinks' %>
+
+<section class="appSection">
+  <h1>Choose a new password</h1>
+  <div class="loginForm">
+    <%= form_with url: password_path(@user), method: :patch, local: true do |f| %>
+      <div class="inputGroup">
+        <%= label_tag :password %>
+        <div class="passwordRules">
+          <p>We know password rules are annoying, but there are some easy ways to ensure your account remains secure. For more info on why we use these password constraints, check out <%= link_to 'Password Rules Are Bullshit', 'https://blog.codinghorror.com/password-rules-are-bullshit/', target: '_blank' %> on the Coding Horror blog.</p>
+          <ol>
+            <li>Minimum length of 10 characters <span class="xMark"></span></li>
+            <li>Isn't in the <%= link_to 'top 100', 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_100.txt'%> most common passwords <span class="xMark"></span></li>
+          </ol>
+        </div>
+        <%= password_field_tag :password, nil, id: "reset_password", data: { rules: "checkLength,checkTop100" } %>
+      </div>
+
+      <div class="inputGroup flexRow flexAlignCenter">
+        <%= submit_tag "Reset password", class: "button secondary", disabled: true %>
+      </div>
+    <% end %>
+  </div>
+</section>

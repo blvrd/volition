@@ -1,13 +1,14 @@
 $(document).on('turbolinks:load', function() {
-  if ($('body').hasClass('users-new')) {
-    $('#registration_password').focus(function(e) {
+  if ($('body').hasClass('users-new') || $('body').hasClass('passwords-edit')) {
+    $('#registration_password, #reset_password').focus(function(e) {
       $('.passwordRules').removeClass('hidden')
     })
 
-    $('#registration_password').keyup(function(e) {
+    $('#registration_password, #reset_password').keyup(function(e) {
       var password = e.target.value
+      var rules = e.target.dataset.rules.split(",")
 
-      var passedRules = checkPasswordRules(password)
+      var passedRules = checkPasswordRules(password, rules)
       console.log(passedRules)
       var allRulesPassed = markPassedRules(passedRules)
 
@@ -33,14 +34,12 @@ $(document).on('turbolinks:load', function() {
       }
     }
 
-    function checkPasswordRules(password) {
-      rules = [
-        checkLength,
-        checkTop100,
-        ensureDoesntMatchEmail
-      ]
+    function checkPasswordRules(password, rules) {
+      var activeRules = rules.map(function(rule) {
+        return window[rule]
+      })
 
-      return rules.map(function(rule, index) {
+      return activeRules.map(function(rule, index) {
         result = rule(password)
 
         if (result == true) {
@@ -49,11 +48,11 @@ $(document).on('turbolinks:load', function() {
       })
     }
 
-    function checkLength(password) {
+    window.checkLength = function(password) {
       return password.length >= 10
     }
 
-    function checkTop100(password) {
+    window.checkTop100 = function(password) {
       if (!window.top100) {
         getTop100().then(function() {
           return !window.top100.includes(password)
@@ -72,8 +71,8 @@ $(document).on('turbolinks:load', function() {
       })
     }
 
-    function ensureDoesntMatchEmail(password) {
-      return $('#user_email').val() != password
+    window.ensureDoesntMatchEmail = function(password) {
+      return $('#registration_email').val() != password
     }
   }
 })

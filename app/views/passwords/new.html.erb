@@ -1,0 +1,16 @@
+<%= render partial: 'disable_turbolinks' %>
+
+<section class="appSection">
+  <h1>Forgot password</h1>
+  <div class="loginForm">
+    <%= form_with url: passwords_path, local: true do %>
+      <div class="inputGroup">
+        <%= label_tag :email %>
+        <%= text_field_tag :email %>
+      </div>
+      <div class="inputGroup">
+        <%= submit_tag "Send recovery email", class: "button" %>
+      </div>
+    <% end %>
+  </div>
+</section>
