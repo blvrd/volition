@@ -4,7 +4,8 @@ class ReflectionsController < AuthenticatedController
   def new
     @reflection = Reflection.new
     @todo_list = TodoList.find_by(date: params[:date]) ||
-      TodoList.today(current_user)
+                 TodoList.today(current_user)
+
     @daily_snapshot = @todo_list.daily_snapshot
     @reflecting_on_today = @todo_list == TodoList.today(current_user)
     @link_text, @link_url = if @reflecting_on_today
@@ -61,6 +62,12 @@ class ReflectionsController < AuthenticatedController
   end
 
   def reflection_params
-    params.require(:reflection).permit(:rating, :positive, :negative, :undone, :date)
+    params.require(:reflection).permit(
+      :rating,
+      :positive,
+      :negative,
+      :undone,
+      :date
+    )
   end
 end
