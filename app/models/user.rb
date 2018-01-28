@@ -8,13 +8,13 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
 
-  scope :want_weekly_summaries,  -> { where(weekly_summary: true) }
-  scope :paid,                   -> { where(paid: true) }
+  scope :want_weekly_summaries, -> { where(weekly_summary: true) }
+  scope :paid, -> { where(paid: true) }
 
   validates :email, presence: true, unless: -> { self.guest? }
   validates :email, uniqueness: true, unless: -> { self.guest? }
   validates :password_digest, presence: true, unless: :skip_password_validation
-  validate  :validate_password
+  validate :validate_password
 
   attr_accessor :skip_password_validation
 
@@ -55,7 +55,7 @@ class User < ApplicationRecord
   def completion_percentage(from:, to:)
     snapshots = DailySnapshot.where(
       created_at: from..to,
-      todo_list_id: todo_lists.pluck(:id)
+      todo_list_id: todo_lists.pluck(:id),
     )
 
     return 0 if snapshots.blank?
@@ -69,5 +69,16 @@ class User < ApplicationRecord
 
   def average_rating(from:, to:)
     (reflections.where(created_at: from..to).average(:rating) || 0).to_i
+  end
+
+  def forgot_password!
+    update(
+      password_reset_token: SecureRandom.hex,
+      password_reset_token_expiration: Time.current + 2.hours
+    )
+  end
+
+  def eligible_for_password_reset
+    password_reset_token_expiration > Time.current
   end
 end

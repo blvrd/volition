@@ -39,7 +39,7 @@
             <li>Doesn't match your email <span class="xMark"></span></li>
           </ol>
         </div>
-        <%= f.password_field :password %>
+        <%= f.password_field :password, data: { rules: "checkLength,checkTop100,ensureDoesntMatchEmail" } %>
       </div>
 
       <div class="inputGroup flexRow flexAlignCenter">
