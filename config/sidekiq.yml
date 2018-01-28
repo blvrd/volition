@@ -4,3 +4,4 @@
   - default
   - destroy_guest_users
   - mailers
+  - daily_snapshots
