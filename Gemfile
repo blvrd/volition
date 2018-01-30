@@ -41,6 +41,7 @@ gem 'enumerize'
 gem "gibbon"
 gem 'premailer-rails'
 gem 'rails-erd'
+gem "payola-payments"
 
 group :development, :test do
   gem "awesome_print"

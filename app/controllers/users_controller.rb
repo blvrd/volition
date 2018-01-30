@@ -25,6 +25,7 @@ class UsersController < AuthenticatedController
   end
 
   def edit
+    @subscription = current_user.subscription
   end
 
   def update

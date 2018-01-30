@@ -17,6 +17,14 @@
   }
 }
 
+.settingsWrapper {
+  width: 90%;
+
+  @include MQ(M) {
+    width: 60%;
+  }
+}
+
 .settingsSection {
   width: 100%;
   margin-bottom: 60px;
@@ -65,9 +73,6 @@
       }
     }
 
-    @include MQ(L) {
-      width: 75%;
-    }
   }
 
   hr { margin: 30px 0 20px 0; }
