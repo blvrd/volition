@@ -1,0 +1,21 @@
+<section class="appSection">
+  <h1>Update billing info</h1>
+
+  <p class="instructions">Your new card will be charged on <%= @subscription.current_period_end.strftime("%B %e, %Y") %>.</p>
+
+  <%= form_with url: payment_path(current_user.id), local: true, method: :patch, id: "payment-form" do %>
+    <form id="payment-form" action="">
+      <div id="credit-card" class="breatheBottom">
+        <label for="card-element">Credit or debit card</label>
+        <div id="card-element"></div>
+        <div id="card-errors"></div>
+
+        <button class="breatheTop" id="submitStripeForm">
+          <span class="submitButtonText">
+            Submit Payment
+          </span>
+          <i class="fa fa-cog fa-spin hidden"></i>
+        </button>
+      </div>
+    <% end %>
+</section>

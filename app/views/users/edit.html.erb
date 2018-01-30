@@ -2,104 +2,114 @@
   <h1>Settings</h1>
   <%= link_to "Go back to dashboard".html_safe, dashboard_path %>
 
-  <%= form_for @user, html: { class: 'settingsForm breatheTop google_signin', id: 'payment-form' } do |f| %>
-    <div class="settingsSection">
-      <% unless @user.google_id %>
-        <p>If you'd like to sign in to Volition with your Google account, click below.</p>
-        <%= render partial: "sessions/google_sign_in" %>
-        <%= f.hidden_field :google_id, id: 'google_id_token' %>
-      <% end %>
+  <div class="settingsWrapper">
+    <%= form_for @user, html: { class: 'settingsForm breatheTop google_signin' } do |f| %>
+      <div class="settingsSection">
+        <% unless @user.google_id %>
+          <p>If you'd like to sign in to Volition with your Google account, click below.</p>
+          <%= render partial: "sessions/google_sign_in" %>
+          <%= f.hidden_field :google_id, id: 'google_id_token' %>
+        <% end %>
 
-      <div class="settingsCard">
-        <h2 class="settingsHeading">Subscription</h2>
-        <div class="subscriptionCard">
-          <img src="/assets/paid.png" alt="">
-          <div class="headerText">
-            <h4>Volition Monthly Subscription</h4>
-            <p>Renews on January 27, 2018</p>
-          </div>
-          <hr>
-          <p>Thank you for your support. Your subscription allows us to to keep making Volition better.</p>
-          <a href="#" class="cancelLink">Cancel subscription</a>
-        </div>
-        <h3>Credit Card Details</h3>
-        <p>Name: Harsha Murthy</p>
-        <p>Card Number:  •••• •••• •••• 1434</p>
-        <p>Expiry: 10/2019</p>
-        <%= link_to "Update billing info".html_safe, "#", class: "button update" %>
-      </div>
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Subscription</h2>
 
-      <hr>
-
-      <div class="settingsCard">
-        <h2 class="settingsHeading">Preferences</h2>
-        <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
-          <div class="settingsInputGroup">
-            <label for="" class="flexRow">
-              <div class="checkbox breatheRight">
-                <%= f.check_box :track_weekends, class: 'completeInput' %>
-                <%= f.label :track_weekends do %>
-                <% end %>
+          <% if @subscription.active? %>
+            <div class="subscriptionCard">
+              <%= image_tag "paid" %>
+              <div class="headerText">
+                <h4>Volition <%= @subscription.name %> Subscription</h4>
+                <p>Renews on <%= @subscription.current_period_end.strftime("%B %e, %Y") %></p>
               </div>
-              Track tasks on weekends
-            </label>
-          </div>
+              <hr>
+              <p>Thank you for your support. Your subscription allows us to to keep making Volition better.</p>
+              <%= link_to "Cancel subscription", subscription_path(@subscription), class: "cancelLink",  method: :delete, data: { confirm: "Are you sure?" } %>
+            </div>
+            <h3>Credit Card Details</h3>
+            <p>Name: <%= current_user.name %></p>
+            <p>Card Number:  •••• •••• •••• <%= @subscription.card_last4 %></p>
+            <p>Expiry: <%= @subscription.card_expiration.strftime("%m/%Y") %></p>
+            <%= link_to "Update billing info",
+              edit_payment_path(current_user.id),
+              class: "button update" %>
+          <% else %>
+            <p>You don't have a subscription yet.</p>
+            <%= link_to "Subscribe", new_payment_path, class: "button update" %>
+          <% end %>
+        </div>
 
+        <hr>
+
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Preferences</h2>
+          <div class="breatheTop breatheBottom flexRow flexJustifySpaceBetween">
+            <div class="settingsInputGroup">
+              <label for="" class="flexRow">
+                <div class="checkbox breatheRight">
+                  <%= f.check_box :track_weekends, class: 'completeInput' %>
+                  <%= f.label :track_weekends do %>
+                  <% end %>
+                </div>
+                Track tasks on weekends
+              </label>
+            </div>
+
+            <div class="settingsInputGroup">
+              <label for="" class="flexRow">
+                <div class="checkbox breatheRight">
+                  <%= f.check_box :weekly_summary, class: 'completeInput' %>
+                  <%= f.label :weekly_summary do %>
+                  <% end %>
+                </div>
+                Receive weekly summaries
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Update email address</h2>
+          <p>To change your email address from harshamurthy2@gmail.com, enter the new email address and your current password below.</p>
           <div class="settingsInputGroup">
-            <label for="" class="flexRow">
-              <div class="checkbox breatheRight">
-                <%= f.check_box :weekly_summary, class: 'completeInput' %>
-                <%= f.label :weekly_summary do %>
-                <% end %>
-              </div>
-              Receive weekly summaries
-            </label>
+            <%= f.label :email %>
+            <%= f.text_field :email, class: 'settingsInput' %>
+            <%= f.label :current_password %>
+            <%= f.password_field :password, class: 'settingsInput' %>
           </div>
+          <%= link_to "Save".html_safe, "#", class: "button" %>
+        </div>
+
+        <hr>
+
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Update password</h2>
+          <p>To change your password, enter your current password, then your new password below.</p>
+          <div class="settingsInputGroup">
+            <%= f.label :current_password %>
+            <%= f.password_field :password, class: 'settingsInput' %>
+            <%= f.label :new_password %>
+            <%= f.password_field :password, class: 'settingsInput' %>
+          </div>
+          <%= link_to "Save".html_safe, "#", class: "button" %>
+        </div>
+
+        <hr>
+
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Gift or share Volition</h2>
+          <p><a href="#">Purchase a Volition gift subscription</a> or copy and share <a href="#">your unique refferal link.</a> You'll get a month free for every person who signs up and pays for Volition using your unique link.</p>
+        </div>
+
+        <hr>
+
+        <div class="settingsCard dangerZone">
+          <h2 class="settingsHeading">Delete account</h2>
+          <p>Delete your account if you no longer wish to use Volition (and want all of your account data deleted).</p>
+          <%= link_to "Delete account".html_safe, "#", class: "button updateDanger" %>
         </div>
       </div>
-
-      <hr>
-
-      <div class="settingsCard">
-        <h2 class="settingsHeading">Update email address</h2>
-        <p>To change your email address from harshamurthy2@gmail.com, enter the new email address and your current password below.</p>
-        <div class="settingsInputGroup">
-          <%= f.label :email %>
-          <%= f.text_field :email, class: 'settingsInput' %>
-          <%= f.label :current_password %>
-          <%= f.password_field :password, class: 'settingsInput' %>
-        </div>
-        <%= link_to "Save".html_safe, "#", class: "button" %>
-      </div>
-
-      <hr>
-
-      <div class="settingsCard">
-        <h2 class="settingsHeading">Update password</h2>
-        <p>To change your password, enter your current password, then your new password below.</p>
-        <div class="settingsInputGroup">
-          <%= f.label :current_password %>
-          <%= f.password_field :password, class: 'settingsInput' %>
-          <%= f.label :new_password %>
-          <%= f.password_field :password, class: 'settingsInput' %>
-        </div>
-        <%= link_to "Save".html_safe, "#", class: "button" %>
-      </div>
-
-      <hr>
-
-      <div class="settingsCard">
-        <h2 class="settingsHeading">Gift or share Volition</h2>
-        <p><a href="#">Purchase a Volition gift subscription</a> or copy and share <a href="#">your unique refferal link.</a> You'll get a month free for every person who signs up and pays for Volition using your unique link.</p>
-      </div>
-
-      <hr>
-
-      <div class="settingsCard dangerZone">
-        <h2 class="settingsHeading">Delete account</h2>
-        <p>Delete your account if you no longer wish to use Volition (and want all of your account data deleted).</p>
-        <%= link_to "Delete account".html_safe, "#", class: "button updateDanger" %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </section>

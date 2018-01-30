@@ -1,9 +1,31 @@
 $(document).on('turbolinks:load', function() {
-  if ($('body').hasClass('payments-new')) {
+  if ($('body').hasClass('payments-new') || $('body').hasClass('payments-edit')) {
     var initializeStripe = (function(e) {
-      var stripe = Stripe(gon.stripe_public_key);
-      var elements = stripe.elements();
-      var form = document.getElementById('payment-form')
+      var stripe            = Stripe(gon.stripe_public_key);
+      var elements          = stripe.elements();
+      var form              = document.getElementById('payment-form')
+      var planIdInput       = document.getElementById('plan_id')
+      var monthlyPlanButton = document.getElementById("js--monthlyPlan")
+      var yearlyPlanButton  = document.getElementById("js--yearlyPlan")
+      var selectedPlan      = document.getElementById("selectedPlan")
+
+      if ($('body').hasClass('payments-new')) {
+        planIdInput.value = gon.monthly_plan_id
+
+        monthlyPlanButton.addEventListener('click', function(e) {
+          planIdInput.value           = gon.monthly_plan_id
+          selectedPlan.innerHTML      = "Monthly ($5.00)"
+          monthlyPlanButton.className = ""
+          yearlyPlanButton.className  = "update"
+        })
+
+        yearlyPlanButton.addEventListener('click', function(e) {
+          planIdInput.value           = gon.yearly_plan_id
+          selectedPlan.innerHTML      = "Yearly ($50.00)"
+          yearlyPlanButton.className  = ""
+          monthlyPlanButton.className = "update"
+        })
+      }
 
       var style = {
         base: {

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Payola::Engine => '/payola', as: :payola
   root 'marketing#home'
 
   get '/nice_job' => 'pages#nice_job', as: :nice_job
@@ -29,9 +30,10 @@ Rails.application.routes.draw do
   resources :todos, only: [:update]
   resources :days, only: [:show], param: :date
   resources :reflections, only: [:create]
-  resources :payments, only: [:new, :create]
+  resources :payments
   resources :users
   resources :passwords
+  resources :subscriptions, only: [:destroy]
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: '/sidekiq'

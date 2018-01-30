@@ -6,6 +6,17 @@ class User < ApplicationRecord
   has_many :daily_snapshots, -> { where.not(date: Date.current) }, through: :todo_lists
   has_many :weekly_summaries
 
+  has_one :subscription,
+          -> (subscription) { where.not(stripe_id: nil, state: "canceled") },
+          foreign_key: "owner_id",
+          class_name: "Payola::Subscription"
+
+  delegate :active?, to: :subscription
+
+  def subscription
+    super || NullSubscription.new
+  end
+
   has_secure_password validations: false
 
   scope :want_weekly_summaries, -> { where(weekly_summary: true) }
