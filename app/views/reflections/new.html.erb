@@ -11,7 +11,8 @@
     </div>
 
     <ol class="dashboardTodoList">
-      <% @daily_snapshot.todos.each do |todo| %>
+      <% list = @daily_snapshot.present? ? @daily_snapshot : @todo_list %>
+      <% list.todos.each do |todo| %>
         <li class="dashboardTodo">
           <% if todo.complete %>
             <span class="checkMark small"></span>
