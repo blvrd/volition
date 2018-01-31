@@ -34,6 +34,12 @@ Rails.application.routes.draw do
   resources :users
   resources :passwords
   resources :subscriptions, only: [:destroy]
+  resources :preferences, only: [:update] do
+    member do
+      patch "update_email"
+      patch "update_password"
+    end
+  end
 
   require 'sidekiq/web'
   mount Sidekiq::Web, at: '/sidekiq'

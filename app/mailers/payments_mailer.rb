@@ -10,4 +10,14 @@ class PaymentsMailer < ApplicationMailer
       subject: "[Volition] You card will be charged soon"
     )
   end
+
+  def referral_activated(referred_user)
+    @referred_user = referred_user
+    @referrer      = referred_user.referrer
+
+    mail(
+      to: @referrer.email,
+      subject: "[Volition] Someone used your referral link!"
+    )
+  end
 end

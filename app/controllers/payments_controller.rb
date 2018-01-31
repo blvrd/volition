@@ -26,11 +26,14 @@ class PaymentsController < ApplicationController
     subscription.process!
 
     if subscription.active?
+      activate_referral if current_user.referrer.present?
       redirect_to thank_you_path
     else
       flash[:error] = %(
         Something went wrong. Please check your card details and try again
       )
+
+      subscription.destroy
 
       redirect_to new_payment_path
     end
@@ -61,6 +64,22 @@ class PaymentsController < ApplicationController
   end
 
   private
+
+  def activate_referral
+    referrer        = current_user.referrer
+    subscription_id = referrer.subscription.stripe_id
+    coupon_name     = if referrer.subscription.name == "Monthly"
+                        "referral_credit_monthly"
+                      else
+                        "referral_credit_yearly"
+                      end
+
+    stripe_subscription = Stripe::Subscription.retrieve(subscription_id)
+    stripe_subscription.coupon = coupon_name
+    stripe_subscription.save
+
+    PaymentsMailer.referral_activated(current_user).deliver_later
+  end
 
   def ensure_not_paid!
     redirect_to settings_path if current_user.active?
