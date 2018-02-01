@@ -24,13 +24,19 @@
             <p>Thank you for your support. Your subscription allows us to to keep making Volition better.</p>
             <%= link_to "Cancel subscription", subscription_path(@subscription), class: "cancelLink",  method: :delete, data: { confirm: "Are you sure?" } %>
           </div>
-          <h3>Credit Card Details</h3>
-          <p>Name: <%= current_user.name %></p>
-          <p>Card Number:  •••• •••• •••• <%= @subscription.card_last4 %></p>
-          <p>Expiry: <%= @subscription.card_expiration.strftime("%m/%Y") %></p>
-          <%= link_to "Update billing info",
-            edit_payment_path(current_user.id),
-            class: "button update" %>
+          <% unless @subscription.coupon&.include?("gift") %>
+            <h3>Credit Card Details</h3>
+            <p>Name: <%= current_user.name %></p>
+            <p>Card Number:  •••• •••• •••• <%= @subscription.card_last4 %></p>
+            <p>Expiry: <%= @subscription.card_expiration.strftime("%m/%Y") %></p>
+            <%= link_to "Update billing info",
+              edit_payment_path(current_user.id),
+              class: "button update" %>
+          <% else %>
+            <%= link_to "Update billing info",
+              edit_payment_path(current_user.id),
+              class: "button update breatheTop" %>
+          <% end %>
         <% else %>
           <p>You don't have a subscription yet. <%= "Your referral trial ends on #{(current_user.created_at + 1.month).strftime("%B %e, %Y")}" if current_user.in_referral_month? %></p>
           <%= link_to "Subscribe", new_payment_path, class: "button secondary" %>
@@ -107,7 +113,7 @@
 
       <div class="settingsCard">
         <h2 class="settingsHeading">Gift and share Volition</h2>
-        <p><%= link_to "Purchase a Volition gift subscription", "#" %> or copy and share your unique referral link. For every person that signs up and pays for Volition with your unique link, you'll both get a month free.</p>
+        <p><%= link_to "Purchase a Volition gift subscription", new_gift_path %> or copy and share your unique referral link. For every person that signs up and pays for Volition with your unique link, you'll both get a month free.</p>
         <div class="referralWidget">
           <button class="small copyButton">Copy and send link!</button>
           <%= text_field_tag :referral_link,

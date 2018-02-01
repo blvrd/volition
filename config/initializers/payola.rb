@@ -1,4 +1,4 @@
-StripeEvent.authentication_secret = ENV['STRIPE_WEBHOOK_SECRET']
+StripeEvent.signing_secret = ENV['STRIPE_WEBHOOK_SECRET']
 
 Payola.configure do |config|
   # Example subscription:

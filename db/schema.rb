@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130211252) do
+ActiveRecord::Schema.define(version: 20180201210624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 20180130211252) do
     t.datetime "updated_at", null: false
     t.date "date"
     t.index ["todo_list_id"], name: "index_daily_snapshots_on_todo_list_id"
+  end
+
+  create_table "gifts", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.string "unique_token"
+    t.string "stripe_charge_id"
+    t.string "recipient_email"
+    t.text "message"
+    t.string "recipient_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unique_token"], name: "index_gifts_on_unique_token", unique: true
   end
 
   create_table "payola_affiliates", id: :serial, force: :cascade do |t|

@@ -19,6 +19,7 @@ class Registration
 
   def save
     referral_code = @params.delete(:referral_code)
+    gift_token    = @params.delete(:gift_token)
 
     if signing_up_with_google?
       @user.skip_password_validation = true
@@ -41,6 +42,7 @@ class Registration
 
     add_to_mailchimp_newsletter
     note_referral(referral_code)
+    redeem_gift(gift_token)
     @user.save
   end
 
@@ -50,6 +52,14 @@ class Registration
     referrer = User.find_by(referral_code: referral_code)
     return unless referrer
     @user.referred_by = referrer.id
+  end
+
+  def redeem_gift(gift_token)
+    gift = Gift.find_by(unique_token: gift_token)
+
+    gift.update(recipient: @user)
+
+    CreateStripeGiftSubscriptionJob.perform_later(gift)
   end
 
   def add_to_mailchimp_newsletter

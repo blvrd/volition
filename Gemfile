@@ -9,7 +9,7 @@ gem "jquery-rails"
 gem "appsignal"
 gem "sidekiq"
 gem "normalize-rails", "~> 3.0.0"
-gem "pg"
+gem "pg", "0.21.0"
 gem 'turbolinks'
 gem "puma"
 gem "rails", "~> 5.1.0"
@@ -23,7 +23,7 @@ gem "jbuilder"
 gem "listen"
 gem "spring"
 gem 'letter_opener'
-gem 'react-rails'
+gem 'react-rails', "2.2.0"
 gem 'bcrypt'
 gem 'will_paginate', '~> 3.1.0'
 gem 'twilio-ruby'

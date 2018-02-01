@@ -6,8 +6,11 @@ class UsersController < AuthenticatedController
 
   def new
     if params[:referral_code] && user_with_referral_code_exists?(params[:referral_code])
-      flash.now[:success] = "You got a referral credit! Enjoy one month of Volition, free of charge."
+      flash.now[:success]     = "You got a referral credit! Enjoy one month of Volition, on us."
       session[:referral_code] = params[:referral_code]
+    elsif params[:gift_token] && gift_with_token_exists?(params[:gift_token])
+      flash.now[:success]  = "You have redeemed your free 1-year subscription! Create your account to begin using Volition."
+      session[:gift_token] = params[:gift_token]
     end
 
     if current_user.present? && !current_user.guest?
@@ -18,7 +21,10 @@ class UsersController < AuthenticatedController
 
   def create
     valid_params  = params[:google_id_token].present? ? params : registration_params
-    valid_params.merge!({ referral_code: session[:referral_code] })
+    valid_params.merge!({
+      referral_code: session[:referral_code],
+      gift_token: session[:gift_token]
+    })
 
     @registration = Registration.new(valid_params,
                                      current_user || User.new)
@@ -69,6 +75,10 @@ class UsersController < AuthenticatedController
 
   def user_with_referral_code_exists?(referral_code)
     User.find_by(referral_code: referral_code).present?
+  end
+
+  def gift_with_token_exists?(gift_token)
+    Gift.find_by(unique_token: gift_token, recipient_id: nil).present?
   end
 
   def add_card_to_user
