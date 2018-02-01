@@ -18,6 +18,8 @@ class Registration
   end
 
   def save
+    referral_code = @params.delete(:referral_code)
+
     if signing_up_with_google?
       @user.skip_password_validation = true
       google_identity = GoogleSignIn::Identity.new(params[:google_id_token])
@@ -38,10 +40,17 @@ class Registration
     @user.timezone = Time.zone.tzinfo.name
 
     add_to_mailchimp_newsletter
+    note_referral(referral_code)
     @user.save
   end
 
   private
+
+  def note_referral(referral_code)
+    referrer = User.find_by(referral_code: referral_code)
+    return unless referrer
+    @user.referred_by = referrer.id
+  end
 
   def add_to_mailchimp_newsletter
     return nil if self_hosted? || @user.guest? || Rails.env.development? || Rails.env.test?

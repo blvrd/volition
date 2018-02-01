@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129193245) do
+ActiveRecord::Schema.define(version: 20180130211252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,15 @@ ActiveRecord::Schema.define(version: 20180129193245) do
     t.index ["guid"], name: "index_payola_subscriptions_on_guid"
   end
 
+  create_table "referrals", force: :cascade do |t|
+    t.integer "sender_id"
+    t.string "recipient_email"
+    t.string "code"
+    t.datetime "activated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reflections", id: :serial, force: :cascade do |t|
     t.integer "rating"
     t.text "negative"
@@ -179,7 +188,10 @@ ActiveRecord::Schema.define(version: 20180129193245) do
     t.boolean "weekly_summary", default: false
     t.string "password_reset_token"
     t.datetime "password_reset_token_expiration"
+    t.string "referral_code"
+    t.integer "referred_by"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["referred_by"], name: "index_users_on_referred_by"
   end
 
   create_table "weekly_summaries", force: :cascade do |t|

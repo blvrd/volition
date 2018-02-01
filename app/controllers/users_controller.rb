@@ -5,6 +5,11 @@ class UsersController < AuthenticatedController
   before_action :set_user
 
   def new
+    if params[:referral_code] && user_with_referral_code_exists?(params[:referral_code])
+      flash.now[:success] = "You got a referral credit! Enjoy one month of Volition, free of charge."
+      session[:referral_code] = params[:referral_code]
+    end
+
     if current_user.present? && !current_user.guest?
       redirect_to dashboard_path
     end
@@ -13,7 +18,10 @@ class UsersController < AuthenticatedController
 
   def create
     valid_params  = params[:google_id_token].present? ? params : registration_params
-    @registration = Registration.new(valid_params, current_user || User.new)
+    valid_params.merge!({ referral_code: session[:referral_code] })
+
+    @registration = Registration.new(valid_params,
+                                     current_user || User.new)
 
     if @registration.save
       login(@registration.user)
@@ -58,6 +66,10 @@ class UsersController < AuthenticatedController
   end
 
   private
+
+  def user_with_referral_code_exists?(referral_code)
+    User.find_by(referral_code: referral_code).present?
+  end
 
   def add_card_to_user
     @payment_service = PaymentService.new({ stripe_customer_id: @user.stripe_customer_id })

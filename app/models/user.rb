@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   has_many :reflections, dependent: :destroy
   has_many :todo_lists, dependent: :destroy
   has_many :daily_todos, through: :todo_lists
@@ -6,8 +8,13 @@ class User < ApplicationRecord
   has_many :daily_snapshots, -> { where.not(date: Date.current) }, through: :todo_lists
   has_many :weekly_summaries
 
+  with_options class_name: "User", foreign_key: :referred_by do
+    has_many :referred_users
+
+    belongs_to :referrer, optional: true
+  end
+
   has_one :subscription,
-          -> (subscription) { where.not(stripe_id: nil, state: "canceled") },
           foreign_key: "owner_id",
           class_name: "Payola::Subscription"
 
@@ -18,6 +25,7 @@ class User < ApplicationRecord
   end
 
   has_secure_password validations: false
+  has_secure_token :referral_code
 
   scope :want_weekly_summaries, -> { where(weekly_summary: true) }
   scope :paid, -> { where(paid: true) }
@@ -25,7 +33,7 @@ class User < ApplicationRecord
   validates :email, presence: true, unless: -> { self.guest? }
   validates :email, uniqueness: true, unless: -> { self.guest? }
   validates :password_digest, presence: true, unless: :skip_password_validation
-  validate :validate_password
+  # validate :validate_password
 
   attr_accessor :skip_password_validation
 
@@ -60,7 +68,13 @@ class User < ApplicationRecord
   end
 
   def trialing?
-    reflections.count < 2
+    reflections.count < 2 || in_referral_month?
+  end
+
+  def in_referral_month?
+    return false unless referred_by.present?
+
+    Date.current < (created_at + 1.month)
   end
 
   def completion_percentage(from:, to:)
@@ -91,5 +105,12 @@ class User < ApplicationRecord
 
   def eligible_for_password_reset
     password_reset_token_expiration > Time.current
+  end
+
+  def referral_link
+    new_user_url(referral_code: referral_code, host: ENV["APPLICATION_HOST"])
+  end
+
+  def give_free_month!
   end
 end

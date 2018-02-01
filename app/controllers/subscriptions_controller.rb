@@ -4,6 +4,7 @@ class SubscriptionsController < AuthenticatedController
     @subscription.cancel!
 
     Stripe::Subscription.retrieve(@subscription.stripe_id).delete
+    @subscription.destroy
 
     redirect_to edit_user_path(current_user)
   end

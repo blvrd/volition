@@ -19,9 +19,10 @@
 
 .settingsWrapper {
   width: 90%;
+  margin-top: 20px;
 
   @include MQ(M) {
-    width: 60%;
+    width: 50%;
   }
 }
 
@@ -32,12 +33,13 @@
   .subscriptionCard {
     width: 100%;
     font-family: courier;
-    padding: 10px;
+    padding: 30px;
     margin-bottom: 15px;
     border-radius: $base-border-radius;
     transform: rotate(-1deg);
     box-shadow: 1px 1px $light-gray;
     background-color: #ffeaa7;
+    // background-color: lighten($green, 40%);
 
     img {
       display: none;
@@ -147,4 +149,34 @@
 #paidIcon {
   height: 175px !important;
   margin-right: 20px;
+}
+
+.referralWidget {
+  position: relative;
+  margin: 40px 0;
+
+  .copyButton {
+    font-size: 14px;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+  }
+
+  input {
+    padding: 30px 0;
+    background: lighten($green, 40%);
+    text-align: center;
+    font-family: courier;
+    font-size: 1rem;
+    border: 2px solid $green;
+  }
+}
+
+.referredUsers {
+  .checkMark {
+    margin-left: 0;
+    margin-right: 10px;
+  }
 }
