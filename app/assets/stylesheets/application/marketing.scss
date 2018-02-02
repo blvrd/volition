@@ -184,16 +184,10 @@
   .hosted {
     background: $green;
     color: $white;
-    // border-radius: $base-border-radius;
-    // border-top-right-radius: 0;
-    // border-bottom-right-radius: 0;
   }
 
   .selfHosted {
     background: lighten($heroku-purple, 35%);
-    // border-radius: $base-border-radius;
-    // border-top-left-radius: 0;
-    // border-bottom-left-radius: 0;
   }
 
   .price {
