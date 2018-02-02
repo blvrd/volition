@@ -187,6 +187,11 @@
     border-radius: $base-border-radius;
   }
 
+  .selfHosted {
+    background: lighten($heroku-purple, 35%);
+    border-radius: $base-border-radius;
+  }
+
   .price {
     font-size: 2rem;
     font-weight: bold;

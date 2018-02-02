@@ -24,7 +24,7 @@
     <div class="navRight">
       <% if current_user %>
         <% if current_user.guest? %>
-          <%= link_to 'Sign up', new_user_path(guest: true), class: 'navLink' %>
+          <%= link_to 'Sign up', new_user_path(guest: true), class: 'button' %>
         <% else %>
           <i class="fa fa-bars js--openMenu"></i>
         <% end %>
