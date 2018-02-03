@@ -28,12 +28,10 @@ class ReflectionsController < AuthenticatedController
     @reflection.user = current_user
 
     @todo_list = current_user.todo_lists.daily.find_by(date: reflection_params[:date])
-    @daily_snapshot = @todo_list.daily_snapshot
+    @todo_list.daily_snapshot&.destroy
 
     if @reflection.save
-      if @daily_snapshot.blank?
-        @daily_snapshot = DailySnapshot.create_from_todo_list(@todo_list)
-      end
+      @daily_snapshot = DailySnapshot.create_from_todo_list(@todo_list)
 
       Todo.where(id: params[:add_to_week]).each do |todo|
         todo.update(
