@@ -2,7 +2,7 @@
 
 ### The faculty or power of using one's will.
 
-Build status: [![CircleCI](https://circleci.com/gh/usevolition/volition/tree/master.svg?style=svg)](https://circleci.com/gh/usevolition/volition/tree/master)
+[![CircleCI](https://circleci.com/gh/usevolition/volition/tree/master.svg?style=shield)](https://circleci.com/gh/usevolition/volition/tree/master)
 
 ---
 
