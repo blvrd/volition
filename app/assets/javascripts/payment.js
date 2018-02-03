@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-  if ($('body').hasClass('payments-new') || $('body').hasClass('payments-edit')) {
+  if ($('body').hasClass('payments') || $('body').hasClass('gifts')) {
     var initializeStripe = (function(e) {
       var stripe            = Stripe(gon.stripe_public_key);
       var elements          = stripe.elements();

@@ -1,0 +1,42 @@
+<section class="appSection">
+  <h1>&#x1F381; Give the gift of Volition &#x1F381;</h1>
+
+  <p class="instructions">
+    
+  </p>
+
+  <%= form_with model: @gift, local: true, id: "payment-form" do |f| %>
+    <% if @gift.errors.any? %>
+      <p class="error">You must fill out all fields.</p>
+    <% end %>
+
+    <div class="inputGroup">
+      <%= f.label :recipient_name, "Their name" %>
+      <%= f.text_field :recipient_name %>
+    </div>
+
+    <div class="inputGroup">
+      <%= f.label :recipient_email, "Their email" %>
+      <%= f.text_field :recipient_email %>
+    </div>
+
+    <div class="inputGroup">
+      <%= f.label :message %>
+      <%= f.text_area :message %>
+    </div>
+
+    <form id="payment-form" action="">
+      <div id="credit-card" class="breatheBottom">
+        <label for="card-element">Credit or debit card</label>
+        <div id="card-element"></div>
+        <div id="card-errors"></div>
+
+        <button class="breatheTop" id="submitStripeForm">
+          <span class="submitButtonText">
+            Submit Payment
+          </span>
+          <i class="fa fa-cog fa-spin hidden"></i>
+        </button>
+      </div>
+    <% end %>
+</section>

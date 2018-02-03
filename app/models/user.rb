@@ -110,7 +110,4 @@ class User < ApplicationRecord
   def referral_link
     new_user_url(referral_code: referral_code, host: ENV["APPLICATION_HOST"])
   end
-
-  def give_free_month!
-  end
 end
