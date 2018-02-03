@@ -33,7 +33,7 @@
             class: "button update" %>
         <% else %>
           <p>You don't have a subscription yet. <%= "Your referral trial ends on #{(current_user.created_at + 1.month).strftime("%B %e, %Y")}" if current_user.in_referral_month? %></p>
-          <%= link_to "Subscribe", new_payment_path, class: "button update" %>
+          <%= link_to "Subscribe", new_payment_path, class: "button secondary" %>
         <% end %>
       </div>
 
@@ -149,7 +149,7 @@
       <div class="settingsCard dangerZone">
         <h2 class="settingsHeading">Delete account</h2>
         <p>Delete your account if you no longer wish to use Volition (and want all of your account data deleted).</p>
-        <%= link_to "Delete account".html_safe, "#", class: "button updateDanger" %>
+        <%= link_to "Delete account".html_safe, "#", class: "button secondary danger" %>
       </div>
     </div>
   </div>

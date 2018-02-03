@@ -3,7 +3,7 @@
 <section class="heroSection">
   <div class="heroMain">
     <div class="heroExplanation">
-      <h1 class="heroTagline">Be less busy and more productive.</h1>
+      <h1 class="heroTagline">The faculty or power of using one's will.</h1>
       <p>
         Volition is more than a todo list. It’s a framework for becoming more effective. It encourages you to be intentional in planning your day and reflecting on the decisions you made. Read about <%= link_to "the philosophy behind Volition", philosophy_path %> or see how much it <%= link_to 'costs to run', running_costs_path %>.
       </p>
@@ -19,7 +19,7 @@
 <section class="dayWithVolitionSection">
   <h2 class="sectionHeading">A day with Volition</h2>
   <p>
-    Volition facilitates the use of the Pomodoro technique - breaking down tasks into twenty-five-minute chunks of work, with five-minute breaks in between - to boost productivity and encourage self-reflection.
+    Volition facilitates the use of <%= link_to "the Pomodoro technique".html_safe, "https://cirillocompany.de/pages/pomodoro-technique", target: "_blank" %> - breaking down tasks into twenty-five-minute chunks of work, with five-minute breaks in between - to boost productivity and encourage self-reflection.
   </p>
 
   <div class="marketingCard">
@@ -46,7 +46,7 @@
     <h3 class="marketingTagline">Reflect on your day</h3>
     <img data-aload="https://d1ax1i5f2y3x71.cloudfront.net/items/3F1A0u1U3a0i3n111W1K/Screen%20Recording%202017-03-08%20at%2010.14%20AM.gif" alt="">
     <p>
-      Here is where Volition becomes a powerful tool. At the end of each day, Volition gives you space to reflect on what you think you did wrong, what you did right, and what was left undone. By examining your behavior and how you use your time, it will be easier for you to make positive adjustments. What gets measured gets managed. What gets managed can be improved!
+      At the end of each day, Volition gives you space to reflect on what you think you did wrong, what you did right, and what was left undone. By examining your behavior and how you use your time, it will be easier for you to make positive adjustments. What gets measured gets managed. What gets managed can be improved!
     </p>
   </div>
 
@@ -67,9 +67,9 @@
   <div class="pricing">
     <div class="hosted">
       <h3>Hosted</h3>
-      <p class="price">$12</p>
+      <p class="price">$5/month</p>
       <p class="details">
-        Pay once and use Volition forever. For those of you that just want to sign up and get going with Volition, this option is for you. You can try it for 48 hours before you pay!
+        For those of you that just want to sign up and get going with Volition, this option is for you. You can try it for 48 hours before you pay! And, of course, cancel any time.
       </p>
       <%= link_to 'Sign up', new_user_path, class: 'button light expanding' %>
     </div>
@@ -78,7 +78,7 @@
       <h3>Self-hosted</h3>
       <p class="price">Free <i class="em em-tada"></i></p>
       <p class="details">
-        If you have technical chops and don't want to pay to support Volition's maintenance costs, self-hosting is for you! Check Volition out on <%= link_to 'Github', ENV['LINK_TO_GITHUB_REPO'] %> or use the deploy button below.
+        If you have technical chops and don't want to pay monthly to support Volition's maintenance costs, self-hosting is for you! Check Volition out on <%= link_to 'Github', ENV['LINK_TO_GITHUB_REPO'], target: "_blank" %> or use the deploy button below.
       </p>
       <p>
       <%= render partial: "marketing/heroku_button", locals: { expanding: true } %>

@@ -121,15 +121,6 @@ ActiveRecord::Schema.define(version: 20180130211252) do
     t.index ["guid"], name: "index_payola_subscriptions_on_guid"
   end
 
-  create_table "referrals", force: :cascade do |t|
-    t.integer "sender_id"
-    t.string "recipient_email"
-    t.string "code"
-    t.datetime "activated_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reflections", id: :serial, force: :cascade do |t|
     t.integer "rating"
     t.text "negative"
