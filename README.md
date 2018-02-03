@@ -1,6 +1,6 @@
 <img src="app/assets/images/logo.png" width="200" alt="Volition">
 
-### The faculty or power of using one's will.
+### The power of using one's will.
 
 [![CircleCI](https://circleci.com/gh/usevolition/volition/tree/master.svg?style=shield)](https://circleci.com/gh/usevolition/volition/tree/master)
 
