@@ -1,17 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  receiver_id: 1
-  sender_id: 1
-  price: 1
-  permalink: MyString
-  name: MyString
-  unique_token: 
-
-two:
-  receiver_id: 1
-  sender_id: 1
-  price: 1
-  permalink: MyString
-  name: MyString
-  unique_token: 
