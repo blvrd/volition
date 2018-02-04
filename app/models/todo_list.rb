@@ -3,7 +3,7 @@ class TodoList < ApplicationRecord
 
   before_destroy :delete_todos
 
-  with_options class_name: 'Todo' do |options|
+  with_options class_name: 'Todo', dependent: :destroy do |options|
     options.has_many :daily_todos, foreign_key: :daily_todo_list_id
     options.has_many :weekly_todos, foreign_key: :weekly_todo_list_id
   end
@@ -15,7 +15,7 @@ class TodoList < ApplicationRecord
   belongs_to :user
   belongs_to :week_plan, class_name: 'TodoList', required: false
 
-  has_one :daily_snapshot
+  has_one :daily_snapshot, dependent: :destroy
 
   accepts_nested_attributes_for :daily_todos,
                                 reject_if: :all_blank
