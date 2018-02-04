@@ -4,42 +4,54 @@
 
   <div class="settingsWrapper">
     <div class="settingsSection">
-      <% unless @user.google_id %>
-        <p>If you'd like to sign in to Volition with your Google account, click below.</p>
-        <%= render partial: "sessions/google_sign_in" %>
-        <%= hidden_field_tag :google_id, id: 'google_id_token' %>
+      <% unless self_hosted? %>
+        <% unless @user.google_id %>
+          <p>If you'd like to sign in to Volition with your Google account, click below.</p>
+          <%= render partial: "sessions/google_sign_in" %>
+          <%= hidden_field_tag :google_id, id: 'google_id_token' %>
+        <% end %>
       <% end %>
 
       <div class="settingsCard">
         <h2 class="settingsHeading">Subscription</h2>
 
-        <% if @subscription.active? %>
-          <div class="subscriptionCard">
-            <%= image_tag "paid" %>
-            <div class="headerText">
-              <h4>Volition <%= @subscription.name %> Subscription</h4>
-              <p>Renews on <%= @subscription.current_period_end.strftime("%B %e, %Y") %></p>
+        <% if !self_hosted? %>
+          <% if @subscription.active? %>
+            <div class="subscriptionCard">
+              <%= image_tag "paid" %>
+              <div class="headerText">
+                <h4>Volition <%= @subscription.name %> Subscription</h4>
+                <p>Renews on <%= @subscription.current_period_end.strftime("%B %e, %Y") %></p>
+              </div>
+              <hr>
+              <p>Thank you for your support. Your subscription allows us to to keep making Volition better.</p>
+              <%= link_to "Cancel subscription", subscription_path(@subscription), class: "cancelLink",  method: :delete, data: { confirm: "Are you sure?" } %>
             </div>
-            <hr>
-            <p>Thank you for your support. Your subscription allows us to to keep making Volition better.</p>
-            <%= link_to "Cancel subscription", subscription_path(@subscription), class: "cancelLink",  method: :delete, data: { confirm: "Are you sure?" } %>
-          </div>
-          <% unless @subscription.coupon&.include?("gift") %>
-            <h3>Credit Card Details</h3>
-            <p>Name: <%= current_user.name %></p>
-            <p>Card Number:  •••• •••• •••• <%= @subscription.card_last4 %></p>
-            <p>Expiry: <%= @subscription.card_expiration.strftime("%m/%Y") %></p>
-            <%= link_to "Update billing info",
-              edit_payment_path(current_user.id),
-              class: "button update" %>
+            <% unless @subscription.coupon&.include?("gift") %>
+              <h3>Credit Card Details</h3>
+              <p>Name: <%= current_user.name %></p>
+              <p>Card Number:  •••• •••• •••• <%= @subscription.card_last4 %></p>
+              <p>Expiry: <%= @subscription.card_expiration.strftime("%m/%Y") %></p>
+              <%= link_to "Update billing info",
+                edit_payment_path(current_user.id),
+                class: "button update" %>
+            <% else %>
+              <%= link_to "Update billing info",
+                edit_payment_path(current_user.id),
+                class: "button update breatheTop" %>
+            <% end %>
           <% else %>
-            <%= link_to "Update billing info",
-              edit_payment_path(current_user.id),
-              class: "button update breatheTop" %>
+            <p>You don't have a subscription yet. <%= "Your referral trial ends on #{(current_user.created_at + 1.month).strftime("%B %e, %Y")}" if current_user.in_referral_month? %></p>
+            <%= link_to "Subscribe", new_payment_path, class: "button secondary" %>
           <% end %>
         <% else %>
-          <p>You don't have a subscription yet. <%= "Your referral trial ends on #{(current_user.created_at + 1.month).strftime("%B %e, %Y")}" if current_user.in_referral_month? %></p>
-          <%= link_to "Subscribe", new_payment_path, class: "button secondary" %>
+          <div class="settingsSection hostedFeature">
+            <p>
+              Subscriptions are not necessary in self-hosted mode.
+              <br>
+              If you'd like to contribute to Volition you can <%= link_to "support us on Patreon", "https://www.patreon.com/usevolition", :target => "_blank" %>.
+            </p>
+          </div>
         <% end %>
       </div>
 
@@ -60,16 +72,18 @@
               </label>
             </div>
 
-            <div class="settingsInputGroup">
-              <label for="" class="flexRow">
-                <div class="checkbox breatheRight">
-                  <%= check_box_tag :weekly_summary, nil, current_user.weekly_summary, class: 'completeInput' %>
-                  <%= label_tag :weekly_summary do %>
-                  <% end %>
-                </div>
-                Receive weekly summaries
-              </label>
-            </div>
+            <% unless self_hosted? %>
+              <div class="settingsInputGroup">
+                <label for="" class="flexRow">
+                  <div class="checkbox breatheRight">
+                    <%= check_box_tag :weekly_summary, nil, current_user.weekly_summary, class: 'completeInput' %>
+                    <%= label_tag :weekly_summary do %>
+                    <% end %>
+                  </div>
+                  Receive weekly summaries
+                </label>
+              </div>
+            <% end %>
           </div>
           <%= submit_tag "Save" %>
         <% end %>
@@ -111,51 +125,53 @@
         <hr>
       <% end %>
 
-      <div class="settingsCard">
-        <h2 class="settingsHeading">Gift and share Volition</h2>
-        <p><%= link_to "Purchase a Volition gift subscription", new_gift_path %> or copy and share your unique referral link. For every person that signs up and pays for Volition with your unique link, you'll both get a month free.</p>
-        <div class="referralWidget">
-          <button class="small copyButton">Copy and send link!</button>
-          <%= text_field_tag :referral_link,
-            current_user.referral_code,
-            readonly: true,
-            data: { referral_link: current_user.referral_link,
-                    referral_code: current_user.referral_code } %>
+      <% unless self_hosted? %>
+        <div class="settingsCard">
+          <h2 class="settingsHeading">Gift and share Volition</h2>
+          <p><%= link_to "Purchase a Volition gift subscription", new_gift_path %> or copy and share your unique referral link. For every person that signs up and pays for Volition with your unique link, you'll both get a month free.</p>
+          <div class="referralWidget">
+            <button class="small copyButton">Copy and send link!</button>
+            <%= text_field_tag :referral_link,
+              current_user.referral_code,
+              readonly: true,
+              data: { referral_link: current_user.referral_link,
+                      referral_code: current_user.referral_code } %>
+          </div>
+
+          <% if current_user.referred_users.present? && !self_hosted? %>
+            <h4>Referrals</h4>
+            <div class="flexTable flexTable--3cols referredUsers">
+              <div style="order:1;" class="flexTable-cell"><strong>Email</strong></div>
+              <% current_user.referred_users.each_with_index do |user, index| %>
+                <div style="order:<%= index + 2 %>;" class="flexTable-cell"><%= user.email %></div>
+              <% end %>
+
+              <div style="order:1;" class="flexTable-cell right"><strong>Account Created On</strong></div>
+              <% current_user.referred_users.each_with_index do |user, index| %>
+                <div style="order:<%= index + 2 %>;" class="flexTable-cell right"><%= user.created_at.strftime("%m/%d/%Y") %></div>
+              <% end %>
+
+              <div style="order:1;" class="flexTable-cell right"><strong>Referral Activated</strong></div>
+              <% current_user.referred_users.each_with_index do |user, index| %>
+                <div style="order:<%= index + 2 %>;" class="flexTable-cell right">
+                  <% if user.subscription.stripe_id.present? %>
+                    <span class="checkMark small"></span>
+                  <% else %>
+                    <span class="xMark"></span>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
 
-        <% if current_user.referred_users.present? && !self_hosted? %>
-          <h4>Referrals</h4>
-          <div class="flexTable flexTable--3cols referredUsers">
-            <div style="order:1;" class="flexTable-cell"><strong>Email</strong></div>
-            <% current_user.referred_users.each_with_index do |user, index| %>
-              <div style="order:<%= index + 2 %>;" class="flexTable-cell"><%= user.email %></div>
-            <% end %>
-
-            <div style="order:1;" class="flexTable-cell right"><strong>Account Created On</strong></div>
-            <% current_user.referred_users.each_with_index do |user, index| %>
-              <div style="order:<%= index + 2 %>;" class="flexTable-cell right"><%= user.created_at.strftime("%m/%d/%Y") %></div>
-            <% end %>
-
-            <div style="order:1;" class="flexTable-cell right"><strong>Referral Activated</strong></div>
-            <% current_user.referred_users.each_with_index do |user, index| %>
-              <div style="order:<%= index + 2 %>;" class="flexTable-cell right">
-                <% if user.subscription.stripe_id.present? %>
-                  <span class="checkMark small"></span>
-                <% else %>
-                  <span class="xMark"></span>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-
-      <hr>
+        <hr>
+      <% end %>
 
       <div class="settingsCard dangerZone">
         <h2 class="settingsHeading">Delete account</h2>
         <p>Delete your account if you no longer wish to use Volition (and want all of your account data deleted).</p>
-        <%= link_to "Delete account".html_safe, "#", class: "button secondary danger" %>
+        <%= link_to "Delete account".html_safe, user_path(current_user), method: :delete, data: {confirm: "Are you sure you want to delete your account?"}, class: "button secondary danger" %>
       </div>
     </div>
   </div>
