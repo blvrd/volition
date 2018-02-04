@@ -2,7 +2,9 @@
 
 ## Self-hosting with Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/garrettqmartin8/volition)
+<a href="https://heroku.com/deploy?template=https://github.com/garrettqmartin8/volition" target="_blank">
+  <img src="https://www.herokucdn.com/deploy/button.svg">
+</a>
 
 Volition is designed with self hosting in mind. By using the “Deploy to Heroku” button above, you can be up and running in a few minutes!
 
