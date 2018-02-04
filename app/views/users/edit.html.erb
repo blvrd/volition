@@ -4,7 +4,7 @@
 
   <div class="settingsWrapper">
     <div class="settingsSection">
-      <% unless @user.google_id && self_hosted? %>
+      <% unless @user.google_id || self_hosted? %>
         <p>If you'd like to sign in to Volition with your Google account, click below.</p>
         <%= render partial: "sessions/google_sign_in" %>
         <%= hidden_field_tag :google_id, id: 'google_id_token' %>
