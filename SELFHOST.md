@@ -2,7 +2,7 @@
 
 ## Self-hosting with Heroku
 
-<a href="https://heroku.com/deploy?template=https://github.com/garrettqmartin8/volition" target="_blank">
+<a href="https://www.w3schools.com" target="_blank">
   <img src="https://www.herokucdn.com/deploy/button.svg">
 </a>
 
