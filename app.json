@@ -1,7 +1,7 @@
 {
   "name": "Volition",
-  "description": "Work in progress.",
-  "repository": "https://github.com/garrettqmartin8/volition",
+  "description": "Your Volition Instance",
+  "repository": "https://github.com/usevolition/volition",
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"
   },
@@ -17,15 +17,6 @@
     },
     "SMTP_USERNAME": {
       "value": "You can add this later."
-    },
-    "TWILIO_SID": {
-      "value": "Optional"
-    },
-    "TWILIO_AUTH_TOKEN": {
-      "value": "Optional"
-    },
-    "TWILIO_SENDER_PHONE_NUMBER": {
-      "value": "Optional"
     },
     "SELF_HOSTED": {
       "value": "true"
