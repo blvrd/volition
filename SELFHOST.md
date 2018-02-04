@@ -2,14 +2,13 @@
 
 ## Self-hosting with Heroku
 
-<a href="https://www.w3schools.com" target="_blank">
-  <img src="https://www.herokucdn.com/deploy/button.svg">
-</a>
+Volition is designed with self hosting in mind. Follow the steps below and you'll be up and running in no time.
 
-Volition is designed with self hosting in mind. By using the “Deploy to Heroku” button above, you can be up and running in a few minutes!
+### 1. Deploying to Heroku
 
-To update your deployed app with the lastest changes:
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/usevolition/volition)
 
-1. Clone this repo: `git clone https://github.com/usevolition/volition.git`
-2. Run `bin/update_heroku` from the command line.
-3. Enjoy your updated app!
+<kbd>control</kbd>/<kbd>command</kbd> + click the button above to open your Heroku dashboard in a new tab.
+
+### 2. Tracking Volition's Master branch
+To make sure you're self-hosted version of Volition stays up to date, you can set up your Heroku Volition instance to automatically redeploy when we update Volitions GitHub Master branch.
