@@ -3,10 +3,13 @@
 <section class="appSection">
   <h1>Log in</h1>
   <div class="loginForm">
-    <%= render partial: "google_sign_in" %>
 
-    <%= form_with url: '/login', id: 'google_signin', html: { style: 'display: none' } do |form| %>
-      <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
+    <% unless self_hosted? %>
+      <%= render partial: "google_sign_in" %>
+
+      <%= form_with url: '/login', id: 'google_signin', html: { style: 'display: none' } do |form| %>
+        <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
+        <% end %>
     <% end %>
 
     <%= form_tag '/login' do |f| %>
