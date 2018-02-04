@@ -57,6 +57,8 @@ class Registration
   def redeem_gift(gift_token)
     gift = Gift.find_by(unique_token: gift_token)
 
+    return unless gift
+
     gift.update(recipient: @user)
 
     CreateStripeGiftSubscriptionJob.perform_later(gift)
