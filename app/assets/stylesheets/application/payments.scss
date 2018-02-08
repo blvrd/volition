@@ -5,3 +5,12 @@
     width: 40%;
   }
 }
+
+.planOptions {
+  @include display-flex;
+  @include justify-content(space-between);
+
+  width: 225px;
+  margin-bottom: 40px;
+}
+

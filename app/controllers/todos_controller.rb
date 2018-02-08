@@ -6,6 +6,19 @@ class TodosController < AuthenticatedController
 
     begin
       @todo.update!(todo_params)
+
+      todo_list = @todo.daily_todo_list
+      todo_in_week_plan = current_week_plan.todos.find_by(content: @todo.content)
+
+      if todo_in_week_plan.present?
+        todo_in_week_plan.destroy
+      end
+
+      if todo_list.daily_snapshot.present?
+        todo_list.daily_snapshot.destroy
+        DailySnapshot.create_from_todo_list(todo_list)
+      end
+
       render json: { saved: true }
     rescue => e
       puts e

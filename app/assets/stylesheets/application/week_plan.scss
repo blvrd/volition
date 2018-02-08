@@ -5,7 +5,7 @@
   border-radius: $base-border-radius;
   color: $white;
   font-size: 1rem;
-  margin: 40px 0;
+  margin-top: 40px;
   height: 300px;
 
   .weeklyTodosScrollable {
@@ -65,6 +65,7 @@
 
 .weeklyTodosSection {
   font-size: 1rem;
+  margin-bottom: 20px;
   width: 100%;
   @extend %weeklyTodos;
 
@@ -89,19 +90,8 @@
     cursor: default;
     transition: background 400ms;
 
-    .deleteTodoButton {
-      width: 20px;
-      height: 20px;
-      background: $white;
-      border-radius: $base-border-radius;
-      cursor: pointer;
-      @include display-flex;
-      @include align-items(center);
-      @include justify-content(center);
-
-      i {
-        color: $red;
-      }
+    .button {
+      @include align-self(flex-start);
     }
 
     &.new {
@@ -117,5 +107,14 @@
 
   input[type="text"] {
     margin-right: 10px;
+  }
+}
+
+div.showWeekPlan {
+  width: 100%;
+  text-align: center;
+
+  .arrowDown {
+    font-size: 10px;
   }
 }

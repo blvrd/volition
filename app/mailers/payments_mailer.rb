@@ -1,13 +1,23 @@
 class PaymentsMailer < ApplicationMailer
   default from: 'payments@usevolition.com'
 
-  def send_trial_ending_to(user)
-    @user = user
-    @subscription_end_date = Date.strptime(user.stripe_subscription.trial_end.to_s, '%s')
+  def invoice_upcoming(subscription)
+    @subscription = subscription
+    @user = @subscription.owner
 
     mail(
       to: @user.email,
-      subject: '[Volition] Your trial is ending soon!'
+      subject: "[Volition] You card will be charged soon"
+    )
+  end
+
+  def referral_activated(referred_user)
+    @referred_user = referred_user
+    @referrer      = referred_user.referrer
+
+    mail(
+      to: @referrer.email,
+      subject: "[Volition] Someone used your referral link!"
     )
   end
 end

@@ -86,7 +86,7 @@ li {
     <section class="stats">
       <div class="statItem">
         <p class="number <%= @completion_percentage_class %>">
-        <%= @completion_percentage %>%
+        <%= @weekly_summary.completion_percentage %>%
 
         <span class="arrow"><%= @completion_percentage_arrow.try(:html_safe) %></span>
         </p>
@@ -96,7 +96,7 @@ li {
 
       <div class="statItem">
         <p class="number <%= @average_rating_class %>">
-        <%= @average_rating %>
+        <%= @weekly_summary.weekly_rating %>
         <span class="arrow"><%= @average_rating_arrow.try(:html_safe) %></span>
         </p>
         <p class="label">Weekly rating</p>

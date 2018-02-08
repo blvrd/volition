@@ -26,7 +26,6 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
   config.active_record.dump_schema_after_migration = false
-  config.middleware.use Rack::Deflater
   config.static_cache_control = "public, max-age=31557600"
   config.action_mailer.default_url_options = { host: ENV["APPLICATION_HOST"] }
 end

@@ -3,7 +3,9 @@
 <section class="appSection">
   <h1>Sign up</h1>
 
-  <p class="instructions">Try Volition for 48 hours, and if it's for you, pay $12 to use it forever. You can also <%= link_to "self-host with Heroku", ENV["HEROKU_URL"], class: "herokuLink" %>.</p>
+  <% unless self_hosted? %>
+    <p class="instructions">Try Volition for 48 hours, and if it's for you, pay $5 a month to be less busy and more productive. You can also <%= link_to "self-host with Heroku", "https://github.com/usevolition/volition/blob/master/SELFHOST.md", class: "herokuLink", target: "_blank" %>.</p>
+  <% end %>
 
   <div class="newUserForm">
     <% if params[:guest] %>
@@ -12,10 +14,12 @@
       </p>
     <% end %>
 
-    <%= render partial: "sessions/google_sign_in" %>
+    <% unless self_hosted? %>
+      <%= render partial: "sessions/google_sign_in" %>
 
-    <%= form_with url: '/users', id: 'google_signin', html: { style: 'display: none' } do |form| %>
-      <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
+      <%= form_with url: '/users', id: 'google_signin', html: { style: 'display: none' } do |form| %>
+        <%= form.hidden_field :google_id_token, id: 'google_id_token' %>
+      <% end %>
     <% end %>
 
     <%= form_for @registration, url: users_path do |f| %>
@@ -39,7 +43,7 @@
             <li>Doesn't match your email <span class="xMark"></span></li>
           </ol>
         </div>
-        <%= f.password_field :password %>
+        <%= f.password_field :password, data: { rules: "checkLength,checkTop100,ensureDoesntMatchEmail" } %>
       </div>
 
       <div class="inputGroup flexRow flexAlignCenter">

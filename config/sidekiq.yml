@@ -2,7 +2,7 @@
 :concurrency: 3
 :queues:
   - default
-  - sms_reminders
-  - email_reminders
   - destroy_guest_users
   - mailers
+  - daily_snapshots
+  - create_gift_subscription

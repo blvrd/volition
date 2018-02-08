@@ -46,25 +46,15 @@ class ApplicationHelperTest < ActionView::TestCase
     assert(tomorrow_is_trackable?)
   end
 
-   test 'truncate(user_agent: :desktop)' do
-     truncated_string = truncate('This is a long todo. I should do this by the end of the day', user_agent: :desktop)
-     assert_equal('This is a long todo. I should do this...', truncated_string)
-   end
+  test 'self_hosted? true' do
+    ENV['SELF_HOSTED'] = 'true'
 
-   test 'truncate(user_agent: :mobile)' do
-     truncated_string = truncate('This is a long todo. I should do this by the end of the day', user_agent: :mobile)
-     assert_equal('This is a long todo. I...', truncated_string)
-   end
+    assert_equal(true, self_hosted?)
+  end
 
-   test 'self_hosted? true' do
-     ENV['SELF_HOSTED'] = 'true'
+  test 'self_hosted? false' do
+    ENV['SELF_HOSTED'] = 'false'
 
-     assert_equal(true, self_hosted?)
-   end
-
-   test 'self_hosted? false' do
-     ENV['SELF_HOSTED'] = 'false'
-
-     assert_equal(false, self_hosted?)
-   end
+    assert_equal(false, self_hosted?)
+  end
 end
