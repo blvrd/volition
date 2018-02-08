@@ -20,7 +20,9 @@
 
       <div class="inputGroup">
         <%= label_tag :password %>
-        <%= password_field_tag :password %>
+        <div id="showHidePassword">
+          <%= password_field_tag :password, nil %>
+        </div>
       </div>
 
       <div class="inputGroup flexRow flexAlignCenter">

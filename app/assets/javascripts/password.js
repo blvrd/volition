@@ -1,6 +1,9 @@
 $(document).on('turbolinks:load', function() {
   if ($('body').hasClass('users-new') || $('body').hasClass('passwords-edit')) {
-    $('#registration_password, #reset_password').focus(function(e) {
+    ShowPassword.config.color = "#666"
+    ShowPassword.initialize()
+
+    $('#registration_password, #reset_password').on("focus", function(e) {
       $('.passwordRules').removeClass('hidden')
     })
 
@@ -9,7 +12,6 @@ $(document).on('turbolinks:load', function() {
       var rules = e.target.dataset.rules.split(",")
 
       var passedRules = checkPasswordRules(password, rules)
-      console.log(passedRules)
       var allRulesPassed = markPassedRules(passedRules)
 
       if (allRulesPassed) {

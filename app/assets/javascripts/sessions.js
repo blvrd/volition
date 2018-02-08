@@ -22,5 +22,9 @@ function setGoogleButtonText() {
 }
 
 $(document).on('turbolinks:load', function() {
-  setTimeout(setGoogleButtonText, 100)
+  if ($('body').hasClass('sessions-new')) {
+    setTimeout(setGoogleButtonText, 100)
+    ShowPassword.config.color = "#666"
+    ShowPassword.initialize()
+  }
 })
