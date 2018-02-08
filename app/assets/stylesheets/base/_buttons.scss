@@ -65,7 +65,7 @@ button, .button, input[type="submit"] {
     }
   }
 
-  &.secondary {
+  &.secondary, &.update {
     background-color: transparent;
     border: 2px solid $green;
     padding: 0.6em $base-spacing;
