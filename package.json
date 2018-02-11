@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "show_password": "file:../show_password"
+    "show_password": "^0.0.3"
   }
 }

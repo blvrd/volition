@@ -12,7 +12,7 @@ gem "normalize-rails", "~> 3.0.0"
 gem "pg", "0.21.0"
 gem 'turbolinks'
 gem "puma"
-gem "rails", "~> 5.1.0"
+gem "rails"
 gem "recipient_interceptor"
 gem "sass-rails"
 gem "sprockets", ">= 3.0.0"
