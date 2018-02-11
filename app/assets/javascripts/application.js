@@ -17,6 +17,7 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require show_password/show_password
 //= require_tree .
 
 var update = React.addons.update
