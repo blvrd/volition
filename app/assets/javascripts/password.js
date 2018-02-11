@@ -1,6 +1,8 @@
 $(document).on('turbolinks:load', function() {
   if ($('body').hasClass('users-new') || $('body').hasClass('passwords-edit')) {
-    $('#registration_password, #reset_password').focus(function(e) {
+    ShowPassword.initialize()
+
+    $('#registration_password, #reset_password').on("focus", function(e) {
       $('.passwordRules').removeClass('hidden')
     })
 

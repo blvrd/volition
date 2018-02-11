@@ -22,5 +22,9 @@ function setGoogleButtonText() {
 }
 
 $(document).on('turbolinks:load', function() {
-  setTimeout(setGoogleButtonText, 100)
+  if ($("body").hasClass('sessions-new')) {
+    ShowPassword.initialize()
+
+    setTimeout(setGoogleButtonText, 100)
+  }
 })
