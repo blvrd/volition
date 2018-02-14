@@ -7,17 +7,12 @@ class ReflectionsController < AuthenticatedController
                  TodoList.today(current_user)
 
     @daily_snapshot = @todo_list.daily_snapshot
-    @reflecting_on_today = @todo_list == TodoList.today(current_user)
-    @link_text, @link_url = if @reflecting_on_today
-                              ["Go back to today's tasks", today_path]
-                            else
-                              ["Go back", day_path(@daily_snapshot.date)]
-                            end
+    set_link_text_and_url
 
-    if Reflection.today(current_user).present? && @reflecting_on_today
+    if Reflection.today(current_user).present? && reflecting_on_today?
       flash[:error] = 'You already wrote your reflection for today.'
       redirect_to dashboard_path
-    elsif TodoList.today(current_user).blank? && @reflecting_on_today
+    elsif TodoList.today(current_user).blank? && reflecting_on_today?
       flash[:error] = 'You must start your tasks for today before writing a reflection.'
       redirect_to dashboard_path
     end
@@ -42,6 +37,7 @@ class ReflectionsController < AuthenticatedController
 
       redirect_to after_create_path
     else
+      set_link_text_and_url
       render :new
     end
   end
@@ -67,5 +63,17 @@ class ReflectionsController < AuthenticatedController
       :undone,
       :date
     )
+  end
+
+  def reflecting_on_today?
+    @todo_list == TodoList.today(current_user)
+  end
+
+  def set_link_text_and_url
+    @link_text, @link_url = if reflecting_on_today?
+                              ["Go back to today's tasks", today_path]
+                            else
+                              ["Go back", day_path(@daily_snapshot.date)]
+                            end
   end
 end
