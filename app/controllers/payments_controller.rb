@@ -14,13 +14,20 @@ class PaymentsController < ApplicationController
   def create
     plan = SubscriptionPlan.find_by(id: params[:plan_id])
 
+    begin
+      coupon = Stripe::Coupon.retrieve(id: params[:coupon])
+    rescue Stripe::InvalidRequestError
+      coupon = NullCoupon.new
+    end
+
     subscription = Payola::Subscription.create(
       plan: plan,
       email: current_user.email,
       stripe_token: params[:stripeToken],
       currency: "usd",
       owner: current_user,
-      amount: plan.amount
+      amount: plan.amount,
+      coupon: coupon.id
     )
 
     subscription.process!

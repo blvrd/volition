@@ -11,6 +11,10 @@
 
   <%= form_with url: payments_path, local: true, id: "payment-form" do %>
     <%= hidden_field_tag :plan_id, value: @monthly_plan.id %>
+    <div class="inputGroup">
+      <%= label_tag :coupon, "Coupon code" %>
+      <%= text_field_tag :coupon %>
+    </div>
     <form id="payment-form" action="">
       <div id="credit-card" class="breatheBottom">
         <label for="card-element">Credit or debit card</label>
