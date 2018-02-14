@@ -9,7 +9,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.cache_store = :redis_store, ENV['REDISTOGO_URL']
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   config.assets.compile = true
   config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV["APPLICATION_HOST"])
   config.log_level = :debug
