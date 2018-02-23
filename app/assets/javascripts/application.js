@@ -55,5 +55,10 @@ $(document).on('turbolinks:load', function() {
   $(document).on('click', '.js--closeMenu', function(e) {
     $('.menuOverlay').addClass('hidden')
   })
+
+  $(document).on('click', '.estimateInput', function(e) {
+    e.target.select()
+  })
+
 })
 
