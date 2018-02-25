@@ -97,13 +97,17 @@ class User < ApplicationRecord
   end
 
   def forgot_password!
-    update(
+    self.skip_password_validation = true
+
+    update!(
       password_reset_token: SecureRandom.hex,
       password_reset_token_expiration: Time.current + 2.hours
     )
   end
 
   def eligible_for_password_reset
+    return false unless password_reset_token_expiration.present?
+
     password_reset_token_expiration > Time.current
   end
 
