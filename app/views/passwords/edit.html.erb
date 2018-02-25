@@ -13,7 +13,9 @@
             <li>Isn't in the <%= link_to 'top 100', 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_100.txt'%> most common passwords <span class="xMark"></span></li>
           </ol>
         </div>
-        <%= password_field_tag :password, nil, id: "reset_password", data: { rules: "checkLength,checkTop100" } %>
+        <div id="showHidePassword">
+          <%= password_field_tag :password, nil, id: "reset_password", data: { rules: "checkLength,checkTop100" } %>
+        </div>
       </div>
 
       <div class="inputGroup flexRow flexAlignCenter">
