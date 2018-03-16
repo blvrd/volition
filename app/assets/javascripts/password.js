@@ -54,27 +54,27 @@ $(document).on('turbolinks:load', function() {
       return password.length >= 10
     }
 
-    window.checkTop100 = function(password) {
-      if (!window.top100) {
-        getTop100().then(function() {
-          return !window.top100.includes(password)
-        })
-      } else {
-        return !window.top100.includes(password)
-      }
-
-    }
-
-    function getTop100() {
-      return $.ajax({
-        url: 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_100.txt'
-      }).then(function(data) {
-        window.top100 = data
-      })
-    }
-
     window.ensureDoesntMatchEmail = function(password) {
       return $('#registration_email').val() != password
     }
+
+    // window.checkTop100 = function(password) {
+    //   if (!window.top100) {
+    //     getTop100().then(function() {
+    //       return !window.top100.includes(password)
+    //     })
+    //   } else {
+    //     return !window.top100.includes(password)
+    //   }
+    //
+    // }
+
+    // function getTop100() {
+    //   return $.ajax({
+    //     url: 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/10_million_password_list_top_100.txt'
+    //   }).then(function(data) {
+    //     window.top100 = data
+    //   })
+    // }
   }
 })
