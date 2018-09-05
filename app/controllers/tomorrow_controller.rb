@@ -1,16 +1,12 @@
 class TomorrowController < AuthenticatedController
   def new
-    unless skipping_today_to_plan_tomorrow?
+    unless skipping_today_or_reflection_to_plan_tomorrow?
       path = if Reflection.today(current_user).present?
                message = "You already planned tomorrow\'s tasks. You can change them when you start your day."
                dashboard_path
-             else
-               message = "You must write a reflection for today before planning tomorrow\'s tasks."
-               reflect_path
              end
 
-      if TodoList.tomorrow(current_user).present? ||
-          Reflection.today(current_user).blank?
+      if TodoList.tomorrow(current_user).present?
         flash[:error] = message
         redirect_to path
       end
@@ -42,10 +38,10 @@ class TomorrowController < AuthenticatedController
 
   private
 
-  def skipping_today_to_plan_tomorrow?
+  def skipping_today_or_reflection_to_plan_tomorrow?
     return false if request.referer.blank?
 
-    current_user.paid? && URI(request.referer).path == "/today/new"
+    current_user.paid? && (URI(request.referer).path == "/today/new" || URI(request.referer).path == "reflect")
   end
 
   def after_create_path
