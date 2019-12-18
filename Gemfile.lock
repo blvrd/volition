@@ -228,7 +228,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.1)
     puma (3.11.2)
-    rack (2.0.7)
+    rack (2.0.8)
     rack-cors (1.0.2)
     rack-mini-profiler (0.10.7)
       rack (>= 1.2.0)
